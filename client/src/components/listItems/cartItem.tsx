@@ -1,0 +1,376 @@
+import { ReactElement, SyntheticEvent, useState } from "react";
+import styled from "styled-components";
+import { locals } from "../../store/data";
+import { CartItem } from "../../types/model";
+import { formatMoney } from "../../utils";
+import { QtyBtn } from "../buttons";
+import { QtyFormGroup } from "../forms/styles";
+import { Divider } from "../headers/stylesx";
+import { EllipsisIcon2, Times } from "../icons";
+import { ImageItem } from "../images";
+import { PriceInput, QtyInput } from "../inputs";
+import { Photo } from "../stockImages";
+
+export const CartStock = styled.div.attrs({ className: 'ct' })`
+  height: 100%;
+  width: 100%;
+  padding: 5px 17px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: space-between;
+    .photo {
+        margin: 0px;
+    }
+    .icn {
+        visibility: visible;
+    }
+  &:hover .icn {
+        visibility: visible;
+    }
+    &:hover {
+        .icon-ctn {
+            display: flex;
+        }
+    }
+  &:hover {
+    border-bottom: none;
+  }
+  &:hover p input {
+    border-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.tar
+    };
+}`
+
+export const DescWrap = styled.div.attrs(props => ({
+    className: 'ds'
+})) <any>`
+  height: 100%;
+  width: ${props => props.w || 90}%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.separators.sec : props.theme.light.colors.separators.pri
+    };
+`
+const Icon = styled.div`
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:red;
+    border: 1px solid white;
+    font-size: 11px;
+    color: white;
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    display:none;
+    z-index: 10;
+`
+export const SubTotal = styled.p<any>`
+    width: auto;
+    margin-bottom: 0px;
+    text-align: right;
+    position: absolute;
+    font-size: ${props => props.fs || props.theme.typography.body1}px;
+    color: ${props => props.cl || props.theme.light.colors.labels.sec};
+    span {
+        position: absolute;
+        display: block;
+        height: 15px;
+        width: 15px;
+        right: -16px;
+        top:2px;
+        display: flex;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        :hover {
+            background:  rgba(211, 211, 226, 0.562);
+        }
+        svg {
+            position: absolute;
+        }
+    }
+`
+export const Order = styled.div<any>`
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    position:relative;
+    min-width:60px;
+    /* right: 10px; */
+    p {
+        /* color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
+    }; */
+        
+        text-align: right;
+        right: 5px;
+        position: relative;
+    }
+`;
+
+const Qty = styled.div`
+    width: 40px;
+    margin-bottom: 0px;
+`
+export const Item = styled.div`
+    width: 100%;
+    height: 60px;
+    position: relative;
+    font-size: ${props => props.theme.typography.body1};
+`
+export const Description = styled.div`
+  height: 85%;
+  width:85%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+   p {
+     margin-bottom: 0px;
+     padding: 0px;
+     padding-left: 10px;
+     position: relative;
+     width:170px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+    };
+    span {
+        ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec};
+    }
+   }
+   p:last-child {
+     ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec}
+   }
+`;
+export const CartTotal = styled.div`
+    height: 40px;
+    width: 100%;
+    padding: 5px 17px;
+    margin: auto
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    justify-content: space-between;
+    span {
+        position: absolute;
+        right: 0px;
+    }
+     p {
+       &:first-child {
+         color: lightgrey;
+         padding-left: 0px;
+       }
+       &:last-child {
+           padding-left: 0px;
+           font-size: 14px;
+       }
+       padding: 0px 5px;
+       margin-bottom: 0px;
+       font-size: 14px;
+       font-weight: 500;
+       text-align: right;
+     }
+  `
+export const StockPhoto = styled(Photo)`
+    height: 42px;
+    width: 42px;
+    right: auto;
+    margin:0px 5px;
+    img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+        }
+`;
+export const CartItemsWraper = styled.div<any>`
+    position: absolute;
+    width:100%;
+    max-height: 100%;
+    transition: all .2s ease-in;
+    left:0%;
+`
+export const CheckOutFormWraper = styled(CartItemsWraper)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease-in;
+    background: inherit;
+    margin: auto;
+    width: 100%;
+    padding:0px 37px;
+    height: 100%;
+    position: relative;
+    left: 0%;
+    overflow: visible;
+`
+export const ReviewFormWraper = styled.div`
+    width: 100%;
+    height: 100%;
+    /* padding:0px 45px; */
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+`
+export const SettingsFormWraper = styled(CheckOutFormWraper)`
+    left: 0%;
+    height: ${props => props.h || 'inherit'};
+    width: ${props => props.h ? 'auto' : '220px'};
+    padding: 0px ${props => props.h ? '45px' : '0px'};
+    top: ${props => props.h ? '10px' : 'auto'};
+    h4 {
+        margin-bottom: 5px;
+        align-self: start;
+    }
+`
+const PaymentReviewer = styled.div<any>`
+    position: absolute;
+    height: 130px;
+    width: 100px;
+    top: -30%;
+    background: white;
+    padding: 20px 7px 0px 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    transition: all .1s ease-in;
+    right: ${props => props.show ? -105 : 2}px;
+    z-index: -1;
+    &:before {
+     content:'';
+     position: absolute;
+     top: 40%;
+     left: -2%;
+     height: 11px;
+     width: 11px;
+     transform: rotate(45deg);
+     background: inherit;
+     z-index: -1;
+  }
+`;
+const PendingAmount = styled.div`
+    position: relative;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    font-size: 12px;
+    top: 2px;
+    p{ 
+        margin-bottom: 0px;
+        text-align: left
+        width: 100%;
+        position: relative;
+    }
+    p:first-child {
+        font-size: 10px;
+        top: 2px;
+        color: grey;
+    }
+`;
+export function CartListItem(props: any): ReactElement {
+    const [stock, setStock] = useState(props.stock)
+    const {
+        stock: stockItem,
+        isLastItem,
+        itemSelected,
+        selectCallback,
+        qtyChangeCallback,
+        removeItemCallback,
+        priceChangeCallback,
+        deSelectItemCallback,
+
+    } = props;
+
+    const handleAmountChange = (e: any) => {
+        e.persist();
+        setStock({
+            ...stock,
+            // amountPaid: +e.target.value
+        })
+    }
+
+    const handlePriceAdjustment = (e: any) => {
+        e.persist();
+        setStock({
+            ...stock,
+            // amountPaid: +e.target.value * stock.quantity
+        })
+        priceChangeCallback(e)
+    }
+
+    const adjustQty = (evt: any, action: string) => {
+        props.adjustCallback(evt, action, stockItem._id)
+        const stock = locals().invoice.stocks.find((i: CartItem) => i._id === stockItem._id)
+        setStock({ ...stock })
+    }
+
+    return (
+        <Item>
+            <CartStock>
+                <div style={{ height: 42, width: 42, position: 'relative', right:'auto', borderRadius: 4 }}>
+                    <Icon onClick={(e: any) => removeItemCallback(e, stock)} className='icon-ctn'><Times /></Icon>
+                    <ImageItem source={stockItem.item.stockImage} />
+                </div>
+                <DescWrap>
+                    <Description>
+                        <p title={stockItem.item.name + ' ' + stockItem.item.description}>
+                            {stockItem.item.name} 
+                            <span>{stockItem.item.description}</span>
+                        </p>
+                        <p>
+                            <PriceInput
+                                name='sellingPrice'
+                                value={stockItem.item.sellingPrice}
+                                onFocus={deSelectItemCallback}
+                                onChange={(e: SyntheticEvent) => handlePriceAdjustment(e)}
+                            />
+                        </p>
+                    </Description>
+                    <Order>
+                        <QtyFormGroup>
+                            <QtyBtn onClick={(e: any) => adjustQty(e, '-')}><span>-</span></QtyBtn>
+                            <QtyInput name='quantity' onChange={qtyChangeCallback} value={props.stock.quantity} />
+                            <QtyBtn onClick={(e: SyntheticEvent) => adjustQty(e, '+')}><span>+</span></QtyBtn>
+                        </QtyFormGroup>
+                        <SubTotal > {
+                            formatMoney(props.stock.item.sellingPrice * props.stock.quantity)
+                        }
+                        </SubTotal>
+                    </Order>
+                </DescWrap>
+                <Divider w={isLastItem ? 88 : 73} l={isLastItem ? 'auto' : '67px'} />
+            </CartStock>
+            {/* <PaymentReviewer show={itemSelected._id === stock._id}>
+                <PaidAmountInput
+                    width={100}
+                    name='paid'
+                    label='Recieved'
+                    placeholder='Paid'
+                    value ={stock.amountPaid}
+                    changeCallback = {handleAmountChange}
+                />
+                <Divider bottom = {56}/>
+                <PendingAmount >
+                    <p>Balance</p>
+                    <p>{((stock.item.sellingPrice * stock.quantity) - stock.amountPaid).toFixed(2)}</p>
+                </PendingAmount>
+                <FlatBtn onClick={() => updateAmountPaidCallback(stock)}>Save</FlatBtn>
+            </PaymentReviewer> */}
+        </Item>
+    )
+}

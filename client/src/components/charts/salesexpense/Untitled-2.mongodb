@@ -1,0 +1,45 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('stosyst');
+
+// const aggregation = [
+//     {
+//       $match: {
+//         $and:[
+//           {owner:"632edd5045dccef72e834d5d"},
+//           {expiryWarning: {$gt: 0}}
+//         ]
+//     },
+//   },
+//   {
+//     $addFields: {
+//       year: {
+//         $year: "$expiry"
+//       },
+//       mnth: {
+//         $month: "$expiry"
+//       },
+//       yr: {
+//         $year: new Date()
+//       },
+//       mn: {
+//         $month: new Date()
+//       }
+//     }
+//   },
+//   {
+//     $match: {
+//      $and: [
+//               { $expr:{$eq:["$year", "$yr"]}},
+//               { $expr:{ $lte:[{$subtract:["$mnth","$mn"]},"$expiryWarning"]}}
+//        ]
+//     }
+//   }
+// ];
+
+db.invoices.updateMany({},{$set: {completed: true}},{upsert: true});
+

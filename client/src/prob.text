@@ -1,0 +1,23 @@
+import styled from 'styled-components/native';
+
+export const ProfSectionContainer = styled.View`
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  justify-content: flex-start;
+  background-color: lightgrey;
+`;
+export const ProfSection = styled.View`
+  width: 100%;
+  height: 150px;
+  justify-content: flex-start;
+  background-color: lightgrey;
+`;
+export const Dp = styled.View`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+`;
