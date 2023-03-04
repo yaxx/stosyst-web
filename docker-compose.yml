@@ -1,0 +1,31 @@
+version: '3'
+services:
+  react-app:
+    image: react-app
+    build: './client/'
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - stosyst
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+  api-server:
+    image: api-server
+    build: './server/api/'
+    stdin_open: true
+    ports:
+      - "4000:4000"
+    networks:
+      - stosyst
+    volumes:
+    - ./server/api:/usr/src/app
+    - /usr/src/app/node_modules
+networks:
+  stosyst:
+    driver: bridge
+
+
+
+  

@@ -7,8 +7,8 @@
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cp -R src/public dist",
-    "dev": "ts-node-dev --transpile-only --no-notify src",
-    "start": "cross-env NODE_ENV=production SERVER_PORT=5000 MONGO_HOST=nextoma.2mkb8.mongodb.net MONGO_DATABASE=prod MONGO_USERNAME=me MONGO_PASSWORD=Sqb0NzshutN74DaR AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js"
+    "start": "ts-node-dev --transpile-only --no-notify src",
+    "prod": "cross-env NODE_ENV=production SERVER_PORT=5000 MONGO_HOST=nextoma.2mkb8.mongodb.net MONGO_DATABASE=prod MONGO_USERNAME=me MONGO_PASSWORD=Sqb0NzshutN74DaR AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js"
   },
   "ts-standard": {
     "project": "./tsconfig.json"

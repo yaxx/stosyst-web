@@ -454,10 +454,8 @@ export const StocksListHeader = styled(ExpenseListHeader)`
   }
 `
 export const CardHeader = styled.header`
-  height: 8%;
+  height: 55px;
   width:100%;
-  /* background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.base.pri : props.theme.light.colors.backgrounds.base.pri
-    }; */
   background: #f7f7fa;
   top: 0px;
   position:relative;
@@ -477,19 +475,19 @@ export const CardHeader = styled.header`
     };
   }
 `;
+
 export const CardFooter = styled(CardHeader)`
   top: auto;
   bottom: 0px;
-  display: flex;
-  align-items: center;
+  position: absolute;
   justify-content: space-between;
-  padding: 0px 15px;
+  padding: 0px 16px;
   p {
     margin-bottom: 0px;
     font-size: 14px;
     text-align: right;
     font-weight: bold;
-    left: 7px;
+    left: 10px;
     position: relative;
     display:inline-block;
     flex-grow: 2;

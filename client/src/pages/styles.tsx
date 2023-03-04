@@ -106,6 +106,15 @@ export const TrendingBox = styled.div<any>`
     justify-content: center;
     padding: 20px;
 `
+export const PrintCont = styled.div<any>`
+    height: 100%;
+    width: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+`
 
 
 export default PromoSection

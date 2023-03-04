@@ -11,6 +11,7 @@ import "./index.css";
 import ErrorPage from "./pages/error";
 import { ExpensePage } from "./pages/expenses";
 import { InvoicePage } from "./pages/invoices-page";
+import Reciept from "./pages/reciept";
 import { Root } from "./pages/root";
 import Profile from "./pages/settings/profile";
 import SignIn from "./pages/signin";
@@ -61,6 +62,14 @@ export const router = createBrowserRouter(
                     element={
                         <RequireAuth>
                             <SummaryPage />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path="/print"
+                    element={
+                        <RequireAuth>
+                            <Reciept />
                         </RequireAuth>
                     }
                 />

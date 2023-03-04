@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import  ChecktOutForm  from '../forms/checkout';
 import { BackIcon, CloseIcon, EllipsisIcon2, FowardIcon } from '../icons';
 import { CartItem, Invoice, review } from '../../types/model'
-import { CartListItem, CartItemsWraper, CartTotal } from '../listItems/cartItem';
+import { CartListItem, CartItemsWraper, CartTotal, RecieptListItem } from '../listItems/cartItem';
 import { StocksForm } from '../forms/stocks';
 import { ExpenseForm } from '../forms/expense';
 import { locals } from '../../store/data';
@@ -14,7 +14,11 @@ import { CardHeader, Divider, CardFooter, FeedBack, ReviewHeader, ReviewFooter, 
 import { PaymentReview } from '../forms/styles';
 import { useReactiveVar } from '@apollo/client';
 import ReviewForm from '../forms/review';
-import { CardBody, ReviewModal, ModalContainer, Card } from './styles';
+import { CardBody, ReviewModal, ModalContainer, Card, InvoiceInfoCont, CustomerInfo, TransInfo, RecieptHeader, ClientInfo, RecieptHeaderCont } from './styles';
+import { ImageItem } from '../images';
+import { RecieptInfo } from './recieptInfo';
+import { InvoiceHeader } from './recieptHeader';
+// import { RecieptListItemsss } from '../listItems/recieptItem';
 
 
 
@@ -148,7 +152,7 @@ export function CheckOut(props: any): ReactElement {
 
   return (
         <Card slideIn = {slideIn} onClick = { (e: React.SyntheticEvent) => handleClick(e) }>
-          <CardHeader>{
+          {/* <CardHeader>{
              checkingOut ?
              <Fragment>
                <Back2 onClick = { toggleCheckOut }>
@@ -159,30 +163,38 @@ export function CheckOut(props: any): ReactElement {
              :
              <h4>{ invoice.stocks.length } Cart Item{invoice.stocks.length > 1 ? 's' : '' }</h4>
           }                  
-          </CardHeader>
+          </CardHeader> */}
+          <InvoiceHeader />
           <CardBody> {
             !checkingOut ?
-            <CartItemsWraper>{
-              invoice.stocks.map((cartItem: CartItem) =>
-                <CartListItem
-                  key={cartItem._id}
-                  removeItemCallback={removeItem}
-                  adjustCallback={adjustQuantity}
-                  selectCallback={slectItemToReview}
-                  updateAmountPaidCallback={updateAmountPaid}
-                  qtyChangeCallback={(e: any) => handleQtyChange(e, cartItem)}
-                  priceChangeCallback={(e: any) => handlePriceChange(e, cartItem)}
-                  stock={cartItem}
-                  itemSelected={itemInView}
-                  isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
-                />
+            <CartItemsWraper>
+              <RecieptInfo />{
+                invoice.stocks.map((cartItem: CartItem) =>
+                  <RecieptListItem
+                    key={cartItem._id}
+                    stock={cartItem}
+                    itemSelected={itemInView}
+                    isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
+                  />
+                // <CartListItem
+                //   key={cartItem._id}
+                //   removeItemCallback={removeItem}
+                //   adjustCallback={adjustQuantity}
+                //   selectCallback={slectItemToReview}
+                //   updateAmountPaidCallback={updateAmountPaid}
+                //   qtyChangeCallback={(e: any) => handleQtyChange(e, cartItem)}
+                //   priceChangeCallback={(e: any) => handlePriceChange(e, cartItem)}
+                //   stock={cartItem}
+                //   itemSelected={itemInView}
+                //   isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
+                // />
               )
             }
             <CartTotal>
                 <p>TOTAL:</p>
                 <p>{formatMoney(getCartTotal(invoice.stocks))}</p>
-                <Divider w={88} />
-              </CartTotal>
+                {/* <Divider w={80} /> */}
+            </CartTotal>
             </CartItemsWraper>
             :
             <ChecktOutForm
