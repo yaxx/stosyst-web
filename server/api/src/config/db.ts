@@ -19,4 +19,4 @@ const LOCAL_URI = `mongodb+srv://me:Sqb0NzshutN74DaR@nextoma.2mkb8.mongodb.net/p
 // const LOCAL_URI = `mongodb://${MONGO_HOST}/${MONGO_DATABASE}`
 const REMOTE_URI = `mongodb+srv://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD)}@${MONGO_HOST}/${MONGO_DATABASE}`
 
-export const MONGO_URI = LOCAL_URI 
+export const MONGO_URI = IN_PRODUCTION ? REMOTE_URI : LOCAL_URI 

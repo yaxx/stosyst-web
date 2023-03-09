@@ -1,4 +1,4 @@
-import React, { ReactElement, Fragment, useState, useEffect } from 'react'
+import React, { ReactElement, Fragment, useState, useEffect, useRef } from 'react'
 import styled from 'styled-components';
 import  ChecktOutForm  from '../forms/checkout';
 import { BackIcon, CloseIcon, EllipsisIcon2, FowardIcon } from '../icons';
@@ -19,7 +19,7 @@ import { ImageItem } from '../images';
 import { RecieptInfo } from './recieptInfo';
 import { InvoiceHeader } from './recieptHeader';
 // import { RecieptListItemsss } from '../listItems/recieptItem';
-
+import ReactToPrint, { useReactToPrint } from 'react-to-print';
 
 
 
@@ -36,6 +36,8 @@ export function CheckOut(props: any): ReactElement {
 
   const [checkingOut, setCheckOut] = useState(false)
   const [payment, setPayment] = useState(false)
+
+  const componentRef = useRef(null);
 
   useEffect(() => {
     setSlideIn(true)
@@ -149,9 +151,12 @@ export function CheckOut(props: any): ReactElement {
       completed: i.completed,
     })
   }
-
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+  const handlePrint2 = ()=>window.print();
   return (
-        <Card slideIn = {slideIn} onClick = { (e: React.SyntheticEvent) => handleClick(e) }>
+    <Card ref={componentRef} slideIn = {slideIn} onClick = { (e: React.SyntheticEvent) => handleClick(e) }>
           {/* <CardHeader>{
              checkingOut ?
              <Fragment>
@@ -164,56 +169,63 @@ export function CheckOut(props: any): ReactElement {
              <h4>{ invoice.stocks.length } Cart Item{invoice.stocks.length > 1 ? 's' : '' }</h4>
           }                  
           </CardHeader> */}
+      <div ref={componentRef}>
           <InvoiceHeader />
           <CardBody> {
             !checkingOut ?
-            <CartItemsWraper>
-              <RecieptInfo />{
-                invoice.stocks.map((cartItem: CartItem) =>
-                  <RecieptListItem
-                    key={cartItem._id}
-                    stock={cartItem}
-                    itemSelected={itemInView}
-                    isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
-                  />
-                // <CartListItem
-                //   key={cartItem._id}
-                //   removeItemCallback={removeItem}
-                //   adjustCallback={adjustQuantity}
-                //   selectCallback={slectItemToReview}
-                //   updateAmountPaidCallback={updateAmountPaid}
-                //   qtyChangeCallback={(e: any) => handleQtyChange(e, cartItem)}
-                //   priceChangeCallback={(e: any) => handlePriceChange(e, cartItem)}
-                //   stock={cartItem}
-                //   itemSelected={itemInView}
-                //   isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
-                // />
-              )
-            }
-            <CartTotal>
-                <p>TOTAL:</p>
-                <p>{formatMoney(getCartTotal(invoice.stocks))}</p>
-                {/* <Divider w={80} /> */}
-            </CartTotal>
-            </CartItemsWraper>
-            :
-            <ChecktOutForm
-              invoice = {invoice}  
-              checkingOut = {checkingOut}
-              updateCacheCallback={props.updateCacheCallback} 
-              total = { getCartTotal(invoice.stocks).toString().split('.') } 
-            />
-            }
-            </CardBody>
+              <CartItemsWraper >
+                  <RecieptInfo />{
+                    invoice.stocks.map((cartItem: CartItem) =>
+                      <RecieptListItem
+                        key={cartItem._id}
+                        stock={cartItem}
+                        itemSelected={itemInView}
+                        isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
+                      />
+                    // <CartListItem
+                    //   key={cartItem._id}
+                    //   removeItemCallback={removeItem}
+                    //   adjustCallback={adjustQuantity}
+                    //   selectCallback={slectItemToReview}
+                    //   updateAmountPaidCallback={updateAmountPaid}
+                    //   qtyChangeCallback={(e: any) => handleQtyChange(e, cartItem)}
+                    //   priceChangeCallback={(e: any) => handlePriceChange(e, cartItem)}
+                    //   stock={cartItem}
+                    //   itemSelected={itemInView}
+                    //   isLastItem={invoice.stocks[invoice.stocks.length - 1]._id === cartItem._id}
+                    // />
+                  )
+                }
+                  <CartTotal>
+                      <p>TOTAL:</p>
+                      <p>{formatMoney(getCartTotal(invoice.stocks))}</p>
+                      <Divider w={80} />
+                  </CartTotal>
+                </CartItemsWraper>
+                :
+                <ChecktOutForm
+                  invoice = {invoice}  
+                  checkingOut = {checkingOut}
+                  updateCacheCallback={props.updateCacheCallback} 
+                  total = { getCartTotal(invoice.stocks).toString().split('.') } 
+                />
+                }
+              </CardBody>
+          </div>
             <>
             {
               !checkingOut && 
               <CardFooter>
                 <>
-                  <p onClick={() => toggleCheckOut()}>Payment</p>
-                  <Foward onClick={toggleCheckOut}>
-                    <FowardIcon />
-                  </Foward>
+                  <ReactToPrint
+                    content={() => componentRef.current}
+                  />
+                  <p onClick={handlePrint}>Print</p>
+                    
+                    {/* <p onClick={() => toggleCheckOut()}>Payment</p> */}
+                    {/* <Foward onClick={toggleCheckOut}>
+                      <FowardIcon />
+                    </Foward> */}
                 </>
               </CardFooter> 
             } 
