@@ -21,7 +21,7 @@ import styled from 'styled-components'
                   <p>Access your business records from your web, desktop or mobile</p>
               </div> */}
           </div>
-          <div className="footer">© stosyst 2022</div>
+          <div className="footer">© stosyst 2023</div>
       </div>
   )
 }

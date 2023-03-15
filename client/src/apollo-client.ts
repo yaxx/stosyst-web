@@ -6,7 +6,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { ApolloClient, InMemoryCache, split } from '@apollo/client'
 
-export const API_HOST = inDevelopment ? 'localhost:4000':'api.nextoma.com'
+export const API_HOST = inDevelopment ? 'localhost:4000':'api.stosyst.com'
 export const API_URI = inDevelopment ? `http://${API_HOST}/graphql`:`https://${API_HOST}`
 
 
