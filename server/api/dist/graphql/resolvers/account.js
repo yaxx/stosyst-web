@@ -76,6 +76,7 @@ exports.default = {
             });
         },
         signIn: async (root, { creds }, { req }) => {
+            console.log(creds);
             return await Auth.attemptSignIn(creds);
         },
         saveInfo: async (root, { staff }, { req, res }, info) => {
