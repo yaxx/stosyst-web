@@ -19,7 +19,7 @@ export const createExpressApp = () => {
     const app =  express()
 
     const IMAGES_PATH = path.join(__dirname, 'public', 'images')
-    const STATIC_PATH =  path.join(__dirname, IN_PRODUCTION ? 'dist/build' : 'public')
+    const STATIC_PATH =  path.join(__dirname, IN_PRODUCTION ? 'build' : 'public')
 
     app.use(cors(corsOptions))
     app.use(express.static(STATIC_PATH));
@@ -49,7 +49,7 @@ export const createExpressApp = () => {
     // })
 
     app.get('/*', function (req, res) {
-      // res.sendFile(path.resolve(__dirname, '../dist/build', 'index.html'));
+      res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     })
     app.disable('x-powered-by')
 

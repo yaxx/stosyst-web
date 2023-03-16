@@ -17,11 +17,12 @@ exports.corsOptions = {
 const createExpressApp = () => {
     const app = (0, express_1.default)();
     const IMAGES_PATH = path_1.default.join(__dirname, 'public', 'images');
-    const STATIC_PATH = path_1.default.join(__dirname, config_1.IN_PRODUCTION ? 'dist/build' : 'public');
+    const STATIC_PATH = path_1.default.join(__dirname, config_1.IN_PRODUCTION ? 'build' : 'public');
     app.use((0, cors_1.default)(exports.corsOptions));
     app.use(express_1.default.static(STATIC_PATH));
     app.use("/images", express_1.default.static(IMAGES_PATH));
     app.get('/*', function (req, res) {
+        res.sendFile(path_1.default.resolve(__dirname, 'build', 'index.html'));
     });
     app.disable('x-powered-by');
     return app;
