@@ -22,7 +22,6 @@ const createExpressApp = () => {
     app.use(express_1.default.static(STATIC_PATH));
     app.use("/images", express_1.default.static(IMAGES_PATH));
     app.get('/*', function (req, res) {
-        res.sendFile(path_1.default.resolve(__dirname, 'build', 'index.html'));
     });
     app.disable('x-powered-by');
     return app;

@@ -49,7 +49,7 @@ export const createExpressApp = () => {
     // })
 
     app.get('/*', function (req, res) {
-      res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+      // res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
     })
     app.disable('x-powered-by')
 
