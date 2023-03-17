@@ -76,7 +76,7 @@ exports.default = {
                 owner: req.data.orgId
             })
                 :
-                    stock = await models_1.Product.findByIdAndUpdate(ObjectId(product._id), {
+                    stock = await models_1.Product.findByIdAndUpdate(product._id, {
                         ...product,
                         modified: user
                     }, { new: true });
@@ -84,7 +84,7 @@ exports.default = {
             return stock;
         },
         deleteProduct: async (_, { id }) => {
-            return await models_1.Product.findByIdAndDelete(ObjectId(id));
+            return await models_1.Product.findByIdAndDelete(id);
         }
     },
     Subscription: {

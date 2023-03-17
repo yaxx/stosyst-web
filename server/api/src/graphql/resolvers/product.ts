@@ -108,7 +108,7 @@ export default {
         owner: req.data.orgId 
       }) 
       : 
-      stock = await Product.findByIdAndUpdate(ObjectId(product._id), {
+      stock = await Product.findByIdAndUpdate(product._id, {
          ...product,
          modified: user
         }, { new: true }
@@ -118,7 +118,7 @@ export default {
     },
 
     deleteProduct: async (_: any, { id }: any) => {
-        return await Product.findByIdAndDelete(ObjectId(id))
+        return await Product.findByIdAndDelete(id)
     }
   },
   Subscription: {
