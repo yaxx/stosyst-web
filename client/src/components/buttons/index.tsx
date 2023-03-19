@@ -157,7 +157,7 @@ export const Back = styled(EditBtn)`
   }
 `
 export const Back2 = styled(EditBtn)`
-  z-index: 500;
+  /* z-index: 5; */
   background-color: transparent;
   :hover {
     background-color: #08080834;

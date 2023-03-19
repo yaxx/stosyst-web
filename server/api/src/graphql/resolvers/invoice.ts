@@ -26,7 +26,7 @@ export default {
     invoices: async (root:any, { query,filter, offset, group }:any, {req, res}:RequestResponse ) => {
       Auth.checkSignedIn(req);
       const {data: {orgId, uid}}:any = req
-
+     
       let result = await Invoice.aggregate(getInvoicePipeline(orgId, query, filter, group, offset ))
 
       result = group === 'date' ? 
@@ -35,7 +35,6 @@ export default {
         }))
         :
         result
-
       return result
     },
     searchInvoices:  async (root:any, { query, group }:{query: string, group: string},{req, res}:RequestResponse ) => {
@@ -111,7 +110,7 @@ export default {
           let diff = (stock.quantity - oldStock.quantity) * -1;
 
           if(diff) 
-             Product.findByIdAndUpdate(ObjectId(stock.item._id), { $inc:{ instock:diff }}, {new: true}, (e, data) => {
+             Product.findByIdAndUpdate(stock.item._id, { $inc:{ instock:diff }}, {new: true}, (e, data) => {
                if(e) {
                   throw e
                } else {
@@ -126,9 +125,10 @@ export default {
           modified: user,
           recieved: invoice.recieved,
           completed: invoice.completed,
-          customer: invoice.customer
+          customer: invoice.customer,
+          paymentMethod: invoice.paymentMethod
         }
-        newInvoice = await Invoice.findByIdAndUpdate(ObjectId(invoice._id),{ ...oldInvoice },{new: true})
+        newInvoice = await Invoice.findByIdAndUpdate(invoice._id,{ ...oldInvoice },{new: true})
       } else {
         newInvoice = await Invoice.create({
           ...invoice, 
@@ -154,7 +154,7 @@ export default {
       let stocks: any = invoice.stocks.map((s: any)=> s.item)
 
       invoice.stocks.forEach(async (i:any) => {
-        await Product.findByIdAndUpdate(ObjectId(i.item._id), { $inc:{ instock:(i.quantity*-1) }}, { new: true })
+        await Product.findByIdAndUpdate(i.item._id, { $inc:{ instock:(i.quantity*-1) }}, { new: true })
       })
 
       sendMessage(invoice, client.msgTokens)
@@ -171,11 +171,11 @@ export default {
       oldInvoice.stocks = oldInvoice.stocks.filter((stock:any) => stock._id.toString() != refund.stock._id)
 
       oldInvoice.stocks.length === 0 ? 
-      await Invoice.findByIdAndDelete(ObjectId(refund.invoiceId))
+      await Invoice.findByIdAndDelete(refund.invoiceId)
       :
       await oldInvoice.save()
          
-      await Product.findByIdAndUpdate(ObjectId(refund.stock.item._id), {
+      await Product.findByIdAndUpdate(refund.stock.item._id, {
          $inc:{ 
            instock: refund.stock.quantity 
           }

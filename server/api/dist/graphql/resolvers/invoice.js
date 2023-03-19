@@ -114,7 +114,7 @@ exports.default = {
                     let stock = invoice.stocks.find((newStock) => newStock.item._id === oldStock.item._id);
                     let diff = (stock.quantity - oldStock.quantity) * -1;
                     if (diff)
-                        models_1.Product.findByIdAndUpdate(ObjectId(stock.item._id), { $inc: { instock: diff } }, { new: true }, (e, data) => {
+                        models_1.Product.findByIdAndUpdate(stock.item._id, { $inc: { instock: diff } }, { new: true }, (e, data) => {
                             if (e) {
                                 throw e;
                             }
@@ -129,9 +129,10 @@ exports.default = {
                     modified: user,
                     recieved: invoice.recieved,
                     completed: invoice.completed,
-                    customer: invoice.customer
+                    customer: invoice.customer,
+                    paymentMethod: invoice.paymentMethod
                 };
-                newInvoice = await models_1.Invoice.findByIdAndUpdate(ObjectId(invoice._id), { ...oldInvoice }, { new: true });
+                newInvoice = await models_1.Invoice.findByIdAndUpdate(invoice._id, { ...oldInvoice }, { new: true });
             }
             else {
                 newInvoice = await models_1.Invoice.create({
@@ -155,7 +156,7 @@ exports.default = {
             }
             let stocks = invoice.stocks.map((s) => s.item);
             invoice.stocks.forEach(async (i) => {
-                await models_1.Product.findByIdAndUpdate(ObjectId(i.item._id), { $inc: { instock: (i.quantity * -1) } }, { new: true });
+                await models_1.Product.findByIdAndUpdate(i.item._id, { $inc: { instock: (i.quantity * -1) } }, { new: true });
             });
             (0, fcm_1.sendMessage)(invoice, client.msgTokens);
             return newInvoice;
@@ -165,10 +166,10 @@ exports.default = {
             const stockToRemove = oldInvoice.stocks.find((stock) => stock._id.toString() === refund.stock._id);
             oldInvoice.stocks = oldInvoice.stocks.filter((stock) => stock._id.toString() != refund.stock._id);
             oldInvoice.stocks.length === 0 ?
-                await models_1.Invoice.findByIdAndDelete(ObjectId(refund.invoiceId))
+                await models_1.Invoice.findByIdAndDelete(refund.invoiceId)
                 :
                     await oldInvoice.save();
-            await models_1.Product.findByIdAndUpdate(ObjectId(refund.stock.item._id), {
+            await models_1.Product.findByIdAndUpdate(refund.stock.item._id, {
                 $inc: {
                     instock: refund.stock.quantity
                 }

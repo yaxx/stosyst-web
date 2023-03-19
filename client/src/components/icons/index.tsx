@@ -42,7 +42,7 @@ export const MoreOptions = styled.div<any>`
   border: 1px solid ${ props => props.theme.light.colors.separators.pri};
   border-radius: 10px;
 `
-export const OptionItem = styled.div`
+export const OptionItem:any = styled.div`
     width: 100%;
     position: relative;
     cursor: default;
@@ -73,9 +73,7 @@ const IconBox = styled.div.attrs(props=>({className:'icn'}))`
     }
     svg {
         &:hover {
-            fill: {
-                #593ae6;
-            }
+            fill:#593ae6;
         }
         fill : #dad9d9;
         /* fill:${
@@ -115,7 +113,7 @@ const Close = styled.div.attrs(({title:'Close'}))<any>`
     cursor: pointer;
     z-index:10;
     font-size: 40px;
-    background-color:${props => props.bg || "#0000001c" };
+    background-color:${props => props.bg || "#0000005b" };
     &:hover {
         background-color:${props => props.bgHover || "#0000007f" } ;
     }
@@ -164,6 +162,16 @@ const Clear = styled(Search).attrs((props: any )=> ({
 const Peeker = styled(Clear)`
 
  `
+export const Drop = styled.div`
+  height: 100%;
+  width: 32px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 1px;
+`
 const DownAngle = styled.div`
 svg {
     fill: ${props=>props.theme.dark.colors.brand};
@@ -227,6 +235,15 @@ export const ClearIcon = (props: any) => {
                 <ellipse cx="13.374" cy="13.207" rx="8.92791" ry="8.92792" transform="rotate(45 13.374 13.207)" fill="#ADADAD" fill-opacity="0.24" />
             </svg>
         </Clear>
+    )
+}
+export const DropIcon = (props: any) => {
+    return (
+        <Drop>
+            <svg width="17" height="6.5" viewBox="0 0 9 6" fill="none" >
+                <path d="M4.5 6L8.39711 0.75H0.602886L4.5 6Z" fill="#a0a1a1" />
+            </svg>
+        </Drop>
     )
 }
 export const ClearInputIcon = (props: any) => {
@@ -461,13 +478,14 @@ export const CartIcon = () => (
         </NavIcon>
     )
 export const CloseIcon = (props: any) => (
-        <Close onClick={()=>props.clickCallback()} {...props}>
-        <svg width={props.iconWidth || "24"} height={props.iconHeight || "23"} viewBox="0 0 24 23" fill="none" >
+        <Close onClick={() => props.clickCallback()} {...props}>
+            <svg width={props.iconWidth || "24"} height={props.iconHeight || "23"} viewBox="0 0 24 23" fill="none" >
                 <rect width="1.35905" height="8.15428" transform="matrix(0.707074 -0.70714 0.707072 0.707141 8.9668 9.60986)" fill="white" />
-            <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white"/>
+                <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white"/>
             </svg>
         </Close>
     )
+
 export const InfoIcon = (props: any) => (
         <div className ='icon'>
            <svg width="21" height="21" viewBox="0 0 21 21" fill="none">

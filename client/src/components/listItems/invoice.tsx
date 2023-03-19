@@ -25,11 +25,11 @@ export const InvoiceListItems = ({ openMenu, stock, invoice, opened, pendings, i
         <ListItems>
             <Item width={53}>
                 <P1 style={{ color: '#000000e7' }} >{stock.item.name}</P1>
-                <P2>{stock.item.description}</P2>
+                <P2 id="subInfo">{stock.item.description}</P2>
             </Item>
             <Item width={25}>
                 <P1 style={{ color: '#000000e7'}}>{invoice.customer.firstName|| ' '}</P1>
-                <P1>{invoice.customer.phone || invoice.customer.address || ' '}</P1>
+                <P1 id="subInfo">{invoice.customer.phone || invoice.customer.address || ' '}</P1>
             </Item>
             <Item width={17}><P1>{}</P1></Item>
             <Item width={17}><P1 style={{ color: '#000000e7' }}>{stock.quantity}</P1></Item>
@@ -39,6 +39,7 @@ export const InvoiceListItems = ({ openMenu, stock, invoice, opened, pendings, i
                     {formatMoney(stock.item.sellingPrice * stock.quantity)}
                     <span>+</span>
                 </Paid>
+                <P1 id="subInfo">{invoice.paymentMethod||'---'}</P1>
             </Item>
             <Divider />
         </ListItems>

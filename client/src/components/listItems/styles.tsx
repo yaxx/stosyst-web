@@ -54,6 +54,7 @@ export const Row = styled.li<any>`
 export const ExpenseList = styled(Row)`
     padding: 0px 14px;
     overflow: visible;
+     padding-left:0px;
     ul {
         left: 0px;
         width: 100%;
@@ -148,6 +149,7 @@ export const InfoItems = styled.ul<any>`
     flex-direction: column;
     align-items:flex-start;
     margin-bottom: 0px;
+     padding-left:0px;
     /* padding: 0px ${props => props.p || 0}px 0px 0px; */
     justify-content:${props => props.isInput ? 'space-between' : 'flex-start'};
 `
@@ -191,13 +193,6 @@ export const InputItem = styled(InfoItem) <any>`
   border-bottom: ${props => props.top ? '1px' : '0px'} solid;
   border-bottom-color: ${props => props.top ? "#d3d3d35c" : 'white'};
   padding-left: 5px;
-  /* :hover {
-    border-color: ${({ isFocused }) => isFocused ? '#00a3fe' : '#cecece8a'};
-    border-width: ${({ isFocused }) => isFocused ? 1.5 : 1}px;
-  }
-  border-width: ${({ isFocused }) => isFocused ? 1.5 : 0}px;
-  border-color: ${({ isFocused }) => isFocused ? '#00a3fe' : 'white'};
-  cursor: text; */
 `
 export const VDivider = styled.div<any>`
     height: 84%;

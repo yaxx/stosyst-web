@@ -60,6 +60,7 @@ export const GET_INVOICES = gql`
                 recieved
                 payable
                 completed
+                paymentMethod
                 createdAt
                 updatedAt
             }

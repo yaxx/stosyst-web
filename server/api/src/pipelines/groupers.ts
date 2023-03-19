@@ -107,6 +107,9 @@ export const groupInvoice = (criteria: string) => ({
         }
     }
     :
+    criteria === 'paymentmethod' ?
+    "$paymentMethod"
+    :
     "$customer.firstName",
     records: {
         $push: "$$ROOT" 

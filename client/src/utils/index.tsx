@@ -1,5 +1,5 @@
 import { defState, initFeedback, initStaff, locals } from "../store/data";
-import { CartItem, Invoice } from "../types/model";
+import { CartItem, Invoice, print } from "../types/model";
 export * from './cacheUpdates';
 
 export { addPermision, removePermision, isAdmin, isMe } from "./permisions";
@@ -131,9 +131,9 @@ export const showFeedback = (success: boolean, msg: string) => {
             ...locals(),
             feedback: initFeedback
         })
+        if (success) print(true)
     }, 2000);
 }
-
 
 const updateCache = (newInvoice: any) => {
 

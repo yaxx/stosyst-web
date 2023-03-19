@@ -23,17 +23,18 @@ export const StockListItems = (props: any) => {
         <ListItems {...props}>
             <Item {...props} width={42.5}>
                 <p>{stock.name}</p>
-                <p>{stock.description}</p>
+                <p id="subInfo">{stock.description}</p>
             </Item>
             <Item {...props} width={34.5}>
                 <p>{stock.category}</p>
+                <p id="subInfo">{stock.subCategory||'--'}</p>
             </Item>
             <Item {...props} width={11}>
-                <p>{formatMoney(stock.sellingPrice) }</p>
+                <p style={{ color: '#2d2d2de7' }}>{formatMoney(stock.sellingPrice) }</p>
             </Item>
             <Item {...props} width={12} ai='flex-end' className='options'>
                 <p><MoreIcon openMenuCallback={togleMenu} /></p>
-                <p style={{ color: `${stock.instock <= 0 ?  '#f94701d2' : stock.instock <= stock.warningCount ? '#f9bc01': ''}`}}>{stock.instock}</p>
+                <p style={{ color: `${stock.instock <= 0 ? '#f94701d2' : stock.instock <= stock.warningCount ? '#f9bc01' : '#2d2d2de7'}`}}>{stock.instock}</p>
             </Item>
             <Divider />
         </ListItems>

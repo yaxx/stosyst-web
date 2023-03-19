@@ -20,7 +20,6 @@ export default {
     products: async (root: any, {group, offset, filter, query}: any , {req, res}:RequestResponse) => {
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
-
       // console.log(query)
 
       // let stocks = await Product.find().lean()
@@ -101,11 +100,11 @@ export default {
         email: staff.email
       })
 
-      stock = !product._id ? await Product.create({ 
+      stock = !product._id ? await Product.create({
         ...product,
         added: user,
         modified: user,
-        owner: req.data.orgId 
+        owner: req.data.orgId
       }) 
       : 
       stock = await Product.findByIdAndUpdate(product._id, {
@@ -113,9 +112,11 @@ export default {
          modified: user
         }, { new: true }
       )
+      console.log(JSON.stringify(stock, null, 2))
       pubsub.publish('STOCKS', { stock })
       return stock
     },
+
 
     deleteProduct: async (_: any, { id }: any) => {
         return await Product.findByIdAndDelete(id)

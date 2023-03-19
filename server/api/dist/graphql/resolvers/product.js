@@ -80,6 +80,7 @@ exports.default = {
                         ...product,
                         modified: user
                     }, { new: true });
+            console.log(JSON.stringify(stock, null, 2));
             exports.pubsub.publish('STOCKS', { stock });
             return stock;
         },

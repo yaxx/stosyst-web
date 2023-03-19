@@ -5,7 +5,7 @@ display: flex;
 `
 
 export const TableActions = styled.div<any>`
-    width: 115px;
+    width: 135px;
     position: absolute;
     z-index: 1000;
     right: ${props=>props.r || 160}px;
@@ -111,7 +111,7 @@ export const TopHeader = styled.header`
 `
 export const Header = styled.header<any>`
   height: ${props => props.height || 50}px; 
-  width: ${props => props.width || 97}%;
+  width: ${props => props.width || 98}%;
   margin: auto;
   background: white;
   position: relative;
@@ -127,6 +127,7 @@ export const InvoiceListHeader = styled.ul`
   position:relative;
   display: flex;
   position: relative;
+  padding-left: 0px;
   justify-content: start;
   font-size: .62rem;
   color: rgb(173,173,173);
@@ -145,6 +146,7 @@ export const SettingsHeader = styled(Header)`
 export const SettingsNavigation = styled.ul`
   height: 30px;
   width: 100%;
+  padding-left:0px;
   position:relative;
   display: flex;
   align-items: center;
@@ -156,6 +158,7 @@ export const SettingsNavigation = styled.ul`
         color: #00A3FE;
       }
   }
+  padding-left: 0px;
 `
 export const Title = styled.div`
   height: 100%;
@@ -273,6 +276,7 @@ export const StaffInfo = styled.ul`
   width: 100%;
   height: auto;
   display: flex;
+  padding-left:0px;
   flex-direction: column;
 `
 
@@ -570,6 +574,7 @@ export const OptionList = styled.ul`
   display: block;
   left:-15px;
   z-index: 100;
+  padding-left:0px;
   top: 42px;
   border-radius:10px;
   box-shadow: 0 5px 25px #c4c3c337;

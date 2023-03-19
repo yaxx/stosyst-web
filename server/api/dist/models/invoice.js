@@ -47,6 +47,7 @@ const InvoiceSchema = new mongoose_1.Schema({
     ],
     recieved: Number,
     payable: Number,
+    paymentMethod: String,
     completed: Boolean,
     customer: exports.Person,
     added: exports.Person,

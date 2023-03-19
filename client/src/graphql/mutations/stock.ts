@@ -8,6 +8,7 @@ export const SAVE_STOCK = gql`
             name
             description
             category
+            subCategory
             costPrice
             sellingPrice
             instock
@@ -41,6 +42,7 @@ export const DELETE_STOCK = gql`
             name
             description
             category
+            subCategory
             costPrice
             sellingPrice
             instock

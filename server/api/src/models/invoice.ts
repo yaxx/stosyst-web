@@ -46,6 +46,7 @@ const InvoiceSchema = new Schema({
   ],
   recieved: Number,
   payable: Number,
+  paymentMethod: String,
   completed: Boolean,
   customer: Person,
   added: Person,

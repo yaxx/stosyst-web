@@ -22,7 +22,65 @@ export const getInvoiceFilter = ( modifier: string, filter: string, group: strin
             $limit: 10
         }
     ]
+    : filter === 'cash' ?
+    [
+        {
+            $match: { modifier, paymentMethod: 'Cash' }
+        },
+       
+        {
+            $group: groupInvoice(group)
+        },
+        {
+            $sort: getSorter(group)
+        },
+        { 
+            $skip: offset
+        },
+        {
+            $limit: 10
+        }
+    ]
+    : filter === 'pos' ?
+    [
+        {
+            $match: { modifier, paymentMethod: 'POS' }
+        },
+       
+        {
+            $group: groupInvoice(group)
+        },
+        {
+            $sort: getSorter(group)
+        },
+        { 
+            $skip: offset
+        },
+        {
+            $limit: 10
+        }
+    ]
+    : filter === 'transfer' ?
+    [
+        {
+            $match: { modifier, paymentMethod: 'Transfer' }
+        },
+       
+        {
+            $group: groupInvoice(group)
+        },
+        {
+            $sort: getSorter(group)
+        },
+        { 
+            $skip: offset
+        },
+        {
+            $limit: 10
+        }
+    ]
     :
+
     [
         {
             $match: { modifier}

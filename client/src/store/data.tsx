@@ -7,6 +7,7 @@ export let initProduct: Product = {
     name: '',
     description: '',
     category: '',
+    subCategory: '',
     sellingPrice: 0,
     costPrice: 0,
     instock: 0,
@@ -60,6 +61,7 @@ export let initInvoice: Invoice = {
     seenBy: [],
     recieved: 0,
     payable: 0,
+    paymentMethod:'POS',
     completed: true,
     modifier: '',
     customer: defCustomer,
@@ -108,3 +110,4 @@ export const invCriteria = makeVar({
     filter: '',
     group: 'date',
 });
+export const globalInvoice = makeVar(initInvoice);

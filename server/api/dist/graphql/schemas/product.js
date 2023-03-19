@@ -22,6 +22,7 @@ exports.default = (0, apollo_server_express_1.gql) `
         description: String
         stockImage: String!
         category: String
+        subCategory: String
         costPrice: Float!
         sellingPrice: Float!
         instock: Float!
@@ -39,6 +40,7 @@ exports.default = (0, apollo_server_express_1.gql) `
         name: String!
         description: String
         category: String
+        subCategory: String
         costPrice: Float!
         sellingPrice: Float!
         instock: Int!

@@ -238,6 +238,11 @@ export const CartItemsWraper = styled.div<any>`
     transition: all .2s ease-in;
     left:0%;
 `
+export const RecieptItemsCont = styled.div<any>`
+    width:100%;
+    max-height: 100%;
+    left:0%;
+`
 export const CheckOutFormWraper = styled(CartItemsWraper)`
     display: flex;
     flex-direction: column;
@@ -252,6 +257,7 @@ export const CheckOutFormWraper = styled(CartItemsWraper)`
     position: relative;
     left: 0%;
     overflow: visible;
+    bottom: 120px;
 `
 export const ReviewFormWraper = styled.div`
     width: 100%;

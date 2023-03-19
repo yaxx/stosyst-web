@@ -108,7 +108,10 @@ const groupInvoice = (criteria) => ({
             }
         }
         :
-            "$customer.firstName",
+            criteria === 'paymentmethod' ?
+                "$paymentMethod"
+                :
+                    "$customer.firstName",
     records: {
         $push: "$$ROOT"
     }

@@ -10,6 +10,7 @@ import { gql, useLazyQuery } from '@apollo/client'
                 name
                 description
                 category
+                subCategory
                 costPrice
                 sellingPrice
                 instock

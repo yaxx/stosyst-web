@@ -1,9 +1,9 @@
 import { useMutation } from "@apollo/client";
 import React, { ReactElement, useEffect, useState } from "react";
-import { review } from "../../types/model";
+import { print, review } from "../../types/model";
 import { formatMoney, genTransId, getCartTotal, showFeedback, stripTypename } from "../../utils";
 import { PriBtn, ReviewButton } from "../buttons";
-import { FormGroupCont, NameInput } from "../inputs";
+import { DropDown, FormGroupCont, NameInput } from "../inputs";
 import { CheckOutFormWraper } from "../listItems/cartItem";
 import { Loader } from "../loaders";
 import { CheckOut } from "../../graphql/mutations/checkout";
@@ -11,19 +11,24 @@ import { P2 } from "../typography";
 import { GET_STOCKS } from "../../graphql/queries";
 import { CompleteMark, InvoiceLabel, ReviewTotal, StandardForm } from "./styles";
 import { CheckIcon, QuestionIcon } from "../icons";
+import { globalInvoice } from "../../store/data";
+import { Divider } from "../headers/stylesx";
+import { DropDownItem, DropDownList } from "../inputs/styles";
+import DropDownOptions from "../listItems/dropdown";
 
 export default function ChecktOutForm(props: any): ReactElement {
 
-  const {invoice: modifiedInvoice} = props
+  const { invoice: modifiedInvoice, updatePrintIvoice } = props
   
   const [customer, setCustomer] = useState(modifiedInvoice.customer);
   const [invoice, setInvoice] = useState(modifiedInvoice)
+  const [dropedInput, setDroppedInput] = useState('')
 
   useEffect(() => {
     setInvoice(modifiedInvoice)
-    // setCustomer(modifiedInvoice.customer)
   }, [modifiedInvoice])
-  
+
+  let newInvoice: any = {}
 
   const [checkOut, {error, loading, data}] = useMutation(CheckOut, {
     update:(cache, { data:{ checkOut } }) => {
@@ -48,14 +53,18 @@ export default function ChecktOutForm(props: any): ReactElement {
           }
         });
       }
+      updatePrintIvoice(newInvoice)
     }
   });
+
+  
 
   if(data) {
     showFeedback(true, invoice._id ? 'Update successful' : 'Transaction successful')
   }
    
   if(error) {
+    console.log(error)
      showFeedback(false, invoice._id ? 'Update successful' : 'Update failed')
   }
   
@@ -86,7 +95,7 @@ export default function ChecktOutForm(props: any): ReactElement {
 
       const { seenBy, ...restIvoice } = invoice
 
-      let newInvoice = {
+       newInvoice = {
         ...restIvoice,
         stocks,
         customer,
@@ -103,7 +112,6 @@ export default function ChecktOutForm(props: any): ReactElement {
           customer: stripTypename(customer),
         }
       }
-
       checkOut({
         variables: {
           invoice: {
@@ -122,8 +130,16 @@ export default function ChecktOutForm(props: any): ReactElement {
         [name]: ''
     })
   }
-  const getRecievedAmount = () => invoice.recieved > 0 ? invoice.recieved.toString().split('.') : getCartTotal(invoice.stocks).toString().split('.')
 
+  const handleOptSelection = (opt: string)=>{
+    setInvoice({
+      ...invoice,
+      paymentMethod: opt
+    })
+    setDroppedInput('')
+  }
+
+  const getRecievedAmount = () => invoice.recieved > 0 ? invoice.recieved.toString().split('.') : getCartTotal(invoice.stocks).toString().split('.')
 
   const openReview = (e: Event) => {
     e.preventDefault()
@@ -150,7 +166,6 @@ export default function ChecktOutForm(props: any): ReactElement {
               </ReviewTotal>
               <FormGroupCont>
                 <NameInput
-                
                   autoFocus = 'autoFocus'
                   name = 'firstName' 
                   label = 'Full name' 
@@ -159,24 +174,34 @@ export default function ChecktOutForm(props: any): ReactElement {
                   changeCallback = {(e: any) => handleChange(e)}
                 />
               </FormGroupCont>
-            <FormGroupCont>
-              <NameInput
-                top={true}
-                name ='phone' 
-                label = 'Email or Mobile'
-                value = {customer.phone}
-                clearCallback ={clearInput}
-                changeCallback ={(e: any) => handleChange(e)}
-              />
-              <NameInput
-                name='address'
-                label='Customer Address'
-                value={customer.address}
-                clearCallback={clearInput}
-                changeCallback={(e: any) => handleChange(e)}
-              /> 
+              <FormGroupCont>
+                <NameInput
+                  top={true}
+                  name ='phone' 
+                  label = 'Email or Mobile'
+                  value = {customer.phone}
+                  clearCallback ={clearInput}
+                  changeCallback ={(e: any) => handleChange(e)}
+                />
+                <NameInput
+                  name='address'
+                  label='Customer Address'
+                  value={customer.address}
+                  clearCallback={clearInput}
+                  changeCallback={(e: any) => handleChange(e)}
+                /> 
             </FormGroupCont>
-              
+            <FormGroupCont>
+            <DropDown
+                name='paymentmethod'
+                label='Payment Mehtod'
+                value={invoice.paymentMethod || 'POS'}
+                openCallback={()=>setDroppedInput('paymentmethod')}
+              />
+              {
+                  dropedInput === 'paymentmethod' && <DropDownOptions selectCallback={handleOptSelection}  options={['POS', 'Cash', 'Transfer']} />
+              }
+            </FormGroupCont>
               <PriBtn style={{fontSize: 10, fontWeight: 600}} disabled={loading}>
               {
                  loading ? <Loader lf={45}/> : props.invoice._id ? 'UPDATE INVOICE' : 'COMFIRM PAYMENT' 

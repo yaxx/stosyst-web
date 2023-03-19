@@ -53,6 +53,7 @@ export default gql`
         tid: String!
         recieved: Float
         payable: Float
+        paymentMethod: String
         completed: Boolean
         stocks: [StockItemInput!]!
         customer: PersonInput
@@ -103,6 +104,7 @@ export default gql`
         customer: Customer
         recieved: Float
         payable: Float
+        paymentMethod: String
         completed: Boolean
         modifier: String
         added: Person

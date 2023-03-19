@@ -71,6 +71,9 @@ export const Page = (props: any): ReactElement => {
         curInvoices = data?.invoices
         offset = offset + 20 ;
     }
+    if(error) {
+        console.log(JSON.stringify(error, null, 2))
+    }
     // const subscribeToNewInvoice = () =>
     //     subscribeToMore({
     //       document: INVOICE_SUBS,

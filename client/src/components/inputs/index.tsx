@@ -1,10 +1,11 @@
 import React, { ReactElement, useState } from 'react'
-import { SearchIcon, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon } from '../icons';
+import { SearchIcon, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon, DropIcon } from '../icons';
 import styled, { keyframes } from 'styled-components'
 import { P2 } from '../typography';
 import { expenseCriteria, groupingCriteria, invCriteria } from '../../store/data';
 import { useReactiveVar } from '@apollo/client/react';
 import { ClearCont, ClearInputCont } from '../forms/styles';
+import { DropDownVal } from './styles';
 export interface Attr {
     label: string,
     type: string,
@@ -90,7 +91,7 @@ const PrimaryFormGroup = styled.div<any>`
   width: ${ props => props.width}%;
   font-size: ${ props => props.theme.typography.body2 };
    label {
-    font-size: 11px
+    font-size: 11px;
     pointer-events: none;
     transition: all 2s linear;
     bottom: ${props => props.selected || props.hasInput ? '18px' : 'auto'};
@@ -112,6 +113,9 @@ export const FormGroupCont = styled.div<any>`
   border-radius: 8px;
   border: 1px solid #e6e1e1;
 `
+
+
+
 const MultiFormGroup = styled.div<any>`
   background-color: inherit;
   height: 32px;
@@ -226,7 +230,6 @@ const StandardFormGroup = styled(PrimaryFormGroup)<any>`
     pointer-events: none;
      color: rgb(113, 113, 113) !important;
     transition: all 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955) !important;
-    /* transition: all 2s linear; */
     bottom: ${({ selected, hasInput }: any) => selected || hasInput ? '24px' : 'auto'};
   }
   input {
@@ -237,6 +240,9 @@ const StandardFormGroup = styled(PrimaryFormGroup)<any>`
     bottom: ${props => props.selected || props.hasInput ? '-6px' : 'auto'};
   }
   background: ${({ selected }: any) => selected  ? 'whitesmoke' : 'initial'};
+`
+const DropDownFormGroup = styled(StandardFormGroup)<any>`
+  cursor: pointer;
 `
 const StockFormGroup = styled(PrimaryFormGroup)<any>`
   height: 20px;
@@ -257,15 +263,6 @@ const StockFormGroup = styled(PrimaryFormGroup)<any>`
     }
   }
 `
-// const NumberGroup = styled(PrimaryFormGroup)<any> `
-//   width: ${props => props.width}%;
-//   margin-right: ${props => props.mr || 0}px;
-// `
-// const PriceAdjustGroup = styled(PrimaryFormGroup)<any>`
-//   width: 100%
-//   height: 30px;
-//   margin-bottom:20px;
-// `;
 
 const SecondaryInput = styled.input.attrs(props => ({
     placeholder: props.placeholder,
@@ -326,7 +323,7 @@ const Label = styled.label`
     left: 0px;
     font-size: 11px;
     color: ${
-          props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
+        props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
     };
     margin-bottom: 0px;
     background-color: transparent;
@@ -406,9 +403,18 @@ export function NameInput(props: any): ReactElement {
       <Label>
       {label}
       {required && <span style={{color: "#ff000072"}}>*</span>}
-      
       </Label>
     </StandardFormGroup>
+  )
+}
+export function DropDown(props: any): ReactElement {
+  const { value, label, openCallback } = props;
+  return (
+    <DropDownFormGroup onClick={openCallback} hasInput={value} {...props}>
+      <DropDownVal>{value}</DropDownVal> 
+          <DropIcon />
+      <Label>{label}</Label>
+    </DropDownFormGroup>
   )
 }
 export function MultiInput(props: any): ReactElement {

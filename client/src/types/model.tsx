@@ -50,6 +50,7 @@ export interface Product extends Item {
     costPrice: number
     sellingPrice: number,
     category?: string,
+    subCategory: string
     stockImage?: string,
     warningCount: number,
     expiry: string,
@@ -69,6 +70,7 @@ export interface Invoice {
     customer: Person,
     completed: boolean,
     recieved: number,
+    paymentMethod: string,
     modifier?: string,
     added?: Person,
     payable?: number,
@@ -76,6 +78,7 @@ export interface Invoice {
     seenBy?: string[],
     _id?: string,
     tid?: string,
+
     createdAt?: Date,
     updatedAt?: Date
 }
@@ -122,3 +125,4 @@ export type LocalState = {
 }
 
 export const review = makeVar(false);
+export const print = makeVar(false);

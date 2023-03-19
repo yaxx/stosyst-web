@@ -319,3 +319,10 @@ button:focus {
     width: 900px;
   }
 } */
+ol, ul {
+    padding-left: 0rem;
+}
+#subInfo {
+  color: grey;
+  font-size: 12px;
+}

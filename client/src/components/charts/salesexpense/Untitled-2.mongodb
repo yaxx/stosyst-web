@@ -41,5 +41,5 @@ use('stosyst');
 //   }
 // ];
 
-db.invoices.updateMany({},{$set: {completed: true}},{upsert: true});
+db.products.updateMany({},{$set: {subCategory: ''}},{upsert: true});
 

@@ -54,6 +54,7 @@ exports.default = (0, apollo_server_express_1.gql) `
         tid: String!
         recieved: Float
         payable: Float
+        paymentMethod: String
         completed: Boolean
         stocks: [StockItemInput!]!
         customer: PersonInput
@@ -104,6 +105,7 @@ exports.default = (0, apollo_server_express_1.gql) `
         customer: Customer
         recieved: Float
         payable: Float
+        paymentMethod: String
         completed: Boolean
         modifier: String
         added: Person

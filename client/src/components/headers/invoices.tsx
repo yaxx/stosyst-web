@@ -32,7 +32,7 @@ export const  InvoiceHeader = (): ReactElement => {
                             {
                                 criteria.group === 'date' && <Marker />
                             }
-                            <p>Date added</p>
+                            <p>Date Added</p>
                         </TableOption>
                         <Divider />
                         <TableOption selected={criteria.group === 'customer'} onClick={() => invCriteria({ ...criteria, group: 'customer' })}>
@@ -40,6 +40,12 @@ export const  InvoiceHeader = (): ReactElement => {
                                 criteria.group === 'customer' && <Marker />
                             }
                             <p>Customer</p>
+                        </TableOption>
+                            <TableOption selected={criteria.group === 'paymentmethod'} onClick={() => invCriteria({ ...criteria, group: 'paymentmethod' })}>
+                            {
+                                criteria.group === 'paymentmethod' && <Marker />
+                            }
+                            <p>Payment Method</p>
                         </TableOption>
                     </TableActions>
                     :
@@ -53,6 +59,18 @@ export const  InvoiceHeader = (): ReactElement => {
                         <TableOption selected={criteria.filter === 'pendings'} onClick={() => invCriteria({ ...criteria, filter: 'pendings' })}> 
                             {criteria.filter === 'pendings' && <Marker />}
                             <p>Pendings</p>
+                        </TableOption>
+                                <TableOption selected={criteria.filter === 'cash'} onClick={() => invCriteria({ ...criteria, filter: 'cash' })}> 
+                            {criteria.filter === 'cash' && <Marker />}
+                            <p>Cash</p>
+                        </TableOption>
+                        <TableOption selected={criteria.filter === 'pos'} onClick={() => invCriteria({ ...criteria, filter: 'pos' })}> 
+                            {criteria.filter === 'pos' && <Marker />}
+                            <p>POS</p>
+                        </TableOption>
+                        <TableOption selected={criteria.filter === 'transfer'} onClick={() => invCriteria({ ...criteria, filter: 'transfer' })}> 
+                            {criteria.filter === 'transfer' && <Marker />}
+                            <p>Transfer</p>
                         </TableOption>
                     </TableActions>
                     :

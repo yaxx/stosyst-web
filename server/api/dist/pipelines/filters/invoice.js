@@ -22,10 +22,10 @@ const getInvoiceFilter = (modifier, filter, group, offset) => {
                 $limit: 10
             }
         ]
-        :
+        : filter === 'cash' ?
             [
                 {
-                    $match: { modifier }
+                    $match: { modifier, paymentMethod: 'Cash' }
                 },
                 {
                     $group: (0, groupers_1.groupInvoice)(group)
@@ -39,7 +39,61 @@ const getInvoiceFilter = (modifier, filter, group, offset) => {
                 {
                     $limit: 10
                 }
-            ];
+            ]
+            : filter === 'pos' ?
+                [
+                    {
+                        $match: { modifier, paymentMethod: 'POS' }
+                    },
+                    {
+                        $group: (0, groupers_1.groupInvoice)(group)
+                    },
+                    {
+                        $sort: (0, sorter_1.getSorter)(group)
+                    },
+                    {
+                        $skip: offset
+                    },
+                    {
+                        $limit: 10
+                    }
+                ]
+                : filter === 'transfer' ?
+                    [
+                        {
+                            $match: { modifier, paymentMethod: 'Transfer' }
+                        },
+                        {
+                            $group: (0, groupers_1.groupInvoice)(group)
+                        },
+                        {
+                            $sort: (0, sorter_1.getSorter)(group)
+                        },
+                        {
+                            $skip: offset
+                        },
+                        {
+                            $limit: 10
+                        }
+                    ]
+                    :
+                        [
+                            {
+                                $match: { modifier }
+                            },
+                            {
+                                $group: (0, groupers_1.groupInvoice)(group)
+                            },
+                            {
+                                $sort: (0, sorter_1.getSorter)(group)
+                            },
+                            {
+                                $skip: offset
+                            },
+                            {
+                                $limit: 10
+                            }
+                        ];
 };
 exports.getInvoiceFilter = getInvoiceFilter;
 //# sourceMappingURL=invoice.js.map

@@ -1,12 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import styled from 'styled-components';
-import { Invoice } from '../../types/model';
-import { isAdmin } from '../../utils';
-import { can } from '../../utils/permisions';
 
 import { MoreOptions, OptionItem } from '../icons';
 import { P1 } from '../typography';
-import { InvoiceItem } from './invoice';
 
 export const Item = styled.li<any>`
     width: ${ props => props.width }%;
@@ -15,7 +11,6 @@ export const Item = styled.li<any>`
     /* p:last-child {
         color: ${ props => props.selected ? 'white' : props.theme.light.colors.labels.sec};
     } */
-
 `
 
 export const ListItems =  styled.ul<any>`
@@ -30,23 +25,24 @@ export const ListItems =  styled.ul<any>`
         position: relative;
         p {
             margin-bottom: 0px;
-            color: #1f1e1eac;
+            color: #2d2d2de7;
         }
-    } 
+    }
     .options p:first-child {
         display: none;
     }
     li:first-child p:first-child {
-        color: #1f1e1eac;
+        color: #2d2d2de7;
     }
+    li:nth-child(2) p:first-child {
+       color: #2d2d2de7;
+    }
+    
     li:first-child p, li:nth-child(2) p {
         max-width: 95%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-    li p:last-child {
-        font-size: ${ props => props.theme.typography.body1};
     }
 `
 export const SummaryItems = styled(ListItems)`
@@ -162,9 +158,9 @@ export const MoreActions = (props: any) => {
 
     let allowedActions:any = []
     
-     actions.forEach((a: any)=>{
-        if(a.permitted) 
-        allowedActions.push(a)
+     actions.forEach((action: any)=>{
+        if(action.permitted) 
+        allowedActions.push(action)
     })
 
     return (

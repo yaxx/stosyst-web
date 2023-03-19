@@ -9,10 +9,10 @@ export const ModalContainer = styled.div<any>`
     background-color: rgb(0 0 0 / 46%);
 `;
 export const ReviewModal = styled.div<any>`
-    position: fixed;
+    position: absolute;
     height: 100%;
     width:100%;
-    z-index: 116;
+    z-index: 1;
     top:0;
     background-color: rgb(0 0 0 / 20%);
 `;
@@ -22,6 +22,7 @@ export const ContainerSlider = styled.div<any>`
   position: relative;
   height: 100%;
   width: 300px;
+
   transition: all 4s ease-in-out;
   right: ${props => props.slideIn ? -115 : -10}px;
 `
@@ -29,18 +30,27 @@ export const Card = styled.div<any>`
   position: absolute;
   height:100%;
   width: 330px;
+  overflow: hidden;
   background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.base.pri : props.theme.light.colors.backgrounds.base.pri
     };
   transition: all .2s linear;
   right: ${props => props.slideIn ? 250 : -350}px;
 `;
+export const SlidingCont3 = styled.div<any>`
+  position: absolute;
+  height:100%;
+  width: 330px;
+  z-index: 200;
+  transition: all .2s linear;
+  bottom: ${props => props.up ? 0 : -8400}px;
+  
+`;
 export const CardBody = styled(Card)`
-  height: 84%;
+  height:100%;
   right: 0px;
   padding-top: 0px;
   width: 100%;
-  position: relative;
-  overflow: visible;
+  /* overflow: visible; */
  `;
 export const InvoiceMainCont = styled.div`
   width: 100%;
@@ -121,6 +131,7 @@ export const RecieptHeader = styled.header`
   position:relative;
   display: flex;
   align-items: center;
+  z-index: 1000;
 `;
 export const RecieptHeaderCont = styled.div`
   height: 100%;
@@ -147,4 +158,38 @@ export const ClientInfo = styled.header`
     color: grey;
     font-size: 12px;
   }
+`;
+
+export const ClosePrint = styled.div.attrs(({ title: 'Close' }))<any>`
+    height:20px;
+    width: 20px;
+    position: absolute;
+    top:10px;
+    right: 10px;
+    border-radius: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index:100000;
+    font-size: 40px;
+    background-color:${props => props.bg || "#0000005b"};
+    &:hover {
+        background-color:${props => props.bgHover || "#0000007f"} ;
+    }
+`;
+export const SlindingCont = styled.div<any>`
+    height:100%;
+    width: 100%;
+    position: absolute;
+    transition: all .15s ease-in-out;
+    left: ${props => !props.in ? 0 : 100}%;
+    background-color: #d1cdcd;
+`;
+export const SlindingCont2 = styled.div<any>`
+    height:100%;
+    width: 100%;
+    position: absolute;
+    transition: all .15s ease-in-out;
+    left: ${props => !props.in ? -100 : 0}%;
 `;

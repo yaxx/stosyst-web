@@ -11,8 +11,8 @@ export const CheckOut = gql`
                     name
                     description
                     category
-                    sellingPrice
                     costPrice 
+                    sellingPrice
                 }
                 booked
                 delivered
@@ -30,6 +30,7 @@ export const CheckOut = gql`
             recieved
             completed
             payable
+            paymentMethod
             added {
                     firstName
                     lastName
