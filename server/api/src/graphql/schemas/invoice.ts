@@ -28,6 +28,7 @@ export default gql`
         name: String!
         description: String
         category: String
+        subCategory: String
         costPrice: Float!
         sellingPrice: Float!
         instock: Int
@@ -73,6 +74,7 @@ export default gql`
         name: String!
         description: String
         category: String
+        subCategory: String
         costPrice: Float!
         sellingPrice: Float!
         instock: Int!

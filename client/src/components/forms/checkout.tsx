@@ -1,19 +1,15 @@
 import { useMutation } from "@apollo/client";
 import React, { ReactElement, useEffect, useState } from "react";
-import { print, review } from "../../types/model";
+import { review } from "../../types/model";
 import { formatMoney, genTransId, getCartTotal, showFeedback, stripTypename } from "../../utils";
 import { PriBtn, ReviewButton } from "../buttons";
 import { DropDown, FormGroupCont, NameInput } from "../inputs";
 import { CheckOutFormWraper } from "../listItems/cartItem";
 import { Loader } from "../loaders";
 import { CheckOut } from "../../graphql/mutations/checkout";
-import { P2 } from "../typography";
 import { GET_STOCKS } from "../../graphql/queries";
-import { CompleteMark, InvoiceLabel, ReviewTotal, StandardForm } from "./styles";
+import { CompleteMark, ReviewTotal, StandardForm } from "./styles";
 import { CheckIcon, QuestionIcon } from "../icons";
-import { globalInvoice } from "../../store/data";
-import { Divider } from "../headers/stylesx";
-import { DropDownItem, DropDownList } from "../inputs/styles";
 import DropDownOptions from "../listItems/dropdown";
 
 export default function ChecktOutForm(props: any): ReactElement {
@@ -64,7 +60,6 @@ export default function ChecktOutForm(props: any): ReactElement {
   }
    
   if(error) {
-    console.log(error)
      showFeedback(false, invoice._id ? 'Update successful' : 'Update failed')
   }
   
@@ -78,6 +73,9 @@ export default function ChecktOutForm(props: any): ReactElement {
 
   const handleSubmit = (e: any) => { 
     e.preventDefault();
+    e.stopPropagation();
+    // console.log(e.target.name);
+    
     if(e.target.name === 'review') {
     } else {
       let { stocks } = invoice
@@ -112,6 +110,9 @@ export default function ChecktOutForm(props: any): ReactElement {
           customer: stripTypename(customer),
         }
       }
+
+      console.log(newInvoice);
+      
       checkOut({
         variables: {
           invoice: {
@@ -121,7 +122,6 @@ export default function ChecktOutForm(props: any): ReactElement {
         },
       })
     }
-    
   }
 
   const clearInput = ( name: string) => {

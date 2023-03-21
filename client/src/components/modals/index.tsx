@@ -69,6 +69,7 @@ export function CheckOut(props: any): ReactElement {
 
   const handleQtyChange = (e: any, cartItem: CartItem) => {
     e.persist();
+    e.stopPropagation();
     const stockToAdjust = invoice.stocks.find((i: CartItem) => i._id === cartItem._id)
     const stock = {
       ...stockToAdjust,
@@ -146,6 +147,7 @@ export function CheckOut(props: any): ReactElement {
 
   const handleClick = (e: React.SyntheticEvent) => {
     e.stopPropagation();
+    // e.preventDefault()
   }
 
   const updateInvoice = (i: Invoice) => {
@@ -159,7 +161,7 @@ export function CheckOut(props: any): ReactElement {
     setInvoice({
       ...i,
     })
-    setSlideUp(true)
+    // setSlideUp(true)
   }
  
   // const handlePrint2 = ()=>window.print();
@@ -169,7 +171,7 @@ export function CheckOut(props: any): ReactElement {
       <Card slideIn = {slideIn} onClick = { (e: React.SyntheticEvent) => handleClick(e) }>
         <SlindingCont in={checkingOut}>
           <CardHeader>
-            <h4>{invoice.stocks.length} Cart Item{invoice.stocks.length > 1 ? 's' : ''}</h4>
+            <h4>{invoice.stocks.length}Cart Item{invoice.stocks.length > 1 ? 's' : ''}</h4>
           </CardHeader>
           <CardBody> {
               <CartItemsWraper > 
@@ -194,14 +196,14 @@ export function CheckOut(props: any): ReactElement {
                       <p>{formatMoney(getCartTotal(invoice.stocks))}</p>
                       <Divider w={90} />
                   </CartTotal>
-                </CartItemsWraper>
+              </CartItemsWraper>
           }
           </CardBody>
           <CardFooter>
-                <p onClick={() => toggleCheckOut()}>Payment</p> 
-                <Foward onClick={toggleCheckOut}>
-                  <FowardIcon />
-                </Foward>
+              <p onClick={() => toggleCheckOut()}>Payment</p> 
+              <Foward onClick={toggleCheckOut}>
+                <FowardIcon />
+              </Foward>
           </CardFooter> 
         </SlindingCont>
         <SlindingCont2 in={checkingOut} >
@@ -221,7 +223,6 @@ export function CheckOut(props: any): ReactElement {
             />
           </CardBody>
           <CardFooter />
-
           {/* <PaymentReview slideUp={reviewing}>
             <ReviewForm updateInvoiceCallback={updateInvoice} invoice={invoice} />
           </PaymentReview>

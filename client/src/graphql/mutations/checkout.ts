@@ -11,6 +11,7 @@ export const CheckOut = gql`
                     name
                     description
                     category
+                    subCategory
                     costPrice 
                     sellingPrice
                 }
