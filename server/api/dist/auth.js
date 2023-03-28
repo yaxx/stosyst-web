@@ -33,7 +33,7 @@ const attemptSignIn = async ({ isAdmin, phone, password, msgToken }) => {
         }
         else { }
         if (msgToken.length) {
-            await models_1.Client.findByIdAndUpdate(ObjectId(client._id), { $addToSet: { msgTokens: msgToken } });
+            await models_1.Client.findByIdAndUpdate(client._id, { $addToSet: { msgTokens: msgToken } });
         }
     }
     else {

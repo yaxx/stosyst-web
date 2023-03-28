@@ -56,8 +56,6 @@ export default {
         })
     },
     signIn: async (root: any, { creds }: any, { req }:{req: Request}) => {
-
-      console.log(creds)
         // const { userId } = req.session;
         // if(userId)
         // return Client.findById(userId);
