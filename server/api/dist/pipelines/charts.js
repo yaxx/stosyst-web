@@ -147,7 +147,9 @@ const getTotalSalesPipeline = (clientId, duration) => {
             }
         },
         {
-            $match: { diff: duration === 'Weekly' ? { $lt: 7 } : duration === 'Monthly' ? { $lt: 12 } : { $lte: 10 } }
+            $match: {
+                diff: duration === 'Weekly' ? { $lt: 7 } : duration === 'Monthly' ? { $lt: 12 } : { $lte: 10 }
+            }
         },
         {
             $unwind: { path: '$stocks' }
@@ -200,14 +202,14 @@ const getTotalExpPipeline = (clientId, duration) => {
             }
         },
         {
-            $match: { diff: duration === 'Weekly' ? { $lt: 7 } : duration === 'Monthly' ? { $lt: 12 } : { $lte: 10 } }
+            $match: {
+                diff: duration === 'Weekly' ? { $lt: 7 } : duration === 'Monthly' ? { $lt: 12 } : { $lte: 10 }
+            }
         },
         {
             $group: {
                 _id: "$diff",
-                totalExpenses: {
-                    $sum: '$amount'
-                }
+                totalExpenses: { $sum: '$amount' }
             }
         },
         {
@@ -217,7 +219,6 @@ const getTotalExpPipeline = (clientId, duration) => {
 };
 exports.getTotalExpPipeline = getTotalExpPipeline;
 const getTrendsPipeline = (clientId, duration, item) => {
-    console.log(item);
     return [
         {
             $match: { modifier: clientId }
@@ -255,8 +256,7 @@ const getTrendsPipeline = (clientId, duration, item) => {
                 items: {
                     $push: "$$ROOT"
                 },
-                totalSalesCount: item ?
-                    { $sum: 1 }
+                totalSalesCount: item ? { $sum: 1 }
                     :
                         {
                             $sum: {

@@ -16,6 +16,7 @@ import { formatMoney } from '../../../utils';
 import { LoadingCont } from '../styles';
 import { useState } from 'react';
 import ChartCardHeader from '../header/cardHeader';
+import { roundAmount } from '../header';
 
 
 export const SalesExpenseChart = () => {
@@ -176,11 +177,11 @@ export const SalesExpenseChart = () => {
                     <TotalCont>
                       <TotalSalesCont>
                         <h6>Total Sales</h6>
-                        <h4>{formatMoney(getTotalSales())}</h4>
+                        <h4>{roundAmount(getTotalSales())}</h4>
                       </TotalSalesCont>
                       <TotalExpCont>
                         <h6>Total Expenses</h6>
-                        <h4>{formatMoney(getTotalExp())}</h4>
+                        <h4>{roundAmount(getTotalExp())}</h4>
                       </TotalExpCont>
                     </TotalCont>
                     <BarChartCont>

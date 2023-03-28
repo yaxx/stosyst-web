@@ -53,8 +53,8 @@ export function Page(props: any): ReactElement {
     })
 
     if (error) console.log({ error })
-    if (data) console.log({ data })
-        
+    if (error) console.log({ error })
+
     return (
         <Fragment>
             <SideNav />

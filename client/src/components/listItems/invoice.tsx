@@ -206,29 +206,23 @@ export function OuterList(props: any): ReactElement {
     const { group } = useReactiveVar(invCriteria)
     const [printerIcon, showPrinterIcon] = useState(false)
 
+    const {list} = props;
+
     return (
         <section onMouseLeave={() => showPrinterIcon(false)} onMouseEnter={() => showPrinterIcon(true)} className="stocksContainer"> {
             <Fragment>
                 <DateSeparator>
-                    {group === 'date' ? format_date(props.list.records[0].createdAt) : props.list._id||'Not Specified'}
-                    {/* {
-                        printerIcon && 
-                        <PrintOutline
-                        color={'#3c9df7f'}
-                        height="18px"
-                        width="18px"
-                    />
-                    } */}
+                    {group === 'date' ? format_date(list.records[0].createdAt) : list._id||'Not Specified'}
                     <Divider />
                 </DateSeparator>
                 {
-                    props.list.records.map((n: any, j: number) =>
+                    list.records.map((n: any, j: number) =>
                         <ElasticContainer contentHeight={55} initHeight={55}>
                             <InnerList {...props} invoice={n} key={n._id} />
                         </ElasticContainer>
                     )
                 }
-                <TotalSeparator opened={props.opened} onClick={() => props.colapseCallbak(props.list.records.length - 5)}>
+                <TotalSeparator opened={props.opened} onClick={() => props.colapseCallbak(list.records.length - 5)}>
                     <Counter>
                         {/* <P1> {
                             (props.list.records.length - 5) > 0 && 
@@ -240,7 +234,7 @@ export function OuterList(props: any): ReactElement {
                     </Counter> {
                         // (props.list.records.length - 5) > 0 ?  <ArrowDown/> : <></>
                     }
-                    <P1 style={{ fontSize: 15, color: '#000000e7' }}>{formatMoney(getNetInvoiceToatal(props.list.records))}</P1>
+                    <P1 style={{ fontSize: 15, color: '#000000e7' }}>{formatMoney(getNetInvoiceToatal(list.records))}</P1>
                 </TotalSeparator>
             </Fragment>
         }

@@ -12,6 +12,7 @@ import { useGetLocals } from '../../hooks/useGetProducts'
 import { H4 } from '../../components/typography'
 import { ImageItem } from '../../components/images'
 import { ActionGroup, ChangePicBtn, Divider, GroupItems, LabelGroup, ProfilePicture, SaveBtn, SettingGroup, SettingsItem } from '../../components/headers/stylesx'
+import { SettingsNavHeader } from '../../components/headers'
 interface Props {
     
 }
@@ -86,19 +87,19 @@ export default function Profile({}: Props): ReactElement {
     }
 
     return (
-        <Fragment>
+        <>
             <SideNav/>
             <Header>
-                <HeaderItems>
+                {/* <HeaderItems>
                     <Divider bottom='100' />
                     <Item>
                         <H4>Profile Picture</H4>
                         <p>Change identifying details for your account</p>
                     </Item>
                     <Divider />
-                </HeaderItems>
+                </HeaderItems> */}
             </Header>
-            <SettingsItem>
+            {/* <SettingsItem>
                 <SettingGroup>
                     <LabelGroup height = {100}>
                         <ProfilePicture height='100' width='100'>
@@ -115,7 +116,7 @@ export default function Profile({}: Props): ReactElement {
                         </GroupItems>
                     </ActionGroup>
                 </SettingGroup>
-            </SettingsItem>
+            </SettingsItem> */}
             <Header>
                 <HeaderItems>
                     <Divider bottom='100' />
@@ -126,7 +127,7 @@ export default function Profile({}: Props): ReactElement {
                     <Divider />
                 </HeaderItems>
             </Header>
-            <SettingsItem height = '120'>
+            {/* <SettingsItem height = '120'>
                 <SettingGroup>
                     <LabelGroup>
                         <p>Username</p>
@@ -142,8 +143,8 @@ export default function Profile({}: Props): ReactElement {
                         </GroupItems>
                     </ActionGroup>
                 </SettingGroup>
-            </SettingsItem>
-            <SettingsItem height = '150'>
+            </SettingsItem> */}
+            {/* <SettingsItem height = '150'>
                 <SettingGroup> 
                     <LabelGroup>
                         <p>Display Name</p>
@@ -159,10 +160,11 @@ export default function Profile({}: Props): ReactElement {
                         </GroupItems>
                     </ActionGroup>
                 </SettingGroup>
-                <SaveBtn>SAVE</SaveBtn>
+                <SaveBtn>Save</SaveBtn>
                 <Divider top ='100'/>
-            </SettingsItem>
-        </Fragment>
+            </SettingsItem> */}
+
+        </>
 
     )
 }

@@ -22,6 +22,11 @@ import ReactToPrint, { useReactToPrint } from 'react-to-print';
 
 export function CheckOut(props: any): ReactElement {
 
+  const icon = <svg width={"24"} height={"23"} viewBox="0 0 24 23" fill="none" >
+    <rect width="1.35905" height="8.15428" transform="matrix(0.707074 -0.70714 0.707072 0.707141 8.9668 9.60986)" fill="white" />
+    <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white" />
+  </svg>
+
   const { localData:{ localState }, issues } = useGetLocals();
 
   const reviewing = useReactiveVar(review)
@@ -47,7 +52,8 @@ export function CheckOut(props: any): ReactElement {
   }, [])
 
   const closePrintPreview = (e: any) => {
-    setSlideUp(false)
+    console.log(`closed`)
+    // setSlideUp(false)
   }
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
@@ -161,10 +167,10 @@ export function CheckOut(props: any): ReactElement {
     setInvoice({
       ...i,
     })
-    // setSlideUp(true)
+    setSlideUp(true)
   }
  
-  // const handlePrint2 = ()=>window.print();
+  const handlePrint2 = ()=>window.print();
 
   return (
     <>
@@ -232,10 +238,7 @@ export function CheckOut(props: any): ReactElement {
         </SlindingCont2>
         <SlidingCont3 up={slideUp} >
           <ClosePrint onClick={(e: any) => closePrintPreview(e)} >
-            <svg width={"24"} height={ "23"} viewBox="0 0 24 23" fill="none" >
-              <rect width="1.35905" height="8.15428" transform="matrix(0.707074 -0.70714 0.707072 0.707141 8.9668 9.60986)" fill="white" />
-              <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white" />
-            </svg>
+            {icon}
           </ClosePrint>
           <div ref={componentRef}>
             <InvoicePrintHeader />
@@ -264,7 +267,7 @@ export function CheckOut(props: any): ReactElement {
               <ReactToPrint
                 content={() => componentRef.current}
               />
-              <p onClick={handlePrint}>Print</p>
+            <p onClick={handlePrint2}>Print</p>
             </CardFooter>
           </SlidingCont3> 
           <FeedBack state={locals().feedback.success} msg={locals().feedback.msg}>

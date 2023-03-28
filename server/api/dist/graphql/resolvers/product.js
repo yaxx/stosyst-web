@@ -28,6 +28,7 @@ const models_1 = require("../../models");
 const models_2 = require("../../models");
 const Auth = __importStar(require("../../auth"));
 const pipelines_1 = require("../../pipelines");
+const sets_1 = require("../../pipelines/sets");
 const { ThermalPrinter, PrinterTypes, CharacterSet, BreakLine } = require('node-thermal-printer');
 let ObjectId = require('mongodb').ObjectID;
 const { PubSub } = require("graphql-subscriptions");
@@ -40,10 +41,18 @@ exports.default = {
             let result = await models_1.Product.aggregate((0, pipelines_1.getProductsPipeline)(orgId, query, offset, group, filter));
             result = group === 'date' ?
                 result.map((r) => ({
-                    ...r, _id: r.records[0].createdAt
+                    ...r,
+                    _id: r.records[0].createdAt
                 }))
                 :
                     result;
+            return result;
+        },
+        stockSet: async (root, { group, groupLabel, offset, filter, query }, { req, res }) => {
+            Auth.checkSignedIn(req);
+            const { data: { orgId, uid } } = req;
+            const pattern = new RegExp(`/^${groupLabel}/`);
+            const result = await models_1.Product.aggregate((0, sets_1.getStockSetPipeline)(orgId, query, group, groupLabel, filter, offset));
             return result;
         }
     },
@@ -51,7 +60,8 @@ exports.default = {
         saveProduct: async (_, { product }, { req }) => {
             let stock = {};
             Auth.checkSignedIn(req);
-            const client = await models_2.Client.findById(req.data.orgId);
+            const { data: { orgId, uid } } = req;
+            const client = await models_2.Client.findById(orgId);
             const staff = client?.staffs.find((s) => s._id.toString() === req.data.uid);
             const isAdmin = req.data.orgId === req.data.uid;
             let user = isAdmin ?
@@ -80,7 +90,6 @@ exports.default = {
                         ...product,
                         modified: user
                     }, { new: true });
-            console.log(JSON.stringify(stock, null, 2));
             exports.pubsub.publish('STOCKS', { stock });
             return stock;
         },

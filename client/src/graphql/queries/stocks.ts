@@ -33,7 +33,41 @@ import { gql, useLazyQuery } from '@apollo/client'
                 }
                 createdAt
                 updatedAt
+            }
+            count
+            total
         }
+}`
+ export const GET_STOCK_SET = gql`
+    query getStockSet($query: String, $filter: String, $offset: Int, $group: String, $groupLabel: String) {
+        stockSet(query: $query, filter: $filter, offset: $offset, group: $group, groupLabel: $groupLabel) {
+            _id
+            name
+            description
+            category
+            subCategory
+            costPrice
+            sellingPrice
+            instock
+            stockImage
+            owner
+            warningCount
+            expiry
+            expiryWarning
+            added {
+                firstName
+                lastName
+                phone
+                email
+            }
+            modified {
+                firstName
+                lastName
+                phone
+                email
+            }
+            createdAt
+            updatedAt
     }
 }`
 
@@ -105,6 +139,8 @@ export const SEARCH_STOCKS = gql`
                 createdAt
                 updatedAt
             }
+            count
+            total
         }
     }
 `
@@ -189,6 +225,7 @@ export const STOCK_QUERY = gql`
         name
         description
         category
+        subCategory
         costPrice
         sellingPrice
         instock

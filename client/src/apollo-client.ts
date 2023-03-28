@@ -46,7 +46,7 @@ const splitLink = split(
   httpLink
 );
 
-export const client  = new ApolloClient({
+export const cache  = new ApolloClient({
   link: authLink.concat(splitLink),
   cache: new InMemoryCache({
     typePolicies: {
@@ -90,4 +90,4 @@ export const client  = new ApolloClient({
     }
   })
 })
-export default client
+export default cache

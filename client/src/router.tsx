@@ -7,13 +7,18 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import { RequireAuth } from "./components/auth";
+import { SettingsNavHeader } from "./components/headers";
 import "./index.css";
 import ErrorPage from "./pages/error";
 import { ExpensePage } from "./pages/expenses";
+import ExplorePage from "./pages/explore";
 import { InvoicePage } from "./pages/invoices-page";
 import Reciept from "./pages/reciept";
 import { Root } from "./pages/root";
+import Layout from "./pages/settings/layout";
 import Profile from "./pages/settings/profile";
+import Security from "./pages/settings/security";
+import { Staffs } from "./pages/settings/staff";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/singup";
 import { StocksPage } from "./pages/stocks-page";
@@ -44,52 +49,56 @@ export const router = createBrowserRouter(
                 <Route
                     path="/expenses"
                     element={
-                        <RequireAuth>
-                            <ExpensePage />
-                        </RequireAuth>
+                    <RequireAuth>
+                        <ExpensePage />
+                    </RequireAuth>
                 }
                 />
                 <Route
                     path="/invoices"
                     element={
-                        <RequireAuth>
-                            <InvoicePage />
-                        </RequireAuth>
-                    }
+                    <RequireAuth><InvoicePage /></RequireAuth>
+                }
+                />
+                <Route
+                    path="/explore"
+                    element={
+                    <RequireAuth>
+                        <ExplorePage />
+                    </RequireAuth>
+                }
                 />
                 <Route
                     path="/summary"
                     element={
-                        <RequireAuth>
-                            <SummaryPage />
-                        </RequireAuth>
-                    }
+                    <RequireAuth>
+                        <SummaryPage />
+                    </RequireAuth>}
                 />
-                <Route
-                    path="/print"
-                    element={
-                        <RequireAuth>
-                            <Reciept />
-                        </RequireAuth>
-                    }
-                />
-                {/* <Route
-                    path="/settings"
-                >
-                    <Route index element={
+                <Route element={<Layout />}>
+                    <Route path='/settings'  element={
                         <RequireAuth>
                             <Profile />
                         </RequireAuth>
-                    }/>
-                    <Route
-                        path="/expenses"
-                        element={
-                            <RequireAuth>
-                                <ExpensePage />
-                            </RequireAuth>
-                        }
+                    }
                     />
-                </Route> */}
+                    <Route
+                        path="/staffs"
+                        element={
+                        <RequireAuth>
+                            <Staffs />
+                        </RequireAuth> 
+                    }
+                    />
+                    <Route
+                        path="/security"
+                        element={
+                        <RequireAuth>
+                            <Security />
+                        </RequireAuth>
+                    }
+                    />
+                </Route>
             </Route>
         </Route>
     )

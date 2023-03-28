@@ -195,10 +195,26 @@ export const SettingsItem = styled.div<any>`
 export const StaffList = styled.div<any>`
   min-height: ${props => props.height || 200}px; 
 `
+export const StockList = styled.div<any>`
+  min-height: ${props => props.height || 200}px;
+  margin-top: 20px; 
+`
 export const StaffItems = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  min-height: 200px;
+  position: relative;
+  p {
+    font-size: .8rem;
+    margin-bottom: 0px;
+  }
+`
+export const StokcItems = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   min-height: 200px;
   position: relative;
   p {
@@ -233,10 +249,53 @@ export const Staff = styled.div<any>`
       font-size: ${props => props.theme.typography.body1};
   }
 `
+export const StockItem = styled.div<any>`
+  width: 100%;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 4px;
+  text-overflow: ellipsis;
+  background: #fafafa;
+  :hover {
+    background-color:  rgba(71, 75, 76, 0.055);
+  }
+  h4 {
+    text-align: center;
+    max-width: 160px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  h4:last-child {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight:400 ;
+  }
+  p {
+      margin-top: -4px;
+      max-width: 180px;
+      margin-bottom: 0px;
+      color: ${props => props.theme.light.colors.labels.sec};
+      font-size: ${props => props.theme.typography.body1};
+  }
+`
 export const StaffWrapper = styled.div`
   position: relative;
   width: 25%;
   height: auto;
+`
+export const StockWrapper = styled.div`
+  position: relative;
+  width: 19%;
+  height: auto;
+  border-radius: 4px;
 `
 export const Banner = styled.div`
   position: relative;
@@ -397,7 +456,27 @@ export const SaveBtn = styled(ChangePicBtn)`
   height: 30px;
   color: ${props => props.theme.dark.colors.labels.pri};
   position: absolute;
+  border-radius: 14px;
   right: 0%;
+`;
+export const SubsBtn = styled(ChangePicBtn)`
+  background-color: rgb(15, 20, 25);
+  width: 110px;
+  height: 38px;
+  color: white;
+  position: absolute;
+  border-radius: 20px;
+  right: 2%;
+  top: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  :hover {
+    background-color: rgba(15, 20, 25, 0.8);
+  }
 `;
 export const ProfilePicture = styled.div<any>`
     height: ${props => props.height || 100}px;
@@ -406,12 +485,26 @@ export const ProfilePicture = styled.div<any>`
     background-size: cover;
     background-position: center;
     position: relative;
-    border: 1px solid ghostwhite;
+    border: 4px solid ghostwhite;
       img {
           height: 100%;
           width: 100%;
           object-fit: cover;
           border-radius: inherit;
+      }
+`
+export const ProfileBaner = styled.div<any>`
+    height:100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+      img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: inherit;
+          position: absolute;
       }
 `
 
@@ -638,9 +731,64 @@ export const BrandSection = styled.div`
   right: 10px;
   position: relative;
   align-items: center;
-  h6{
+  h6 {
     font-weight: bold;
     color: #00A3FE;
     margin-bottom: 0px;
+  }
+`
+export const MainBanerCont = styled.div`
+  height: 200px;
+  width: 100%;
+  margin-bottom: 70px;
+  position: relative;
+  background: lightgrey;
+`
+export const ProfileImage = styled.div`
+  height: 150px;
+  width: 150px;
+  border-radius: 80px;
+  position: absolute;
+  background: #b4b4b4;
+  top: 60%;
+  left: 20px;
+`
+export const ProfileInfo = styled.div`
+  height: 200px;
+  width: 100%;
+   margin-bottom: 2px;
+  position: relative;
+  padding: 0px 0px;
+  display: flex;
+  flex-direction: column;
+  h4 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    margin-top: 10px;
+  }
+  .username {
+      color: rgb(83, 100, 113);
+      font-size: 16px;
+    }
+  .addr {
+    margin-bottom: 2px;
+  }
+  p:nth-child(4) {
+    font-weight: bold;
+  }
+  .stats {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+       font-weight: bold;
+    }
+    span {
+      color: rgb(83, 100, 113);
+      font-weight: normal;
+    }
   }
 `

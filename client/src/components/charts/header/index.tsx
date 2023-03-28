@@ -5,12 +5,31 @@ import { SpinLoader } from '../../loaders';
 import { LoadingCont } from '../styles';
 import { HeaderCont, HeaderItem } from './styles';
 
+export const roundAmount = (amount: number) => {
+    if (amount.toString().length === 8) {
+        return `${(amount / 10000000).toFixed(1)}M`;
+    } else if (amount.toString().length ===7) {
+        return `${(amount / 1000000).toFixed(1)}M`;
+    }
+    else if (amount.toString().length === 6){
+        return `${(amount / 1000).toFixed(0)}K`;
+    }
+     else if (amount.toString().length === 5) {
+        return `${(amount / 1000).toFixed(0)}K`;
+    } else if (amount.toString().length === 4) {
+        return `${(amount / 1000).toFixed(0)}K`;
+    }
+     else {
+        return amount.toFixed(0);
+    }
+};
 
 export const ChartHeader = () => {
     const { loading, data, error } = useQuery(GET_CHART_HEADER,{
         fetchPolicy: "network-only"
     })
 
+   
     if(error) console.log(error)
     
     return (
@@ -30,7 +49,7 @@ export const ChartHeader = () => {
                     <h6>Categories</h6>
                 </HeaderItem>
                 <HeaderItem f="flex-end" w={30}>
-                    <h1>{formatMoney(data.chartHeader.totalAmount)}</h1>
+                        <h1>{roundAmount(data.chartHeader.totalAmount)}</h1>
                     <h6>Total Value</h6>
                     
                 </HeaderItem>

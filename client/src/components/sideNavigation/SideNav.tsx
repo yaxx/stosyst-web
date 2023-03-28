@@ -1,7 +1,7 @@
 import { ReactElement, useState } from 'react'
 import styled from "styled-components";
 import { NavLink, useLocation } from 'react-router-dom';
-import { GearIcon, InvoiceIcon, StocksIcon, ExpenseIcon, DashboardIcon } from '../icons';
+import { GearIcon, InvoiceIcon, StocksIcon, ExpenseIcon, DashboardIcon, ExploreIcon } from '../icons';
 import { withRouter } from './withrouter';
 // import { NOTIFICATIONS } from '../../graphql/queries';
 
@@ -52,8 +52,6 @@ const Nav = (props: any): ReactElement => {
   //   subscribeToNewExpense()
   //   setCurLoc(location.pathname)
   // }, [])
-
-
 
   // const { localData: { localState }, issues } = useGetLocals();
 
@@ -189,11 +187,10 @@ const Nav = (props: any): ReactElement => {
           </NavLink> 
         </LinkItem>
         {/* <LinkItem >
-          <NavLink to='/invoices' title='Notification'>
-            <NotifIcon pre_loc='/invoices' cur_loc={location.pathname} />
+          <NavLink to='/explore' title='Explore'>
+            <ExploreIcon pre_loc='/explore' cur_loc={location.pathname} />
           </NavLink> 
         </LinkItem> */}
-        
         <LinkItem>
           <NavLink to='/summary' title='Dashboard'>
             <DashboardIcon pre_loc='/summary' cur_loc={location.pathname} />

@@ -5,7 +5,7 @@ import { InvoiceHeader } from '../headers'
 import { Divider, CardFooter } from '../headers/stylesx'
 import { RecieptItemsCont, RecieptListItem, CartTotal } from '../listItems/cartItem'
 import { RecieptInfo } from './recieptInfo'
-import {ClosePrint, CardBody } from './styles'
+import { ClosePrint, CardBody } from './styles'
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
 import { useReactiveVar } from '@apollo/client'
 import { globalInvoice } from '../../store/data'
@@ -30,7 +30,6 @@ const InvoicePrintPreview = (props: any) =>  {
             
     //         setInvoice(i)
     //     }
-
     // }, [i])
   return (
       <>

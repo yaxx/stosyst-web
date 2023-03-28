@@ -78,7 +78,7 @@ export default {
       let updated = null
 
       if(!staff._id) {
-        client = await Client.findByIdAndUpdate(ObjectId(orgId), 
+        client = await Client.findByIdAndUpdate(orgId, 
          { 
            $push:{ staffs: staff }
          }, 
@@ -104,9 +104,9 @@ export default {
         )
 
       } else {
-        client = await Client.findById(ObjectId(req.data.orgId))
+        client = await Client.findById(req.data.orgId)
         client!.staffs = client!.staffs.map((s: any)=>(s._id.toString() === staff._id.toString()) ? staff : s )
-        await Client.findByIdAndUpdate(ObjectId(req.data.orgId),{ staffs: client.staffs }, {new: true})
+        await Client.findByIdAndUpdate(req.data.orgId,{ staffs: client.staffs }, {new: true})
         updated = staff
       }
       return updated
@@ -114,14 +114,14 @@ export default {
 
     updateAccount: async (root: any, { accountInfo }: any, { req }: any, info: any) => {
       Auth.checkSignedIn(req)
-      return await Client.findByIdAndUpdate(ObjectId(req.data.orgId),{...accountInfo}, {new: true})
+      return await Client.findByIdAndUpdate(req.data.orgId,{...accountInfo}, {new: true})
 
     },
     deleteStaff: async (root: any, { id }: {id: string}, { req }: any, info: any) => {
       Auth.checkSignedIn(req)
       let { staffs } = await Client.findById(req.data.orgId) as any;
       staffs = staffs.filter((s: any) => s._id.toString() !== id )
-      await Client.findByIdAndUpdate(ObjectId(req.data.orgId),{ staffs }, {new: true})
+      await Client.findByIdAndUpdate(req.data.orgId,{ staffs }, {new: true})
       return { id }
     }
   }

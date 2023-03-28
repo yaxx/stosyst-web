@@ -85,7 +85,7 @@ exports.default = {
             let client = {};
             let updated = null;
             if (!staff._id) {
-                client = await models_1.Client.findByIdAndUpdate(ObjectId(orgId), {
+                client = await models_1.Client.findByIdAndUpdate(orgId, {
                     $push: { staffs: staff }
                 }, { new: true }).lean();
                 updated = client.staffs[client.staffs.length - 1];
@@ -101,22 +101,22 @@ exports.default = {
                 });
             }
             else {
-                client = await models_1.Client.findById(ObjectId(req.data.orgId));
+                client = await models_1.Client.findById(req.data.orgId);
                 client.staffs = client.staffs.map((s) => (s._id.toString() === staff._id.toString()) ? staff : s);
-                await models_1.Client.findByIdAndUpdate(ObjectId(req.data.orgId), { staffs: client.staffs }, { new: true });
+                await models_1.Client.findByIdAndUpdate(req.data.orgId, { staffs: client.staffs }, { new: true });
                 updated = staff;
             }
             return updated;
         },
         updateAccount: async (root, { accountInfo }, { req }, info) => {
             Auth.checkSignedIn(req);
-            return await models_1.Client.findByIdAndUpdate(ObjectId(req.data.orgId), { ...accountInfo }, { new: true });
+            return await models_1.Client.findByIdAndUpdate(req.data.orgId, { ...accountInfo }, { new: true });
         },
         deleteStaff: async (root, { id }, { req }, info) => {
             Auth.checkSignedIn(req);
             let { staffs } = await models_1.Client.findById(req.data.orgId);
             staffs = staffs.filter((s) => s._id.toString() !== id);
-            await models_1.Client.findByIdAndUpdate(ObjectId(req.data.orgId), { staffs }, { new: true });
+            await models_1.Client.findByIdAndUpdate(req.data.orgId, { staffs }, { new: true });
             return { id };
         }
     }

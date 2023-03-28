@@ -53,16 +53,20 @@ export default gql`
         expiry: String
         expiryWarning: Int
      }
+     
      input QueryInput {
         fieldName: String
      }
 
      type StocksGroup {
         _id: String!
+        count: Int
+        total: Float
         records: [Product]!
     }
     extend type Query {
         products(query: String, filter: String, group: String, offset: Int): [StocksGroup]!
+        stockSet(query: String, filter: String, offset: Int, group: String, groupLabel: String): [Product]
     }
     extend type Mutation {
         saveProduct(product: ProductInput!): Product!

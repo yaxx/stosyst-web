@@ -26,6 +26,14 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                 $group: (0, groupers_1.productsCriteria)(group)
             },
             {
+                $project: {
+                    _id: 1,
+                    total: 1,
+                    count: 1,
+                    records: { "$slice": ["$records", 5] }
+                }
+            },
+            {
                 $sort: (0, sorter_1.getSorter)(group)
             },
             {
@@ -46,14 +54,16 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                             $group: (0, groupers_1.productsCriteria)(group)
                         },
                         {
+                            $project: {
+                                _id: 1,
+                                total: 1,
+                                count: 1,
+                                records: { "$slice": ["$records", 5] }
+                            }
+                        },
+                        {
                             $sort: (0, sorter_1.getSorter)(group)
                         },
-                        {
-                            $skip: offset
-                        },
-                        {
-                            $limit: 10
-                        }
                     ];
 };
 exports.getProductsPipeline = getProductsPipeline;

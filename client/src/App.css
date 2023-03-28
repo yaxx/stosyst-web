@@ -11,6 +11,7 @@ body {
     "Cantarell",
     "Open Sans",
     sans-serif;
+  
 }
 
  ul {
@@ -38,7 +39,7 @@ body {
 
 .stocksContainer {
   width: 100%;
-  overflow: visible;
+  /* overflow: visible; */
 }
 
 .stockDesc:hover {

@@ -7,21 +7,38 @@ export const sortOrder = {
 
 export const productsCriteria = (criteria: string) => {
     let grp = {}
+    console.log(criteria)
     switch (criteria) {
         case 'category':
             grp = {
                 _id: '$category',
+                count: {
+                    $sum: 1
+                },
+                 total: {
+                    $sum: {
+                        $multiply: ['$instock','$sellingPrice' ]
+                    }
+                },
                 records: {
                     $push: "$$ROOT" 
-                }    
+                }  
             }
             break;
         case 'instock':
              grp = {
                 _id: '$instock',
+               count: {
+                    $sum: 1
+                },
+                 total: {
+                    $sum: {
+                        $multiply: ['$instock','$sellingPrice' ]
+                    }
+                },
                 records: {
                     $push: "$$ROOT" 
-                }    
+                }
             }
             break;
         case 'date':
@@ -31,9 +48,17 @@ export const productsCriteria = (criteria: string) => {
                     month: { $month: "$createdAt" },
                     year: { $year: "$createdAt" }
                 },
+               count: {
+                    $sum: 1
+                },
+                 total: {
+                    $sum: {
+                        $multiply: ['$instock','$sellingPrice' ]
+                    }
+                },
                 records: {
                     $push: "$$ROOT" 
-                }    
+                }
             }
             break;
         default:
@@ -41,9 +66,17 @@ export const productsCriteria = (criteria: string) => {
                 _id: {
                     $substr: ['$name', 0, 1]
                 },
+                count: {
+                    $sum: 1
+                },
+                 total: {
+                    $sum: {
+                        $multiply: ['$instock','$sellingPrice' ]
+                    }
+                },
                 records: {
                     $push: "$$ROOT" 
-                } 
+                }
             }
             break;
     }

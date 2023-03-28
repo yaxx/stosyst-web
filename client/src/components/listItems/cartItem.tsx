@@ -41,7 +41,7 @@ export const CartStock = styled.div.attrs({ className: 'ct' })`
     };
 }`
 
-export const DescWrap = styled.div.attrs(props => ({
+export const DescWrap = styled.div.attrs(() => ({
     className: 'ds'
 })) <any>`
   height: 100%;
@@ -125,10 +125,6 @@ export const RecieptOrder = styled.div<any>`
     }
 `;
 
-const Qty = styled.div`
-    width: 40px;
-    margin-bottom: 0px;
-`
 export const Item = styled.div`
     width: 100%;
     height: 60px;
@@ -280,61 +276,11 @@ export const SettingsFormWraper = styled(CheckOutFormWraper)`
         align-self: start;
     }
 `
-const PaymentReviewer = styled.div<any>`
-    position: absolute;
-    height: 130px;
-    width: 100px;
-    top: -30%;
-    background: white;
-    padding: 20px 7px 0px 7px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    transition: all .1s ease-in;
-    right: ${props => props.show ? -105 : 2}px;
-    z-index: -1;
-    &:before {
-     content:'';
-     position: absolute;
-     top: 40%;
-     left: -2%;
-     height: 11px;
-     width: 11px;
-     transform: rotate(45deg);
-     background: inherit;
-     z-index: -1;
-  }
-`;
-const PendingAmount = styled.div`
-    position: relative;
-    height: 30px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    font-size: 12px;
-    top: 2px;
-    p{ 
-        margin-bottom: 0px;
-        text-align: left;
-        width: 100%;
-        position: relative;
-    }
-    p:first-child {
-        font-size: 10px;
-        top: 2px;
-        color: grey;
-    }
-`;
 export function CartListItem(props: any): ReactElement {
     const [stock, setStock] = useState(props.stock)
     const {
         stock: stockItem,
         isLastItem,
-        itemSelected,
-        selectCallback,
         qtyChangeCallback,
         removeItemCallback,
         priceChangeCallback,
@@ -342,13 +288,6 @@ export function CartListItem(props: any): ReactElement {
 
     } = props;
 
-    const handleAmountChange = (e: any) => {
-        e.persist();
-        setStock({
-            ...stock,
-            // amountPaid: +e.target.value
-        })
-    }
 
     const handlePriceAdjustment = (e: any) => {
         e.persist();

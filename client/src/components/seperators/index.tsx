@@ -28,6 +28,12 @@ export const TotalSeparator = styled.div<any>`
     p  {
             margin-bottom: 0px;
         }
+    p:first-child {
+      font-size: 12px;
+      color:${
+        props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
+      };
+    }
     svg {
             transform: rotate(${props => !props.opened ? 0 : 180}deg)
         }

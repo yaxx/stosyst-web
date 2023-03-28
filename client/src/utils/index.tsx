@@ -312,3 +312,21 @@ export const getExpStatus = ({ expiry, expiryWarning }: any) => {
     }
     return status
 }
+
+export const roundFigureWithAlphabet = (amount: number) => {
+   
+    if (amount.toString().length >= 7) {
+        return `${(amount / 1000000).toFixed(1)}M`;
+    } else if (amount.toString().length === 6) {
+        return `${(amount / 1000).toFixed(0)}K`;
+    }
+        else if (amount.toString().length === 5){
+        return `${(amount / 100).toFixed(0)}K`;
+    }
+        else if (amount.toString().length === 4){
+        return `${(amount / 10).toFixed()}K`;
+        
+    } else {
+        return amount.toFixed(0);
+    }
+}

@@ -5,6 +5,7 @@ import * as Auth from '../../auth'
 import { RequestResponse } from './invoice';
 import {getProductsPipeline } from '../../pipelines';
 import { toTitleCase } from './expense';
+import { getStockSetPipeline } from '../../pipelines/sets';
 // import { sendMessage } from '../../messaging/fcm';
 
 const { ThermalPrinter, PrinterTypes, CharacterSet, BreakLine } = require('node-thermal-printer');
@@ -20,68 +21,41 @@ export default {
     products: async (root: any, {group, offset, filter, query}: any , {req, res}:RequestResponse) => {
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
-      // console.log(query)
-
-      // let stocks = await Product.find().lean()
-
-      // stocks.forEach(stock => {
-      //   Product.findByIdAndUpdate(ObjectId(stock._id), {
-      //       ...stock,
-      //       expiryWarning: stock.expiry ? 2 : stock.expiryWarning
-      //     },(e, doc)=>{
-      //         if(e) console.log(e)
-      //     })
-      // })
-
-      // stocks.forEach((stock: any) => {
-      //   if(stock.description.trim().slice(-5).includes('/')) {
-      //     const d = stock.description.trim().slice(-5).split('/')
-      //      Product.findByIdAndUpdate(ObjectId(stock._id), {
-      //       ...stock,
-      //       name: stock.name.trim(),
-      //       category: stock.category.trim(),
-      //       description: stock.description.trim(),
-      //       expiry: new Date(`20${d[1]}-${d[0]}-01`)
-      //     },(e:any, doc:Document)=>{
-      //         if(e) console.log(e)
-      //     })
-      //   } else if(stock.description.trim().slice(-5).includes('-')) {
-      //     const d = stock.description.trim().slice(-5).split('-')
-      //     Product.findByIdAndUpdate(ObjectId(stock._id), {
-      //       ...stock,
-      //       name: stock.name.trim(),
-      //       category: stock.category.trim(),
-      //       description: stock.description.trim(),
-      //       expiry: new Date(`20${d[1]}-${d[0]}-01`)
-      //     },(e:any, doc:Document)=>{
-      //         if(e) console.log(e)
-      //     })
-      //   }
-      // })
-
-      // sendMessage()
     
       let result: any = await Product.aggregate(getProductsPipeline(orgId, query, offset, group, filter))
 
       result = group === 'date' ? 
       result.map((r: any)=>({
-        ...r, _id: r.records[0].createdAt
+        ...r, 
+        _id: r.records[0].createdAt
       }))  
       :
       result
 
       return result
 
+    },
+    stockSet: async (root: any, {group, groupLabel, offset, filter, query}: any , {req, res}:RequestResponse) => {
+      Auth.checkSignedIn(req)
+      const {data: {orgId, uid}}:any = req
+
+      const pattern = new RegExp(`/^${groupLabel}/`);
+
+      const result: any = await Product.aggregate(getStockSetPipeline(orgId, query, group, groupLabel, filter,offset))
+
+      // console.log(JSON.stringify(result, null, 2));
+      
+      return result
     }
   },
-
   Mutation: {
     saveProduct: async (_: any, { product }:any, {req}: any ) => {
       let stock: any = {}
 
       Auth.checkSignedIn(req)
+      const {data: {orgId, uid}}:any = req
 
-      const client: any = await Client.findById(req.data.orgId);
+      const client: any = await Client.findById(orgId);
       const staff = client?.staffs.find((s:any) => s._id.toString() === req.data.uid) 
       const isAdmin = req.data.orgId === req.data.uid 
       let user = isAdmin ? 
@@ -112,7 +86,6 @@ export default {
          modified: user
         }, { new: true }
       )
-      console.log(JSON.stringify(stock, null, 2))
       pubsub.publish('STOCKS', { stock })
       return stock
     },

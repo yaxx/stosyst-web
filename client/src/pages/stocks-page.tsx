@@ -38,6 +38,7 @@ export  const Stocks = (props: any): ReactElement => {
       fetchPolicy: "network-only",
     })
 
+    if(error) console.log(error)
 
     const stocks = data?.products
 
@@ -115,7 +116,7 @@ export  const Stocks = (props: any): ReactElement => {
                             hasMore={ true } 
                             loader = { 
                                 <></>
-                                }
+                            }
                             style = {{ overflow: 'visible' }}
                         >
                         {
@@ -124,7 +125,9 @@ export  const Stocks = (props: any): ReactElement => {
                                     {...props} 
                                     key={items._id} 
                                     groupId={items._id} 
-                                    list={items.records} 
+                                    list={items.records}
+                                    count={items.count}
+                                    total={items.total}
                                 />
                             ))
                         }

@@ -8,10 +8,19 @@ exports.sortOrder = {
 };
 const productsCriteria = (criteria) => {
     let grp = {};
+    console.log(criteria);
     switch (criteria) {
         case 'category':
             grp = {
                 _id: '$category',
+                count: {
+                    $sum: 1
+                },
+                total: {
+                    $sum: {
+                        $multiply: ['$instock', '$sellingPrice']
+                    }
+                },
                 records: {
                     $push: "$$ROOT"
                 }
@@ -20,6 +29,14 @@ const productsCriteria = (criteria) => {
         case 'instock':
             grp = {
                 _id: '$instock',
+                count: {
+                    $sum: 1
+                },
+                total: {
+                    $sum: {
+                        $multiply: ['$instock', '$sellingPrice']
+                    }
+                },
                 records: {
                     $push: "$$ROOT"
                 }
@@ -32,6 +49,14 @@ const productsCriteria = (criteria) => {
                     month: { $month: "$createdAt" },
                     year: { $year: "$createdAt" }
                 },
+                count: {
+                    $sum: 1
+                },
+                total: {
+                    $sum: {
+                        $multiply: ['$instock', '$sellingPrice']
+                    }
+                },
                 records: {
                     $push: "$$ROOT"
                 }
@@ -41,6 +66,14 @@ const productsCriteria = (criteria) => {
             grp = {
                 _id: {
                     $substr: ['$name', 0, 1]
+                },
+                count: {
+                    $sum: 1
+                },
+                total: {
+                    $sum: {
+                        $multiply: ['$instock', '$sellingPrice']
+                    }
                 },
                 records: {
                     $push: "$$ROOT"

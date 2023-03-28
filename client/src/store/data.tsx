@@ -99,7 +99,7 @@ export const groupingCriteria = makeVar({
     query: '',
     order: '',
     filter: '',
-    group: 'name',
+    group: 'category',
 });
 export const expenseCriteria = makeVar({
     query: '',

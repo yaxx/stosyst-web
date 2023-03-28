@@ -3,18 +3,22 @@ import { Row as StockList, Item, ListItems, MoreActions } from ".";
 import { ItemWraper } from "../../pages/expenses";
 import { CartItem, Product } from "../../types/model";
 import { StocksForm } from "../forms/stocks";
-import { MoreIcon } from "../icons";
-import { useMutation, useReactiveVar } from '@apollo/client';
+import { ArrowDown, MoreIcon } from "../icons";
+import { useLazyQuery, useMutation, useReactiveVar } from '@apollo/client';
 import { useGetLocals } from "../../hooks/useGetProducts";
 import { defState, groupingCriteria, locals } from "../../store/data";
-import { getExpStatus, editCallback, format_date, isAdmin, formatMoney } from "../../utils";
-import { GET_STOCKS } from "../../graphql/queries/stocks";
+import { getExpStatus, editCallback, format_date, isAdmin, formatMoney, roundFigureWithAlphabet } from "../../utils";
+import { GET_STOCKS, GET_STOCK_SET } from "../../graphql/queries/stocks";
 import { DateSeparator, TotalSeparator } from "../seperators";
 import StockDetails from "./stockDetails";
 import { can } from "../../utils/permisions";
 import { DELETE_STOCK } from "../../graphql/mutations";
 import { ImageItem } from "../images";
-import { Divider } from "../headers/stylesx";
+import { Divider, GroupLabel } from "../headers/stylesx";
+import { Counter } from "../../pages/invoices-page";
+import { P1 } from "../typography";
+import cache from "../../apollo-client";
+import { LoadingMore } from "../loaders";
 
 
 export const StockListItems = (props: any) => {
@@ -197,41 +201,120 @@ export default function Stock(props: any): ReactElement {
 
 
 export function StocksListGroup(props: any): ReactElement {
-    const { groupId } = props;
-    const {group} = useReactiveVar(groupingCriteria)
+    const { list: items, count, total, groupId } = props;
+    const { query, group, filter } = useReactiveVar(groupingCriteria)
+    const [getStockSet, { loading, client, updateQuery, error, data }] = useLazyQuery(GET_STOCK_SET);
+
+    // let r: any = list;
+    if(data) {
+        // r = data.setStocks;
+       let {products} = cache?.readQuery({ query: GET_STOCKS });
+       products = products.map((prod: any) => {
+           return prod._id === groupId ? 
+           {
+            ...prod,
+            records: [...prod.records, ...data.stockSet]
+           } 
+           : 
+           prod
+        });
+
+        // updateQuery({query: GET_STOCKS }) => ({
+        //     products: products.map((prod: any) => {
+        //         return prod._id === groupId ?
+        //             {
+        //                 ...prod,
+        //                 records: [...prod.records, ...data.stockSet]
+        //             }
+        //             :
+        //             prod
+        //     })
+        // }));
+
+        // updateQuery((i: any) => {
+        //     console.log(i);
+        // });
+
+
+        // console.log(data)
+        // console.log(products)
+
+        // cache.writeQuery({
+        //     query: GET_STOCKS,
+        //     data: {
+        //         products,
+        //     }
+        // });
+    }
+
+    if(error) {
+        console.log(error);       
+    }
+
+    const loadMoreStockSet = (groupLabel: string)=> {
+        getStockSet({
+            variables:{
+                query,
+                filter,
+                offset: 0,
+                group,
+                groupLabel,
+            },
+            fetchPolicy: 'network-only'
+        })
+    }
     return (
         <section className="stocksContainer">
             <DateSeparator>
                 {group === 'date' ? format_date(groupId) : groupId}
                 <Divider />
-            </DateSeparator>
-            <ul style={{paddingLeft: 0}} className='stockList'> {
-                props.list.map((stockItem: any) =>
-                    <ItemWraper> {
-                        (locals().selectedId === stockItem._id) &&
-                        <Fragment> {
-                            locals().isEditing ?
-                                <StocksForm stock={stockItem}  {...props} />
-                                :
-                                <StockDetails stock={stockItem} />
-                        }
-                        </Fragment>
+            </DateSeparator> {
+                data?.stockSet ? 
+                    <ul style={{ paddingLeft: 0 }} className='stockList'> {
+                        data?.stockSet.map((stockItem: any) =>
+                            <ItemWraper> {
+                                (locals().selectedId === stockItem._id) &&
+                                <Fragment> {
+                                    locals().isEditing ?
+                                        <StocksForm stock={stockItem} {...props} />
+                                        :
+                                        <StockDetails stock={stockItem} />
+                                }
+                                </Fragment>
+                            }
+                                <Stock {...props} cart={locals().invoice} selectCallback={props.selectCallBack} stock={stockItem} key={stockItem._id} />
+                            </ItemWraper>
+                        )
                     }
-                        <Stock {...props} cart={locals().invoice} selectCallback={props.selectCallBack} stock={stockItem} key={stockItem._id} />
-                    </ItemWraper>
-                )
+                    </ul>
+                    :
+                    <ul style={{ paddingLeft: 0 }} className='stockList'> {
+                        items.map((stockItem: any) =>
+                            <ItemWraper> {
+                                (locals().selectedId === stockItem._id) &&
+                                <Fragment> {
+                                    locals().isEditing ?
+                                        <StocksForm stock={stockItem} {...props} />
+                                        :
+                                        <StockDetails stock={stockItem} />
+                                }
+                                </Fragment>
+                            }
+                                <Stock {...props} cart={locals().invoice} selectCallback={props.selectCallBack} stock={stockItem} key={stockItem._id} />
+                            </ItemWraper>
+                        )
+                    }
+                    </ul>
             }
-            </ul>
-            <TotalSeparator leftPad={13}>
-                {/* <Counter>
-                    <P1> {''}
-                        {
-                        (props.list.length - 4) > 0 && <span>{(!containers.outer.opened) ? '+' : '-'}{props.list.length - 4}</span>
-                    }
-                    </P1>
-                </Counter>
-                {(props.list.length - 5) > 0 && <ArrowDown />}
-                <P1>{''}</P1> */}
+          
+            <TotalSeparator onClick={()=>loadMoreStockSet(groupId)} leftPad={67}>
+                <p>+{count - 5 <= 0 ? 0 : count - 5}</p>
+                {
+                    count > 5 ? 
+                    <> {loading ? <LoadingMore /> : <ArrowDown /> } </> : <></>
+                }
+                <P1>{roundFigureWithAlphabet(total)}</P1>
+                <Divider bottom={2}/>
             </TotalSeparator>
         </section>
     )

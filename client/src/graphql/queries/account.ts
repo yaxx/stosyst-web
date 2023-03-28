@@ -7,6 +7,8 @@ export const GET_ACCOUNT = gql`
         account {
             name
             email
+            banner
+            phone
             dp
             username
         }

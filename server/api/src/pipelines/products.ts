@@ -26,13 +26,21 @@ import { getSorter } from "./sorter"
             $group: productsCriteria(group)
         },
         {
+            $project: {
+                _id: 1,
+                total: 1,
+                count: 1,
+                records: { "$slice": [ "$records", 5 ] }
+            }
+        },
+        {
             $sort: getSorter(group)
         },
         { 
             $skip: offset
         },
         {
-            $limit:10
+            $limit: 10
         }
     ]
     :
@@ -47,14 +55,16 @@ import { getSorter } from "./sorter"
             $group: productsCriteria(group)
         },
         {
-            $sort: getSorter(group)
-        },
-        { 
-            $skip: offset
+            $project: {
+                _id: 1,
+                total: 1,
+                count: 1,
+                records: { "$slice": [ "$records", 5 ] }
+            }
         },
         {
-            $limit: 10
-        }
+            $sort: getSorter(group)
+        },
     ]
 }
 

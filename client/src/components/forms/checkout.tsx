@@ -110,8 +110,6 @@ export default function ChecktOutForm(props: any): ReactElement {
           customer: stripTypename(customer),
         }
       }
-
-      console.log(newInvoice);
       
       checkOut({
         variables: {

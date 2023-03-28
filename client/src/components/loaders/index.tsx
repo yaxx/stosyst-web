@@ -28,13 +28,10 @@ const PageSpinner = styled(Spinner)`
   border-top-color: #1da0f2;
 `
 const MoreSpinner = styled(Spinner)`
-  width: 28px;
-  height: 28px;
-  right: auto;
-  bottom: 8px;
-  margin: auto;
-  left: 48%;
-  position: absolute;
+  width: 18px;
+  height: 18px;
+  z-index: 1;
+  position: relative;
 `
 
 export const Loader = (props: any) => <Spinner {...props} />

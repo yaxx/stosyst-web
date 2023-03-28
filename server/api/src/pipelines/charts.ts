@@ -139,7 +139,9 @@
             }
         }, 
         {
-            $match: {diff: duration === 'Weekly' ? {$lt: 7} : duration === 'Monthly' ? {$lt: 12} : {$lte: 10}} 
+            $match: {
+                diff: duration === 'Weekly' ? {$lt: 7} : duration === 'Monthly' ? {$lt: 12} : {$lte: 10}
+            } 
         }, 
         {
             $unwind: { path: '$stocks'}
@@ -191,14 +193,14 @@
             }
         }, 
         {
-            $match: {diff: duration === 'Weekly' ? {$lt: 7} : duration === 'Monthly' ? {$lt: 12} : {$lte: 10}} 
+            $match: {
+                diff: duration === 'Weekly' ? {$lt: 7} : duration === 'Monthly' ? {$lt: 12} : {$lte: 10}
+            } 
         },          
         {
             $group: {
                 _id: "$diff",
-                totalExpenses: {
-                    $sum: '$amount'
-                }
+                totalExpenses: { $sum: '$amount'}
             }
         }, 
         {
@@ -207,7 +209,6 @@
     ]
 }
  export const getTrendsPipeline = (clientId: string,  duration: string , item?: string)=> {
-    console.log(item)
     return [
         {
             $match: {modifier: clientId}
@@ -224,7 +225,7 @@
                 dayOfWeek: duration === 'week' ? 
                 {
                     $dayOfWeek: '$createdAt'
-                } 
+                }
                 : 
                 {
                     $dayOfMonth: '$createdAt'
@@ -245,8 +246,7 @@
                 items: {
                     $push: "$$ROOT"
                 },
-                totalSalesCount: item ? 
-                {$sum: 1} 
+                totalSalesCount: item ? {$sum: 1} 
                 :   
                 {
                     $sum: {
