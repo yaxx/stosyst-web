@@ -29,7 +29,6 @@ export const ChartHeader = () => {
         fetchPolicy: "network-only"
     })
 
-   
     if(error) console.log(error)
     
     return (

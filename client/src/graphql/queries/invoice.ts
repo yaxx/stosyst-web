@@ -15,6 +15,7 @@ export const GET_INVOICES = gql`
                         name
                         description
                         category
+                         subCategory
                         costPrice
                         sellingPrice
                         stockImage
