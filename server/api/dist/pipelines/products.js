@@ -64,6 +64,12 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                         {
                             $sort: (0, sorter_1.getSorter)(group)
                         },
+                        {
+                            $skip: offset
+                        },
+                        {
+                            $limit: 10
+                        }
                     ];
 };
 exports.getProductsPipeline = getProductsPipeline;

@@ -65,6 +65,12 @@ import { getSorter } from "./sorter"
         {
             $sort: getSorter(group)
         },
+        { 
+            $skip: offset
+        },
+        {
+            $limit: 10
+        }
     ]
 }
 
