@@ -18,6 +18,7 @@ import { DeleteInvoice } from "../../graphql/mutations/checkout";
 import { Row as InvoiceList, ExpandableList, Paid, Item, ListItems, MoreActions } from ".";
 import { sortByPaid, format_date, getNetInvoiceToatal, isAdmin, getCartTotal, formatMoney } from "../../utils";
 import { Divider } from "../headers/stylesx";
+import { roundAmount } from "../charts/header";
 
 export const InvoiceListItems = ({ openMenu, stock, invoice, opened, pendings, index, netCount, theme }: any,) => {
     // console.log(invoice)
@@ -234,7 +235,7 @@ export function OuterList(props: any): ReactElement {
                     </Counter> {
                         // (props.list.records.length - 5) > 0 ?  <ArrowDown/> : <></>
                     }
-                    <P1 style={{ fontSize: 15, color: '#000000e7' }}>{formatMoney(getNetInvoiceToatal(list.records))}</P1>
+                    <P1 style={{ fontSize: 15, color: '#000000e7' }}>{roundAmount(getNetInvoiceToatal(list.records))}</P1>
                 </TotalSeparator>
             </Fragment>
         }

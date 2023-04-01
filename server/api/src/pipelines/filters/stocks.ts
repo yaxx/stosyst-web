@@ -57,7 +57,7 @@ export const getStocksFilter = ( id: string, filter: string, group: string, offs
             $skip: offset
         },
         {
-            $limit: 5
+            $limit: 3
         }
     ]
     :
@@ -94,7 +94,7 @@ export const getStocksFilter = ( id: string, filter: string, group: string, offs
             $skip: offset
         },
         {
-            $limit: 5
+            $limit: 3
         }
     ]
 }

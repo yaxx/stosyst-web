@@ -58,7 +58,7 @@ const getStocksFilter = (id, filter, group, offset) => {
                 $skip: offset
             },
             {
-                $limit: 5
+                $limit: 3
             }
         ]
         :
@@ -93,7 +93,7 @@ const getStocksFilter = (id, filter, group, offset) => {
                     $skip: offset
                 },
                 {
-                    $limit: 5
+                    $limit: 3
                 }
             ];
 };

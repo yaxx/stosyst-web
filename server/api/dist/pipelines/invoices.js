@@ -37,7 +37,7 @@ const getInvoicePipeline = (modifier, query, filter, group, offset) => {
                 $skip: offset
             },
             {
-                $limit: 10
+                $limit: 3
             }
         ]
         :
@@ -57,7 +57,7 @@ const getInvoicePipeline = (modifier, query, filter, group, offset) => {
                             $skip: offset
                         },
                         {
-                            $limit: 10
+                            $limit: 3
                         }
                     ];
 };
