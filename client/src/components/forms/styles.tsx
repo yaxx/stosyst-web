@@ -325,3 +325,10 @@ export const QtyFormGroup = styled.div.attrs(props => ({
     border-radius: 6px;
     position: relative;
   `
+  export const ProfileFormCont = styled.div<any>`
+    width: 90%;
+    height: auto;
+    left: 30px;
+    top: 20px;
+    position: relative;
+  `

@@ -778,13 +778,14 @@ export const ProfileInfo = styled.div`
     font-weight: bold;
   }
   .stats {
-    width: 200px;
+    width: 330px;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
     p {
        font-weight: bold;
+       margin-bottom: 0px;
     }
     span {
       color: rgb(83, 100, 113);

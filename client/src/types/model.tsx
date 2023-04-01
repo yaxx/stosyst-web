@@ -124,5 +124,6 @@ export type LocalState = {
     selectedType: PRODUCTS | INVOICES | EXPENSES
 }
 
+
 export const review = makeVar(false);
 export const print = makeVar(false);

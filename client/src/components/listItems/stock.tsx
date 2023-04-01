@@ -19,6 +19,7 @@ import { Counter } from "../../pages/invoices-page";
 import { P1 } from "../typography";
 import cache from "../../apollo-client";
 import { LoadingMore } from "../loaders";
+import { roundAmount } from "../charts/header";
 
 
 export const StockListItems = (props: any) => {
@@ -313,7 +314,7 @@ export function StocksListGroup(props: any): ReactElement {
                     count > 5 ? 
                     <> {loading ? <LoadingMore /> : <ArrowDown /> } </> : <></>
                 }
-                <P1>{roundFigureWithAlphabet(total)}</P1>
+                <P1>{roundAmount(total)}</P1>
                 <Divider bottom={2}/>
             </TotalSeparator>
         </section>

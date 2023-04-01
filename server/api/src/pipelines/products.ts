@@ -40,7 +40,7 @@ import { getSorter } from "./sorter"
             $skip: offset
         },
         {
-            $limit: 10
+            $limit: 5
         }
     ]
     :
@@ -69,7 +69,7 @@ import { getSorter } from "./sorter"
             $skip: offset
         },
         {
-            $limit: 10
+            $limit: 5
         }
     ]
 }

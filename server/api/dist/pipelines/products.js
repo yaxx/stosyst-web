@@ -40,7 +40,7 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                 $skip: offset
             },
             {
-                $limit: 10
+                $limit: 5
             }
         ]
         :
@@ -68,7 +68,7 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                             $skip: offset
                         },
                         {
-                            $limit: 10
+                            $limit: 5
                         }
                     ];
 };

@@ -6,7 +6,7 @@ import { getPreEmitDiagnostics } from "typescript"
 import { getImageUrl } from "../../apollo-client"
 import { GET_ACCOUNT } from "../../graphql/queries"
 // import { useMatch, useLocation, Link } from "react-router-dom"
-import { headerMenu, groupingCriteria } from "../../store/data"
+import { headerMenu, groupingCriteria, tempClient } from "../../store/data"
 import { Marker } from "../icons"
 import { HeaderNav } from "./main"
 import { SettingTitle, SettingsHeader, SettingsNavigation, HeaderItem, TableActions, TableOption, MainBanerCont, ProfileImage, ProfileInfo, ProfilePicture, ProfileBaner, SubsBtn, Divider } from "./stylesx"
@@ -45,7 +45,7 @@ export const SettingsNavHeader = (props: any): ReactElement => {
                         <img src={getImageUrl(data?.account.dp) || 'https://nextoma-bucket.s3.us-east-2.amazonaws.com/a35f9e5f-771c-4afd-b4b7-0869842c8dc9'} alt="" />
                     </ProfilePicture>
                 </ProfileImage>
-                <SubsBtn>Subscribe</SubsBtn>
+                <SubsBtn onClick={()=>tempClient(data.account)}>Subscribe</SubsBtn>
             </MainBanerCont>
             <ProfileInfo>
                 <h4>{data?.account?.name || ''}</h4>
@@ -54,6 +54,7 @@ export const SettingsNavHeader = (props: any): ReactElement => {
                 <p className="addr">Donga St. Jalingo, Taraba State  </p>
                 <p>{data?.account.phone}</p>
                 <div className="stats">
+                    <p>128K<span> Views</span> </p>
                     <p>17K<span> Likes</span> </p>
                     <p>2K <span>Subscribers</span> </p>
                 </div>

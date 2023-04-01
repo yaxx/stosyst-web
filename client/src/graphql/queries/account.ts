@@ -5,11 +5,14 @@ import { SaveInfo } from '../mutations/account';
 export const GET_ACCOUNT = gql`
     query account {
         account {
+            _id
             name
             email
-            banner
             phone
+            address
+            category
             dp
+            banner
             username
         }
     }

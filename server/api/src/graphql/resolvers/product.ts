@@ -32,6 +32,8 @@ export default {
       :
       result
 
+      // console.log(JSON.stringify(result[1], null, 2))
+
       return result
 
     },
@@ -42,8 +44,6 @@ export default {
       const pattern = new RegExp(`/^${groupLabel}/`);
 
       const result: any = await Product.aggregate(getStockSetPipeline(orgId, query, group, groupLabel, filter,offset))
-
-      // console.log(JSON.stringify(result, null, 2));
       
       return result
     }

@@ -1,18 +1,18 @@
-import { Fragment, ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 
-import { FileInput, NameInput } from '../../components/inputs'
 import client from '../../apollo-client'
-import { locals } from '../../store/data'
+import { defClient, locals, tempClient } from '../../store/data'
 import { GET_ACCOUNT } from '../../graphql/queries/account'
-import { useMutation, useQuery } from '@apollo/client'
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client'
 import { SideNav } from '../../components/sideNavigation/SideNav'
 import { FlatList as HeaderItems, FlatRow as Header, Item } from '../../components/listItems'
 import { UPLOAD_FILE } from '../../graphql/mutations'
 import { useGetLocals } from '../../hooks/useGetProducts'
 import { H4 } from '../../components/typography'
 import { ImageItem } from '../../components/images'
-import { ActionGroup, ChangePicBtn, Divider, GroupItems, LabelGroup, ProfilePicture, SaveBtn, SettingGroup, SettingsItem } from '../../components/headers/stylesx'
-import { SettingsNavHeader } from '../../components/headers'
+import { Divider } from '../../components/headers/stylesx'
+import { ModalContainer } from './styles'
+import ClientProfileForm from '../../components/forms/profile'
 interface Props {
     
 }
@@ -39,6 +39,8 @@ export default function Profile({}: Props): ReactElement {
             })
         }
     }, [])
+
+    const initClient = useReactiveVar(tempClient)
 
     const { localData: { localState }, issues } = useGetLocals();
 
@@ -74,7 +76,6 @@ export default function Profile({}: Props): ReactElement {
 
     const hangleFileChange = (e: any) => {
         e.stopPropagation();
-
         const file = e.target.files[0];
 
         if (!file) return
@@ -163,7 +164,11 @@ export default function Profile({}: Props): ReactElement {
                 <SaveBtn>Save</SaveBtn>
                 <Divider top ='100'/>
             </SettingsItem> */}
-
+            {
+                initClient._id && <ModalContainer onClick={() => tempClient(defClient)} >
+                    <ClientProfileForm />
+                </ModalContainer>
+            }
         </>
 
     )

@@ -66,6 +66,14 @@ export let initInvoice: Invoice = {
     modifier: '',
     customer: defCustomer,
 }
+export let defClient: Client = {
+    name: '',
+    password: '',
+    username: '',
+    category: '',
+    staffs: [],
+    msgTokens: []
+}
 export const initFeedback: FeedbackMsg = {
     success: true,
     msg: '',
@@ -110,4 +118,6 @@ export const invCriteria = makeVar({
     filter: '',
     group: 'date',
 });
+
 export const globalInvoice = makeVar(initInvoice);
+export const tempClient = makeVar(defClient);
