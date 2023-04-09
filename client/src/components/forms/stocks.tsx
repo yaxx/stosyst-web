@@ -1,14 +1,14 @@
 import React, { SyntheticEvent, ReactElement, useState } from "react";
 
 import { Btn } from "../buttons";
-import { initProduct } from "../../store/data";
+import { groupingCriteria, initProduct } from "../../store/data";
 import { Loader, SpinLoader } from "../loaders";
 import { simplifyExpDate, updateProdCache } from "../../utils";
 import { ImageItem } from "../images";
 import { Mask } from "../images/styles";
 import { UPLOAD_FILE } from "../../graphql/mutations";
 import { SAVE_STOCK } from "../../graphql/mutations";
-import { useMutation } from "@apollo/client";
+import { useMutation, useReactiveVar } from "@apollo/client";
 import {
   DoubleFormGroup,
   FileInput,
@@ -22,6 +22,8 @@ import { InfoContainer, InfoItems, VDivider } from "../listItems/styles";
 
 export function StocksForm(props: any): ReactElement {
   let { stock: s } = props;
+
+  const { group } = useReactiveVar(groupingCriteria)
 
   s = {
     ...s,
@@ -53,7 +55,7 @@ export function StocksForm(props: any): ReactElement {
       cache.writeQuery({
         query: GET_STOCKS,
         data: {
-          products: updateProdCache(data.products, newProduct),
+          products: updateProdCache(data.products, newProduct, group),
         },
       });
       showFeedBack();

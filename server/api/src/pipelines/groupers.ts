@@ -4,7 +4,6 @@ export const sortOrder = {
     day: 1
 }
 
-
 export const productsCriteria = (criteria: string) => {
     let grp = {}
     console.log(criteria)
@@ -152,5 +151,3 @@ export const sortInvoice = (criteria: string) => !criteria ?
     {'_id.year':-1, '_id.month':-1, '_id.day':-1} 
     :
     {_id:-1}
-
-
