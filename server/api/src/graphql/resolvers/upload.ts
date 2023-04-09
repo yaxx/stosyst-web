@@ -6,7 +6,16 @@ const { v4: uuidv4 } = require('uuid');
 // import { v4 as uuidv4 } from 'uuid';
 import { randomBytes } from 'crypto';
 // import { GraphQLUpload } from 'graphql-upload';
+// import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
+// import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
+// const { graphqlUploadExpress, GraphQLUpload  } = require("graphql-upload");
+// @ts-ignore
+
+// import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+// import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"; 
+
 import { saveOnServer, uploadToS3Bucket } from './fileSaver';
+
 import { IN_PRODUCTION } from '../../config';
 
 const {
@@ -30,9 +39,9 @@ export default {
         imgUrl: async () => {
             const imgName = await randomBytes(16).toString('hex')
             const params = ({
-                Bucket: bucketName,
                 Key: imgName,
-                Expires: 60
+                Expires: 60,
+                Bucket: bucketName,
             })
             const url = await s3.getSignedUrlPromise('putObject', params)
             return { url }

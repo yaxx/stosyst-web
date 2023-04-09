@@ -186,11 +186,11 @@ const Nav = (props: any): ReactElement => {
             <InvoiceIcon pre_loc='/invoices' cur_loc={location.pathname} />
           </NavLink> 
         </LinkItem>
-        {/* <LinkItem >
+        <LinkItem >
           <NavLink to='/explore' title='Explore'>
             <ExploreIcon pre_loc='/explore' cur_loc={location.pathname} />
           </NavLink> 
-        </LinkItem> */}
+        </LinkItem>
         <LinkItem>
           <NavLink to='/summary' title='Dashboard'>
             <DashboardIcon pre_loc='/summary' cur_loc={location.pathname} />

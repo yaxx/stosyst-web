@@ -10,6 +10,14 @@
     "start": "ts-node-dev --transpile-only --no-notify src",
     "prod": "cross-env NODE_ENV=production SERVER_PORT=4000 MONGO_HOST=nextoma.2mkb8.mongodb.net MONGO_DATABASE=prod MONGO_USERNAME=me MONGO_PASSWORD=Sqb0NzshutN74DaR AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js"
   },
+  "exports": {
+    "./GraphQLUpload.js": "./GraphQLUpload.js",
+    "./graphqlUploadExpress.js": "./graphqlUploadExpress.mjs",
+    "./graphqlUploadKoa.mjs": "./graphqlUploadKoa.mjs",
+    "./package.json": "./package.json",
+    "./processRequest.mjs": "./processRequest.mjs",
+    "./Upload.mjs": "./Upload.mjs"
+  },
   "ts-standard": {
     "project": "./tsconfig.json"
   },
@@ -33,7 +41,7 @@
     "graphql": "^16.6.0",
     "graphql-redis-subscriptions": "^2.6.0",
     "graphql-subscriptions": "^2.0.0",
-    "graphql-upload": "^16.0.2",
+    "graphql-upload": "^14.0.0",
     "graphql-ws": "^5.11.3",
     "ioredis": "^5.3.1",
     "joi": "^17.8.3",

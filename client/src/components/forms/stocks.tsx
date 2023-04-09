@@ -180,6 +180,7 @@ export function StocksForm(props: any): ReactElement {
       name,
       description,
       category,
+      subCategory,
       costPrice,
       sellingPrice,
       instock,
@@ -199,6 +200,7 @@ export function StocksForm(props: any): ReactElement {
           warningCount: +warningCount,
           expiryWarning: +expiryWarning,
           category: category.trim(),
+          subCategory: subCategory?.trim(),
           description: description.trim(),
           expiry: expiry ? convertStringToDate(expiry) : expiry,
         },
@@ -271,7 +273,7 @@ export function StocksForm(props: any): ReactElement {
               <NameInput
                 name="subCategory"
                 label="Subcategory"
-                value={stock.subCategory || ""}
+                value={stock.subCategory || " "}
                 clearCallback={handleClear}
                 changeCallback={(e: any) => handleChange(e)}
               />
@@ -352,9 +354,7 @@ export function StocksForm(props: any): ReactElement {
             {mark ? <SuccessMarkIcon /> : <Loader size={"27px"} />}
           </LoadingCont>
         ) : !mark && !loading ? (
-          <Btn disabled={!stock.name || !stock.sellingPrice}>
-            <p>GO</p>
-          </Btn>
+          <Btn disabled={!stock.name || !stock.sellingPrice}> <p>GO</p></Btn>
         ) : (
           <></>
         )}

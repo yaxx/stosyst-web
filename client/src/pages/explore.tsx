@@ -55,7 +55,7 @@ const ExplorePage = (props: any)=> {
             description: 'Bandager for surgery',
             sellingPrice: '1,2000',
             instock: 66,
-            stockImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH7xdubKakcRDs2JRl7xWfStbwaniYacYxDbfZLThssA6C7v0SIgmkiT2TZNwmxaafMcw&usqp=CAU",
+            stockImage: "https://m.media-amazon.com/images/I/21LwyQJLbQL._AC_UF480,480_SR480,480_.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
@@ -63,7 +63,7 @@ const ExplorePage = (props: any)=> {
             description: 'Bandager for surgery',
             sellingPrice: "47,000",
             instock: 66,
-            stockImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHIqC1AcGgxkAmnXd7TbvObsedkQ8RTkJyYg&usqp=CAU",
+            stockImage: "https://m.media-amazon.com/images/I/61hqPKLHI-L._AC_UL640_FMwebp_QL65_.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
