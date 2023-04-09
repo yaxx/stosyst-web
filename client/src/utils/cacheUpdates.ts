@@ -2,12 +2,34 @@ import {format_date} from '.';
 import {GET_EXPENSES} from '../graphql/queries';
 import { Expense, Product } from '../types/model';
 
-export const updateProdCache = (prevStocks: any[], newStock: Product) => {
-  const i: number = prevStocks.findIndex(
-    (prod: any) =>
-      prod.records[0].name.toUpperCase().charAt(0) ===
-      newStock?.name.toUpperCase().charAt(0),
-  );
+export const updateProdCache = (prevStocks: any[], newStock: Product, group: string) => {
+   let i: number = -1
+  switch (group) {
+    case 'name':
+      i = prevStocks.findIndex(
+        (prod: any) =>  prod._id === newStock?.name.toUpperCase().charAt(0),
+      );
+      break;
+    case 'category':
+      i = prevStocks.findIndex(
+        (prod: any) =>  prod._id === newStock?.category,
+      );
+      break;
+    case 'instock':
+      i = prevStocks.findIndex(
+        (prod: any) =>  +prod._id === newStock?.instock,
+      );
+      break;
+    case 'date':
+      i = prevStocks.findIndex(
+        (prod: any) =>  prod._id === format_date(newStock?.createdAt?.toString()),
+      );
+      break;
+  
+    default:
+      break;
+  }
+ 
   if (i !== -1) {
     const j = prevStocks[i].records.findIndex(
       (p: any) => p._id === newStock._id,
@@ -26,18 +48,26 @@ export const updateProdCache = (prevStocks: any[], newStock: Product) => {
     } else {
       prevStocks = prevStocks.map((prodObject: any, k: number) => {
         return i === k
-          ? {...prodObject, records: [newStock, ...prodObject.records]}
+          ? {
+              ...prodObject,
+              count: prodObject.count + 1,
+              records: prodObject.records.unshift(newStock),
+              total: prodObject.total + newStock.instock||0 * newStock.sellingPrice
+            }
           : prodObject;
       });
     }
   } else {
-    prevStocks = [
-      {
-        __typename: 'StocksGroup',
-        records: [newStock],
-      },
-      ...prevStocks,
-    ];
+    if(prevStocks[0]._id) {
+        prevStocks = [
+          {
+            __typename: 'StocksGroup',
+            records: [newStock],
+          },
+          ...prevStocks,
+        ];
+    }
+    prevStocks[0].records = prevStocks[0].records.unshift(newStock)
   }
   return prevStocks;
 };
