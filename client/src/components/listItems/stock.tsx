@@ -317,8 +317,7 @@ export function StocksListGroup(props: any): ReactElement {
                     }
                     <P1>{roundAmount(total)}</P1>
                 </div>
-
-                <Divider ps='relative' bottom={2}/>
+                {/* <Divider ps='relative' bottom={2}/> */}
             </TotalSeparator>
         </section>
     )

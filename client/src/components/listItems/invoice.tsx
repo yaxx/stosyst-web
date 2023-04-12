@@ -224,18 +224,15 @@ export function OuterList(props: any): ReactElement {
                     )
                 }
                 <TotalSeparator opened={props.opened} onClick={() => props.colapseCallbak(list.records.length - 5)}>
-                    <Counter>
-                        {/* <P1> {
-                            (props.list.records.length - 5) > 0 && 
-                            <span>
-                                {(!props.opened) ? '+' : '-'}{ props.list.records.length - 5 }
-                            </span>
+                    <div className="seperatorMakers">
+                        <p>{}</p>
+                        {
+                            <></>
                         }
-                        </P1> */}
-                    </Counter> {
-                        // (props.list.records.length - 5) > 0 ?  <ArrowDown/> : <></>
-                    }
-                    <P1 style={{ fontSize: 15, color: '#000000e7' }}>{roundAmount(getNetInvoiceToatal(list.records))}</P1>
+                        <P1 style={{ fontSize: 15, color: '#000000e7' }}>{roundAmount(getNetInvoiceToatal(list.records))}</P1>
+                    </div>
+                    
+                    
                 </TotalSeparator>
             </Fragment>
         }
