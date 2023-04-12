@@ -103,6 +103,7 @@ exports.default = (0, apollo_server_express_1.gql) `
         org: String
         usr: String
         name: String
+        category: String
         role: String
         perms: Permision
     }
@@ -118,6 +119,7 @@ exports.default = (0, apollo_server_express_1.gql) `
     }
     input ClientInfo {
         name: String!
+        category: String!
         phone: String!
         password: String!
         msgToken: String

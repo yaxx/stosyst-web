@@ -8,6 +8,7 @@ export const SignUp = gql`
             org
             usr
             name
+            category
         }
     }
 `
@@ -19,6 +20,7 @@ export const SignIn = gql`
             org
             usr
             name
+            category
             role
             perms {
                 edits 

@@ -309,13 +309,16 @@ export function StocksListGroup(props: any): ReactElement {
             }
           
             <TotalSeparator onClick={()=>loadMoreStockSet(groupId)} leftPad={67}>
-                <p>+{count - 5 <= 0 ? 0 : count - 5}</p>
-                {
-                    count > 5 ? 
-                    <> {loading ? <LoadingMore /> : <ArrowDown /> } </> : <></>
-                }
-                <P1>{roundAmount(total)}</P1>
-                <Divider bottom={2}/>
+                <div className="seperatorMakers">
+                    <p>+{count - 5 <= 0 ? 0 : count - 5}</p>
+                    {
+                        count > 5 ? 
+                        <> {loading ? <LoadingMore /> : <ArrowDown /> } </> : <></>
+                    }
+                    <P1>{roundAmount(total)}</P1>
+                </div>
+
+                <Divider ps='relative' bottom={2}/>
             </TotalSeparator>
         </section>
     )

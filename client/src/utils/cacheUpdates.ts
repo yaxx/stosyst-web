@@ -4,44 +4,37 @@ import { Expense, Product } from '../types/model';
 
 export const updateProdCache = (prevStocks: any[], newStock: Product, group: string) => {
    let i: number = -1
+
   switch (group) {
     case 'name':
-      i = prevStocks.findIndex(
-        (prod: any) =>  prod._id === newStock?.name.toUpperCase().charAt(0),
-      );
+      i = prevStocks.findIndex((prod: any) =>  prod._id === newStock?.name.toUpperCase().charAt(0));
       break;
+
     case 'category':
-      i = prevStocks.findIndex(
-        (prod: any) =>  prod._id === newStock?.category,
-      );
+      i = prevStocks.findIndex( (prod: any) =>  prod.records[0].category === newStock?.category);
       break;
+
     case 'instock':
-      i = prevStocks.findIndex(
-        (prod: any) =>  +prod._id === newStock?.instock,
-      );
+      i = prevStocks.findIndex( (prod: any) =>  +prod._id === newStock?.instock);
       break;
+
     case 'date':
-      i = prevStocks.findIndex(
-        (prod: any) =>  prod._id === format_date(newStock?.createdAt?.toString()),
-      );
+      i = prevStocks.findIndex((prod: any) =>  prod._id === format_date(newStock?.createdAt?.toString()));
       break;
   
     default:
       break;
   }
+
  
   if (i !== -1) {
-    const j = prevStocks[i].records.findIndex(
-      (p: any) => p._id === newStock._id,
-    );
+    const j = prevStocks[i].records.findIndex( (p: any) => p._id === newStock._id);
     if (j !== -1) {
       prevStocks = prevStocks.map((prodObject: any, k: number) => {
         return i === k
           ? {
               ...prodObject,
-              records: prodObject.records.map((s: Product, n: number) =>
-                n === j ? newStock : s,
-              ),
+              records: prodObject.records.map((s: Product, n: number) =>  n === j ? newStock : s),
             }
           : prodObject;
       });
@@ -51,23 +44,42 @@ export const updateProdCache = (prevStocks: any[], newStock: Product, group: str
           ? {
               ...prodObject,
               count: prodObject.count + 1,
-              records: prodObject.records.unshift(newStock),
+              records: [newStock, ...prodObject.records],
               total: prodObject.total + newStock.instock||0 * newStock.sellingPrice
             }
           : prodObject;
       });
     }
   } else {
-    if(prevStocks[0]._id) {
-        prevStocks = [
+     prevStocks = [
           {
             __typename: 'StocksGroup',
             records: [newStock],
+            count:  1,
+            total: newStock.instock || 0 * newStock.sellingPrice
           },
           ...prevStocks,
         ];
-    }
-    prevStocks[0].records = prevStocks[0].records.unshift(newStock)
+    // if(prevStocks[0]._id) {
+    //     prevStocks = [
+    //       {
+    //         __typename: 'StocksGroup',
+    //         records: [newStock],
+    //       },
+    //       ...prevStocks,
+    //     ];
+    // }
+    // prevStocks = prevStocks.map((st, i) => 
+    // (i===0 ?
+    //   {
+    //     ...st,
+    //     count: st.count + 1,
+    //     records: [newStock, ...st.records.splice(-1)],
+    //     total: st.total + newStock.instock||0 * newStock.sellingPrice
+    //   } 
+    //   : 
+    //   st
+    // ))
   }
   return prevStocks;
 };

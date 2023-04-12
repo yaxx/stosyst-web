@@ -8,7 +8,6 @@ exports.sortOrder = {
 };
 const productsCriteria = (criteria) => {
     let grp = {};
-    console.log(criteria);
     switch (criteria) {
         case 'category':
             grp = {

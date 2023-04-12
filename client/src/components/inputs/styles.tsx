@@ -5,7 +5,7 @@ export const DropDownList = styled.ul<any>`
   border-radius: 8px;
   border: 1px solid #e6e1e1;
   height: auto;
-  max-height: 200px;
+  max-height: 370px;
   position: absolute;
   background: white;
   list-style: none;
@@ -13,14 +13,17 @@ export const DropDownList = styled.ul<any>`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  z-index:100 ;
+  /* overflow-y: scroll; */
 `
 export const DropDownItem = styled.li<any>`
   width: 100%;
-  height: 40px;
+  height: 50px;
   cursor: pointer;
   display: flex;
   align-items: center;
   position: relative;
+   background: white;
   p {
     margin-bottom: 0px;
     font-size: 13px;

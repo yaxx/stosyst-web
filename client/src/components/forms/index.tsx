@@ -6,12 +6,13 @@ import styled from 'styled-components';
 import { SignUp } from '../../graphql/mutations/account';
 import { Heading, SmallText } from '../../pages/singup';
 import { PriBtn } from '../buttons';
-import SearchInput, { FormGroupCont, NameInput } from '../inputs';
+import SearchInput, { DropDown, FormGroupCont, NameInput } from '../inputs';
 import { Loader } from '../loaders';
 import Error from '../errorline'
 import { initAccount, locals } from '../../store/data';
 import { Client } from '../../types/model';
 import { AccForm, MainSearchForm } from './styles';
+import DropDownOptions from '../listItems/dropdown';
 
 
 export * from './search'
@@ -20,6 +21,23 @@ export * from './search'
 interface Props {
 
 }
+
+const categories = [
+  'Accessories',
+  'Catering',
+  'Cosmetics',
+  'Electronics',
+  'Fashion',
+  'Funiture',
+  'Building Materials',
+  'Hospitality',
+  'Healthcare',
+  'Oil & Gas',
+  'Others',
+  'Provisions',
+  'Spare Parts',
+  'Services',
+]
 
 export function SignUpForm({}: Props): ReactElement {
 
@@ -30,12 +48,14 @@ export function SignUpForm({}: Props): ReactElement {
     name: '',
     phone: '',
     password: '',
+    category: '',
     msgToken: locals().msgToken || ' '
   }
 
   const [client, setClient] = useState(creds);
 
   const [showPassword, setPassword] = useState(false);
+  const [dropedInput, setDroppedInput] = useState('')
 
  const storeUserInfo = ({token, org, usr, dp}: any) => {
    localStorage.setItem('token', token);
@@ -72,6 +92,8 @@ export function SignUpForm({}: Props): ReactElement {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    console.log(client);
+    
     signUp({
         variables: {
         info: {
@@ -79,6 +101,16 @@ export function SignUpForm({}: Props): ReactElement {
         }
       } 
     })
+  }
+
+  const handleOptSelection = (opt: string) => {
+    setClient({
+      ...client,
+      category: opt
+    })
+    console.log(client);
+    
+    setDroppedInput('')
   }
 
   return (
@@ -104,6 +136,17 @@ export function SignUpForm({}: Props): ReactElement {
         />
       </FormGroupCont>
       <FormGroupCont>
+        <DropDown
+          name='category'
+          label='Business category'
+          value={client.category || 'Accessories'}
+          openCallback={(e: any) => setDroppedInput('category')}
+        />
+        {
+          dropedInput === 'category' && <DropDownOptions selectCallback={handleOptSelection} options={categories} />
+        }
+      </FormGroupCont>
+      <FormGroupCont>
         <NameInput 
           type = { showPassword ? 'text' : 'password'} 
           name = 'password'
@@ -113,6 +156,7 @@ export function SignUpForm({}: Props): ReactElement {
           changeCallback = {(e: any) => handleChange(e)}
         />
       </FormGroupCont>
+      
       <PriBtn disabled={!client.phone || !client.name || !client.password} >
             { loading ? <Loader/> : 'Create Account' }
         </PriBtn> {

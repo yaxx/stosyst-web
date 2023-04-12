@@ -6,7 +6,7 @@ export const sortOrder = {
 
 export const productsCriteria = (criteria: string) => {
     let grp = {}
-    console.log(criteria)
+
     switch (criteria) {
         case 'category':
             grp = {
@@ -47,7 +47,7 @@ export const productsCriteria = (criteria: string) => {
                     month: { $month: "$createdAt" },
                     year: { $year: "$createdAt" }
                 },
-               count: {
+                count: {
                     $sum: 1
                 },
                  total: {
@@ -56,7 +56,7 @@ export const productsCriteria = (criteria: string) => {
                     }
                 },
                 records: {
-                    $push: "$$ROOT" 
+                    $push: "$$ROOT"
                 }
             }
             break;
@@ -68,7 +68,7 @@ export const productsCriteria = (criteria: string) => {
                 count: {
                     $sum: 1
                 },
-                 total: {
+                total: {
                     $sum: {
                         $multiply: ['$instock','$sellingPrice' ]
                     }

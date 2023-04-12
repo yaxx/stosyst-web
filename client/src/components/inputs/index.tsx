@@ -412,7 +412,7 @@ export function DropDown(props: any): ReactElement {
   return (
     <DropDownFormGroup onClick={openCallback} hasInput={value} {...props}>
       <DropDownVal>{value}</DropDownVal> 
-          <DropIcon />
+      <DropIcon />
       <Label>{label}</Label>
     </DropDownFormGroup>
   )

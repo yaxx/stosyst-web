@@ -23,9 +23,9 @@ exports.default = {
         imgUrl: async () => {
             const imgName = await (0, crypto_1.randomBytes)(16).toString('hex');
             const params = ({
-                Bucket: bucketName,
                 Key: imgName,
-                Expires: 60
+                Expires: 60,
+                Bucket: bucketName,
             });
             const url = await s3.getSignedUrlPromise('putObject', params);
             return { url };

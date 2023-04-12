@@ -102,6 +102,7 @@ export default gql`
         org: String
         usr: String
         name: String
+        category: String
         role: String
         perms: Permision
     }
@@ -117,6 +118,7 @@ export default gql`
     }
     input ClientInfo {
         name: String!
+        category: String!
         phone: String!
         password: String!
         msgToken: String

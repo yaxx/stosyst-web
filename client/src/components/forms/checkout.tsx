@@ -74,7 +74,6 @@ export default function ChecktOutForm(props: any): ReactElement {
   const handleSubmit = (e: any) => { 
     e.preventDefault();
     e.stopPropagation();
-    // console.log(e.target.name);
     
     if(e.target.name === 'review') {
     } else {
@@ -190,15 +189,15 @@ export default function ChecktOutForm(props: any): ReactElement {
                 /> 
             </FormGroupCont>
             <FormGroupCont>
-            <DropDown
-                name='paymentmethod'
-                label='Payment Mehtod'
-                value={invoice.paymentMethod || 'POS'}
-                openCallback={()=>setDroppedInput('paymentmethod')}
-              />
-              {
-                  dropedInput === 'paymentmethod' && <DropDownOptions selectCallback={handleOptSelection}  options={['POS', 'Cash', 'Transfer']} />
-              }
+              <DropDown
+                  name='paymentmethod'
+                  label='Payment Mehtod'
+                  value={invoice.paymentMethod || 'POS'}
+                  openCallback={()=>setDroppedInput('paymentmethod')}
+                />
+                {
+                    dropedInput === 'paymentmethod' && <DropDownOptions selectCallback={handleOptSelection}  options={['POS', 'Cash', 'Transfer']} />
+                }
             </FormGroupCont>
               <PriBtn style={{fontSize: 10, fontWeight: 600}} disabled={loading}>
               {

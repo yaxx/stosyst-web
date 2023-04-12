@@ -70,7 +70,7 @@ export let defClient: Client = {
     name: '',
     password: '',
     username: '',
-    category: '',
+    category: 'Accessories',
     staffs: [],
     msgTokens: []
 }

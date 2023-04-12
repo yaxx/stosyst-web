@@ -167,6 +167,7 @@ button:focus {
 .sample:first-child {
   right: 35px;
 }
+
 @media (min-width: 375px)  {
   .constainer.main-container {
     padding: 0px 60px;
@@ -179,7 +180,7 @@ button:focus {
     max-width: 960px;
     position: fixed;
     z-index: 10;
-    padding-right: 228px;
+    padding-right: 371px;
     padding-left: 0px;
     margin: auto;
   }
@@ -189,7 +190,7 @@ button:focus {
     max-width: 1200px;
     position: fixed;
     z-index: 10;
-    padding-right: 242px;
+    padding-right: 342px;
     padding-left: 0px;
     margin: auto;
   }
@@ -199,7 +200,7 @@ button:focus {
     max-width: 1200px;
     position: fixed;
     z-index: 100;
-    padding-right: 237px;
+    padding-right: 62px;
     padding-left: 0px;
     margin: auto;
   }
@@ -207,6 +208,20 @@ button:focus {
     max-width: 995px;
   }
 }
+@media (max-width: 1200px) {
+  #ic {
+    max-width: 1200px;
+    position: fixed;
+    z-index: 100;
+    padding-right: 62px;
+    padding-left: 0px;
+    margin: auto;
+  }
+  #table-container {
+    max-width: 995px;
+  }
+}
+
 
 .icon {
     position: relative;
