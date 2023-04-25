@@ -19,6 +19,7 @@ export default function ChecktOutForm(props: any): ReactElement {
   const [customer, setCustomer] = useState(modifiedInvoice.customer);
   const [invoice, setInvoice] = useState(modifiedInvoice)
   const [dropedInput, setDroppedInput] = useState('')
+  const [inFocus, setInfocus] = useState('')
 
   useEffect(() => {
     setInvoice(modifiedInvoice)
@@ -54,7 +55,6 @@ export default function ChecktOutForm(props: any): ReactElement {
   });
 
   
-
   if(data) {
     showFeedback(true, invoice._id ? 'Update successful' : 'Transaction successful')
   }
