@@ -9,7 +9,7 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
         [
             {
                 $search: {
-                    index: 'products',
+                    index: 'default',
                     text: {
                         query,
                         fuzzy: {

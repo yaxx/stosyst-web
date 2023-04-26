@@ -15,8 +15,10 @@ export const MONGO_OPTIONS = {
     useUnifiedTopology: true
 }
 
-const LOCAL_URI = `mongodb+srv://me:Sqb0NzshutN74DaR@nextoma.2mkb8.mongodb.net/prod`
+const LOCAL_URI = `mongodb+srv://shehu:mWQgbU2J6iO2naol@m0cluster.sveqa6c.mongodb.net/stosyst`
+// const LOCAL_URI = `mongodb+srv://me:Sqb0NzshutN74DaR@nextoma.2mkb8.mongodb.net/prod`
 // const LOCAL_URI = `mongodb://${MONGO_HOST}/${MONGO_DATABASE}`
 const REMOTE_URI = `mongodb+srv://${MONGO_USERNAME}:${encodeURIComponent(MONGO_PASSWORD)}@${MONGO_HOST}/${MONGO_DATABASE}`
 
 export const MONGO_URI = IN_PRODUCTION ? REMOTE_URI : LOCAL_URI 
+
