@@ -9,7 +9,7 @@ import { getSorter } from "./sorter"
     [
         {      
             $search: {
-                index: 'default',
+                index: 'products',
                 text: {
                     query,
                     fuzzy: {
