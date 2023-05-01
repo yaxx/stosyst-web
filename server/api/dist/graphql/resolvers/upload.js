@@ -7,6 +7,7 @@ const aws_sdk_1 = __importDefault(require("aws-sdk"));
 require('dotenv').config();
 const { v4: uuidv4 } = require('uuid');
 const crypto_1 = require("crypto");
+const GraphQLUpload_js_1 = __importDefault(require("graphql-upload/GraphQLUpload.js"));
 const fileSaver_1 = require("./fileSaver");
 const config_1 = require("../../config");
 const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env;
@@ -19,6 +20,7 @@ const s3 = new aws_sdk_1.default.S3({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
 exports.default = {
+    Upload: GraphQLUpload_js_1.default,
     Query: {
         imgUrl: async () => {
             const imgName = await (0, crypto_1.randomBytes)(16).toString('hex');

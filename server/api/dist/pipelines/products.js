@@ -5,6 +5,7 @@ const stocks_1 = require("./filters/stocks");
 const groupers_1 = require("./groupers");
 const sorter_1 = require("./sorter");
 const getProductsPipeline = (ownerId, query, offset, group, filter) => {
+    const limit = 10;
     return query.trim().length > 0 ?
         [
             {
@@ -40,7 +41,7 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                 $skip: offset
             },
             {
-                $limit: 3
+                $limit: limit
             }
         ]
         :

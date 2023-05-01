@@ -11,13 +11,16 @@ import { randomBytes } from 'crypto';
 // const { graphqlUploadExpress, GraphQLUpload  } = require("graphql-upload");
 // @ts-ignore
 
-// import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 // import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"; 
 
 // const {
 //   GraphQLUpload,
 //   graphqlUploadExpress, // A Koa implementation is also exported.
 // } = require('graphql-upload');
+
+// import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs"
+// import Upload from "graphql-upload/Upload.mjs";
 
 import { saveOnServer, uploadToS3Bucket } from './fileSaver';
 
@@ -39,7 +42,7 @@ const s3 = new aws.S3({
 })
 
 export default {
-    // Upload: GraphQLUpload,
+    Upload: GraphQLUpload,
     Query: {
         imgUrl: async () => {
             const imgName = await randomBytes(16).toString('hex')

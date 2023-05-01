@@ -3,8 +3,7 @@ import cors from 'cors'
 import path from 'path'
 import {IN_PRODUCTION} from './config'
 import session, { Store } from 'express-session';
-// const { graphqlUploadExpress } = require("graphql-upload");
-// const { graphqlUploadExpress, GraphQLUpload  } = require("graphql-upload");
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 import { downloadFileFromS3Bucket } from './graphql/resolvers/fileSaver';
 
 const multer  = require('multer')
@@ -24,7 +23,7 @@ export const createExpressApp = () => {
 
     app.use(cors(corsOptions))
     app.use(express.static(STATIC_PATH));
-    // app.use(graphqlUploadExpress());
+    app.use(graphqlUploadExpress());
     app.use("/images", express.static(IMAGES_PATH))
 
 

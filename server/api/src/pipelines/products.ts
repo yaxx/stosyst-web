@@ -4,7 +4,7 @@ import { productsCriteria, sortOrder } from "./groupers"
 import { getSorter } from "./sorter"
 
  export const getProductsPipeline = (ownerId: string, query: string, offset: number, group:string, filter: string ): any => {
-
+    const limit = 10
     return query.trim().length > 0 ? 
     [
         {      
@@ -40,7 +40,7 @@ import { getSorter } from "./sorter"
             $skip: offset
         },
         {
-            $limit: 3
+            $limit: limit
         }
     ]
     :

@@ -1,8 +1,4 @@
 import { gql } from 'apollo-server-express';
-// const {
-//   GraphQLUpload,
-//   graphqlUploadExpress,
-// } = require('graphql-upload');
 
 export default gql`
   scalar Upload

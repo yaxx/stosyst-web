@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const config_1 = require("./config");
+const graphqlUploadExpress_js_1 = __importDefault(require("graphql-upload/graphqlUploadExpress.js"));
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 exports.corsOptions = {
@@ -20,6 +21,7 @@ const createExpressApp = () => {
     const STATIC_PATH = path_1.default.join(__dirname, config_1.IN_PRODUCTION ? 'build' : 'public');
     app.use((0, cors_1.default)(exports.corsOptions));
     app.use(express_1.default.static(STATIC_PATH));
+    app.use((0, graphqlUploadExpress_js_1.default)());
     app.use("/images", express_1.default.static(IMAGES_PATH));
     app.get('/*', function (req, res) {
     });
