@@ -175,7 +175,17 @@ button:focus {
   }
 }
 
-@media (min-width: 768px)  {
+#ic {
+    max-width: 2550px;
+    position: fixed;
+    z-index: 10;
+    padding-right: 358px;
+    padding-left: 10px;
+    margin: auto;
+    width: 100%;
+  }
+
+/* @media (min-width: 768px)  {
   #ic {
     max-width: 960px;
     position: fixed;
@@ -184,18 +194,24 @@ button:focus {
     padding-left: 0px;
     margin: auto;
   }
-}
-@media (min-width: 1024px) {
+} */
+/* @media (max-width: 883px)  {
   #ic {
-    max-width: 1200px;
+    max-width: 900px;
     position: fixed;
     z-index: 10;
-    padding-right: 342px;
+    padding-right: 371px;
     padding-left: 0px;
     margin: auto;
   }
+} */
+@media (min-width: 1024px) {
+  #ic {
+    padding-right: 320px;
+    padding-left: 15px
+  }
 }
-@media (min-width: 1200px) {
+/* @media (min-width: 1200px) {
   #ic {
     max-width: 1200px;
     position: fixed;
@@ -207,8 +223,8 @@ button:focus {
   #table-container {
     max-width: 995px;
   }
-}
-@media (max-width: 1200px) {
+} */
+/* @media (max-width: 1200px) {
   #ic {
     max-width: 1200px;
     position: fixed;
@@ -220,9 +236,19 @@ button:focus {
   #table-container {
     max-width: 995px;
   }
-}
+} */
 
-
+/* @media (max-width: 912px)  {
+  #ic {
+    max-width: 900px;
+    position: fixed;
+    z-index: 10;
+    padding-right: 371px;
+    padding-left: 0px;
+    margin: auto;
+  }
+} */
+ 
 .icon {
     position: relative;
     width: auto;

@@ -111,7 +111,7 @@ export const TopHeader = styled.header`
 `
 export const Header = styled.header<any>`
   height: ${props => props.height || 50}px; 
-  width: ${props => props.width || 98}%;
+  width: ${props => props.width || 100}%;
   margin: auto;
   background: white;
   position: relative;
@@ -292,10 +292,63 @@ export const StaffWrapper = styled.div`
   height: auto;
 `
 export const StockWrapper = styled.div`
-  position: relative;
-  width: 19%;
-  height: auto;
+  width: 24.4%;
+  height: 450px;
+  margin-bottom: 10px;
   border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f2f1f1;
+  margin-right: 5px;
+  a {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 0px 10px 0px 5px;
+    color: #0F1111;
+    margin-top: 5px;
+  }
+  .views {
+     padding: 0px 5px 0px 5px;
+     margin-bottom: 0px;
+     margin-top: 5px;
+     margin-bottom: 10px;
+     color: #636262;
+     font-size: 13px;
+     font-weight: 500;
+  }
+  .likes {
+    height: 25px;
+    width: auto;
+    position: absolute;
+  
+    display: flex;
+    align-items: center;
+    right: 10px;
+    top: 10px;
+    z-index: 100;
+    .likes-count {
+      margin-bottom: 0px ;
+      margin-top:0px ;
+        padding: 0px 0px 0px 2px;
+    }
+    .likes-cont {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  p:last-child {
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0px 10px 0px 5px;
+    color: #0F1111;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    span {
+      font-weight: 700;
+    }
+  }
 `
 export const Banner = styled.div`
   position: relative;

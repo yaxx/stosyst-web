@@ -10,7 +10,6 @@ export * from './circularBtn'
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  /* background-color: #00a5fe50; */
   align-self: flex-end;
   border:none;
   position: absolute;

@@ -37,6 +37,7 @@ const attemptSignIn = async ({ isAdmin, phone, password, msgToken }) => {
         }
     }
     else {
+        console.log(client);
         staff = client.staffs.find((s) => s.password === password);
     }
     const signature = jsonwebtoken_1.default.sign({

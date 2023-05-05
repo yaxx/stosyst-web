@@ -4,13 +4,13 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useLocation } from 'react-router-dom'
 import { HeaderNav, StocksHeader } from '../components/headers'
 import { Staff, StaffItems, StaffList, StaffWrapper, StockItem, StockList, StockWrapper, StokcItems } from '../components/headers/stylesx'
-import StocksImage from '../components/images/stockimage'
+import StocksImage, { ProductImage } from '../components/images/stockimage'
 import { ErrorState, EmptyFilter, EmptyState } from '../components/issues'
 import { IssueContainer, Issue } from '../components/issues/styles'
 import { StocksListGroup } from '../components/listItems/stock'
 import { PageLoading } from '../components/loaders'
 import { SideNav } from '../components/sideNavigation/SideNav'
-import { H4 } from '../components/typography'
+import { H4, ProductPrice } from '../components/typography'
 import { stocks } from '../data'
 import { GET_STOCKS } from '../graphql/queries'
 import { useGetLocals } from '../hooks/useGetProducts'
@@ -18,6 +18,7 @@ import { groupingCriteria, initProduct, initStaff } from '../store/data'
 import { Staff as StaffModel } from '../types/model'
 import { editCallback } from '../utils'
 import error from './error'
+import { ProductsCont } from './styles'
 
 
 type Props = {}
@@ -36,42 +37,65 @@ const ExplorePage = (props: any)=> {
         {
             _id: "6331c6b445dccef72e836063",
             name: "Amoxiline",
-            description: 'Syringe',
-            sellingPrice: "1,940",
+            description: 'Skechers Womens Go Joy Walking Shoe Sneaker',
+            sellingPrice: "140",
             instock: 66,
-            stockImage: "https://mkprintingads.com/wp-content/uploads/2021/01/2-600x600.jpg",
+            views: 1,
+            stockImage: "https://m.media-amazon.com/images/I/41QyBvpc4iL._AC_UF480,480_SR480,480_.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
             name: "100IU Insulin Syringe",
-            description: 'Syringe',
-            sellingPrice: "5,700",
+            description: ' Veggies Vitamins Bundle, Raw Whole Food Multivitamin',
+            sellingPrice: "44",
             instock: 66,
-            stockImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcltcMrrxy3Uj-7vnSzW_BGMciSOWmytIaPPT0RhhnmqH7rYkXKPXlz70YdJHFajHXZc0&usqp=CAU",
+            views: 72,
+            stockImage: "https://ae01.alicdn.com/kf/Hbbcc20b37b1748f988a423f2191ee898p/Women-Bags-Fashion-Vintage-Designer-Messenger-PU-Leather-Handbag-High-quality-Casual-Shoulder-Top-Handle-Korean.jpg_640x640.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
             name: "Komix",
             description: 'Bandager for surgery',
-            sellingPrice: '1,2000',
+            sellingPrice: '2000',
             instock: 66,
-            stockImage: "https://m.media-amazon.com/images/I/21LwyQJLbQL._AC_UF480,480_SR480,480_.jpg",
+            views: 2,
+            stockImage: "https://m.media-amazon.com/images/I/81ZaXgJjDYL._AC_UY695_.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
             name: "Fortflux-400 Sparfloxacin",
             description: 'Bandager for surgery',
-            sellingPrice: "47,000",
-            instock: 66,
-            stockImage: "https://m.media-amazon.com/images/I/61hqPKLHI-L._AC_UL640_FMwebp_QL65_.jpg",
+            sellingPrice: "22",
+            instock: 4,
+            views: 68,
+            stockImage: "https://m.media-amazon.com/images/I/71FwE+NiO2L._AC_UL640_QL65_.jpg",
+        },
+        {
+            _id: "6331c6b445dccef72e836063",
+            name: "Fortflux-400 Sparfloxacin",
+            description: 'Bandager for surgery',
+            sellingPrice: "22",
+            instock: 4,
+            views: 31,
+            stockImage: "https://m.media-amazon.com/images/I/81S3oUMRGUL._AC_SR405,405_.jpg",
         },
         {
             _id: "6331c6b445dccef72e836063",
             name: "Paracetamol",
             description: 'Bandager for surgery',
-            sellingPrice: "2,400",
+            sellingPrice: "100",
             instock: 66,
-            stockImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-h27X_mtsMzeuL-JuXIS9e9He0kRZ-KOStg&usqp=CAU",
+            views: 100,
+            stockImage: "https://m.media-amazon.com/images/I/81TJE3sdgWL._AC_UY695_.jpg",
+        },
+        {
+            _id: "6331c6b445dccef72e836063",
+            name: "Paracetamol",
+            description: 'Bandager for surgery',
+            sellingPrice: "100",
+            instock: 66,
+            views: 4,
+            stockImage: "https://m.media-amazon.com/images/I/4173xhNJIjL._AC_UF480,480_SR480,480_.jpg",
         }
     ]
 
@@ -141,19 +165,28 @@ const ExplorePage = (props: any)=> {
                                       </Issue>
                                   </IssueContainer>
                                   :
-
-                                 items.map((item: any) =>
-                                      <StockWrapper>
-                                          <StockItem>
-                                             <StocksImage bc={'whitesmoke'} h={'100%'} w={'100%'} r={'4px'} source={item.stockImage} />
-                                              <H4>{item.name}</H4>
-                                              <p>
-                                                  {item.description}
-                                              </p>
-                                             <H4>{item.sellingPrice}</H4>
-                                         </StockItem>
-                                     </StockWrapper>
-                                  )
+                                <ProductsCont> {
+                                      items.map((item: any) =>
+                                          <StockWrapper>
+                                            <div className='likes'>
+                                                <div className="likes-cont">
+                                                 <svg viewBox="0 0 512 512">
+                                                    <path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+                                                  </svg>
+                                                </div>
+                                                  <p className='likes-count'>{item.views}K</p>
+                                            </div>
+                                              <ProductImage bc={'whitesmoke'} h={'250px'} w={'100%'} r={'4px'} source={item.stockImage} />
+                                              <a>{item.description}</a>
+                                              <p className='views'>{item.views}K views in the past months</p>
+                                              <ProductPrice>
+                                                  <sup>N</sup>{item.sellingPrice}<sup>99</sup>
+                                              </ProductPrice>
+                                              <p>Dilivery <span>Mon, March 12</span> </p>
+                                          </StockWrapper>
+                                      )
+                                    }
+                                </ProductsCont>
                   }
                   </StokcItems>
               </StockList>

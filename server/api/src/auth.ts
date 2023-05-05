@@ -37,6 +37,7 @@ export const attemptSignIn = async ({isAdmin, phone, password, msgToken}: any) =
           await Client.findByIdAndUpdate(client._id, { $addToSet: { msgTokens: msgToken }})
       }
     } else {
+      console.log(client)
       staff = client.staffs.find((s:any) => s.password === password)
     }
 

@@ -19,6 +19,21 @@ export const ImageWrap = styled.div<any>`
         border-radius: inherit;
     }
 `;
+export const ProdImageWrap = styled(ImageWrap)<any>`
+    border: none;
+    margin-right: 0px;
+    padding: 10px 5px 0px 5px;
+    background: rgb(244 244 244);
+    cursor: pointer;
+    img {
+        /* height: 100%; */
+        /* width: 100%; */
+        mix-blend-mode: multiply;
+        filter: contrast(1);
+        object-fit: contain;
+        border-radius: inherit;
+    }
+`;
 
 export const Mask = styled.div`
     top: 0;

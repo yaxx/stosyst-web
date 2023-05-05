@@ -28,6 +28,18 @@ export const H4 = styled.h4<any>`
     font-weight: 600;
     margin-bottom: 0px;
 `
+export const ProductPrice = styled.h4<any>`
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    padding: 2px 5px;
+    sup {
+        font-weight: normal;
+        color: #232222;
+        font-size: 13px;
+        margin: 2px;
+    }
+`
 export const Delta = styled.p<any>`
     font-size: 10px;
     font-weight: normal;

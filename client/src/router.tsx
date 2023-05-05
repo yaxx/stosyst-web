@@ -9,6 +9,7 @@ import {
 import { RequireAuth } from "./components/auth";
 import { SettingsNavHeader } from "./components/headers";
 import "./index.css";
+import ProductDetails from "./pages/details";
 import ErrorPage from "./pages/error";
 import { ExpensePage } from "./pages/expenses";
 import ExplorePage from "./pages/explore";
@@ -57,7 +58,17 @@ export const router = createBrowserRouter(
                 <Route
                     path="/invoices"
                     element={
-                    <RequireAuth><InvoicePage /></RequireAuth>
+                    <RequireAuth>
+                        <InvoicePage />
+                    </RequireAuth>
+                }
+                />
+                <Route
+                    path="/details"
+                    element={
+                    <RequireAuth>
+                        <ProductDetails />
+                    </RequireAuth>
                 }
                 />
                 <Route
