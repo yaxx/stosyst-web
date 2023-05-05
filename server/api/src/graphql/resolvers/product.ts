@@ -54,8 +54,9 @@ export default {
 
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
-
+      console.log(orgId)
       const client: any = await Client.findById(orgId);
+
       const staff = client?.staffs.find((s:any) => s._id.toString() === req.data.uid) 
       const isAdmin = req.data.orgId === req.data.uid 
       let user = isAdmin ? 

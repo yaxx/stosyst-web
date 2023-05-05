@@ -61,6 +61,7 @@ exports.default = {
             let stock = {};
             Auth.checkSignedIn(req);
             const { data: { orgId, uid } } = req;
+            console.log(orgId);
             const client = await models_2.Client.findById(orgId);
             const staff = client?.staffs.find((s) => s._id.toString() === req.data.uid);
             const isAdmin = req.data.orgId === req.data.uid;
