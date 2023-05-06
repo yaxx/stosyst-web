@@ -1,4 +1,4 @@
-import { Product } from '../../models'
+import { Invoice, Product } from '../../models'
 import { Client } from '../../models'
 import mongoose, { Document } from 'mongoose'
 import * as Auth from '../../auth'
@@ -21,7 +21,9 @@ export default {
     products: async (root: any, {group, offset, filter, query}: any , {req, res}:RequestResponse) => {
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
-    
+
+     await Product.updateMany({},{$set: {paymentMethod: ''}},{upsert: true});
+
       let result: any = await Product.aggregate(getProductsPipeline(orgId, query, offset, group, filter))
 
       result = group === 'date' ? 
@@ -31,8 +33,6 @@ export default {
       }))  
       :
       result
-
-      // console.log(JSON.stringify(result[1], null, 2))
 
       return result
 
@@ -54,7 +54,6 @@ export default {
 
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
-      console.log(orgId)
       const client: any = await Client.findById(orgId);
 
       const staff = client?.staffs.find((s:any) => s._id.toString() === req.data.uid) 

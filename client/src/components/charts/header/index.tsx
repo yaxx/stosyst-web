@@ -6,9 +6,7 @@ import { LoadingCont } from '../styles';
 import { HeaderCont, HeaderItem } from './styles';
 
 export const roundAmount = (amount: number) => {
-    if (amount.toString().length === 8) {
-        return `${(amount / 10000000).toFixed(1)}M`;
-    } else if (amount.toString().length ===7) {
+    if (amount.toString().length >= 7) {
         return `${(amount / 1000000).toFixed(1)}M`;
     }
     else if (amount.toString().length === 6){
@@ -28,9 +26,10 @@ export const ChartHeader = () => {
     const { loading, data, error } = useQuery(GET_CHART_HEADER,{
         fetchPolicy: "network-only"
     })
-
-    if(error) console.log(error)
+    // console.log(data.chartHeader.totalAmount);
     
+    if(error) console.log(error)
+    if (data) console.log(data);
     return (
         <HeaderCont> {
             data ? 
