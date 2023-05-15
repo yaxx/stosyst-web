@@ -10,17 +10,19 @@ import { useLocation } from 'react-router-dom'
 import queryString from 'query-string'
 import InfiniteScroll from "react-infinite-scroll-component";
 import { clearSelections, editCallback, openCart } from '../utils'
-import { defState, groupingCriteria, initInvoice, initProduct, locals } from '../store/data'
+import { defState, groupingCriteria, initInvoice, initProduct, locals, showSearchModal } from '../store/data'
 import { GET_STOCKS } from '../graphql/queries'
 import { SideNav } from '../components/sideNavigation/SideNav'
-import { BagIcon, CheckIcon } from '../components/icons'
+import { BagIcon, CheckIcon, CloseIcon } from '../components/icons'
 import { IssueContainer, Issue } from '../components/issues/styles'
+import { SearchModalContainer } from '../components/modals/styles'
  
 export  const Stocks = (props: any): ReactElement => {
     const [hasMore, setHasMore] = useState(false);
     const [curGroup, setCurGroup] = useState('name');
 
     const { query, group, filter } = useReactiveVar(groupingCriteria)
+    const searchModal = useReactiveVar(showSearchModal)
 
     const { search } = useLocation()
 
@@ -71,7 +73,12 @@ export  const Stocks = (props: any): ReactElement => {
     return (
         <Fragment>
             <SideNav/>
-            <HeaderNav /> 
+            <HeaderNav /> {
+                searchModal &&
+                <SearchModalContainer onClick={()=>showSearchModal(false)} >
+                    {/* <CloseIcon /> */}
+                </SearchModalContainer> 
+            }
             <div className='container main-container'> 
                 <div id='ic' className="container">
                     <StocksHeader {...props}/>

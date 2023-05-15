@@ -22,7 +22,8 @@ export default {
       Auth.checkSignedIn(req)
       const {data: {orgId, uid}}:any = req
 
-     await Product.updateMany({},{$set: {paymentMethod: ''}},{upsert: true});
+    //  await Product.updateMany({},{$set: {subCategory: ''}},{upsert: true});
+
 
       let result: any = await Product.aggregate(getProductsPipeline(orgId, query, offset, group, filter))
 

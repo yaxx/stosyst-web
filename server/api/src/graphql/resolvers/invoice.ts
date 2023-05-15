@@ -26,6 +26,19 @@ export default {
     invoices: async (root:any, { query,filter, offset, group }:any, {req, res}:RequestResponse ) => {
       Auth.checkSignedIn(req);
       const {data: {orgId, uid}}:any = req
+
+      // let inv:any = Invoice.find().lean()
+
+      // console.log(inv.length)
+
+      // inv.forEach((i:any) => {
+      //   if(!i.paymentMethod){
+      //     Invoice.updateMany({},{...i, paymentMethod: ''});
+      //   }
+      // })
+
+      // await Invoice.updateMany({},{$set: {paymentMethod: ''}},{upsert: true});
+
      
       let result = await Invoice.aggregate(getInvoicePipeline(orgId, query, filter, group, offset ))
 

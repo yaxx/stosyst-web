@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { useLocation } from 'react-router-dom'
 import { HeaderNav, StocksHeader } from '../components/headers'
+import { PrimaryHeaderNav } from '../components/headers/pri'
 import { Staff, StaffItems, StaffList, StaffWrapper, StockItem, StockList, StockWrapper, StokcItems } from '../components/headers/stylesx'
 import StocksImage, { ProductImage } from '../components/images/stockimage'
 import { ErrorState, EmptyFilter, EmptyState } from '../components/issues'
@@ -131,10 +132,9 @@ const ExplorePage = (props: any)=> {
   return (
       <Fragment>
           <SideNav />
-          <HeaderNav />
+          <PrimaryHeaderNav />
           <div className='container main-container'>
-              <div id='ic' className="container">
-              </div> 
+              <div id='ic' className="container"></div> 
               <StockList height='170'>
                   <StokcItems> {
                       loading ?

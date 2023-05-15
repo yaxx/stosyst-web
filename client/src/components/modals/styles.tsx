@@ -8,6 +8,14 @@ export const ModalContainer = styled.div<any>`
     top:0;
     background-color: rgb(0 0 0 / 46%);
 `;
+export const SearchModalContainer = styled.div<any>`
+    position: fixed;
+    height: 100%;
+    width:100%;
+    z-index: 2;
+    top:56px;
+    background-color: rgb(0 0 0 / 1%);
+`;
 export const ReviewModal = styled.div<any>`
     position: absolute;
     height: 100%;

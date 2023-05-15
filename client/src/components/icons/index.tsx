@@ -204,9 +204,9 @@ export function NumberIcon(props: any): ReactElement {
 export const ArrowDown = (props: any): ReactElement => {
     return (
         <DownAngle>
-            <svg width="8" height="5" viewBox="0 0 11 6">
-                <rect fill='grey'  width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)"  />
-                <rect fill='grey'  width="0.83871" height="6.29645" transform="matrix(0.731652 -0.681678 0.731652 0.681678 0.0625 0.571777)" />
+            <svg width="7" height="5" viewBox="0 0 11 6">
+                <rect fill='grey' stroke='grey'  width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)"  />
+                <rect fill='grey' stroke='grey' width="0.83871" height="6.29645" transform="matrix(0.731652 -0.681678 0.731652 0.681678 0.0625 0.571777)" />
             </svg>
         </DownAngle>
     )
@@ -231,7 +231,7 @@ export const MoreIcon = (props: any) => {
 export const ClearIcon = (props: any) => {
     return (
         <Clear onClick={()=>props.clearCallback(props.name)}>
-            <svg width="25" height="25" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="25" height="25" viewBox="0 0 26 26" fill="none" >
                 <rect width="1.24541" height="11.5771" transform="matrix(0.707024 0.707189 -0.707024 0.70719 17.3232 8.82825)" fill="#9E9C9C" fill-opacity="0.85" />
                 <rect width="1.41421" height="11.5567" transform="matrix(0.707058 -0.707156 0.707125 0.707089 9.13965 9.71606)" fill="#9E9C9C" fill-opacity="0.85" />
                 <ellipse cx="13.374" cy="13.207" rx="8.92791" ry="8.92792" transform="rotate(45 13.374 13.207)" fill="#ADADAD" fill-opacity="0.24" />
@@ -302,10 +302,17 @@ export const EllipsisIcon2 = (props: any) => {
 export const SearchIcon = () => (
         <Search>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" >
-                <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1" stroke-miterlimit="10"></path>
-                <path d="M19 19L23 23" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"></path>
+                <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10"></path>
+            <path d="M19 19L23 23" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round"></path>
             </svg>
         </Search>
+    )
+
+export const SearchIcon2 = () => (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" >
+            <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10"></path>
+        <path d="M19 19L23 23" stroke-width="1.3" stroke="#787880" stroke-miterlimit="10" stroke-linecap="round"></path>
+        </svg>
     )
 export const StocksIcon = (props: any) => (
         <NavIcon className ='icn' {...props}>
@@ -651,5 +658,10 @@ export const QuestionIcon = () => (
         <title>Pending</title>
         <path d="M160 164s1.44-33 33.54-59.46C212.6 88.83 235.49 84.28 256 84c18.73-.23 35.47 2.94 45.48 7.82C318.59 100.2 352 120.6 352 164c0 45.67-29.18 66.37-62.35 89.18S248 298.36 248 324" fill="none" stroke="#f73457" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40"/>
         <circle fill="#f73457" cx="248" cy="399.99" r="32"/>
+    </svg>
+)
+export const CloseIcon2 = () => (
+    <svg  viewBox="0 0 512 512">
+        <path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368" />
     </svg>
 )

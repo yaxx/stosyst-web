@@ -120,4 +120,5 @@ export const invCriteria = makeVar({
 });
 
 export const globalInvoice = makeVar(initInvoice);
+export const showSearchModal = makeVar(false);
 export const tempClient = makeVar(defClient);

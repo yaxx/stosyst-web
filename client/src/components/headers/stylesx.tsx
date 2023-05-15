@@ -8,7 +8,7 @@ export const TableActions = styled.div<any>`
     width: 135px;
     position: absolute;
     z-index: 1000;
-    right: ${props=>props.r || 160}px;
+    right: ${props=>props.r || 70}px;
     top: -32%;
     display: flex;
     flex-direction: column;
@@ -322,12 +322,11 @@ export const StockWrapper = styled.div`
     height: 25px;
     width: auto;
     position: absolute;
-  
     display: flex;
     align-items: center;
     right: 10px;
     top: 10px;
-    z-index: 100;
+    z-index: 1;
     .likes-count {
       margin-bottom: 0px ;
       margin-top:0px ;
@@ -569,7 +568,7 @@ export const HeaderItem = styled.li<any>`
   position: relative;
   cursor: pointer;
   bottom: 0px;
-  z-index: 5;
+  z-index: 1;
   a {
     :hover {
       color: #212122;

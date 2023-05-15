@@ -1,11 +1,13 @@
-import React, { ReactElement, useState } from 'react'
-import { SearchIcon, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon, DropIcon } from '../icons';
+import React, { ReactElement, SyntheticEvent, useEffect, useState } from 'react'
+import { SearchIcon, ArrowDown, SearchIcon2, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon, DropIcon } from '../icons';
 import styled, { keyframes } from 'styled-components'
 import { P2 } from '../typography';
-import { expenseCriteria, groupingCriteria, invCriteria } from '../../store/data';
+import { expenseCriteria, groupingCriteria, invCriteria, showSearchModal } from '../../store/data';
 import { useReactiveVar } from '@apollo/client/react';
 import { ClearCont, ClearInputCont } from '../forms/styles';
-import { DropDownVal } from './styles';
+import { ClearIconBox, SearchInputCont, DropDownVal, SearchFilterCont, SearchIconCont, SearchSuggestions, SearchOption, StockSearchIconCont } from './styles';
+import { TableActions, TableOption, Divider } from '../headers/stylesx';
+import Suggestions from '../suggestions';
 export interface Attr {
     label: string,
     type: string,
@@ -114,8 +116,6 @@ export const FormGroupCont = styled.div<any>`
   border: 1px solid #e6e1e1;
 `
 
-
-
 const MultiFormGroup = styled.div<any>`
   background-color: inherit;
   height: 32px;
@@ -215,6 +215,18 @@ export const TatiaryFormGroup =  styled(SecondaryFormGroup)`
   border-radius: 17px;
   background-color: #d3d3d35c;
 `
+export const ProductSearchFormGroup =  styled(SecondaryFormGroup)<any>`
+  height: 34px;
+  border-radius: 8px;
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 0px solid;
+  border-width: ${(focused)=>focused===true ?  2 : 0}px;
+  border-color: ${(focused) => focused === false ? '#00A3FE' : 'red'};
+  background-color: #d3d3d35c;
+`
 const StandardFormGroup = styled(PrimaryFormGroup)<any>`
   border-radius: 0px;
   height: ${props => props.h || 45}px;
@@ -312,7 +324,24 @@ const TatiaryInput =  styled(SecondaryInput)`
     border: 1px solid  ${
       props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
   };
-}
+}`
+export const ProdPriInput =  styled(SecondaryInput)`
+  height: 100%;
+  border-radius: inherit;
+  border:inherit;
+   border-radius: 0px;
+  background-color:rgba(71, 75, 76, 0.055);
+  position: relative;
+  border-radius:inherit;
+  padding: 2px 10px;
+  width: 100%;
+  bottom: auto;
+  ::placeholder {
+    color:  ${
+      props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec
+  };
+  }
+
 `
 export const Number = styled(PrimaryInput)`
     padding: 0.575rem .5rem 0.575rem 0rem;
@@ -456,6 +485,194 @@ export function StockInput(props: any): ReactElement {
   )
 }
 
+export const ProductsSearchInput = (props: any) => {
+
+  const {page} = props
+
+  const [searchTerm, setSearchTerm] = useState('')
+  const criteria = useReactiveVar(groupingCriteria)
+  const expCrt = useReactiveVar(expenseCriteria)
+  const invCrt = useReactiveVar(invCriteria)
+
+  const handleOnchange = (query: string) => {
+    setSearchTerm(query)
+    page === 'expenses' ? expenseCriteria({ ...expCrt, query }) 
+    : page==='invoice' ? invCriteria({...invCrt, filter: '', query}) 
+    : groupingCriteria({ ...criteria, query, filter: '' })
+  }
+
+  const handleClear = () => {
+    setSearchTerm('')
+    invCriteria({...invCrt, query: '' })
+    expenseCriteria({ ...expCrt, query: '' })
+    groupingCriteria({ ...criteria, query: '' })
+  }
+
+  return (
+    <ProductSearchFormGroup>
+      <SearchFilterCont>
+        <p>Books</p>
+        <ArrowDown />
+      </SearchFilterCont>
+      <SearchInputCont>
+        <ProdPriInput
+            name='search'
+            value={searchTerm}
+            placeholder={props.placeholder}
+            onChange={(e: any) => handleOnchange(e.target.value)}
+          />
+          <ClearIconBox onClick={() => handleClear()} >
+            <ClearIcon />
+          </ClearIconBox>
+      </SearchInputCont>
+      <SearchIconCont>
+        <SearchIcon2 />
+      </SearchIconCont>
+  
+    </ProductSearchFormGroup>
+  )
+}
+export const StockSearchInput = (props: any) => {
+
+  const {page} = props
+
+  const [showSearchSuggestions, setShowSuggestions] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+  const criteria = useReactiveVar(groupingCriteria)
+  const expCrt = useReactiveVar(expenseCriteria)
+  const invCrt = useReactiveVar(invCriteria)
+  const [termList, setList] = useState([] as any);
+
+  const searchModal = useReactiveVar(showSearchModal)
+
+  const getSearchedTerms = async () => {
+    try {
+      let queries: any = await localStorage.getItem('searches');
+      queries = JSON.parse(queries).filter(
+        (item: any) => item.screen === page,
+      );
+      setList(queries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSearchedTerms();
+    setShowSuggestions(searchModal)
+  }, [searchModal]);
+
+  const handleOnchange = (query: string) => {
+    handleFocus(false)
+    setSearchTerm(query)
+    page === 'expenses' ? expenseCriteria({ ...expCrt, query })
+      : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query })
+        : groupingCriteria({ ...criteria, query, filter: '' })
+  }
+
+  const handleKeyDown = (e: any) => {
+    console.log(`Keycode: ${e.keyCode}`);
+    if (e.keyCode === 8) {
+      
+      
+      handleFocus(true)
+    }
+  };
+
+  const updateSearchHistory = async (history: any[]) => {
+    try {
+        await localStorage.setItem('searches', JSON.stringify(history));
+      } 
+    catch (err) {
+      console.log(err);
+    }
+  };
+
+  function handleClear() {
+    if(searchTerm.trim()) {
+      const i = termList.findIndex((item: any) => item.searchTerm === searchTerm);
+      if (i === -1) {
+        termList.unshift({
+          page,
+          searchTerm,
+          dateAdded: new Date().getTime(),
+        });
+      } else {
+        termList[i] = {
+          ...termList[i],
+          dateAdded: new Date().getTime()
+        };
+      }
+      updateSearchHistory(termList)
+      setSearchTerm('');
+      handleFocus(true)
+      invCriteria({ ...invCrt, query: '' });
+      expenseCriteria({ ...expCrt, query: '' });
+      groupingCriteria({ ...criteria, query: '' });
+    }
+    
+  }
+
+  const deleteSearchTerm = async (e: Event, q: string) => {
+    e.stopPropagation()
+    let tempList = termList
+    tempList = tempList.filter((term: any) => term.searchTerm !== q)
+    setList([...tempList]);
+    updateSearchHistory(tempList)
+  };
+
+  const handleSuggestionSelection = (suggestion: string) => {
+    setSearchTerm(suggestion)
+    let tempList = termList
+    tempList = tempList.map((term: any) => term.searchTerm === suggestion ? 
+      ({...term, dateAdded: new Date().getTime()}) : term
+    )
+    setList([...tempList]);
+    updateSearchHistory(tempList)
+    handleFocus(false)
+    page === 'expenses' ? expenseCriteria({ ...expCrt, query: suggestion })
+      : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query:suggestion })
+        : groupingCriteria({ ...criteria, query:suggestion, filter: '' })
+  }
+
+  const handleFocus= (focus: boolean) => {
+    showSearchModal(focus)
+    setShowSuggestions(focus)
+  }
+
+  return (
+    <ProductSearchFormGroup focused={showSearchSuggestions}>
+      <StockSearchIconCont>
+        <SearchIcon2 />
+      </StockSearchIconCont>
+      <SearchInputCont>
+        <ProdPriInput
+            name='search'
+            onFocus={() => handleFocus(true)}
+            autoComplete="off"
+            value={searchTerm}
+            placeholder={props.placeholder}
+            onKeyDown={handleKeyDown}
+            onChange={(e: any) => handleOnchange(e.target.value)}
+        />
+        <ClearIconBox onClick={() => handleClear()}>
+          <ClearIcon />
+        </ClearIconBox>
+          
+      </SearchInputCont> 
+      {
+        searchModal &&
+        <Suggestions 
+         page={page} 
+         searchList={termList}
+         removeSuggestion={deleteSearchTerm} 
+         selectSearchTerm={handleSuggestionSelection}
+        />
+       
+      }
+    </ProductSearchFormGroup>
+  )
+}
 export default function SearchInput(props: any): ReactElement {
 
   const {page} = props
@@ -486,10 +703,21 @@ export default function SearchInput(props: any): ReactElement {
             placeholder = { props.placeholder }
             onChange={(e: any) => handleOnchange(e.target.value)}  
           />
-        <div style={{cursor:'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',position:'absolute', right:'2%', top: 7, height: 20, width:20}} onClick={()=>handleClear()}>
-          <ClearIcon />
-        </div>
-         
+          <div 
+          style={{
+            cursor:'pointer', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            position:'absolute', 
+            right:'2%', 
+            top: 7, 
+            height: 20, width:20
+          }} 
+          onClick={() => handleClear()}
+          >
+            <ClearIcon />
+          </div>
       </TatiaryFormGroup>
   )
 }
