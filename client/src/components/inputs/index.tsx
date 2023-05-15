@@ -303,9 +303,11 @@ const SecondaryInput = styled.input.attrs(props => ({
 `;
 const PrimaryInput = styled(SecondaryInput)`
   padding: 0.575rem .7rem 0.575rem 0rem;
+  width: 100%;
   height: 100%;
   bottom: 'auto';
   border-radius: inherit;
+  
 `
 const TatiaryInput =  styled(SecondaryInput)`
   height: 100%;

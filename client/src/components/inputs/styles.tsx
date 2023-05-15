@@ -82,6 +82,7 @@ export const SearchInputCont = styled.div`
   display: flex;
   align-items:center;
   height: 100%;
+  width: 100%;
 `;
 export const SearchIconCont = styled.div`
   cursor:pointer;
