@@ -104,8 +104,12 @@ export const StockSearchIconCont = styled(SearchIconCont)`
 `;
 export const SearchSuggestions = styled.div<any>`
     width: 100%;
+    min-height: 30px;
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow:hidden;
     position: absolute;
-    z-index: 1000000;
+    z-index: 10000;
     right: 0px;
     top: 114%;
     display: flex;
