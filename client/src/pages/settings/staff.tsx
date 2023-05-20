@@ -22,7 +22,7 @@ import { DELETE_STAFF, SaveInfo } from '../../graphql/mutations/account'
 import { Staff as StaffModel } from '../../types/model'
 import { ImageItem } from '../../components/images'
 import { Mask } from '../../components/images/styles'
-import { Divider, StaffList, StaffItems, StaffWrapper, Staff, StaffInfoItem, ItemContainer, PermisionItem, Permision, CheckBox, StaffSelected, Banner, BannerItems, StaffInfo, PermisionsContainer, FeedBack } from '../../components/headers/stylesx'
+import { Divider, StaffList, StaffItems, StaffWrapper, Staff, StaffInfoItem, ItemContainer, PermisionItem, Permision, CheckBox, StaffSelected, Banner, BannerItems, StaffInfo, PermisionsContainer, FeedBack } from '../../components/headers/styles'
 import { IssueContainer, Issue } from '../../components/issues/styles'
 import { Card } from '../../components/modals/styles'
 interface Props {

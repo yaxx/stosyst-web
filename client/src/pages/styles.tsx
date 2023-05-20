@@ -122,6 +122,13 @@ export const ProductsCont = styled.div<any>`
     flex-wrap: wrap;
     align-items: flex-start;
 `
+export const CategoriesCont = styled.div<any>`
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+`
 export const PhotoDetailsCont = styled.div<any>`
     width: 450px;
     height: 500px;

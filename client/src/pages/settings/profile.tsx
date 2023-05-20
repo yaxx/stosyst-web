@@ -10,7 +10,7 @@ import { UPLOAD_FILE } from '../../graphql/mutations'
 import { useGetLocals } from '../../hooks/useGetProducts'
 import { H4 } from '../../components/typography'
 import { ImageItem } from '../../components/images'
-import { Divider } from '../../components/headers/stylesx'
+import { Divider } from '../../components/headers/styles'
 import { ModalContainer } from './styles'
 import ClientProfileForm from '../../components/forms/profile'
 interface Props {

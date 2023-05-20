@@ -6,7 +6,7 @@ import { expenseCriteria, groupingCriteria, invCriteria, showSearchModal } from 
 import { useReactiveVar } from '@apollo/client/react';
 import { ClearCont, ClearInputCont } from '../forms/styles';
 import { ClearIconBox, SearchInputCont, DropDownVal, SearchFilterCont, SearchIconCont, SearchSuggestions, SearchOption, StockSearchIconCont } from './styles';
-import { TableActions, TableOption, Divider } from '../headers/stylesx';
+import { TableActions, TableOption, Divider } from '../headers/styles';
 import Suggestions from '../suggestions';
 export interface Attr {
     label: string,

@@ -17,7 +17,7 @@ import { Mask } from "../images/styles";
 import { DeleteInvoice } from "../../graphql/mutations/checkout";
 import { Row as InvoiceList, ExpandableList, Paid, Item, ListItems, MoreActions } from ".";
 import { sortByPaid, format_date, getNetInvoiceToatal, isAdmin, getCartTotal, formatMoney } from "../../utils";
-import { Divider } from "../headers/stylesx";
+import { Divider } from "../headers/styles";
 import { roundAmount } from "../charts/header";
 
 export const InvoiceListItems = ({ openMenu, stock, invoice, opened, pendings, index, netCount, theme }: any,) => {

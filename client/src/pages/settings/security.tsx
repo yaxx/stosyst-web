@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client'
 import { SideNav } from '../../components/sideNavigation/SideNav'
 import { FlatList as HeaderItems, FlatRow as Header, Item } from '../../components/listItems'
 import { H4 } from '../../components/typography'
-import { ActionGroup, AuthBtn, Divider, GroupItems, LabelGroup, SettingGroup, SettingsItem } from '../../components/headers/stylesx'
+import { ActionGroup, AuthBtn, Divider, GroupItems, LabelGroup, SettingGroup, SettingsItem } from '../../components/headers/styles'
 interface Props {
     
 }

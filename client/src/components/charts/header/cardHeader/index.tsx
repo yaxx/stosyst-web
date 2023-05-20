@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ButtonsCont, CheckCont, HeaderCont, MenuList, SwitchBtn } from '../../styles'
 import { ArrowDown, Marker } from '../../../icons'
-import { Divider } from '../../../headers/stylesx'
+import { Divider } from '../../../headers/styles'
 
 const ChartCardHeader = (props: any) => {
     const [duration, setDuration] = useState('Weekly')

@@ -52,7 +52,7 @@ export const ClearIconBox = styled.div`
   height: 20px;
   width:20px;
 `;
-export const IconBox = styled(ClearIconBox)`
+export const IconBox = styled(ClearIconBox)<any>`
   cursor:pointer;
   display: flex;
   align-items:center;
@@ -60,6 +60,18 @@ export const IconBox = styled(ClearIconBox)`
   position:relative; 
   height: 100%;
   width:20px;
+  align-self: flex-end;
+`;
+export const IconCont = styled.div<any>`
+  cursor:pointer;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  position:relative; 
+  height: ${props=>props.size||25}px;
+  width:${props=>props.size||25}px;
+
+
   align-self: flex-end;
 `;
 export const SearchFilterCont = styled.div`

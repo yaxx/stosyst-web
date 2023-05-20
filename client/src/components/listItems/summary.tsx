@@ -8,7 +8,7 @@ import { formatMoney, format_date } from "../../utils";
 import { useGetLocals } from "../../hooks/useGetProducts";
 import { Delta, Sum, TAGGLINE, Total } from "../typography";
 import { ExpenseList as SummaryList } from "./styles";
-import { Divider } from "../headers/stylesx";
+import { Divider } from "../headers/styles";
 import { ListLabel, MultiLabel, DiffMaker } from "./styles";
 
 

@@ -5,7 +5,7 @@ import { CartItem } from "../../types/model";
 import { formatMoney } from "../../utils";
 import { QtyBtn } from "../buttons";
 import { QtyFormGroup } from "../forms/styles";
-import { Divider } from "../headers/stylesx";
+import { Divider } from "../headers/styles";
 import { EllipsisIcon2, Times } from "../icons";
 import { ImageItem } from "../images";
 import { PriceInput, QtyInput } from "../inputs";

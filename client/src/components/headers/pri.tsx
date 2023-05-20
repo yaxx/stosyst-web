@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
 import { headerMenu } from "../../store/data";
 import { ProdSearchForm, SearchForm } from "../forms";
-import { GroupIcon, FilterIcon, OptionItem, ArrowDown, Logo } from "../icons";
+import { GroupIcon, FilterIcon, OptionItem, ArrowDown, Logo, CartIcon2 } from "../icons";
 import { ImageItem } from "../images";
+import { IconBox, IconCont } from "../inputs/styles";
 import { MoreActions } from "../listItems";
 import { P2 } from "../typography";
-import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, BrandSection } from "./stylesx";
+import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, LogoSection, CartSection, SearchSection, HeaderItemsCont } from "./styles";
 
 export const PrimaryHeaderNav = (props: any) => {
     const [menu, setMenu] = useState(false)
@@ -38,31 +39,22 @@ export const PrimaryHeaderNav = (props: any) => {
 
     return (
         <TopHeader>
-            <div className="header_items">
-                <BrandSection>
+            <HeaderItemsCont className='header_items'>
+                <LogoSection w={150}>
                     <Logo />
                     <h6>Stosyst</h6>
-                </BrandSection>
-                <section>
+                </LogoSection>
+
+                <SearchSection>
                     <ProdSearchForm {...props} />
-                </section>
-                {
-                    <section style={{ position: 'absolute', right: '25%' }}>
-                        <GroupContainer >
-                            <GroupLabel onClick={() => showHeaderMenu('group')} title='Group'>
-                                {/* <GroupIcon />
-                                <ArrowDown /> */}
-                            </GroupLabel>
-                            <GroupLabel onClick={() => showHeaderMenu('filter')} title='Filter'>
-                                {/* <FilterIcon />
-                                <ArrowDown /> */}
-                            </GroupLabel>
-                        </GroupContainer>
-                    </section>
-                }
-                <section>
+                </SearchSection>
+
+                <CartSection w={150}>
+                    <IconCont size={25}  onClick={() => showHeaderMenu('group')} title='Your Cart'>
+                        <CartIcon2 />
+                    </IconCont>
                     <ProfileOptions onClick={() => toggleMenu()}>
-                        <ImageItem source={localStorage.getItem('dp')} h={'30px'} w={30} r={'50%'} />
+                        <ImageItem source={localStorage.getItem('dp')} h={'30px'} w={'30px'} r={'50%'} />
                         <ArrowDown />
                     </ProfileOptions> {
                         menu &&
@@ -84,8 +76,9 @@ export const PrimaryHeaderNav = (props: any) => {
                             </OptionItem>
                         </OptionList>
                     }
-                </section>
-            </div>
+                </CartSection>
+
+            </HeaderItemsCont>
         </TopHeader>
     )
 }

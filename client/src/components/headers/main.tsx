@@ -6,9 +6,10 @@ import { headerMenu } from "../../store/data";
 import { SearchForm } from "../forms";
 import { GroupIcon, FilterIcon, OptionItem, ArrowDown, Logo } from "../icons";
 import { ImageItem } from "../images";
+import { IconCont } from "../inputs/styles";
 import { MoreActions } from "../listItems";
 import { P2 } from "../typography";
-import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, BrandSection } from "./stylesx";
+import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, LogoSection, SearchSection, CartSection, HeaderItemsCont } from "./styles";
 
 export const HeaderNav = (props: any) => {
     const [menu, setMenu] = useState(false)
@@ -38,18 +39,18 @@ export const HeaderNav = (props: any) => {
       
     return (
         <TopHeader>
-            <div className="header_items">
-                <BrandSection>
+            <HeaderItemsCont className="header_items">
+                <LogoSection w={200}>
                     <Logo />
                     <h6>Stosyst</h6>
-                </BrandSection>
-                <section>{
+                </LogoSection>
+                <SearchSection>{
                     (pathname === '/' || pathname === '/expenses' || pathname === '/invoices'||'/explore') &&
                     <SearchForm {...props} />
                 }
-                </section>
+                </SearchSection>
               
-                <section>
+                <CartSection w={200}>
                     <GroupContainer >
                         <GroupLabel onClick={() => showHeaderMenu('group')} title='Group'>
                             <GroupIcon />
@@ -61,7 +62,7 @@ export const HeaderNav = (props: any) => {
                         </GroupLabel>
                     </GroupContainer>
                     <ProfileOptions onClick={() => toggleMenu()}>
-                        <ImageItem source={localStorage.getItem('dp')} h={'30px'} w={30} r={'50%'} />
+                        <ImageItem source={localStorage.getItem('dp')} h={'30px'} w={'30px'} r={'50%'} />
                         <ArrowDown />
                     </ProfileOptions> {
                         menu &&
@@ -83,8 +84,8 @@ export const HeaderNav = (props: any) => {
                             </OptionItem>
                         </OptionList>
                     }
-                </section>
-            </div>
+                </CartSection>
+            </HeaderItemsCont>
         </TopHeader>
     )
 }

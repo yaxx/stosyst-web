@@ -6,7 +6,7 @@ import { can } from "../../utils/permisions"
 import { CircularBtn } from "../buttons"
 import { Marker, PlusIcon } from "../icons"
 import { TAGGLINE } from "../typography"
-import { Header, ExpenseListHeader, Divider, HeaderItem, TableActions, TableOption } from "./stylesx"
+import { Header, ExpenseListHeader, Divider, HeaderItem, TableActions, TableOption } from "./styles"
 
 export const ExpenseHeader = (props: any): ReactElement => {
 

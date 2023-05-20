@@ -16,7 +16,7 @@ import { expenseCriteria, locals } from "../../store/data";
 import { ExpenseDetails } from "./stockDetails";
 import { can } from "../../utils/permisions";
 import { DELETE_EXPENSE } from "../../graphql/mutations";
-import { Divider } from "../headers/stylesx";
+import { Divider } from "../headers/styles";
 import { ExpenseList } from "./styles";
 // import { DELETE_EXPENSE } from "../../graphql/mutations";
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { getImageUrl } from '../../apollo-client'
 import staff from '../../pages/settings/staff'
 import { tempClient } from '../../store/data'
-import { MainBanerCont, ProfileBaner, ProfileImage, ProfilePicture, SubsBtn } from '../headers/stylesx'
+import { MainBanerCont, ProfileBaner, ProfileImage, ProfilePicture, SubsBtn } from '../headers/styles'
 import { FormGroupCont, NameInput } from '../inputs'
 import { ProfileFormCont, StandardForm } from './styles'
 

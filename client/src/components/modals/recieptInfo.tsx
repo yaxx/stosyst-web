@@ -1,4 +1,4 @@
-import { Divider } from "../headers/stylesx"
+import { Divider } from "../headers/styles"
 import { InvoiceInfoCont, CustomerInfo, TransInfo, InvoiceMainCont } from "./styles"
 
 export const RecieptInfo = (props: any) => {

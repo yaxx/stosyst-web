@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { format_date } from '../../utils'
-import { Divider } from '../headers/stylesx'
+import { Divider } from '../headers/styles'
 import { ClearIcon, CloseIcon2 } from '../icons'
 import { SearchSuggestions, SearchOption, IconBox } from '../inputs/styles'
 
@@ -22,7 +22,7 @@ const  Suggestions = (props: any) => {
                 >
                   <p>{s.searchTerm}</p>
                   <IconBox 
-                    onClick={(e)=>removeSuggestion(e, s.searchTerm)} 
+                    onClick={(e: Event, s: any)=>removeSuggestion(e, s.searchTerm)} 
                     className="close"
                     >
                       <CloseIcon2 />

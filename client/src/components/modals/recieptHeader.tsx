@@ -1,5 +1,5 @@
 import { Back2 } from "../buttons"
-import { Divider } from "../headers/stylesx"
+import { Divider } from "../headers/styles"
 import { BackIcon } from "../icons"
 import { ImageItem } from "../images"
 

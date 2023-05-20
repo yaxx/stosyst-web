@@ -3,7 +3,7 @@ import {ReactElement } from "react";
 import { headerMenu, invCriteria, invMenu } from "../../store/data";
 import { Marker } from "../icons";
 import { TAGGLINE } from "../typography";
-import { Header, InvoiceListHeader, Divider, HeaderItem, TableOption, TableActions } from "./stylesx";
+import { Header, InvoiceListHeader, Divider, HeaderItem, TableOption, TableActions } from "./styles";
 
 export const  InvoiceHeader = (): ReactElement => {
     const criteria = useReactiveVar(invCriteria)

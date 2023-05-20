@@ -9,7 +9,7 @@ import { GET_ACCOUNT } from "../../graphql/queries"
 import { headerMenu, groupingCriteria, tempClient } from "../../store/data"
 import { Marker } from "../icons"
 import { HeaderNav } from "./main"
-import { SettingTitle, SettingsHeader, SettingsNavigation, HeaderItem, TableActions, TableOption, MainBanerCont, ProfileImage, ProfileInfo, ProfilePicture, ProfileBaner, SubsBtn, Divider } from "./stylesx"
+import { SettingTitle, SettingsHeader, SettingsNavigation, HeaderItem, TableActions, TableOption, MainBanerCont, ProfileImage, ProfileInfo, ProfilePicture, ProfileBaner, SubsBtn, Divider } from "./styles"
 
 export const SettingsNavHeader = (props: any): ReactElement => {
 

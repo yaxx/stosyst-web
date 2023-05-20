@@ -9,7 +9,7 @@ import { globalInvoice, locals } from '../../store/data';
 import { useGetLocals } from '../../hooks/useGetProducts';
 import { closeModal, formatMoney } from '../../utils';
 import { Back2, Foward } from '../buttons';
-import { CardHeader, Divider, CardFooter, FeedBack } from '../headers/stylesx';
+import { CardHeader, Divider, CardFooter, FeedBack } from '../headers/styles';
 import { PaymentReview } from '../forms/styles';
 import { useReactiveVar } from '@apollo/client';
 import ReviewForm from '../forms/review';

@@ -10,7 +10,7 @@ import { PageLoading } from "../loaders";
 import { useGetLocals } from "../../hooks/useGetProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { INVOICE_SUBS, EXPENSE_SUBS } from "../../graphql/subscriptions";
-import { Divider, CardHeader, CardFooter } from "../headers/stylesx";
+import { Divider, CardHeader, CardFooter } from "../headers/styles";
 import { IssueContainer, Issue } from "../issues/styles";
 import { Card, CardBody, ModalContainer } from "./styles";
 

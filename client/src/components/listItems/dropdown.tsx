@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider } from '../headers/stylesx'
+import { Divider } from '../headers/styles'
 import { DropDownItem, DropDownList } from '../inputs/styles'
 
 const DropDownOptions = (props: any)=> {

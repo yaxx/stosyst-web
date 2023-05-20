@@ -4,7 +4,7 @@ import React, { Fragment, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { Btn, PriBtn } from '../components/buttons';
 import { HeaderNav } from '../components/headers';
-import { StockList, StokcItems, StockWrapper } from '../components/headers/stylesx';
+import { StockList, StokcItems, StockWrapper } from '../components/headers/styles';
 import { ProductImage } from '../components/images/stockimage';
 import { ErrorState, EmptyState } from '../components/issues';
 import { IssueContainer, Issue } from '../components/issues/styles';

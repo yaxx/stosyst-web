@@ -1,6 +1,6 @@
 import { ReactElement } from "react"
 import { TAGGLINE } from "../typography"
-import { Header, SummaryListHeader, Divider, HeaderItem } from "./stylesx"
+import { Header, SummaryListHeader, Divider, HeaderItem } from "./styles"
 
 export const SummaryHeader = (props: any): ReactElement => {
     return (

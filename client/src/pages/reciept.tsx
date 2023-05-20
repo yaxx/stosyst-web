@@ -1,5 +1,5 @@
 import React from 'react'
-import { Divider } from '../components/headers/stylesx'
+import { Divider } from '../components/headers/styles'
 import { MoreIcon } from '../components/icons'
 import { IssueContainer } from '../components/issues/styles'
 import { ListItems, Item } from '../components/listItems'

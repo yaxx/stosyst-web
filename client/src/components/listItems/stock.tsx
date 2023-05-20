@@ -14,7 +14,7 @@ import StockDetails from "./stockDetails";
 import { can } from "../../utils/permisions";
 import { DELETE_STOCK } from "../../graphql/mutations";
 import { ImageItem } from "../images";
-import { Divider, GroupLabel } from "../headers/stylesx";
+import { Divider, GroupLabel } from "../headers/styles";
 import { Counter } from "../../pages/invoices-page";
 import { P1 } from "../typography";
 import cache from "../../apollo-client";

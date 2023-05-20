@@ -499,6 +499,14 @@ export const CartIcon = () => (
             </svg>
         </NavIcon>
     )
+export const CartIcon2 = () => (
+    <svg viewBox="0 0 512 512">
+        <circle cx="176" cy="416" r="16" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+        <circle cx="400" cy="416" r="16" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+        <path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256" />
+        <path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke= "grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
+    </svg>
+    )
 export const CloseIcon = (props: any) => (
         <Close onClick={() => props.clickCallback()} {...props}>
             <svg width={props.iconWidth || "24"} height={props.iconHeight || "23"} viewBox="0 0 24 23" fill="none" >
@@ -583,7 +591,7 @@ export const Pensil = (props: any) => (
     </svg>
 )
 export const FilterIcon = () => (
-    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" >
         <line x1="5" y1="8.5" x2="14" y2="8.5" stroke="#C4C4C4" />
         <line x1="1" y1="13.5" x2="8" y2="13.5" stroke="#C4C4C4" />
         <line x1="12" y1="3.5" x2="14" y2="3.5" stroke="#C4C4C4" />
@@ -663,5 +671,10 @@ export const QuestionIcon = () => (
 export const CloseIcon2 = () => (
     <svg  viewBox="0 0 512 512">
         <path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368" />
+    </svg>
+)
+export const LikeIcon = () => (
+    <svg viewBox="0 0 512 512">
+        <path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
     </svg>
 )

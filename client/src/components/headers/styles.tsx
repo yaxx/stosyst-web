@@ -50,7 +50,7 @@ export const TableOption = styled.div<any>`
 `
 export const GroupContainer = styled.div`
   min-width: 40px;
-  height: 30px;
+  height: 100%;
   font-size: 11px;
   display: flex;
   flex-direction: row;
@@ -94,20 +94,7 @@ export const TopHeader = styled.header`
   /* background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.elavations.pri : props.theme.light.colors.backgrounds.base.tar
     }; */
   font-family: 'Open Sans', sans-serif;
-  .header_items {
-    width: 925px;
-    display: flex; 
-    align-items: center;
-    justify-content: space-between;
-    section {
-        height: 100%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: .65rem;
-    }
-  }
+  
 `
 export const Header = styled.header<any>`
   height: ${props => props.height || 50}px; 
@@ -702,7 +689,6 @@ export const FeedBack = styled.div<any>`
 `
 export const ProfileOptions = styled.div`
    position: relative;
-   left: 20px;
    height: 100%;
    width: 80px;
    z-index: 100;
@@ -776,19 +762,7 @@ export const SettingTitle = styled.h2`
   margin: 20px 0px;
   font-weight: bold;
 `
-export const BrandSection = styled.div`
-  height: 100%;
-  width: 200px;
-  display: flex;
-  right: 10px;
-  position: relative;
-  align-items: center;
-  h6 {
-    font-weight: bold;
-    color: #00A3FE;
-    margin-bottom: 0px;
-  }
-`
+
 export const MainBanerCont = styled.div`
   height: 200px;
   width: 100%;
@@ -845,3 +819,48 @@ export const ProfileInfo = styled.div`
     }
   }
 `
+export const LogoSection = styled.section<any>`
+    position: relative;
+    height: 100%;
+    width: ${props=>props.w||100}px;
+    display: flex;
+    /* right: 10px; */
+    position: relative;
+    align-items: center;
+  h6 {
+    font-weight: bold;
+    color: #00A3FE;
+    margin-bottom: 0px;
+  }
+`
+export const SearchSection = styled.section`
+    position: relative;
+
+`
+export const CartSection = styled.section<any>`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: ${props=>props.w||100}px;
+`
+export const HeaderItemsCont = styled.section`
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+     width: 925px;
+`
+//   .header_items {
+//     width: 925px;
+// display: flex;
+// align - items: center;
+// justify - content: space - between;
+//     section {
+//   height: 100 %;
+//   position: relative;
+//   display: flex;
+//   align - items: center;
+//   justify - content: center;
+//   font - size: .65rem;
+// }
+//   }

@@ -4,7 +4,8 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import { useLocation } from 'react-router-dom'
 import { HeaderNav, StocksHeader } from '../components/headers'
 import { PrimaryHeaderNav } from '../components/headers/pri'
-import { Staff, StaffItems, StaffList, StaffWrapper, StockItem, StockList, StockWrapper, StokcItems } from '../components/headers/stylesx'
+import { Staff, StaffItems, StaffList, StaffWrapper, StockItem, StockList, StockWrapper, StokcItems } from '../components/headers/styles'
+import { LikeIcon } from '../components/icons'
 import StocksImage, { ProductImage } from '../components/images/stockimage'
 import { ErrorState, EmptyFilter, EmptyState } from '../components/issues'
 import { IssueContainer, Issue } from '../components/issues/styles'
@@ -133,7 +134,7 @@ const ExplorePage = (props: any)=> {
       <Fragment>
           <SideNav />
           <PrimaryHeaderNav />
-          <div className='container main-container'>
+          <div className='container main-container prod-container'>
               <div id='ic' className="container"></div> 
               <StockList height='170'>
                   <StokcItems> {
@@ -167,14 +168,12 @@ const ExplorePage = (props: any)=> {
                                   :
                                 <ProductsCont> {
                                       items.map((item: any) =>
-                                          <StockWrapper>
+                                          <StockWrapper id='product'>
                                             <div className='likes'>
                                                 <div className="likes-cont">
-                                                 <svg viewBox="0 0 512 512">
-                                                    <path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-                                                  </svg>
+                                                      <LikeIcon />
                                                 </div>
-                                                  <p className='likes-count'>{item.views}K</p>
+                                                <p className='likes-count'>{item.views}K</p>
                                             </div>
                                               <ProductImage bc={'whitesmoke'} h={'250px'} w={'100%'} r={'4px'} source={item.stockImage} />
                                               <a>{item.description}</a>

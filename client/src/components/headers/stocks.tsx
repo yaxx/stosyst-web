@@ -7,7 +7,7 @@ import { CircularBtn } from "../buttons"
 import { TAGGLINE } from "../typography"
 import { SortAngle, PlusIcon, Marker } from "../icons"
 import { headerMenu, groupingCriteria, initProduct } from "../../store/data"
-import { Header, StocksListHeader, Divider, HeaderItem, TableActions, TableOption } from "./stylesx"
+import { Header, StocksListHeader, Divider, HeaderItem, TableActions, TableOption } from "./styles"
 
 export const StocksHeader = (props: any): ReactElement => {
     const [order, setOrder] = useState('name')

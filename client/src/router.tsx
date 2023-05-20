@@ -9,6 +9,7 @@ import {
 import { RequireAuth } from "./components/auth";
 import { SettingsNavHeader } from "./components/headers";
 import "./index.css";
+import { CategoriesPage } from "./pages/categories";
 import ProductDetails from "./pages/details";
 import ErrorPage from "./pages/error";
 import { ExpensePage } from "./pages/expenses";
@@ -76,6 +77,14 @@ export const router = createBrowserRouter(
                     element={
                     <RequireAuth>
                         <ExplorePage />
+                    </RequireAuth>
+                }
+                />
+                <Route
+                    path="/categories"
+                    element={
+                    <RequireAuth>
+                        <CategoriesPage />
                     </RequireAuth>
                 }
                 />

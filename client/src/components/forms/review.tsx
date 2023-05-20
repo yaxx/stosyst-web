@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from "react";
 import { review } from "../../types/model";
 import { formatMoney, getCartTotal } from "../../utils";
 import { FooterBtn, ReviewButton } from "../buttons";
-import { ReviewFooter, DoneBtnCont, ReviewHeader } from "../headers/stylesx";
+import { ReviewFooter, DoneBtnCont, ReviewHeader } from "../headers/styles";
 import { CheckIcon, QuestionIcon } from "../icons";
 import { BalanceCont, MultiFormGroupContainer, MultiInput } from "../inputs";
 import { ReviewFormWraper } from "../listItems/cartItem";

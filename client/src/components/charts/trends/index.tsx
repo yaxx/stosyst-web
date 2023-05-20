@@ -8,7 +8,7 @@ import { TrendsList } from './list';
 import { ButtonsBox, ButtonsCont, HeaderCont, CheckCont, LoadingCont, MenuList, SwitchBtn } from '../styles';
 import { SpinLoader } from '../../loaders';
 import { ArrowDown, Marker } from '../../icons';
-import { Divider } from '../../headers/stylesx';
+import { Divider } from '../../headers/styles';
 
 
 export const colors = [

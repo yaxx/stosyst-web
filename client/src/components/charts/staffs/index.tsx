@@ -8,7 +8,7 @@ import { SpinLoader } from '../../loaders';
 import { TrendsCont } from '../trends/styles';
 import { StaffChartBox, StaffsCont } from './styles';
 import { TopStaffList } from './staffChartList';
-import { Divider } from '../../headers/stylesx';
+import { Divider } from '../../headers/styles';
 import { ArrowDown, Marker } from '../../icons';
 
 
