@@ -62,7 +62,7 @@ export const HeaderNav = (props: any) => {
                         </GroupLabel>
                     </GroupContainer>
                     <ProfileOptions onClick={() => toggleMenu()}>
-                        <ImageItem source={client.dp} h={'30px'} w={'30px'} r={'50%'} />
+                        {/* <ImageItem source={client?.dp||''} h={'30px'} w={'30px'} r={'50%'} /> */}
                         <ArrowDown /> {
                             menu && <HeaderMenu />
                         }

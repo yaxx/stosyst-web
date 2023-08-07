@@ -28,6 +28,7 @@ const HeaderMenu = (props: any) => {
     if(data) {
         console.log("switched account", data)
     }
+    
     if(error) {
         console.log(error);
     }
@@ -46,9 +47,9 @@ const HeaderMenu = (props: any) => {
         <OptionList >
             <OptItemCont>
                 <OptionItem>
-                    <p>{client.name}</p>
+                    <p>{client?.name}</p>
                     <p style={{ color: 'grey' }}>
-                        @{client.username}
+                        @{client?.username}
                     </p>
                 </OptionItem>
             </OptItemCont>
@@ -65,7 +66,7 @@ const HeaderMenu = (props: any) => {
                     <RightAngleIcon />
                 </IconCont>
                 <LinkedAccList> {
-                    client.linkedTo.map((a: any) => (
+                    client?.linkedTo.map((a: any) => (
                         <LinkedAccItem onClick={()=>handleSwitchAccount(a)}>
                             <p>{a.name}</p>
                             <p>@{a.username}</p>
