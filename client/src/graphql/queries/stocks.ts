@@ -1,7 +1,7 @@
 
 import { gql, useLazyQuery } from '@apollo/client'
 
- export const GET_STOCKS = gql`
+export const GET_STOCKS = gql`
     query getProducts($query: String, $filter: String, $group: String, $offset: Int) {
         products(query: $query, filter: $filter, group: $group, offset: $offset) {
             _id
@@ -38,7 +38,18 @@ import { gql, useLazyQuery } from '@apollo/client'
             total
         }
 }`
- export const GET_STOCK_SET = gql`
+export const GET_MATCHED_PRODS = gql`
+    query matchedProducts($query: String, $storeId: String ) {
+        matchedProducts(query: $query, storeId: $storeId) {
+            _id
+            name
+            instock
+            description
+            sellingPrice
+            stockImage
+        }
+}`
+export const GET_STOCK_SET = gql`
     query getStockSet($query: String, $filter: String, $offset: Int, $group: String, $groupLabel: String) {
         stockSet(query: $query, filter: $filter, offset: $offset, group: $group, groupLabel: $groupLabel) {
             _id
@@ -70,7 +81,6 @@ import { gql, useLazyQuery } from '@apollo/client'
             updatedAt
     }
 }`
-
 
 export const FILTER_STOCKS = gql`
     query filterStocks($filter: String, $orderBy: String, $group: String) {
@@ -144,7 +154,7 @@ export const SEARCH_STOCKS = gql`
         }
     }
 `
- export const GET_PRODS = gql`
+export const GET_PRODS = gql`
     query getProducts {
         products {
             _id
@@ -176,7 +186,7 @@ export const SEARCH_STOCKS = gql`
     }
 }
 `
- export const WriteProduct = gql`
+export const WriteProduct = gql`
     query writeProduct($id: String) {
            product(id: $id) {
              _id
@@ -205,8 +215,6 @@ export const SEARCH_STOCKS = gql`
         }
     }   
 `
-
-
 
 export const useRetryGetProducts = (orderBy: any, offset: number) => {
     const [retryGetProducts, { loading, data, error }] = useLazyQuery(GET_STOCKS, { variables: { orderBy, offset } })
@@ -248,4 +256,12 @@ export const STOCK_QUERY = gql`
       }
     }`
 
-
+export const READ_STOCK = gql`
+  query ReadStock($id: ID!) {
+    stock(_id: $id) {
+      _id
+      name
+      description
+    }
+  }
+`;

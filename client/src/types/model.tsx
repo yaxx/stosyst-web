@@ -25,13 +25,27 @@ export interface Staff extends Person {
     position?: string,
     permisions: PermittedActions
 }
+
+type TimeLine = {
+    due: String
+    renewed: String
+    status: String
+}
+type PaymentMethod = {
+    cardNumber: String
+    expiry: String
+    cvvCode: String
+}
 export interface Client extends Person {
     name?: string,
     password?: string,
     username?: string,
     category?: string,
     staffs?: Staff[]
+    linkedTo?: Client[]
     msgTokens?: string[]
+    timeLine?: TimeLine
+    paymentMethods?: [PaymentMethod]
 }
 export interface Item {
     name: string,

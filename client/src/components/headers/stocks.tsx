@@ -8,6 +8,7 @@ import { TAGGLINE } from "../typography"
 import { SortAngle, PlusIcon, Marker } from "../icons"
 import { headerMenu, groupingCriteria, initProduct } from "../../store/data"
 import { Header, StocksListHeader, Divider, HeaderItem, TableActions, TableOption } from "./styles"
+import { IconCont } from "../inputs/styles"
 
 export const StocksHeader = (props: any): ReactElement => {
     const [order, setOrder] = useState('name')
@@ -36,7 +37,8 @@ export const StocksHeader = (props: any): ReactElement => {
             <StocksListHeader>
                 <Divider top='100' />
                 <HeaderItem onClick={() => reOrder('name')} title='Sort by name' width={45}>
-                    <TAGGLINE>STOCK
+                    <TAGGLINE>
+                        STOCK
                         {
                             order === 'name' &&
                             <span>
@@ -78,9 +80,9 @@ export const StocksHeader = (props: any): ReactElement => {
                 <HeaderItem width={2} onClick={(e: Event) => editCallback(e, 'stocks', 'products', initProduct, 'products')}>
                     {
                         (isAdmin() || can('add', 'stocks')) &&
-                        <CircularBtn h='30' w='30' onClick={(e: Event) => editCallback(e, 'stocks', 'products', initProduct, 'products')}>
+                        <IconCont siz={16} onClick={(e: Event) => editCallback(e, 'stocks', 'products', initProduct, 'products')}>
                             <PlusIcon />
-                        </CircularBtn>
+                        </IconCont>
                     }
                 </HeaderItem>{
                     headMenu === 'group' ?

@@ -9,7 +9,8 @@ const path = require('path')
 Menu.setApplicationMenu(null);
 
 let win;
-
+//  "prebuild": "rm -rf build && rm -rf ../server/api/dist/build ",
+// "postbuild": "mv build ../server/api/dist/build",
 function createWindow() {
     win = new BrowserWindow({
         height: 1000,

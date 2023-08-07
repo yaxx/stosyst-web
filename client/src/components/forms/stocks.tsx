@@ -212,9 +212,10 @@ export function StocksForm(props: any): ReactElement {
   return (
     <TableForm
       id={stock._id}
+      noValidate={true}
       onClick={(e: React.SyntheticEvent) => handClick(e)}
       onSubmit={(e: React.SyntheticEvent) => handleSubmit(e)}
-      noValidate={true}
+     
     >
       <>
         <div

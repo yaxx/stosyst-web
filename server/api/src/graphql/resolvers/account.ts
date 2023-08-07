@@ -2,109 +2,147 @@ import mongoose, { Model } from 'mongoose'
 import { Client, Invoice, Expense } from '../../models'
 import { cred } from '../../validations'
 import * as Auth from '../../auth'
-import jwt  from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
+import { addAccObject } from '../../validations/client'
 
-let ObjectId    = require('mongodb').ObjectID;
+let ObjectId = require('mongodb').ObjectID;
+
+export var verifyPhoneNumber: boolean = true
+export var verifyEmail: boolean = true
 
 export default {
   Query: {
-    me: async (root:any, args:any, { req }:{req: Request}) => {
+    me: async (root: any, args: any, { req }: { req: Request }) => {
       Auth.checkSignedIn(req)
-      const {data: {orgId, uid}}:any = req
-      const client:any = Client.findById(orgId);
-      client.staffs = uid !== orgId ? client.staffs.filter((s:any)=>s._id !== uid) : client!.staffs
+      const { data: { orgId, uid } }: any = req
+      const client: any = Client.findById(orgId);
+      client.staffs = uid !== orgId ? client.staffs.filter((s: any) => s._id !== uid) : client!.staffs
       return client
     },
 
-    account: async (root:any, args:any, { req }:{req: Request}) => {
+    account: async (root: any, args: any, { req }: { req: Request }) => {
       Auth.checkSignedIn(req)
-      const {data: {orgId, uid}}:any = req
+      const { data: { orgId, uid } }: any = req
       return await Client.findById(orgId);
     },
-
-    staffs: async (root:any, args:any, { req }:{req: Request}) => {
+    accDetails: async (root: any, args: any, { req }: { req: Request }) => {
       Auth.checkSignedIn(req)
-      const {data: {orgId, uid}}:any = req
+      const { data: { orgId, uid } }: any = req
+      const linkedAccounts = await Client.find({ linkedTo: orgId }).lean();
+      const account = await Client.findById(orgId).lean()
+      return {
+        ...account, 
+        linkedTo: linkedAccounts
+      }
+    },
+
+    switchAccount: async (root: any, {id}: any, { req }: { req: Request }) => {
+      console.log('hi')
+      Auth.checkSignedIn(req)
+      const { data: { orgId, uid } }: any = req
+     
+      let client = await Client.findById(id).lean()
+      const linkedAccounts = await Client.find({ linkedTo: id }).lean();
+
+      const signature = jwt.sign({
+        orgId: client?._id.toString(),
+        uid: client?._id.toString()
+      },
+        'crypto'
+      )
+      return ({
+        token: `Bearer ${signature}`,
+        client: { ...client, linkedTo: linkedAccounts}
+      })
+    },
+
+    staffs: async (root: any, args: any, { req }: { req: Request }) => {
+      Auth.checkSignedIn(req)
+      const { data: { orgId, uid } }: any = req
       const { staffs } = await Client.findById(orgId) as any;
       return staffs
     },
 
-    staff: async (root:any, { id }:{id: string}, { req }:{req: Request}) => {
+    staff: async (root: any, { id }: { id: string }, { req }: { req: Request }) => {
       Auth.checkSignedIn(req)
-      const {data: {orgId, uid}}: any = req
+      const { data: { orgId, uid } }: any = req
       const { staffs } = await Client.findById(orgId) as any;
-      return id ? staffs.find((s: any)=> s._id.toString() === id ) : staffs.find((s: any) => s._id.toString() === uid ) 
+      return id ? staffs.find((s: any) => s._id.toString() === id) : staffs.find((s: any) => s._id.toString() === uid)
     },
   },
   Mutation: {
-    signUp: async (root: any, { info }: any, { req }:{req: Request}) => {
-        await cred.validateAsync(info);
-        const {name, phone, password, msgToken} = info
-        const newClient  =  await Client.create({name, phone, password, msgTokens:[msgToken.trim()]});
-        const signature  = jwt.sign({
-          orgId: newClient._id, 
-          uid: newClient._id 
-        }, 
+    signUp: async (root: any, { info }: any, { req }: { req: Request }) => {
+      verifyPhoneNumber = true
+      await cred.validateAsync(info);
+      const { name, phone, password, msgToken } = info
+      const newClient = await Client.create({ name, phone, password, msgTokens: [msgToken.trim()] });
+      const signature = jwt.sign({
+        orgId: newClient._id,
+        uid: newClient._id
+      },
         'crypto'
-        )
-        return ({
-            dp: newClient.dp, 
-            org: newClient._id, 
-            usr: newClient._id,
-            name: newClient.name,
-            token:`Bearer ${signature}`,
-        })
+      )
+      return ({
+        client: newClient,
+        token: `Bearer ${signature}`,
+      })
     },
-    signIn: async (root: any, { creds }: any, { req }:{req: Request}) => {
-        // const { userId } = req.session;
-        // if(userId)
-        // return Client.findById(userId);
-        // const data = await Auth.attemptSignIn(creds)
-        return await Auth.attemptSignIn(creds);
-    },
-
-    // signOut: async (root, { person }, { req, res }, info ) => {
-    //   Auth.checkSignedIn(req)
-    //   Auth.signOut(req, res)
-    //   return user;
-    // },
-
-    saveInfo: async (root: any, { staff }: any, { req, res }: any, info: any ) => {
+    addAccount: async (root: any, { input }: any, { req }: { req: Request }) => {
       Auth.checkSignedIn(req)
-      const {data: {orgId, uid}} = req
-      let client:any = {}
+      verifyEmail = false;
+      verifyPhoneNumber = false
+
+      await addAccObject.validateAsync(input);
+
+      const { name, username, address, curClientId } = input
+      const { password, _id, phone, email } = await Client.findById(curClientId).lean() as any;
+      const newClient = await Client.create({ name, username, phone, email, address, password, linkedTo: [_id.toString()] });
+
+      await Client.findByIdAndUpdate(curClientId, { $addToSet: { linkedTo: newClient._id.toString() } });
+
+      return newClient
+    },
+
+    signIn: async (root: any, { creds }: any, { req }: { req: Request }) => {
+      return await Auth.attemptSignIn(creds);
+    },
+
+    saveInfo: async (root: any, { staff }: any, { req, res }: any, info: any) => {
+      Auth.checkSignedIn(req)
+      const { data: { orgId, uid } } = req
+      let client: any = {}
       let updated = null
 
-      if(!staff._id) {
-        client = await Client.findByIdAndUpdate(orgId, 
-         { 
-           $push:{ staffs: staff }
-         }, 
-         {new: true}
+      if (!staff._id) {
+        client = await Client.findByIdAndUpdate(orgId,
+          {
+            $push: { staffs: staff }
+          },
+          { new: true }
         ).lean()
         updated = client.staffs[client.staffs.length - 1]
-         
+
         await Invoice.updateMany(
           {
-           modifier: req.data.orgId
+            modifier: req.data.orgId
           },
-          { 
-           $push:{ seen: {usr: updated._id } }
+          {
+            $push: { seen: { usr: updated._id } }
           }
         )
         await Expense.updateMany(
           {
             modifier: req.data.orgId
           },
-          { 
-           $push:{ seen: { usr: updated._id } }
+          {
+            $push: { seen: { usr: updated._id } }
           }
         )
 
       } else {
         client = await Client.findById(req.data.orgId)
-        client!.staffs = client!.staffs.map((s: any)=>(s._id.toString() === staff._id.toString()) ? staff : s )
-        await Client.findByIdAndUpdate(req.data.orgId,{ staffs: client.staffs }, {new: true})
+        client!.staffs = client!.staffs.map((s: any) => (s._id.toString() === staff._id.toString()) ? staff : s)
+        await Client.findByIdAndUpdate(req.data.orgId, { staffs: client.staffs }, { new: true })
         updated = staff
       }
       return updated
@@ -112,14 +150,14 @@ export default {
 
     updateAccount: async (root: any, { accountInfo }: any, { req }: any, info: any) => {
       Auth.checkSignedIn(req)
-      return await Client.findByIdAndUpdate(req.data.orgId,{...accountInfo}, {new: true})
-
+      return await Client.findByIdAndUpdate(req.data.orgId, { ...accountInfo }, { new: true })
     },
-    deleteStaff: async (root: any, { id }: {id: string}, { req }: any, info: any) => {
+
+    deleteStaff: async (root: any, { id }: { id: string }, { req }: any, info: any) => {
       Auth.checkSignedIn(req)
       let { staffs } = await Client.findById(req.data.orgId) as any;
-      staffs = staffs.filter((s: any) => s._id.toString() !== id )
-      await Client.findByIdAndUpdate(req.data.orgId,{ staffs }, {new: true})
+      staffs = staffs.filter((s: any) => s._id.toString() !== id)
+      await Client.findByIdAndUpdate(req.data.orgId, { staffs }, { new: true })
       return { id }
     }
   }

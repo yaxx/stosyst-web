@@ -1,7 +1,7 @@
 version: '3'
 services:
   react-app:
-    image: production-client
+    image: client
     stdin_open: true
     ports:
       - "80:80"
@@ -12,11 +12,11 @@ services:
       - ./client:/usr/src/app
       - /usr/src/app/node_modules
   api-server:
-    image: production-server
+    image: api
     build: ./server/api/
     stdin_open: true
     ports:
-      - "4000:4000"
+      - "8080:8080"
     networks:
       - stosyst
     volumes:

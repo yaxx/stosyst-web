@@ -66,10 +66,12 @@ export default gql`
     }
     extend type Query {
         products(query: String, filter: String, group: String, offset: Int): [StocksGroup]!
+        matchedProducts(query: String, storeId: String): [Product]!
         stockSet(query: String, filter: String, offset: Int, group: String, groupLabel: String): [Product]
     }
     extend type Mutation {
         saveProduct(product: ProductInput!): Product!
+        shareProduct(qty: Int, addId: String, subId:String): Product!
         deleteProduct(id: String!): Product
     }
     extend type Subscription {

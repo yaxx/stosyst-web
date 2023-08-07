@@ -31,7 +31,6 @@ export const SalesExpenseChart = () => {
 
   const [duration, setDuration] = useState('Weekly')
   // const [menu, setMenu] = useState('')
-
   const selectDuration = (range: string) => {
     setDuration(range)
     // setMenu('')

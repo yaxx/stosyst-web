@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import { compare, hash } from 'bcryptjs'
+import { verifyEmail, verifyPhoneNumber } from '../graphql/resolvers/account'
 
 const Schema = mongoose.Schema
 
@@ -20,7 +21,7 @@ const ClientSchema = new Schema({
         validate: {
             validator:  (email:String) => {
                 let C: any = Client
-                return C.dontExist({ email })
+                return !verifyEmail ? true : C.dontExist({ email })
             },
             message: ({ value }:{value: String}) => `${value}  already exist`
         }
@@ -30,7 +31,7 @@ const ClientSchema = new Schema({
         validate: {
             validator: (phone:String) => {
                 let C: any = Client
-                return C.dontExist({ phone })
+                return !verifyPhoneNumber ? true : C.dontExist({ phone })
             },
             message: ({ value }:{value: String}) => `${value} already exist`
         }
@@ -96,6 +97,7 @@ const ClientSchema = new Schema({
             type: String, 
             default: ''
         },
+      
         permisions: {
             creates: ['stocks', 'invoices', 'expenses'],
             edits: ['stocks', 'invoices', 'expenses'],
@@ -106,7 +108,24 @@ const ClientSchema = new Schema({
              default: Date.now() 
         }
     }],
-    msgTokens:[]
+    msgTokens:[],
+    linkedTo: [],
+    timeLine: {
+        renewed: {
+            type: Date,
+            default: null
+        },
+        due: {
+            type: Date, 
+            default: null
+        },
+        status: {
+            type: String, 
+            default: 'trial'
+        }
+    },
+    paymentMethods:{type: Array, default: []}
+
 
 }, { timestamps: true } )
 

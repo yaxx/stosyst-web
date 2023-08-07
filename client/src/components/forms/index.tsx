@@ -57,11 +57,9 @@ export function SignUpForm({}: Props): ReactElement {
   const [showPassword, setPassword] = useState(false);
   const [dropedInput, setDroppedInput] = useState('')
 
- const storeUserInfo = ({token, org, usr, dp}: any) => {
+ const storeUserInfo = ({token, client}: any) => {
    localStorage.setItem('token', token);
-   localStorage.setItem('dp', dp);
-   localStorage.setItem('org', org);
-   localStorage.setItem('usr', usr);
+   localStorage.setItem('client', JSON.stringify(client));
    navigate("/");
   }
 
@@ -92,8 +90,6 @@ export function SignUpForm({}: Props): ReactElement {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(client);
-    
     signUp({
         variables: {
         info: {
@@ -108,14 +104,15 @@ export function SignUpForm({}: Props): ReactElement {
       ...client,
       category: opt
     })
-    console.log(client);
     
     setDroppedInput('')
   }
 
   return (
       <AccForm onSubmit = { (e: React.SyntheticEvent) => handleSubmit(e) }>
-        <Heading fs = '1.0rem' cl = 'grey'>{`Let's get you started`}</Heading>
+        <Heading fs = '1.0rem' cl = 'grey'>
+          {`Let's get you started`}
+        </Heading>
       <FormGroupCont>
         <NameInput
           top
@@ -129,7 +126,7 @@ export function SignUpForm({}: Props): ReactElement {
         <NameInput 
           type ='phone'
           name = 'phone'
-          label = 'Phone number' 
+          label = 'Phone number'
           value = { client.phone }
           clearCallback = { (e: any) => handleClear(e, 'phone') } 
           changeCallback = {(e: any) => handleChange(e)}

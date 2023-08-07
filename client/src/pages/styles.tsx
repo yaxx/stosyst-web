@@ -296,5 +296,61 @@ export const PurchaseBtnsCont = styled.div`
         margin-bottom: 0px;
     }
 `
+export const LoginAccList = styled.ul`
+    width: 240px;
+    height: auto;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0px;
+`
+export const LoginAccIntem = styled.li`
+    position: relative;
+    height: 45px;
+    width:100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 5fr;
+    cursor: pointer;
+    &:hover{
+        background:rgba(84, 84, 88, 0.1) ;
+     }
+`;
+export const LoginAccInfo = styled.div<any>`
+    position: relative;
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h6 {
+        font-size: 14px;
+         margin-bottom: 0px;
+    }
+    p {
+        margin-bottom: 0px;
+        font-size: 12px;
+        color: grey;
+    }
+`;
+export const CheckBox = styled.div<any>`
+    position: relative;
+    height: 20px;
+    width:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid ${props => props.selected ? ' #00A3FE' : 'lightgrey'};
+    border-radius: 50%;
+    &::after {
+        content:'';
+        background:  #00A3FE;
+        border-radius: 50%;
+        height: 12px;
+        width: 12px;
+        display: ${props => props.selected ? 'block' : 'none'};
+    }
+`
 
 export default PromoSection

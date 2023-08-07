@@ -75,14 +75,11 @@ export  const Stocks = (props: any): ReactElement => {
             <SideNav/>
             <HeaderNav /> {
                 searchModal &&
-                <SearchModalContainer onClick={()=>showSearchModal(false)} >
-                    {/* <CloseIcon /> */}
-                </SearchModalContainer> 
+                <SearchModalContainer onClick={()=>showSearchModal(false)} />
             }
             <div className='container main-container'> 
-                <div id='ic' className="container">
-                    <StocksHeader {...props}/>
-                </div> {
+                <StocksHeader {...props}/>
+                {
                 loading ?
                     <IssueContainer>
                         <Issue>

@@ -7,7 +7,7 @@ import { getSorter } from "./sorter"
     const limit = 10
     return query.trim().length > 0 ? 
     [
-        {      
+        {
             $search: {
                 index: 'products',
                 text: {
@@ -72,6 +72,30 @@ import { getSorter } from "./sorter"
             $limit: 3
         }
     ]
+}
+export const matchedProdsPipeline = (query: string, storedId: string,): any => {
+    const limit = 4
+    return [
+        {
+            $search: {
+                index: 'products',
+                text: {
+                    query,
+                    fuzzy: {
+                        maxEdits: 2,
+                    },
+                    path: ['name', 'description']
+                }
+            }
+        },
+        {
+            $match: { owner: storedId }
+        },
+        {
+            $limit: limit
+        }
+    ]
+
 }
 
 // export const getProductFilter = (ownerId: string, filter: String, group:string, orderBy?:string)=> {

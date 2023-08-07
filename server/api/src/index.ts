@@ -1,7 +1,5 @@
 
-import session from 'express-session'
 import mongoose from 'mongoose'
-import Redis from 'ioredis'
 // import connectRedis from 'connect-redis'
 import { createServer } from 'http'
 import { typeDefs, resolvers } from './graphql'
@@ -9,7 +7,7 @@ import { createExpressApp } from './app'
 import { createSubscriptionServer } from './subs-server'
 import { createApolloServer } from './apollo-server'
 import { makeExecutableSchema } from '@graphql-tools/schema'
-import { MONGO_URI, MONGO_OPTIONS, REDIS_OPTIONS, IN_PRODUCTION, SERVER_PORT } from './config'
+import { MONGO_URI, SERVER_PORT } from './config'
 
 const startServer = async () => {
   try {

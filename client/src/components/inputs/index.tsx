@@ -1,5 +1,5 @@
 import React, { ReactElement, SyntheticEvent, useEffect, useState } from 'react'
-import { SearchIcon, ArrowDown, SearchIcon2, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon, DropIcon } from '../icons';
+import { SearchIcon, ArrowDown, SearchIcon2, ClearIcon, NumberIcon, PeekIcon, ClearInputIcon, DropIcon, CancelIcon } from '../icons';
 import styled, { keyframes } from 'styled-components'
 import { P2 } from '../typography';
 import { expenseCriteria, groupingCriteria, invCriteria, showSearchModal } from '../../store/data';
@@ -113,7 +113,7 @@ export const FormGroupCont = styled.div<any>`
   margin: 4px 0px;
   width: ${props=> props.w || 100}%;
   border-radius: 8px;
-  border: 1px solid #e6e1e1;
+  border: ${props => props.borderless ? 0 : 1}px solid #e6e1e1;
 `
 
 const MultiFormGroup = styled.div<any>`
@@ -170,7 +170,6 @@ export const DoubleFormGroup = styled.div<any>`
   width: 100%;
   height: auto;
   display: flex;
-
 `
 export const BalanceCont = styled.div<any>`
   background-color: inherit;
@@ -307,7 +306,6 @@ const PrimaryInput = styled(SecondaryInput)`
   height: 100%;
   bottom: 'auto';
   border-radius: inherit;
-  
 `
 const TatiaryInput =  styled(SecondaryInput)`
   height: 100%;
@@ -399,7 +397,8 @@ export function TextInput(props: any): ReactElement {
       <PrimaryFormGroup hasInput={value.length} selected={inputSelected} className = 'formGroup' width = { props.width }>
         <Label>{label}</Label>
         <PrimaryInput onFocus={() => selectInput()} onBlur={() => deSelectInput()}  onChange = { props.changeCallback } {...props} />
-            <ClearIcon {...props}/>
+        
+         <CancelIcon />
             <InputSeparator/>
         </PrimaryFormGroup>
     )
@@ -415,7 +414,7 @@ export function StandardInput(props: Attr): ReactElement {
   )
 }
 export function NameInput(props: any): ReactElement {
-  const { name, value, type, label, clearCallback,required, togglePasswordCallback } = props;
+  const { name, value, type, label,required, togglePasswordCallback } = props;
   const [ inputSelected, resetSelection] = useState(false)
   const selectInput = ()=> {
     resetSelection(true) 

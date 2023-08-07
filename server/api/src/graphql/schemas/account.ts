@@ -96,17 +96,7 @@ export default gql`
         createdAt: String
         updatedAt: String
     }
-    type Info {
-        token: String
-        dp: String
-        org: String
-        usr: String
-        name: String
-        category: String
-        role: String
-        perms: Permision
-    }
-    
+   
     type StaffId {
         id: String
     }
@@ -118,10 +108,16 @@ export default gql`
     }
     input ClientInfo {
         name: String!
-        category: String!
+        category: String
         phone: String!
         password: String!
         msgToken: String
+    }
+    input AddAccInput {
+        name: String!
+        username: String!
+        address: String
+        curClientId: String!
     }
     type User {
         _id: String
@@ -140,6 +136,16 @@ export default gql`
         createdAt: String
         updatedAt: String
     }
+    type TimeLine {
+        due: String
+        renewed: String
+        status: String
+    }
+    type PaymentMethod {
+        cardNumber: String
+        expiry: String
+        cvvCode: String
+    }
     type Client {
         _id: String
         name: String
@@ -151,21 +157,31 @@ export default gql`
         address: String
         staffs: [User]
         dp: String
+        timeLine: TimeLine
+        linkedTo: [Client]
+        paymentMethods: [PaymentMethod]
         createdAt: String
         updatedAt: String
     }
-    extend type Query { 
+    type Info {
+        token: String
+        client: Client
+    }
+    extend type Query {
         me: Client
         users: [User]!
         client: Client!
         staff(id: String): User
         staffs: [User]!
         account: Client!
+        accDetails: Client
+        switchAccount(id: String): Info
     }
     extend type Mutation {
         signOut: Boolean
         signIn(creds: Creds!): Info
         signUp(info: ClientInfo!): Info
+        addAccount(input: AddAccInput!): Client
         saveInfo(staff: PersonInput!): User
         deleteStaff(id: String!): StaffId
         updateAccount(accountInfo: AccountInput!): Client

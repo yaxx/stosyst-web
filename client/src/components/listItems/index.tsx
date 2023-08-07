@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
+import { OptionItem } from '../headers/styles';
 
-import { MoreOptions, OptionItem } from '../icons';
+import { MoreOptions } from '../icons';
 import { P1 } from '../typography';
 
 export const Item = styled.li<any>`
@@ -18,6 +19,7 @@ export const ListItems =  styled.ul<any>`
     overflow: visible;
     position: relative;
     padding-left: 0px;
+    /* z-index: -1; */
     li {
         display: flex;
         flex-direction: column;
@@ -27,6 +29,7 @@ export const ListItems =  styled.ul<any>`
             margin-bottom: 0px;
             color: #2d2d2de7;
         }
+         /* z-index: -1; */
     }
     .options p:first-child {
         display: none;
@@ -78,6 +81,7 @@ export const Row = styled.li<any>`
     border-radius: 6px;
     padding: 0px 10px;
     position: relative;
+    /* z-index: -1; */
     background: ${props => props.selected ? props.theme.light.colors.brand : 'initial'
     };
     .counter {
@@ -96,6 +100,7 @@ export const Row = styled.li<any>`
     }
     ul {
          padding-left: 0px;
+         /* z-index: -1; */
         li p {
              color: ${ props => props.selected ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.sec };
         }
