@@ -1,0 +1,44 @@
+version: '3'
+services:
+  client:
+    image: client
+    build: 
+      context: ${PWD}/client/
+      dockerfile: ${PWD}/client/Dockerfile.0
+    init: true
+    stdin_open: true
+    ports:
+      - 4000:4000
+    networks:
+      - stosyst
+    volumes:
+      - type: bind
+        source: ${PWD}/client/
+        target: /usr/src/app
+      - type: volume
+        target: /usr/src/app/node_modules
+  server:
+    image: server
+    build:
+      context: ${PWD}/server/api/
+      target: dev
+      dockerfile: ${PWD}/server/api/Dockerfile
+    init: true
+    stdin_open: true
+    ports:
+      - 8080:8080
+    networks:
+      - stosyst
+    volumes:
+      - type: bind
+        source: ${PWD}/server/api/
+        target: /usr/src/app
+      - type: volume
+        target: /usr/src/app/node_modules
+networks:
+  stosyst:
+    driver: bridge
+
+
+
+  

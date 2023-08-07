@@ -17,7 +17,7 @@ export const SettingsNavHeader = (props: any): ReactElement => {
     const { loading, data, refetch, error } = useQuery(GET_ACCOUNT, {
         fetchPolicy: "network-only"
     })
-    if (data) console.log(data);
+     if (error) console.log(error);
     
 
     // const { url, path } = useMatch()
@@ -35,7 +35,6 @@ export const SettingsNavHeader = (props: any): ReactElement => {
 
     return (
         <>
-            {/* <SettingTitle>Settings</SettingTitle> */}
             <MainBanerCont>
                 <ProfileBaner height='100' width='100'>
                     <img src={getImageUrl(data?.account.banner) || 'https://nextoma-bucket.s3.us-east-2.amazonaws.com/a35f9e5f-771c-4afd-b4b7-0869842c8dc9'} alt="" />
@@ -59,12 +58,10 @@ export const SettingsNavHeader = (props: any): ReactElement => {
                     <p>2K <span>Subscribers</span> </p>
                 </div>
             </ProfileInfo>
-            <HeaderNav />
             <SettingsHeader>
-                <Divider bottom={100} />
                 <SettingsNavigation>
                     <HeaderItem match={pathname === '/settings' ? true : false}  >
-                        <Link to='/settings' >Profile</Link>
+                        <Link to='/settings' >Account</Link>
                     </HeaderItem>
                         <HeaderItem match={pathname === '/staffs' ? true : false}>
                         <Link to='/staffs' >Staffs Management</Link>
@@ -73,7 +70,7 @@ export const SettingsNavHeader = (props: any): ReactElement => {
                         <Link to={`security`} >Security and Privacy</Link>
                     </HeaderItem>
                     <HeaderItem >
-                        <Link to={`subscription`}>Subscriptions</Link>
+                        <Link to={`subscription`}>Notifications</Link>
                     </HeaderItem>
                 </SettingsNavigation>
                 <Divider />

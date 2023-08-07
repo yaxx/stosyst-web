@@ -36,28 +36,16 @@ export const MoreOptions = styled.div<any>`
   right: ${props => props.rt || '-75px'};
   z-index: 50000;
   min-width: 150px;
-  top: ${props=>props.top||'20%'};
-  color: ${ props => props.theme.light.colors.labels.pri};
-  background-color: ${ props => props.theme.light.colors.backgrounds.base.pri};
-  border: 1px solid ${ props => props.theme.light.colors.separators.pri};
+  top: ${props => props.top || '20%'};
+  color: ${props => props.theme.light.colors.labels.pri};
+  background-color: ${props => props.theme.light.colors.backgrounds.base.pri};
+  border: 1px solid ${props => props.theme.light.colors.separators.pri};
   border-radius: 10px;
 `
-export const OptionItem:any = styled.div`
-    width: 100%;
-    position: relative;
-    cursor: default;
-    p {
-        margin-bottom: 0px;
-        padding: 1px 10px;
-        text-align: left;
-        :hover {
-            background-color: ${ props => props.theme.dark.colors.brand};
-            color: ${ props => props.theme.dark.colors.labels.pri};
-            border-radius: 4px;
-        }
-    }
-`
-const IconBox = styled.div.attrs(props=>({className:'icn'}))`
+
+
+
+const IconBox = styled.div.attrs(props => ({ className: 'icn' }))`
         position: absolute;
         right: 7px;
     div:first-child {
@@ -66,9 +54,8 @@ const IconBox = styled.div.attrs(props=>({className:'icn'}))`
     }
     div:last-child {
         bottom: 3px;
-        color:${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-        };
+        color:${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    };
         position: relative;
     }
     svg {
@@ -76,36 +63,33 @@ const IconBox = styled.div.attrs(props=>({className:'icn'}))`
             fill:#593ae6;
         }
         fill : #dad9d9;
-        /* fill:${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.fills.pri
-        }; */
+        /* fill:${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.fills.pri
+    }; */
     }
 `
 const NavIcon = styled.div<any>`
     svg {
-        stroke: ${props => props.pre_loc === props.cur_loc ? props.theme.dark.colors.brand : "#C4C4C4" };
+        stroke: ${props => props.pre_loc === props.cur_loc ? props.theme.dark.colors.brand : "#C4C4C4"};
         fill: #C4C4C4;
     }
     cursor: pointer;
     &:hover svg {
-        stroke:${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-        };
-        fill:${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.base.pri : props.theme.light.colors.brand 
-        };
+        stroke:${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    };
+        fill:${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.base.pri : props.theme.light.colors.brand
+    };
     }
-    height: ${props => props.h||15}px;
-    width: ${props => props.w||15}px;
+    height: ${props => props.h || 15}px;
+    width: ${props => props.w || 15}px;
 `
 
 
-const Close = styled.div.attrs(({title:'Close'}))<any>`
-    height:${props=>props.size || 30 }px;
-    width: ${props => props.size || 30 }px;
+const Close = styled.div.attrs(({ title: 'Close' })) <any>`
+    height:${props => props.size || 30}px;
+    width: ${props => props.size || 30}px;
     position: absolute;
-    top:${props => props.top || "30px" };
-    right: ${props => props.right || "30px" };
+    top:${props => props.top || "30px"};
+    right: ${props => props.right || "30px"};
     border-radius: 50%;
     display:flex;
     align-items: center;
@@ -113,13 +97,13 @@ const Close = styled.div.attrs(({title:'Close'}))<any>`
     cursor: pointer;
     z-index:10;
     font-size: 40px;
-    background-color:${props => props.bg || "#0000005b" };
+    background-color:${props => props.bg || "#0000005b"};
     &:hover {
-        background-color:${props => props.bgHover || "#0000007f" } ;
+        background-color:${props => props.bgHover || "#0000007f"} ;
     }
 `;
 
-const Gear = styled(NavIcon)<any>`
+const Gear = styled(NavIcon) <any>`
     display: flex;
     flex-direction:column;
     align-items: center;
@@ -127,13 +111,12 @@ const Gear = styled(NavIcon)<any>`
     width:100%;
     height: 100px;
 `
-const CheckMark = styled.div `
+const CheckMark = styled.div`
     width:17px;
     height: 17px;
     svg {
-        fill: ${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand 
-        };
+        fill: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    };
     }
 `
 const AngleBox = styled.div<any> `
@@ -152,9 +135,9 @@ const UpDownArror = styled.span<any>`
   bottom: ${props => props.rotation > 0 ? -2 : 2}px;
   
 `
-const Clear = styled(Search).attrs((props: any )=> ({
-    className:'icn', 
-    }))`
+const Clear = styled(Search).attrs((props: any) => ({
+    className: 'icn',
+}))`
     right: 1px;
     left: auto;
     cursor: pointer;
@@ -174,28 +157,28 @@ export const Drop = styled.div`
 `
 const DownAngle = styled.div`
 svg {
-    fill: ${props=>props.theme.dark.colors.brand};
-    stroke: ${props=>props.theme.dark.colors.brand};
+    fill: ${props => props.theme.dark.colors.brand};
+    stroke: ${props => props.theme.dark.colors.brand};
 }
 
 `
 interface Props {
-    
+
 }
 
 export function NumberIcon(props: any): ReactElement {
     return (
         <IconBox>
-            <div onClick = {(e: any) => props.adjustNumbCallback(e, props.name ,'inc')}>
+            <div onClick={(e: any) => props.adjustNumbCallback(e, props.name, 'inc')}>
                 <svg width="10" height="5" viewBox="0 0 11 6" fill="none" >
-                    <rect width="0.834588" height="6.99402" transform="matrix(-0.731652 -0.681679 0.731652 -0.681678 0.672852 5.33643)"  fill-opacity="0.6"/>
-                    <rect width="0.83871" height="6.29645" transform="matrix(-0.731652 0.681678 -0.731652 -0.681679 10.3701 4.83496)"  fill-opacity="0.6"/>
+                    <rect width="0.834588" height="6.99402" transform="matrix(-0.731652 -0.681679 0.731652 -0.681678 0.672852 5.33643)" fill-opacity="0.6" />
+                    <rect width="0.83871" height="6.29645" transform="matrix(-0.731652 0.681678 -0.731652 -0.681679 10.3701 4.83496)" fill-opacity="0.6" />
                 </svg>
             </div>
-            <div onClick = {(e: any) => props.adjustNumbCallback(e, props.name, 'dec')}>
+            <div onClick={(e: any) => props.adjustNumbCallback(e, props.name, 'dec')}>
                 <svg width="10" height="5" viewBox="0 0 11 6" fill="none" >
-                    <rect width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)"  fill-opacity="0.6"/>
-                    <rect width="0.83871" height="6.29645" transform="matrix(0.731652 -0.681678 0.731652 0.681678 0.0625 0.571777)"  fill-opacity="0.6"/>
+                    <rect width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)" fill-opacity="0.6" />
+                    <rect width="0.83871" height="6.29645" transform="matrix(0.731652 -0.681678 0.731652 0.681678 0.0625 0.571777)" fill-opacity="0.6" />
                 </svg>
             </div>
         </IconBox>
@@ -205,7 +188,7 @@ export const ArrowDown = (props: any): ReactElement => {
     return (
         <DownAngle>
             <svg width="7" height="5" viewBox="0 0 11 6">
-                <rect fill='grey' stroke='grey'  width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)"  />
+                <rect fill='grey' stroke='grey' width="0.834588" height="6.99402" transform="matrix(0.731652 0.681678 -0.731652 0.681678 9.75977 0.0703125)" />
                 <rect fill='grey' stroke='grey' width="0.83871" height="6.29645" transform="matrix(0.731652 -0.681678 0.731652 0.681678 0.0625 0.571777)" />
             </svg>
         </DownAngle>
@@ -219,18 +202,18 @@ export const MoreIcon = (props: any) => {
         props.openMenuCallback()
     }
     return (
-        <More onClick = { (e: any) => handleClick(e) }>
-            <svg width="24" height="10" viewBox="0 0 18 4" fill={props.fill||'none'} >
-                <circle cx="5" cy="1" r="1"/>
+        <More onClick={(e: any) => handleClick(e)}>
+            <svg width="24" height="10" viewBox="0 0 18 4" fill={props.fill || 'none'} >
+                <circle cx="5" cy="1" r="1" />
                 <circle cx="9" cy="1" r="1" />
-                <circle cx="13" cy="1" r="1"/>
+                <circle cx="13" cy="1" r="1" />
             </svg>
         </More>
-    ) 
+    )
 }
 export const ClearIcon = (props: any) => {
     return (
-        <Clear onClick={()=>props.clearCallback(props.name)}>
+        <Clear onClick={() => props.clearCallback(props.name)}>
             <svg width="25" height="25" viewBox="0 0 26 26" fill="none" >
                 <rect width="1.24541" height="11.5771" transform="matrix(0.707024 0.707189 -0.707024 0.70719 17.3232 8.82825)" fill="#9E9C9C" fill-opacity="0.85" />
                 <rect width="1.41421" height="11.5567" transform="matrix(0.707058 -0.707156 0.707125 0.707089 9.13965 9.71606)" fill="#9E9C9C" fill-opacity="0.85" />
@@ -256,11 +239,11 @@ export const ClearInputIcon = (props: any) => {
         </svg>
     )
 }
-export const  CancelIcon = (props:any)=> {
+export const CancelIcon = (props: any) => {
     return (
-        <svg style={{ position: 'absolute', right: '2px', top: '0px' }} width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect width="3.43914" height="28.1042" transform="matrix(0.707024 0.707189 -0.707024 0.70719 20.4932 0.512329)" fill="#9E9C9C" />
-            <rect width="3.43915" height="28.1042" transform="matrix(0.707058 -0.707156 0.707125 0.707089 0.619141 2.94574)" fill="#9E9C9C" />
+        <svg viewBox="0 0 5 5" fill="none" >
+            <rect width="0.662992" height="4.87795" transform="matrix(0.707074 -0.70714 0.707072 0.707141 0.251953 0.575195)" fill="grey" />
+            <rect width="0.612992" height="4.87795" transform="matrix(0.707073 0.70714 -0.707073 0.70714 3.50293 0)" fill="grey" />
         </svg>
     )
 }
@@ -272,7 +255,7 @@ export const PlusIcon = (props: any) => {
             <rect x="5.35254" width="1.52941" height="13" fill="#00A3FE" />
         </svg>
     )
-} 
+}
 export const BackIcon = (props: any) => {
     return (
         <svg width="8" height="13" viewBox="0 0 10 17" fill="none" >
@@ -280,7 +263,7 @@ export const BackIcon = (props: any) => {
             <rect width="1.32253" height="9.92865" transform="matrix(0.710482 0.703715 -0.710482 0.703715 8.31836 0.626465)" fill="#00A3FE" />
         </svg>
     )
-} 
+}
 export const FowardIcon = (props: any) => {
     return (
         <svg width="8" height="13" viewBox="0 0 8 13" fill="none" >
@@ -288,44 +271,43 @@ export const FowardIcon = (props: any) => {
             <rect x="0.96582" y="12.5146" width="1.05363" height="7.90993" transform="rotate(-135 0.96582 12.5146)" fill="#00A3FE" />
         </svg>
     )
-} 
-export const EllipsisIcon2 = (props: any) => {
+}
+export const EllipsisIcon = (props: any) => {
     return (
-        <svg width="4" height="9" viewBox="0 0 4 9" fill="none">
-            <circle cx="1.99908" cy="7.43815" r="1" transform="rotate(-29 1.99908 7.43815)" fill="#00A3FE" />
+        <svg viewBox="0 0 4 9" fill="none">
+            <circle cx="1.99908" cy="7.43815" r="1" transform="rotate(-29 1.99908 7.43815)" fill="#00a3fe" />
             <circle cx="2.00201" cy="4.7194" r="1" transform="rotate(-29 2.00201 4.7194)" fill="#00A3FE" />
             <circle cx="2.00201" cy="2.00065" r="1" transform="rotate(-29 2.00201 2.00065)" fill="#00A3FE" />
         </svg>
     )
-} 
+}
 
 export const SearchIcon = () => (
-        <Search>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" >
-                <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10"></path>
-            <path d="M19 19L23 23" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round"></path>
-            </svg>
-        </Search>
-    )
+    <svg viewBox="0 0 22 22" fill="none" >
+        <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#9A9797" stroke-width="1.8" stroke-miterlimit="10" />
+        <path d="M19 19L21 21" stroke="#9A9797" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round" />
+    </svg>
+
+)
 
 export const SearchIcon2 = () => (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" >
-            <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1.3" stroke-miterlimit="10"></path>
-        <path d="M19 19L23 23" stroke-width="1.3" stroke="#787880" stroke-miterlimit="10" stroke-linecap="round"></path>
-        </svg>
-    )
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" >
+        <path d="M11 1C9.02219 1 7.08879 1.58649 5.4443 2.6853C3.79981 3.78412 2.51809 5.3459 1.76121 7.17316C1.00433 9.00042 0.8063 11.0111 1.19215 12.9509C1.578 14.8907 2.53041 16.6725 3.92894 18.0711C5.32746 19.4696 7.10929 20.422 9.0491 20.8078C10.9889 21.1937 12.9996 20.9957 14.8268 20.2388C16.6541 19.4819 18.2159 18.2002 19.3147 16.5557C20.4135 14.9112 21 12.9778 21 11C20.9998 8.34788 19.9462 5.80444 18.0709 3.92912C16.1956 2.05379 13.6521 1.00017 11 1V1Z" stroke="#787880" stroke-width="1.5" stroke-miterlimit="10"></path>
+        <path d="M19 19L23 23" stroke-width="1.5" stroke="#787880" stroke-miterlimit="10" stroke-linecap="round"></path>
+    </svg>
+)
 export const StocksIcon = (props: any) => (
-        <NavIcon className ='icn' {...props}>
-            <svg viewBox="0 0 16 21" fill="none" >
+    <NavIcon className='icn' {...props}>
+        <svg viewBox="0 0 16 21" fill="none" >
             <rect x="1" y="1.6543" width="6.8891" height="6.8891" rx="1" fill="none" stroke-width="1.7" />
             <rect x="10.9688" y="2.83691" width="4.531" height="1" fill="none" />
-                <rect x="10.9688" y="6.81641" width="4.531" height="1"  fill="none"/>
-                <rect x="1" y="13.1113" width="6.8891" height="6.8891" rx="1"  fill="none" stroke-width="1.7" />
-                <rect x="10.9688" y="14.2935" width="4.531" height="1" fill="none"/>
-                <rect x="10.9688" y="18.2734" width="4.531" height="1" fill="none" />
-            </svg>
-        </NavIcon>
-    )
+            <rect x="10.9688" y="6.81641" width="4.531" height="1" fill="none" />
+            <rect x="1" y="13.1113" width="6.8891" height="6.8891" rx="1" fill="none" stroke-width="1.7" />
+            <rect x="10.9688" y="14.2935" width="4.531" height="1" fill="none" />
+            <rect x="10.9688" y="18.2734" width="4.531" height="1" fill="none" />
+        </svg>
+    </NavIcon>
+)
 
 export const ExpenseIcon = (props: any) => (
     <NavIcon width="14" height="14" className='icn' {...props}>
@@ -336,27 +318,27 @@ export const ExpenseIcon = (props: any) => (
             <mask id="path-4-inside-1_5811_3766" fill="white">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18 18L4 18L2 18L2 16L2 2L2 -7.86805e-07L0 -8.74228e-07L-8.74228e-08 2L-7.86807e-07 18C-8.35089e-07 19.1046 0.895431 20 2 20L18 20L20 20L20 18L18 18Z" />
             </mask>
-            <path d="M4 18L4 20L4 18ZM18 18L18 20L18 18ZM2 18L-7.86807e-07 18L-8.74231e-07 20L2 20L2 18ZM2 16L4 16L2 16ZM2 -7.86805e-07L4 -6.99382e-07L4 -2L2 -2L2 -7.86805e-07ZM0 -8.74228e-07L8.74225e-08 -2L-2 -2L-2 -9.6165e-07L0 -8.74228e-07ZM-8.74228e-08 2L2 2L-8.74228e-08 2ZM-7.86807e-07 18L-2 18L-7.86807e-07 18ZM2 20L2 18L2 20ZM18 20L18 22L18 20ZM20 20L20 22L22 22L22 20L20 20ZM20 18L22 18L22 16L20 16L20 18ZM4 20L18 20L18 16L4 16L4 20ZM2 20L4 20L4 16L2 16L2 20ZM-6.99382e-07 16L-7.86807e-07 18L4 18L4 16L-6.99382e-07 16ZM-8.74228e-08 2L-6.99382e-07 16L4 16L4 2L-8.74228e-08 2ZM0 -8.74228e-07L-8.74228e-08 2L4 2L4 -6.99382e-07L0 -8.74228e-07ZM2 -2L8.74225e-08 -2L-8.74225e-08 2L2 2L2 -2ZM-2 -9.6165e-07L-2 2L2 2L2 -7.86805e-07L-2 -9.6165e-07ZM-2 2L-2 18L2 18L2 2L-2 2ZM-2 18C-2 20.2091 -0.209136 22 2 22L2 18L2 18L-2 18ZM2 22L18 22L18 18L2 18L2 22ZM18 22L20 22L20 18L18 18L18 22ZM22 20L22 18L18 18L18 20L22 20ZM18 20L20 20L20 16L18 16L18 20Z"  mask="url(#path-4-inside-1_5811_3766)" />
+            <path d="M4 18L4 20L4 18ZM18 18L18 20L18 18ZM2 18L-7.86807e-07 18L-8.74231e-07 20L2 20L2 18ZM2 16L4 16L2 16ZM2 -7.86805e-07L4 -6.99382e-07L4 -2L2 -2L2 -7.86805e-07ZM0 -8.74228e-07L8.74225e-08 -2L-2 -2L-2 -9.6165e-07L0 -8.74228e-07ZM-8.74228e-08 2L2 2L-8.74228e-08 2ZM-7.86807e-07 18L-2 18L-7.86807e-07 18ZM2 20L2 18L2 20ZM18 20L18 22L18 20ZM20 20L20 22L22 22L22 20L20 20ZM20 18L22 18L22 16L20 16L20 18ZM4 20L18 20L18 16L4 16L4 20ZM2 20L4 20L4 16L2 16L2 20ZM-6.99382e-07 16L-7.86807e-07 18L4 18L4 16L-6.99382e-07 16ZM-8.74228e-08 2L-6.99382e-07 16L4 16L4 2L-8.74228e-08 2ZM0 -8.74228e-07L-8.74228e-08 2L4 2L4 -6.99382e-07L0 -8.74228e-07ZM2 -2L8.74225e-08 -2L-8.74225e-08 2L2 2L2 -2ZM-2 -9.6165e-07L-2 2L2 2L2 -7.86805e-07L-2 -9.6165e-07ZM-2 2L-2 18L2 18L2 2L-2 2ZM-2 18C-2 20.2091 -0.209136 22 2 22L2 18L2 18L-2 18ZM2 22L18 22L18 18L2 18L2 22ZM18 22L20 22L20 18L18 18L18 22ZM22 20L22 18L18 18L18 20L22 20ZM18 20L20 20L20 16L18 16L18 20Z" mask="url(#path-4-inside-1_5811_3766)" />
         </svg>
     </NavIcon>
 )
 
 export const InvoiceIcon = (props: any) => (
-        <NavIcon className ='icn' {...props} >
-            <svg width="22" height="22" viewBox="0 0 22 20" fill="none" >
-                <path d="M1 15.394L2.83008 11.1427" stroke-width="2" />
-                <mask id="path-2-inside-1_3745_54733" fill="white">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.73926 10.8773C3.73936 14.8016 6.93872 17.9994 10.9057 17.9994C14.8727 17.9994 18.0721 14.8016 18.0722 10.8773L20.0722 10.8773C20.0721 15.9153 15.9681 19.9994 10.9057 19.9994C5.84328 19.9994 1.73936 15.9153 1.73926 10.8773L3.73926 10.8773ZM10.8468 1.75507L10.9646 1.75507C10.945 1.75494 10.9254 1.75488 10.9057 1.75488C10.886 1.75488 10.8664 1.75494 10.8468 1.75507Z" />
-                </mask>
-                <path d="M3.73926 10.8773L5.73926 10.8773L5.73921 8.87732L3.73926 8.87732L3.73926 10.8773ZM18.0722 10.8773L18.0722 8.87732L16.0722 8.87732L16.0722 10.8773L18.0722 10.8773ZM20.0722 10.8773L22.0722 10.8774L22.0722 8.87732L20.0722 8.87732L20.0722 10.8773ZM1.73926 10.8773L1.73926 8.87732L-0.260782 8.87732L-0.260742 10.8774L1.73926 10.8773ZM10.8468 1.75507L10.8342 -0.244893L10.8468 3.75507L10.8468 1.75507ZM10.9646 1.75507L10.9646 3.75507L10.9772 -0.244893L10.9646 1.75507ZM1.73926 10.8774C1.73939 15.9146 5.84252 19.9994 10.9057 19.9994L10.9057 15.9994C8.03493 15.9994 5.73933 13.6887 5.73926 10.8773L1.73926 10.8774ZM10.9057 19.9994C15.9689 19.9994 20.072 15.9146 20.0722 10.8774L16.0722 10.8773C16.0721 13.6887 13.7765 15.9994 10.9057 15.9994L10.9057 19.9994ZM20.0722 8.87732L18.0722 8.87732L18.0722 12.8773L20.0722 12.8773L20.0722 8.87732ZM10.9057 21.9994C17.0636 21.9994 22.072 17.029 22.0722 10.8774L18.0722 10.8773C18.0721 14.8016 14.8727 17.9994 10.9057 17.9994L10.9057 21.9994ZM-0.260742 10.8774C-0.260619 17.029 4.74785 21.9994 10.9057 21.9994L10.9057 17.9994C6.93871 17.9994 3.73934 14.8016 3.73926 10.8773L-0.260742 10.8774ZM3.73926 8.87732L1.73926 8.87732L1.73926 12.8773L3.73926 12.8773L3.73926 8.87732ZM10.8468 3.75507L10.9646 3.75507L10.9646 -0.244933L10.8468 -0.244933L10.8468 3.75507ZM10.9772 -0.244893C10.9534 -0.245042 10.9295 -0.245117 10.9057 -0.245117L10.9057 3.75488C10.9212 3.75488 10.9367 3.75493 10.9521 3.75503L10.9772 -0.244893ZM10.9057 -0.245117C10.8819 -0.245117 10.858 -0.245042 10.8342 -0.244893L10.8593 3.75503C10.8748 3.75493 10.8902 3.75488 10.9057 3.75488L10.9057 -0.245117Z" mask="url(#path-2-inside-1_3745_54733)" />
-                <path d="M19.1484 8.479L21.0006 4.39002" stroke-width="2" />
-                <mask id="path-5-inside-2_3745_54733" fill="white">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.0742 8.78072C18.0742 5.13476 14.9251 1.99996 10.8135 1.99996C6.70193 1.99996 3.55283 5.13476 3.55282 8.78072L1.55282 8.78072C1.55283 3.93124 5.69898 -3.86101e-05 10.8135 -3.85986e-05C15.9281 -3.8587e-05 20.0742 3.93125 20.0742 8.78074C20.0742 8.78659 20.0742 8.79244 20.0742 8.79829L20.0742 8.78072L18.0742 8.78072ZM10.8331 17.5615L10.794 17.5615C10.8005 17.5615 10.807 17.5615 10.8135 17.5615C10.82 17.5615 10.8265 17.5615 10.8331 17.5615Z" />
-                </mask>
-                <path d="M18.0742 8.78072L16.0742 8.78073L16.0742 10.7807L18.0742 10.7807L18.0742 8.78072ZM3.55282 8.78072L3.55282 10.7807L5.55281 10.7807L5.55282 8.78073L3.55282 8.78072ZM1.55282 8.78072L-0.447184 8.78072L-0.447188 10.7807L1.55282 10.7807L1.55282 8.78072ZM20.0742 8.79829L18.0742 8.79829L22.0742 8.80241L20.0742 8.79829ZM20.0742 8.78072L22.0742 8.78072L22.0742 6.78072L20.0742 6.78072L20.0742 8.78072ZM10.8331 17.5615L10.837 19.5615L10.8331 15.5615L10.8331 17.5615ZM10.794 17.5615L10.794 15.5615L10.7901 19.5615L10.794 17.5615ZM20.0742 8.78072C20.0742 3.93963 15.9369 -3.8587e-05 10.8135 -3.85986e-05L10.8135 3.99996C13.9133 3.99996 16.0742 6.32989 16.0742 8.78073L20.0742 8.78072ZM10.8135 -3.85986e-05C5.69015 -3.86102e-05 1.55283 3.93963 1.55282 8.78072L5.55282 8.78073C5.55282 6.32989 7.71372 3.99996 10.8135 3.99996L10.8135 -3.85986e-05ZM1.55282 10.7807L3.55282 10.7807L3.55282 6.78072L1.55282 6.78072L1.55282 10.7807ZM10.8135 -2.00004C4.69603 -2.00004 -0.447169 2.72772 -0.447184 8.78072L3.55282 8.78073C3.55282 5.13476 6.70193 1.99996 10.8135 1.99996L10.8135 -2.00004ZM22.0742 8.78074C22.0742 2.72773 16.931 -2.00004 10.8135 -2.00004L10.8135 1.99996C14.9251 1.99996 18.0742 5.13477 18.0742 8.78074L22.0742 8.78074ZM22.0742 8.80241C22.0742 8.79519 22.0742 8.78797 22.0742 8.78074L18.0742 8.78074C18.0742 8.78522 18.0742 8.78969 18.0742 8.79416L22.0742 8.80241ZM18.0742 8.78072L18.0742 8.79829L22.0742 8.79829L22.0742 8.78072L18.0742 8.78072ZM18.0742 10.7807L20.0742 10.7807L20.0742 6.78072L18.0742 6.78072L18.0742 10.7807ZM10.8331 15.5615L10.794 15.5615L10.794 19.5615L10.8331 19.5615L10.8331 15.5615ZM10.7901 19.5615C10.7979 19.5615 10.8057 19.5615 10.8135 19.5615L10.8135 15.5615C10.8083 15.5615 10.8031 15.5615 10.7979 15.5615L10.7901 19.5615ZM10.8135 19.5615C10.8213 19.5615 10.8292 19.5615 10.837 19.5615L10.8291 15.5615C10.8239 15.5615 10.8187 15.5615 10.8135 15.5615L10.8135 19.5615Z"  mask="url(#path-5-inside-2_3745_54733)" />
-            </svg>
-        </NavIcon>
-    )
+    <NavIcon className='icn' {...props} >
+        <svg width="22" height="22" viewBox="0 0 22 20" fill="none" >
+            <path d="M1 15.394L2.83008 11.1427" stroke-width="2" />
+            <mask id="path-2-inside-1_3745_54733" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.73926 10.8773C3.73936 14.8016 6.93872 17.9994 10.9057 17.9994C14.8727 17.9994 18.0721 14.8016 18.0722 10.8773L20.0722 10.8773C20.0721 15.9153 15.9681 19.9994 10.9057 19.9994C5.84328 19.9994 1.73936 15.9153 1.73926 10.8773L3.73926 10.8773ZM10.8468 1.75507L10.9646 1.75507C10.945 1.75494 10.9254 1.75488 10.9057 1.75488C10.886 1.75488 10.8664 1.75494 10.8468 1.75507Z" />
+            </mask>
+            <path d="M3.73926 10.8773L5.73926 10.8773L5.73921 8.87732L3.73926 8.87732L3.73926 10.8773ZM18.0722 10.8773L18.0722 8.87732L16.0722 8.87732L16.0722 10.8773L18.0722 10.8773ZM20.0722 10.8773L22.0722 10.8774L22.0722 8.87732L20.0722 8.87732L20.0722 10.8773ZM1.73926 10.8773L1.73926 8.87732L-0.260782 8.87732L-0.260742 10.8774L1.73926 10.8773ZM10.8468 1.75507L10.8342 -0.244893L10.8468 3.75507L10.8468 1.75507ZM10.9646 1.75507L10.9646 3.75507L10.9772 -0.244893L10.9646 1.75507ZM1.73926 10.8774C1.73939 15.9146 5.84252 19.9994 10.9057 19.9994L10.9057 15.9994C8.03493 15.9994 5.73933 13.6887 5.73926 10.8773L1.73926 10.8774ZM10.9057 19.9994C15.9689 19.9994 20.072 15.9146 20.0722 10.8774L16.0722 10.8773C16.0721 13.6887 13.7765 15.9994 10.9057 15.9994L10.9057 19.9994ZM20.0722 8.87732L18.0722 8.87732L18.0722 12.8773L20.0722 12.8773L20.0722 8.87732ZM10.9057 21.9994C17.0636 21.9994 22.072 17.029 22.0722 10.8774L18.0722 10.8773C18.0721 14.8016 14.8727 17.9994 10.9057 17.9994L10.9057 21.9994ZM-0.260742 10.8774C-0.260619 17.029 4.74785 21.9994 10.9057 21.9994L10.9057 17.9994C6.93871 17.9994 3.73934 14.8016 3.73926 10.8773L-0.260742 10.8774ZM3.73926 8.87732L1.73926 8.87732L1.73926 12.8773L3.73926 12.8773L3.73926 8.87732ZM10.8468 3.75507L10.9646 3.75507L10.9646 -0.244933L10.8468 -0.244933L10.8468 3.75507ZM10.9772 -0.244893C10.9534 -0.245042 10.9295 -0.245117 10.9057 -0.245117L10.9057 3.75488C10.9212 3.75488 10.9367 3.75493 10.9521 3.75503L10.9772 -0.244893ZM10.9057 -0.245117C10.8819 -0.245117 10.858 -0.245042 10.8342 -0.244893L10.8593 3.75503C10.8748 3.75493 10.8902 3.75488 10.9057 3.75488L10.9057 -0.245117Z" mask="url(#path-2-inside-1_3745_54733)" />
+            <path d="M19.1484 8.479L21.0006 4.39002" stroke-width="2" />
+            <mask id="path-5-inside-2_3745_54733" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.0742 8.78072C18.0742 5.13476 14.9251 1.99996 10.8135 1.99996C6.70193 1.99996 3.55283 5.13476 3.55282 8.78072L1.55282 8.78072C1.55283 3.93124 5.69898 -3.86101e-05 10.8135 -3.85986e-05C15.9281 -3.8587e-05 20.0742 3.93125 20.0742 8.78074C20.0742 8.78659 20.0742 8.79244 20.0742 8.79829L20.0742 8.78072L18.0742 8.78072ZM10.8331 17.5615L10.794 17.5615C10.8005 17.5615 10.807 17.5615 10.8135 17.5615C10.82 17.5615 10.8265 17.5615 10.8331 17.5615Z" />
+            </mask>
+            <path d="M18.0742 8.78072L16.0742 8.78073L16.0742 10.7807L18.0742 10.7807L18.0742 8.78072ZM3.55282 8.78072L3.55282 10.7807L5.55281 10.7807L5.55282 8.78073L3.55282 8.78072ZM1.55282 8.78072L-0.447184 8.78072L-0.447188 10.7807L1.55282 10.7807L1.55282 8.78072ZM20.0742 8.79829L18.0742 8.79829L22.0742 8.80241L20.0742 8.79829ZM20.0742 8.78072L22.0742 8.78072L22.0742 6.78072L20.0742 6.78072L20.0742 8.78072ZM10.8331 17.5615L10.837 19.5615L10.8331 15.5615L10.8331 17.5615ZM10.794 17.5615L10.794 15.5615L10.7901 19.5615L10.794 17.5615ZM20.0742 8.78072C20.0742 3.93963 15.9369 -3.8587e-05 10.8135 -3.85986e-05L10.8135 3.99996C13.9133 3.99996 16.0742 6.32989 16.0742 8.78073L20.0742 8.78072ZM10.8135 -3.85986e-05C5.69015 -3.86102e-05 1.55283 3.93963 1.55282 8.78072L5.55282 8.78073C5.55282 6.32989 7.71372 3.99996 10.8135 3.99996L10.8135 -3.85986e-05ZM1.55282 10.7807L3.55282 10.7807L3.55282 6.78072L1.55282 6.78072L1.55282 10.7807ZM10.8135 -2.00004C4.69603 -2.00004 -0.447169 2.72772 -0.447184 8.78072L3.55282 8.78073C3.55282 5.13476 6.70193 1.99996 10.8135 1.99996L10.8135 -2.00004ZM22.0742 8.78074C22.0742 2.72773 16.931 -2.00004 10.8135 -2.00004L10.8135 1.99996C14.9251 1.99996 18.0742 5.13477 18.0742 8.78074L22.0742 8.78074ZM22.0742 8.80241C22.0742 8.79519 22.0742 8.78797 22.0742 8.78074L18.0742 8.78074C18.0742 8.78522 18.0742 8.78969 18.0742 8.79416L22.0742 8.80241ZM18.0742 8.78072L18.0742 8.79829L22.0742 8.79829L22.0742 8.78072L18.0742 8.78072ZM18.0742 10.7807L20.0742 10.7807L20.0742 6.78072L18.0742 6.78072L18.0742 10.7807ZM10.8331 15.5615L10.794 15.5615L10.794 19.5615L10.8331 19.5615L10.8331 15.5615ZM10.7901 19.5615C10.7979 19.5615 10.8057 19.5615 10.8135 19.5615L10.8135 15.5615C10.8083 15.5615 10.8031 15.5615 10.7979 15.5615L10.7901 19.5615ZM10.8135 19.5615C10.8213 19.5615 10.8292 19.5615 10.837 19.5615L10.8291 15.5615C10.8239 15.5615 10.8187 15.5615 10.8135 15.5615L10.8135 19.5615Z" mask="url(#path-5-inside-2_3745_54733)" />
+        </svg>
+    </NavIcon>
+)
 
 export const ExploreIcon = (props: any): ReactElement => {
     return (
@@ -371,20 +353,20 @@ export const ExploreIcon = (props: any): ReactElement => {
     )
 }
 export const DashboardIcon = (props: any) => (
-    <NavIcon className ='icn' {...props}>
+    <NavIcon className='icn' {...props}>
         <svg width="18" height="18" viewBox="0 0 20 18" fill="none" >
-            <path d="M8 11.5V17H3V11.5C3 10.1193 4.11929 9 5.5 9C6.88071 9 8 10.1193 8 11.5Z" fill="none"  stroke-width="2" />
+            <path d="M8 11.5V17H3V11.5C3 10.1193 4.11929 9 5.5 9C6.88071 9 8 10.1193 8 11.5Z" fill="none" stroke-width="2" />
             <path d="M17 3.5V17H12V3.5C12 2.11929 13.1193 1 14.5 1C15.8807 1 17 2.11929 17 3.5Z" fill="none" stroke-width="2" />
             <line y1="17" x2="20" y2="17" stroke-width="2" />
         </svg>
     </NavIcon>
 )
 export const NotifIcon = (props: any) => (
-    <NavIcon className ='icn' {...props} >
+    <NavIcon className='icn' {...props} >
         <svg width="16" height="20" viewBox="0 0 16 20" fill="none" >
             <title>Notifications</title>
-            <path stroke="grey" d="M15 8.17676V16.1179H1V8.17677C1 4.31077 4.13401 1.17676 8 1.17676C11.866 1.17676 15 4.31076 15 8.17676Z"  stroke-width="2" />
-            <path stroke="grey" d="M4.70605 19.0005H11.2943"  stroke-width="2" />
+            <path stroke="grey" d="M15 8.17676V16.1179H1V8.17677C1 4.31077 4.13401 1.17676 8 1.17676C11.866 1.17676 15 4.31076 15 8.17676Z" stroke-width="2" />
+            <path stroke="grey" d="M4.70605 19.0005H11.2943" stroke-width="2" />
         </svg>
     </NavIcon>
 )
@@ -410,11 +392,11 @@ export const LogoIcon = (props: any) => (
     </svg>
 )
 export const SummaryIcon = (props: any) => (
-    <NavIcon className ='icn' {...props}>
+    <NavIcon className='icn' {...props}>
         <svg width="19" height="20" viewBox="0 0 18 20" fill="none" >
-            <rect x="1" y="1" width="16" height="18" rx="2"  stroke-width="2" />
-            <line x1="4" y1="7" x2="12.1" y2="7"  stroke-width="2" />
-            <line x1="4" y1="12" x2="13" y2="12"  stroke-width="2" />
+            <rect x="1" y="1" width="16" height="18" rx="2" stroke-width="2" />
+            <line x1="4" y1="7" x2="12.1" y2="7" stroke-width="2" />
+            <line x1="4" y1="12" x2="13" y2="12" stroke-width="2" />
         </svg>
     </NavIcon>
 )
@@ -443,24 +425,24 @@ export const GearIcon = (props: any) => (
 export const CheckIcon = (props: any) => (
     <svg width="14" height="12" viewBox="0 0 18 16" fill="none">
         <line x1="0.587785" y1="8.13776" x2="8.94193" y2="14.2074" stroke-width="2" />
-        <path d="M8.34493 13.3218L16.8756 1.07228"  stroke-width="2" />
+        <path d="M8.34493 13.3218L16.8756 1.07228" stroke-width="2" />
     </svg>
 )
 export const Marker = (props: any) => (
-        <svg width="12" height="9" viewBox="0 0 18 15" fill="none">
-            <line x1="0.587785" y1="8.06574" x2="8.94193" y2="14.1354" stroke-width="2" />
-            <path d="M8.34493 13.2495L16.8756 1.00001"  stroke-width="2" />
-        </svg>
+    <svg width="12" height="9" viewBox="0 0 18 15" fill="none">
+        <line x1="0.587785" y1="8.06574" x2="8.94193" y2="14.1354" stroke-width="2" />
+        <path d="M8.34493 13.2495L16.8756 1.00001" stroke-width="2" />
+    </svg>
 )
 export const SmallCheckMark = () => (
     <svg width="12" height="8" viewBox="0 0 12 12" fill="none" >
         <line x1="0.437935" y1="7.03981" x2="5.08262" y2="10.4144" stroke="#00A3FE" stroke-width="1.49012" />
         <line x1="4.39723" y1="10.0054" x2="11.2581" y2="0.562228" stroke="#00A3FE" stroke-width="1.49012" />
     </svg>
-    )
+)
 export const PeekIcon = (props: any) => (
-        <Peeker onClick ={() => props.togglePassword() }> {
-            props.input === 'text' ? 
+    <Peeker onClick={() => props.togglePassword()}> {
+        props.input === 'text' ?
             <svg width="16" height="16" viewBox="0 0 22 22" fill="none" >
                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" d="M12.2244 5.94073C11.8019 5.83028 11.3585 5.77148 10.9014 5.77148C8.02051 5.77148 5.68511 8.10688 5.68511 10.9877C5.68511 13.8686 8.02051 16.204 10.9014 16.204C13.6522 16.204 15.9057 14.0747 16.1035 11.3744C15.745 11.4994 15.3597 11.5673 14.9585 11.5673C13.0379 11.5673 11.481 10.0104 11.481 8.08981C11.481 7.2786 11.7588 6.53227 12.2244 5.94073Z" fill="#808080" />
                 <mask id="path-2-inside-1_3823_2519" fill="white">
@@ -477,117 +459,121 @@ export const PeekIcon = (props: any) => (
                 <rect x="2.47349" y="2.07082" width="1.10042" height="21.6591" transform="rotate(-41.0042 2.47349 2.07082)" stroke="#808080" stroke-width="1.10042" />
                 <path opacity="0.8" fill-rule="evenodd" clip-rule="evenodd" d="M12.2243 5.94072C11.8018 5.83028 11.3585 5.77148 10.9014 5.77148C9.30753 5.77148 7.88065 6.48632 6.92384 7.61287L13.6902 15.3967C15.0469 14.5367 15.9795 13.0678 16.1035 11.3743C15.745 11.4993 15.3597 11.5672 14.9585 11.5672C13.0379 11.5672 11.481 10.0103 11.481 8.08971C11.481 7.27854 11.7587 6.53224 12.2243 5.94072ZM5.6851 10.9877C5.6851 10.3001 5.81815 9.64362 6.05989 9.0425L12.1538 16.0527C11.7526 16.1516 11.3331 16.204 10.9014 16.204C8.0205 16.204 5.6851 13.8686 5.6851 10.9877Z" fill="#808080" />
             </svg>
-        }
-        </Peeker>
-    )
-    
+    }
+    </Peeker>
+)
+
 export const RightAngle = (props: any) => (
-        <AngleBox {...props}>
-            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" >
-                <rect x="0.311523" y="0.741211" width="1.04845" height="8.78625" transform="rotate(-45 0.311523 0.741211)" fill="black"/>
-                <rect x="0.96582" y="12.5146" width="1.05363" height="7.90993" transform="rotate(-135 0.96582 12.5146)" fill="black"/>
-            </svg>
-        </AngleBox>
-    )
+    <AngleBox {...props}>
+        <svg width="8" height="13" viewBox="0 0 8 13" fill="none" >
+            <rect x="0.311523" y="0.741211" width="1.04845" height="8.78625" transform="rotate(-45 0.311523 0.741211)" fill="black" />
+            <rect x="0.96582" y="12.5146" width="1.05363" height="7.90993" transform="rotate(-135 0.96582 12.5146)" fill="black" />
+        </svg>
+    </AngleBox>
+)
+export const RightAngleIcon = (props: any) => (
+    <svg viewBox="0 0 8 13" fill="none" >
+        <rect x="0.311523" y="0.741211" width="0.44845" height="8.78625" transform="rotate(-45 0.311523 0.741211)" fill="black" />
+        <rect x="0.96582" y="12.5146" width="0.45363" height="7.90993" transform="rotate(-135 0.96582 12.5146)" fill="black" />
+    </svg>
+)
 export const CartIcon = () => (
-        <NavIcon>
-           <svg width="20" height="20" viewBox="0 0 22 22" fill="none" >
-                <path d="M0.513184 0.962891H4.07613L6.74835 15.9341H21.0001" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6.26876 12.066H17.0684C17.1485 12.066 17.2262 12.0342 17.2882 11.976C17.3501 11.9177 17.3926 11.8366 17.4083 11.7464L18.6552 4.59033C18.6653 4.53263 18.6641 4.47308 18.6516 4.41598C18.6392 4.35889 18.6159 4.30567 18.5834 4.26017C18.5509 4.21467 18.51 4.17803 18.4636 4.15288C18.4173 4.12773 18.3666 4.11471 18.3153 4.11475H4.8833" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle r="1.5" transform="matrix(1 0 0 -1 8.92487 18.9868)" stroke="white" stroke-width="1.37318"/>
-                <circle r="1.5" transform="matrix(1 0 0 -1 17.6715 18.9868)" stroke="white" stroke-width="1.37318"/>
-            </svg>
-        </NavIcon>
-    )
+    <NavIcon>
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none" >
+            <path d="M0.513184 0.962891H4.07613L6.74835 15.9341H21.0001" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6.26876 12.066H17.0684C17.1485 12.066 17.2262 12.0342 17.2882 11.976C17.3501 11.9177 17.3926 11.8366 17.4083 11.7464L18.6552 4.59033C18.6653 4.53263 18.6641 4.47308 18.6516 4.41598C18.6392 4.35889 18.6159 4.30567 18.5834 4.26017C18.5509 4.21467 18.51 4.17803 18.4636 4.15288C18.4173 4.12773 18.3666 4.11471 18.3153 4.11475H4.8833" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <circle r="1.5" transform="matrix(1 0 0 -1 8.92487 18.9868)" stroke="white" stroke-width="1.37318" />
+            <circle r="1.5" transform="matrix(1 0 0 -1 17.6715 18.9868)" stroke="white" stroke-width="1.37318" />
+        </svg>
+    </NavIcon>
+)
 export const CartIcon2 = () => (
     <svg viewBox="0 0 512 512">
         <circle cx="176" cy="416" r="16" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
         <circle cx="400" cy="416" r="16" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
         <path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256" />
-        <path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke= "grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
-    </svg>
-    )
-export const CloseIcon = (props: any) => (
-        <Close onClick={() => props.clickCallback()} {...props}>
-            <svg width={props.iconWidth || "24"} height={props.iconHeight || "23"} viewBox="0 0 24 23" fill="none" >
-                <rect width="1.35905" height="8.15428" transform="matrix(0.707074 -0.70714 0.707072 0.707141 8.9668 9.60986)" fill="white" />
-                <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white"/>
-            </svg>
-        </Close>
-    )
-
-export const InfoIcon = (props: any) => (
-        <div className ='icon'>
-           <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
-                <path d="M10.1875 3C6.21836 3 3 6.21836 3 10.1875C3 14.1566 6.21836 17.375 10.1875 17.375C14.1566 17.375 17.375 14.1566 17.375 10.1875C17.375 6.21836 14.1566 3 10.1875 3Z" stroke="white" stroke-miterlimit="12"/>
-                <path d="M10 9H10.5859V12.53" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 13H12" stroke="white" stroke-miterlimit="10" stroke-linecap="round"/>
-                <path d="M10.6471 5.99707C10.5185 5.99707 10.3928 6.03519 10.2859 6.10662C10.1791 6.17804 10.0957 6.27955 10.0465 6.39833C9.99735 6.5171 9.98448 6.64779 10.0096 6.77388C10.0346 6.89997 10.0965 7.01579 10.1875 7.10669C10.2784 7.19759 10.3942 7.2595 10.5203 7.28458C10.6463 7.30966 10.777 7.29679 10.8958 7.24759C11.0146 7.19839 11.1161 7.11508 11.1875 7.00819C11.2589 6.9013 11.2971 6.77563 11.2971 6.64707C11.2971 6.47468 11.2286 6.30935 11.1067 6.18745C10.9848 6.06555 10.8195 5.99707 10.6471 5.99707V5.99707Z" fill="white"/>
-           </svg>
-        </div>
-    )
-export const AlertIcon = (props: any) => (
-        <svg  className='ionicon' viewBox='0 0 512 512'>
-            <title>Mark as paid</title>
-            <path d='M256 80c-8.66 0-16.58 7.36-16 16l8 216a8 8 0 008 8h0a8 8 0 008-8l8-216c.58-8.64-7.34-16-16-16z' fill='none' stroke='red' stroke-linecap='round' stroke-linejoin='round' stroke-width='5'/>
-        <circle cx='256' cy='416' r='12' fill='red' stroke='red' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/></svg>
-    )
-export const Times = (props: any) => (
-    <svg width="5" height="5" viewBox="0 0 5 5" fill="none" >
-        <rect width="0.812992" height="4.87795" transform="matrix(0.707074 -0.70714 0.707072 0.707141 0.251953 0.575195)" fill="white"/>
-        <rect width="0.812992" height="4.87795" transform="matrix(0.707073 0.70714 -0.707073 0.70714 3.50293 0)" fill="white"/>
+        <path d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128" fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" />
     </svg>
 )
-export const DownArror = ({color, rotation}:any) => {
-   return ( 
-       <UpDownArror rotation = {rotation}>
-           <svg width="8" height="9" viewBox="0 0 8 9" fill="none">
-               <path d="M4.35355 0.646447C4.15829 0.451184 3.84171 0.451184 3.64645 0.646447L0.464466 3.82843C0.269204 4.02369 0.269204 4.34027 0.464466 4.53553C0.659728 4.7308 0.97631 4.7308 1.17157 4.53553L4 1.70711L6.82843 4.53553C7.02369 4.7308 7.34027 4.7308 7.53553 4.53553C7.7308 4.34027 7.7308 4.02369 7.53553 3.82843L4.35355 0.646447ZM4.5 9L4.5 1H3.5L3.5 9H4.5Z" fill={color} />
-           </svg>
-      </UpDownArror>
-   )
+export const CloseIcon = (props: any) => (
+    <Close onClick={() => props.clickCallback()} {...props}>
+        <svg width={props.iconWidth || "24"} height={props.iconHeight || "23"} viewBox="0 0 24 23" fill="none" >
+            <rect width="1.35905" height="8.15428" transform="matrix(0.707074 -0.70714 0.707072 0.707141 8.9668 9.60986)" fill="white" />
+            <rect width="1.35905" height="8.15428" transform="matrix(0.707073 0.70714 -0.707073 0.70714 14.4014 8.64844)" fill="white" />
+        </svg>
+    </Close>
+)
+
+export const InfoIcon = (props: any) => (
+    <div className='icon'>
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+            <path d="M10.1875 3C6.21836 3 3 6.21836 3 10.1875C3 14.1566 6.21836 17.375 10.1875 17.375C14.1566 17.375 17.375 14.1566 17.375 10.1875C17.375 6.21836 14.1566 3 10.1875 3Z" stroke="white" stroke-miterlimit="12" />
+            <path d="M10 9H10.5859V12.53" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M9 13H12" stroke="white" stroke-miterlimit="10" stroke-linecap="round" />
+            <path d="M10.6471 5.99707C10.5185 5.99707 10.3928 6.03519 10.2859 6.10662C10.1791 6.17804 10.0957 6.27955 10.0465 6.39833C9.99735 6.5171 9.98448 6.64779 10.0096 6.77388C10.0346 6.89997 10.0965 7.01579 10.1875 7.10669C10.2784 7.19759 10.3942 7.2595 10.5203 7.28458C10.6463 7.30966 10.777 7.29679 10.8958 7.24759C11.0146 7.19839 11.1161 7.11508 11.1875 7.00819C11.2589 6.9013 11.2971 6.77563 11.2971 6.64707C11.2971 6.47468 11.2286 6.30935 11.1067 6.18745C10.9848 6.06555 10.8195 5.99707 10.6471 5.99707V5.99707Z" fill="white" />
+        </svg>
+    </div>
+)
+export const AlertIcon = (props: any) => (
+    <svg className='ionicon' viewBox='0 0 512 512'>
+        <title>Mark as paid</title>
+        <path d='M256 80c-8.66 0-16.58 7.36-16 16l8 216a8 8 0 008 8h0a8 8 0 008-8l8-216c.58-8.64-7.34-16-16-16z' fill='none' stroke='red' stroke-linecap='round' stroke-linejoin='round' stroke-width='5' />
+        <circle cx='256' cy='416' r='12' fill='red' stroke='red' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' /></svg>
+)
+export const Times = (props: any) => (
+    <svg width="5" height="5" viewBox="0 0 5 5" fill="none" >
+        <rect width="0.812992" height="4.87795" transform="matrix(0.707074 -0.70714 0.707072 0.707141 0.251953 0.575195)" fill="white" />
+        <rect width="0.812992" height="4.87795" transform="matrix(0.707073 0.70714 -0.707073 0.70714 3.50293 0)" fill="white" />
+    </svg>
+)
+export const DownArror = ({ color, rotation }: any) => {
+    return (
+        <UpDownArror rotation={rotation}>
+            <svg width="8" height="9" viewBox="0 0 8 9" fill="none">
+                <path d="M4.35355 0.646447C4.15829 0.451184 3.84171 0.451184 3.64645 0.646447L0.464466 3.82843C0.269204 4.02369 0.269204 4.34027 0.464466 4.53553C0.659728 4.7308 0.97631 4.7308 1.17157 4.53553L4 1.70711L6.82843 4.53553C7.02369 4.7308 7.34027 4.7308 7.53553 4.53553C7.7308 4.34027 7.7308 4.02369 7.53553 3.82843L4.35355 0.646447ZM4.5 9L4.5 1H3.5L3.5 9H4.5Z" fill={color} />
+            </svg>
+        </UpDownArror>
+    )
 }
 export const NetworkIcon = (props: any) => (
     <svg width="46" height="50" viewBox="0 0 46 50" fill="none" >
         <mask id="path-1-inside-1" fill="#00A3FE">
-            <path d="M4.42175 9.44093C6.59442 6.46399 9.45066 4.05276 12.7499 2.41031C16.0491 0.767855 19.6948 -0.0577128 23.3797 0.00313496C27.0647 0.0639827 30.6811 1.00946 33.9243 2.75995C37.1675 4.51043 39.9426 7.01465 42.0158 10.0617L40.6527 10.9892C38.7281 8.16054 36.1519 5.83583 33.1412 4.21083C30.1305 2.58582 26.7733 1.70812 23.3525 1.65163C19.9317 1.59515 16.5474 2.36153 13.4847 3.88625C10.4219 5.41096 7.77043 7.64935 5.7535 10.4129L4.42175 9.44093Z"/>
+            <path d="M4.42175 9.44093C6.59442 6.46399 9.45066 4.05276 12.7499 2.41031C16.0491 0.767855 19.6948 -0.0577128 23.3797 0.00313496C27.0647 0.0639827 30.6811 1.00946 33.9243 2.75995C37.1675 4.51043 39.9426 7.01465 42.0158 10.0617L40.6527 10.9892C38.7281 8.16054 36.1519 5.83583 33.1412 4.21083C30.1305 2.58582 26.7733 1.70812 23.3525 1.65163C19.9317 1.59515 16.5474 2.36153 13.4847 3.88625C10.4219 5.41096 7.77043 7.64935 5.7535 10.4129L4.42175 9.44093Z" />
         </mask>
-        <path d="M4.42175 9.44093C6.59442 6.46399 9.45066 4.05276 12.7499 2.41031C16.0491 0.767855 19.6948 -0.0577128 23.3797 0.00313496C27.0647 0.0639827 30.6811 1.00946 33.9243 2.75995C37.1675 4.51043 39.9426 7.01465 42.0158 10.0617L40.6527 10.9892C38.7281 8.16054 36.1519 5.83583 33.1412 4.21083C30.1305 2.58582 26.7733 1.70812 23.3525 1.65163C19.9317 1.59515 16.5474 2.36153 13.4847 3.88625C10.4219 5.41096 7.77043 7.64935 5.7535 10.4129L4.42175 9.44093Z" stroke="##b6b5b5" stroke-width="2" mask="url(#path-1-inside-1)"/>
+        <path d="M4.42175 9.44093C6.59442 6.46399 9.45066 4.05276 12.7499 2.41031C16.0491 0.767855 19.6948 -0.0577128 23.3797 0.00313496C27.0647 0.0639827 30.6811 1.00946 33.9243 2.75995C37.1675 4.51043 39.9426 7.01465 42.0158 10.0617L40.6527 10.9892C38.7281 8.16054 36.1519 5.83583 33.1412 4.21083C30.1305 2.58582 26.7733 1.70812 23.3525 1.65163C19.9317 1.59515 16.5474 2.36153 13.4847 3.88625C10.4219 5.41096 7.77043 7.64935 5.7535 10.4129L4.42175 9.44093Z" stroke="##b6b5b5" stroke-width="2" mask="url(#path-1-inside-1)" />
         <mask id="path-2-inside-2" fill="white">
-            <path d="M36.0949 16.6711C32.5927 13.3942 27.9893 11.5495 23.1934 11.501C18.3975 11.4525 13.7578 13.2038 10.1901 16.4092L11.4254 17.7842C14.649 14.8879 18.8414 13.3055 23.1747 13.3493C27.5081 13.3931 31.6676 15.06 34.832 18.0208L36.0949 16.6711Z"/>
+            <path d="M36.0949 16.6711C32.5927 13.3942 27.9893 11.5495 23.1934 11.501C18.3975 11.4525 13.7578 13.2038 10.1901 16.4092L11.4254 17.7842C14.649 14.8879 18.8414 13.3055 23.1747 13.3493C27.5081 13.3931 31.6676 15.06 34.832 18.0208L36.0949 16.6711Z" />
         </mask>
-        <path d="M36.0949 16.6711C32.5927 13.3942 27.9893 11.5495 23.1934 11.501C18.3975 11.4525 13.7578 13.2038 10.1901 16.4092L11.4254 17.7842C14.649 14.8879 18.8414 13.3055 23.1747 13.3493C27.5081 13.3931 31.6676 15.06 34.832 18.0208L36.0949 16.6711Z" stroke="#00A3FE" stroke-width="2" mask="url(#path-2-inside-2)"/>
-        <circle r="5.05827" transform="matrix(0.999961 -0.00883366 -0.00883366 -0.999961 23.0587 26.8923)" stroke="#b6b5b5" stroke-width="1.4"/>
-        <rect width="1.55823" height="9.34941" transform="matrix(0.707074 -0.70714 0.707072 0.707141 34.8799 4.93604)" fill="#F68C8C"/>
-        <rect width="1.55823" height="9.34941" transform="matrix(0.707073 0.70714 -0.707073 0.70714 41.1104 3.8335)" fill="#F68C8C"/>
+        <path d="M36.0949 16.6711C32.5927 13.3942 27.9893 11.5495 23.1934 11.501C18.3975 11.4525 13.7578 13.2038 10.1901 16.4092L11.4254 17.7842C14.649 14.8879 18.8414 13.3055 23.1747 13.3493C27.5081 13.3931 31.6676 15.06 34.832 18.0208L36.0949 16.6711Z" stroke="#00A3FE" stroke-width="2" mask="url(#path-2-inside-2)" />
+        <circle r="5.05827" transform="matrix(0.999961 -0.00883366 -0.00883366 -0.999961 23.0587 26.8923)" stroke="#b6b5b5" stroke-width="1.4" />
+        <rect width="1.55823" height="9.34941" transform="matrix(0.707074 -0.70714 0.707072 0.707141 34.8799 4.93604)" fill="#F68C8C" />
+        <rect width="1.55823" height="9.34941" transform="matrix(0.707073 0.70714 -0.707073 0.70714 41.1104 3.8335)" fill="#F68C8C" />
     </svg>
 )
 
 export const SortIcon = () => (
     <svg width="8" height="4" viewBox="0 0 6 3" fill="none">
-        <path d="M3 3L0.401924 0H5.59808L3 3Z" fill="#00A3FE"/>
+        <path d="M3 3L0.401924 0H5.59808L3 3Z" fill="#00A3FE" />
     </svg>
 )
 export const PointedArror = (props: any) => (
-    <div onClick = {()=>props.toggleCallback()} className ='arrorBox'>
-        <PointArror rotation = {props.rotation} width="13" height="12" viewBox="0 0 10 8" fill="none" >
-            <path d="M0.646062 3.64606C0.450587 3.84154 0.450587 4.15846 0.646062 4.35394L3.83151 7.53938C4.02698 7.73486 4.34391 7.73486 4.53938 7.53938C4.73486 7.34391 4.73486 7.02698 4.53938 6.83151L1.70788 4L4.53938 1.16849C4.73486 0.973019 4.73486 0.656092 4.53938 0.460617C4.34391 0.265143 4.02698 0.265143 3.83151 0.460617L0.646062 3.64606ZM10 3.49946L1 3.49946V4.50054L10 4.50054V3.49946Z" fill="#00A3FE"/>
-        </PointArror>
-    </div>
+    <svg viewBox="0 0 10 8" fill="none" >
+        <path d="M0.646062 3.64606C0.450587 3.84154 0.450587 4.15846 0.646062 4.35394L3.83151 7.53938C4.02698 7.73486 4.34391 7.73486 4.53938 7.53938C4.73486 7.34391 4.73486 7.02698 4.53938 6.83151L1.70788 4L4.53938 1.16849C4.73486 0.973019 4.73486 0.656092 4.53938 0.460617C4.34391 0.265143 4.02698 0.265143 3.83151 0.460617L0.646062 3.64606ZM10 3.49946L1 3.49946V4.50054L10 4.50054V3.49946Z" fill="#00A3FE" />
+    </svg>
 )
 export const OpenedPeeker = (props: any) => (
     <svg width="17" height="15" viewBox="0 0 17 15" fill="none">
         <mask id="path-1-inside-1" fill="white">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.49991C0.939873 11.2349 4.32075 14 8.34744 14C12.3741 14 15.755 11.2349 16.6949 7.49991C15.755 3.76491 12.3741 0.999821 8.34744 0.999821C4.32075 0.999821 0.939873 3.76491 0 7.49991Z"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.49991C0.939873 11.2349 4.32075 14 8.34744 14C12.3741 14 15.755 11.2349 16.6949 7.49991C15.755 3.76491 12.3741 0.999821 8.34744 0.999821C4.32075 0.999821 0.939873 3.76491 0 7.49991Z" />
         </mask>
-        <path d="M0 7.49991L-0.71636 7.68017L-0.761721 7.49991L-0.71636 7.31965L0 7.49991ZM16.6949 7.49991L17.4112 7.31964L17.4566 7.49991L17.4112 7.68017L16.6949 7.49991ZM0.71636 7.31965C1.5756 10.7342 4.66732 13.2613 8.34744 13.2613V14.7387C3.97417 14.7387 0.304148 11.7356 -0.71636 7.68017L0.71636 7.31965ZM8.34744 13.2613C12.0276 13.2613 15.1193 10.7342 15.9785 7.31964L17.4112 7.68017C16.3907 11.7356 12.7207 14.7387 8.34744 14.7387V13.2613ZM15.9785 7.68017C15.1193 4.26561 12.0276 1.73851 8.34744 1.73851V0.261128C12.7207 0.261128 16.3907 3.2642 17.4112 7.31964L15.9785 7.68017ZM8.34744 1.73851C4.66732 1.73851 1.5756 4.26561 0.71636 7.68017L-0.71636 7.31965C0.304148 3.26421 3.97417 0.261128 8.34744 0.261128V1.73851Z" fill="black" mask="url(#path-1-inside-1)"/>
-        <circle cx="8.12526" cy="7.35182" r="2.21608" fill="black"/>
-        <line x1="3.40687" y1="0.709381" x2="13.4069" y2="14.7094" stroke="black"/>
+        <path d="M0 7.49991L-0.71636 7.68017L-0.761721 7.49991L-0.71636 7.31965L0 7.49991ZM16.6949 7.49991L17.4112 7.31964L17.4566 7.49991L17.4112 7.68017L16.6949 7.49991ZM0.71636 7.31965C1.5756 10.7342 4.66732 13.2613 8.34744 13.2613V14.7387C3.97417 14.7387 0.304148 11.7356 -0.71636 7.68017L0.71636 7.31965ZM8.34744 13.2613C12.0276 13.2613 15.1193 10.7342 15.9785 7.31964L17.4112 7.68017C16.3907 11.7356 12.7207 14.7387 8.34744 14.7387V13.2613ZM15.9785 7.68017C15.1193 4.26561 12.0276 1.73851 8.34744 1.73851V0.261128C12.7207 0.261128 16.3907 3.2642 17.4112 7.31964L15.9785 7.68017ZM8.34744 1.73851C4.66732 1.73851 1.5756 4.26561 0.71636 7.68017L-0.71636 7.31965C0.304148 3.26421 3.97417 0.261128 8.34744 0.261128V1.73851Z" fill="black" mask="url(#path-1-inside-1)" />
+        <circle cx="8.12526" cy="7.35182" r="2.21608" fill="black" />
+        <line x1="3.40687" y1="0.709381" x2="13.4069" y2="14.7094" stroke="black" />
     </svg>
 )
 export const Pensil = (props: any) => (
     <svg width="10" height="10" viewBox="0 0 19 18" fill="none" >
-        <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="white"/>
+        <path d="M11.06 6L12 6.94L2.92 16H2V15.08L11.06 6ZM14.66 0C14.41 0 14.15 0.1 13.96 0.29L12.13 2.12L15.88 5.87L17.71 4.04C18.1 3.65 18.1 3 17.71 2.63L15.37 0.29C15.17 0.09 14.92 0 14.66 0ZM11.06 3.19L0 14.25V18H3.75L14.81 6.94L11.06 3.19Z" fill="white" />
     </svg>
 )
 export const FilterIcon = () => (
@@ -638,7 +624,7 @@ export const SuccessMarkIcon = () => (
     <svg width="18" height="15" viewBox="0 0 18 15" fill="none">
         <line x1="0.587785" y1="8.06574" x2="8.94193" y2="14.1354" stroke='#3DD542' stroke-width="2" />
         <path d="M8.34493 13.2495L16.8756 1.00001" stroke='#3DD542' stroke-width="2" />
-    </svg> 
+    </svg>
 )
 export const Logo = () => (
     <svg width="40" height="40" viewBox="0 0 39 38" fill="none" >
@@ -659,17 +645,17 @@ export const Logo = () => (
         </mask>
         <path d="M30.159 10.3766C30.8486 11.2344 31.4331 12.1717 31.8999 13.1684L28.6954 14.6692C28.3484 13.9282 27.9139 13.2315 27.4013 12.5939L30.159 10.3766Z" stroke="#00A3FE" stroke-width="7.35331" mask="url(#path-4-inside-4)" />
         <circle cx="19.415" cy="19.0145" r="6.43414" transform="rotate(-65.2284 19.415 19.0145)" fill="#00A3FE" />
-    </svg> 
+    </svg>
 )
 export const QuestionIcon = () => (
     <svg width="15" height="15" className="ionicon" viewBox="0 0 512 512">
         <title>Pending</title>
-        <path d="M160 164s1.44-33 33.54-59.46C212.6 88.83 235.49 84.28 256 84c18.73-.23 35.47 2.94 45.48 7.82C318.59 100.2 352 120.6 352 164c0 45.67-29.18 66.37-62.35 89.18S248 298.36 248 324" fill="none" stroke="#f73457" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40"/>
-        <circle fill="#f73457" cx="248" cy="399.99" r="32"/>
+        <path d="M160 164s1.44-33 33.54-59.46C212.6 88.83 235.49 84.28 256 84c18.73-.23 35.47 2.94 45.48 7.82C318.59 100.2 352 120.6 352 164c0 45.67-29.18 66.37-62.35 89.18S248 298.36 248 324" fill="none" stroke="#f73457" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" />
+        <circle fill="#f73457" cx="248" cy="399.99" r="32" />
     </svg>
 )
 export const CloseIcon2 = () => (
-    <svg  viewBox="0 0 512 512">
+    <svg viewBox="0 0 512 512">
         <path fill="none" stroke="grey" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368" />
     </svg>
 )

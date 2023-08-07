@@ -11,15 +11,16 @@ const rotate = keyframes`
 const Spinner = styled.div<any>`
     z-index: 20;
     border-radius: 50%;
+    border: 2px solid ${props => props.c || '#1da0f283'};
     transition: all;
     position: absolute;
-    border: 2px solid ${props => props.c || '#059cfa53'};
     border-top-color: #1da1f2;
     left: ${props => props.lf}%;
     bottom: ${props => props.b}%;
     width: ${props => props.size || '20px'};
     height: ${props => props.size || '20px'};
-    animation: ${rotate} .27s linear infinite;
+    animation: ${rotate} .37s linear infinite;
+    
 `
 const PageSpinner = styled(Spinner)`
   width: 40px;

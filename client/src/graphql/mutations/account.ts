@@ -8,24 +8,39 @@ export const SignUp = gql`
             org
             usr
             name
+            username
             category
+        }
+    }
+`
+export const ADD_ACCOUNT = gql`
+    mutation addAccount($input: AddAccInput!) {
+        addAccount(input: $input) {
+            _id
+            dp
+            name
+            username
+            address
         }
     }
 `
 export const SignIn = gql`
     mutation signIn($creds: Creds!) {
         signIn(creds: $creds) {
-            token              
-            dp
-            org
-            usr
-            name
-            category
-            role
-            perms {
-                edits 
-                creates 
-                deletes 
+            token
+            client {
+                _id
+                dp
+                name
+                username
+                category
+                linkedTo {
+                    _id
+                    dp
+                    name
+                    username 
+                    address
+                }
             }
         }
     }

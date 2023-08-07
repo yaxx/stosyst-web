@@ -33,7 +33,6 @@ body {
   margin-bottom: 0px;
 }
 .list-wrap {
-  padding-top: 45px;
   overflow: visible;
 }
 
@@ -168,7 +167,7 @@ button:focus {
   right: 35px;
 }
 
-.container.main-container {
+.container.main-container, .container.header-container {
   padding: 0px 180px;
   overflow: visible;
   position: relative;

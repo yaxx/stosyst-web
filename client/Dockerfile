@@ -1,15 +1,34 @@
-FROM node:18.14-alpine
+FROM node:16.20.1-alpine AS base
 
 WORKDIR /usr/src/app
 
-COPY ./package.json ./
+COPY ./package*.json ./
 
-COPY ./package-lock.json ./
+FROM base as development
 
-RUN npm install
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+    npm set cache /usr/src/app/.npm && \
+    npm install
 
 COPY . .
 
-EXPOSE 3000
-
 CMD ["npm", "start"]
+
+FROM base as build
+
+RUN --mount=type=cache,target=/usr/src/app/.npm \
+    npm set cache /usr/src/app/.npm && \
+    npm install
+
+COPY . .
+
+RUN npm run build
+
+##
+FROM nginx:1.22-alpine
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build usr/src/app/build/ /var/www/html
+
+EXPOSE 80

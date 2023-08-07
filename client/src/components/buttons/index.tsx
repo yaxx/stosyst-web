@@ -6,7 +6,7 @@ import { Loader } from '../loaders'
 export * from './circularBtn'
 
 
- export const Btn = styled.button<any>`
+export const Btn = styled.button<any>`
   height: 30px;
   width: 30px;
   border-radius: 50%;
@@ -22,16 +22,14 @@ export * from './circularBtn'
   p {
     margin-bottom: 0px;
     font-size: 12px;
-    color: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand 
-    };
+    color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
    
   }
   svg {
     position: relative;
-    stroke: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand 
-    };
+    stroke: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
   }
   &:hover {
       border: none;
@@ -48,14 +46,13 @@ export * from './circularBtn'
   }
   &:focus {
       border: none;
-      background-color: ${
-          props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand 
-    };
+      background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
   }
-` 
+`
 export const QtyBtn = styled.div.attrs(props => ({
-    className: 'icn'
-  }))`
+  className: 'icn'
+}))`
   height: 18px;
   width: 18px;
   display: flex;
@@ -74,14 +71,12 @@ export const QtyBtn = styled.div.attrs(props => ({
   font-size: 14px;
   font-weight: bold;
   color: grey;
-  /* color: ${
-  props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
+  /* color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
   }; */
   &:hover {
       background: rgba(206, 205, 205, 0.473);
-      color: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
-    };
+      color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  };
   }
 `
 export const ToggleBtn = styled.div`
@@ -95,17 +90,16 @@ export const ToggleBtn = styled.div`
       width: 15px;
       border-radius: 50%;
       position: absolute;
-      background: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-      };
+      background: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
       left: 2px;
       top: 1px;
       bottom: 0px;
     }
 `;
 export const CircularBtn = styled.div<any>`
-  height: ${props=>props.h||26}px;
-  width: ${props=>props.w||26}px;
+  height: ${props => props.h || 26}px;
+  width: ${props => props.w || 26}px;
   border-radius: 50%;
   position: absolute;
   display: flex;
@@ -113,6 +107,7 @@ export const CircularBtn = styled.div<any>`
   justify-content: center;
   font-size: 1.2rem;
   right: -5px;
+  z-index: 2000;
   cursor: pointer;
   &:hover{
      background: rgba(30, 143, 255, 0.048);
@@ -123,19 +118,16 @@ export const EditBtn = styled.button`
   width: 30px;
   border-radius: 50%;
   border: none;
-  color: ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
   };
   display:flex;
   align-items: center;
   justify-content: center;
-  font-size: ${ props => props.theme.typography.body2};
-  background-color: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-    };
+  font-size: ${props => props.theme.typography.body2};
+  background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
   :hover {
-    background-color:  ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    background-color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
   };
   }
   :focus {
@@ -176,7 +168,7 @@ height: 100px;
 width: 50px;
 top: 80%;
 transition: all .2s ease-in-out;
-right: ${ props => props.rt}%;
+right: ${props => props.rt}%;
 display: flex;
 align-items: center;
 justify-content: space-between;
@@ -195,12 +187,10 @@ export const FloatingBtn = styled.div<any>`
   /* top: 80%; */
   cursor: pointer;
   /* transition: all .2s ease-in-out;
-  right: ${ props => props.rt}%; */
-  background-color: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  right: ${props => props.rt}%; */
+  background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
   };
-  color: ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
   };
   /* position: fixed; */
   /* z-index: 110; */
@@ -226,7 +216,7 @@ export const UncheckBtn = styled.div<any>`
   align-items: center;
   justify-content: center;
   /* transition: all .2s ease-in-out;
-  right: ${ props => props.rt}%; */
+  right: ${props => props.rt}%; */
   background-color: #1e1e1e15;
   p {
     margin-bottom: 0px;
@@ -252,8 +242,7 @@ export const UncheckBtn = styled.div<any>`
 export const FlatBtn = styled.button`
   width: 100%;
   height: 32px;
-  background-color: ${
-  props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
   };
   border: none;
   box-shadow:none;
@@ -266,13 +255,11 @@ export const ItemsCounter = styled.div`
   height: 20px;
   min-width: 20px;
   padding: 0px 2px;
-  color: ${
-    props =>  props.theme.dark.colors.labels.pri 
+  color: ${props => props.theme.dark.colors.labels.pri
   };
   border-radius: 50%;
   position: absolute;
-  background-color:  ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.error : props.theme.light.colors.error
+  background-color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.error : props.theme.light.colors.error
   };
   top:-2px;
   font-size: 11px;
@@ -300,9 +287,8 @@ export const BackBtn = styled.div`
     align-items: center;
     justify-content: center;
     font-size: 14px;
-    color:  ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-    };
+    color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
     cursor: pointer;
      span {
         bottom: 2px;
@@ -310,30 +296,28 @@ export const BackBtn = styled.div`
         right: -7px;
      }
 `
-export const PriBtn  = styled.button.attrs(props =>({
+export const PriBtn = styled.button.attrs(props => ({
   name: props.name,
   value: props.value
- }))<any>`
-    width: ${props=>props.w||'100%'};
-    height: 45px;
+})) <any>`
     border:none;
-    border-radius: 8px;
+    width: ${props => props.w || '100%'};
+    height: ${props => props.h || 45}px;
+    
+    border-radius: ${props => props.r || 8}px;
     display: flex;
     align-items: center;
     justify-content:center;
     font-weight: 500;
-    margin-top: 25px;
-    color: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri 
-    };
-    font-size: 12px;
-    background-color: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand 
-    };
+    margin-top:${props => props.mt || 25}px;
+    color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
+  };
+    font-size: 14px;
+    background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
     &:hover {
-        background-color: ${
-            props => props.theme.mode === 'dark' ? props.theme.dark.colors.btn_hovered : props.theme.light.colors.btn_hovered 
-        };
+        background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.btn_hovered : props.theme.light.colors.btn_hovered
+  };
     }
     &:focus {
         border: 0px;
@@ -348,21 +332,21 @@ export const ReviewButton = styled(PriBtn)`
   background: #f4f4f4;
   font-size: 10px;
   font-weight: 600;
-  color: ${props=>props.theme.light.colors.brand};
+  color: ${props => props.theme.light.colors.brand};
   :hover {
     border: none;
     background: #efecec;
   }
   justify-content: ${props => props.checkbox ? 'start' : 'center'};
 `
-export const FooterBtn = styled(PriBtn)<any>`
+export const FooterBtn = styled(PriBtn) <any>`
   margin-top: 0px;
   height:45px;
   font-size: 10px;
   font-weight: 700;
   background: white;
   color: dodgerblue;
-  border: 1px solid ${props => props.right ? '#00000023':'white'};
+  border: 1px solid ${props => props.right ? '#00000023' : 'white'};
   :hover {
     border: none;
     color: ${props => props.right ? 'white' : 'dodgerblue'};
@@ -371,30 +355,55 @@ export const FooterBtn = styled(PriBtn)<any>`
 `
 
 export const DeleteBtn = styled(PriBtn)`
-  background-color: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.error : props.theme.light.colors.error
+  background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.error : props.theme.light.colors.error
   };
   margin-top: 55px;
   :hover {
-    background-color: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.error_btn_hovered : props.theme.light.colors.error_btn_hovered
+    background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.error_btn_hovered : props.theme.light.colors.error_btn_hovered
   };
   }
 `
 interface Props {
 }
 interface Label {
-    label: string
+  label: string
 }
 
-export  const PrimaryBtn = () => <PriBtn/>
+export const PrimaryBtn = () => <PriBtn />
 
 
-export default function RoundedBtn({saving}: any): ReactElement {
-    return (
-        <Btn> {
-           <CheckIcon />
-        }        
-        </Btn>
-    )
+export default function RoundedBtn({ saving }: any): ReactElement {
+  return (
+    <Btn> {
+      <CheckIcon />
+    }
+    </Btn>
+  )
 }
+export const StandardButton = styled.button.attrs(props => ({
+  name: props.name,
+  value: props.value
+})) <any>`
+    width: ${props => props.w || '100%'};
+    height:${props => props.h || 45}px;
+    border:none;
+    border-radius: ${props => props.r || 6}px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    font-weight: 700;
+    margin-top: 15px;
+    color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
+  };
+    font-size: 14px;
+    background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
+    &:hover {
+        background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.btn_hovered : props.theme.light.colors.btn_hovered
+  };
+    }
+    &:focus {
+        border: 0px;
+        outline: none;
+    }
+`

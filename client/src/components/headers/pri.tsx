@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useHistory, useLocation } from "react-router-dom";
 import { headerMenu } from "../../store/data";
 import { ProdSearchForm, SearchForm } from "../forms";
-import { GroupIcon, FilterIcon, OptionItem, ArrowDown, Logo, CartIcon2 } from "../icons";
+import { GroupIcon, FilterIcon, ArrowDown, Logo, CartIcon2 } from "../icons";
 import { ImageItem } from "../images";
 import { IconBox, IconCont } from "../inputs/styles";
 import { MoreActions } from "../listItems";
 import { P2 } from "../typography";
-import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, LogoSection, CartSection, SearchSection, HeaderItemsCont } from "./styles";
+import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, OptionList, Divider, LogoSection, CartSection, SearchSection, HeaderItemsCont, OptionItem } from "./styles";
 
 export const PrimaryHeaderNav = (props: any) => {
     const [menu, setMenu] = useState(false)

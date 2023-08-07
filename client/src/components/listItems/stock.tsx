@@ -1,5 +1,5 @@
 import { ReactElement, Fragment, useState } from "react";
-import { Row as StockList, Item, ListItems, MoreActions } from ".";
+import { Row as StockList, Item, ListItems } from ".";
 import { ItemWraper } from "../../pages/expenses";
 import { CartItem, Product } from "../../types/model";
 import { StocksForm } from "../forms/stocks";
@@ -7,19 +7,18 @@ import { ArrowDown, MoreIcon } from "../icons";
 import { useLazyQuery, useMutation, useReactiveVar } from '@apollo/client';
 import { useGetLocals } from "../../hooks/useGetProducts";
 import { defState, groupingCriteria, locals } from "../../store/data";
-import { getExpStatus, editCallback, format_date, isAdmin, formatMoney, roundFigureWithAlphabet } from "../../utils";
+import { getExpStatus, editCallback, format_date, formatMoney } from "../../utils";
 import { GET_STOCKS, GET_STOCK_SET } from "../../graphql/queries/stocks";
 import { DateSeparator, TotalSeparator } from "../seperators";
 import StockDetails from "./stockDetails";
-import { can } from "../../utils/permisions";
 import { DELETE_STOCK } from "../../graphql/mutations";
 import { ImageItem } from "../images";
-import { Divider, GroupLabel } from "../headers/styles";
-import { Counter } from "../../pages/invoices-page";
+import { Divider } from "../headers/styles";
 import { P1 } from "../typography";
 import cache from "../../apollo-client";
 import { LoadingMore } from "../loaders";
 import { roundAmount } from "../charts/header";
+import ShareForm from "../forms/share";
 
 
 export const StockListItems = (props: any) => {
@@ -172,29 +171,30 @@ export default function Stock(props: any): ReactElement {
                 />
             <StockListItems {...props} stock={stock} togleMenu={togleMenu} /> {
                 menuOpened &&
-                <MoreActions
-                    closeMenuCallback={closeMenu}
-                    actions={
-                        [
-                            {
-                                label: 'Edit',
-                                callback: (e: any) => editItem(e, stock),
-                                permitted: isAdmin() || can('edit', 'stocks')
+                <ShareForm stock={stock} />
+                // <MoreActions
+                //     closeMenuCallback={closeMenu}
+                //     actions={
+                //         [
+                //             {
+                //                 label: 'Edit',
+                //                 callback: (e: any) => editItem(e, stock),
+                //                 permitted: isAdmin() || can('edit', 'stocks')
 
-                            },
-                            {
-                                label: 'Stock Info',
-                                callback: (e: any) => displayDetails(e, stock),
-                                permitted: true
-                            },
-                            {
-                                label: 'Delete Stock',
-                                callback: (e: any) => deleteItem(stock._id, e),
-                                permitted: isAdmin() || can('delete', 'stocks')
-                            },
-                        ]
-                    }
-                />
+                //             },
+                //             {
+                //                 label: 'Stock Info',
+                //                 callback: (e: any) => displayDetails(e, stock),
+                //                 permitted: true
+                //             },
+                //             {
+                //                 label: 'Delete Stock',
+                //                 callback: (e: any) => deleteItem(stock._id, e),
+                //                 permitted: isAdmin() || can('delete', 'stocks')
+                //             },
+                //         ]
+                //     }
+                // />
         }
         </StockList>
     )
@@ -273,7 +273,7 @@ export function StocksListGroup(props: any): ReactElement {
                 data?.stockSet ? 
                     <ul style={{ paddingLeft: 0 }} className='stockList'> {
                         data?.stockSet.map((stockItem: any) =>
-                            <ItemWraper> {
+                            <ItemWraper key={Math.random()}> {
                                 (locals().selectedId === stockItem._id) &&
                                 <Fragment> {
                                     locals().isEditing ?

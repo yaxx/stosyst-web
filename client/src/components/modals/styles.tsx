@@ -4,7 +4,7 @@ export const ModalContainer = styled.div<any>`
     position: fixed;
     height: 100%;
     width:100%;
-    z-index: 115;
+    z-index: 20000;
     top:0;
     background-color: rgb(0 0 0 / 46%);
 `;
@@ -12,7 +12,7 @@ export const SearchModalContainer = styled.div<any>`
     position: fixed;
     height: 100%;
     width:100%;
-    z-index: 2;
+    z-index: 20000;
     top:56px;
     background-color: rgb(0 0 0 / 1%);
 `;
@@ -20,7 +20,7 @@ export const ReviewModal = styled.div<any>`
     position: absolute;
     height: 100%;
     width:100%;
-    z-index: 1;
+    z-index: 100;
     top:0;
     background-color: rgb(0 0 0 / 20%);
 `;

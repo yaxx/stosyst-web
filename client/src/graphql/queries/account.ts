@@ -1,6 +1,5 @@
 
-import { gql, useLazyQuery, useQuery } from '@apollo/client'
-import { SaveInfo } from '../mutations/account';
+import { gql } from '@apollo/client'
 
 export const GET_ACCOUNT = gql`
     query account {
@@ -14,6 +13,52 @@ export const GET_ACCOUNT = gql`
             dp
             banner
             username
+        }
+    }
+`
+export const SWITCH_ACCOUNT = gql`
+    query switchAccount($id: String) {
+        switchAccount(id: $id) {
+            token
+            client {
+                _id
+                dp
+                name
+                username
+                category
+                linkedTo {
+                    _id
+                    dp
+                    name
+                    username 
+                    address
+                }
+            }
+        }
+    }
+`
+export const GET_ACC_DETAILS = gql`
+    query accDetails {
+        accDetails {
+            timeLine {
+                renewed
+                due
+                status
+            }
+            paymentMethods {
+                cardNumber
+                expiry
+                cvvCode
+            }
+           linkedTo {
+                _id
+                dp
+                name
+                username
+                address
+                phone
+           }
+           createdAt
         }
     }
 `

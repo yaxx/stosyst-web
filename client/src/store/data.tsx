@@ -68,11 +68,7 @@ export let initInvoice: Invoice = {
 }
 export let defClient: Client = {
     name: '',
-    password: '',
     username: '',
-    category: 'Accessories',
-    staffs: [],
-    msgTokens: []
 }
 export const initFeedback: FeedbackMsg = {
     success: true,

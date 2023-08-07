@@ -6,7 +6,7 @@ import { formatMoney } from "../../utils";
 import { QtyBtn } from "../buttons";
 import { QtyFormGroup } from "../forms/styles";
 import { Divider } from "../headers/styles";
-import { EllipsisIcon2, Times } from "../icons";
+import { EllipsisIcon, Times } from "../icons";
 import { ImageItem } from "../images";
 import { PriceInput, QtyInput } from "../inputs";
 import { Photo } from "../stockImages";
