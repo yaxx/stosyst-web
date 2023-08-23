@@ -1,98 +1,125 @@
-import { gql, useMutation } from '@apollo/client'
+import { gql, useMutation, useReactiveVar } from '@apollo/client'
 import React, { useState } from 'react'
-import cache from '../../../apollo-client'
 import { SHARE_PRODUCT } from '../../../graphql/mutations'
-import { GET_ACCOUNT, GET_MATCHED_PRODS, GET_STOCKS, READ_STOCK } from '../../../graphql/queries'
-import { formatMoney } from '../../../utils'
+import { GET_STOCKS } from '../../../graphql/queries'
+import { groupingCriteria, sharedModal } from '../../../store/data'
+import { matchedProds } from '../../../types/model'
+import { formatMoney, updateProdCache } from '../../../utils'
 import { PriBtn } from '../../buttons'
 import { readLocalStorage } from '../../headers/headerMenu'
 import { Divider } from '../../headers/styles'
-import { RightAngleIcon } from '../../icons'
+import { CancelIcon, RightAngleIcon, SuccessMarkIcon } from '../../icons'
 import { IconCont } from '../../icons/styles'
 import { ImageItem } from '../../images'
-import { TextInput } from '../../inputs'
 import QInput from '../../inputs/quantity'
-import { SearchInput } from '../../inputs/search'
-import { FormGroupCont } from '../../inputs/search/styles'
-import Skeleton from '../../loaders/skeletons'
+import { Loader } from '../../loaders'
 import Search from './search'
 import SelectedItem from './selectedItem'
 
-import { BtnCont, DropIconCont, Form, FormContainer, HeaderCont, InfoSection, ItemInfo, ListItemCont, OptItemInfo, SearchOptCont } from './styles'
+import { BtnCont, DropIconCont, Form, FormContainer, HeaderCont, InfoSection, InputCont, InputGroupCont, ItemInfo, ListItemCont, OptItemInfo } from './styles'
 
 const ShareForm = (props: any) => {
-    // const { stock } = props
+    const { closeCallback } = props
 
 
     const [stock, setStock] = useState(props.stock)
     const [focus, setFocus] = useState('')
     const [opened, setOpened] = useState(false)
+    const [count, setCount] = useState(0)
+    const [done, setDone] = useState(false)
 
     const selectOpt = (opt: any, input: string) => {
         setFocus('')
     }
-   
+
+    const { group } = useReactiveVar(groupingCriteria)
+
+
     const openSearchList = (e: any) => {
         e.stopPropagation()
-        setOpened(!opened)
+        // setOpened(!opened)
     }
 
     const client = readLocalStorage()
 
     const handleOnChange = (e: any) => {
         e.persist();
-        const { target: { name, value } } = e;
-
-        // setStock({
-        //     ...stock,
-        //     [name]: stock.instock - (+value)
-        // })
-            
-        let data = cache.readQuery({
-            query: GET_MATCHED_PRODS,
-            variables: {
-                query:'',
-                storeId: ''
-            }
-        });
-
-        // const pro = client.readFragment({
-        //     id: 'Product:64c68581d66efdaa8a51f803', // The value of the to-do item's cache ID
-        //     fragment: gql`
-        //         fragment Pro on Product {
-        //             _id
-        //             name
-        //             description
-        //         }
-        //     `,
-        // });
-
-        console.log(data)
+        const { target: { value } } = e;
+        setCount(+value)
     }
 
-    const [share, { error, loading, data: d }] = useMutation(SHARE_PRODUCT, {
+
+
+    const showFeedBack = () => {
+        setDone(true);
+        setTimeout(() => {
+            setDone(false);
+            setCount(0)
+        }, 3000);
+    };
+
+    const [shareProduct, { error, loading, data: d }] = useMutation(SHARE_PRODUCT, {
         update: (cache, { data: { shareProduct } }) => {
-            const existingProds: any = cache.readQuery({
+            const data: any = cache.readQuery({
                 query: GET_STOCKS,
             });
             cache.writeQuery({
                 query: GET_STOCKS,
                 data: {
-                   
+                    products: updateProdCache(data.products, shareProduct[1], group),
                 },
             });
-            // showFeedBack();
+
+            matchedProds(shareProduct[0])
+
+            setStock(shareProduct[1])
+
+            cache.writeFragment({
+                id: `Product:${shareProduct[0]._id}`,
+                fragment: gql`
+                    fragment Stock on Product {
+                         _id
+                    }
+                `,
+                data: {
+                    ...shareProduct[0]
+                }
+            });
+            showFeedBack();
         },
     });
 
-    const handleShare = ()=>{}
-    
+    if (error) console.log(error);
+
+    const handleSubmit = (e: Event) => {
+        e.preventDefault()
+        e.stopPropagation()
+        if(count>0) {
+            shareProduct({
+                variables: {
+                    q: count,
+                    addId: matchedProds()[0]._id,
+                    subId: stock._id
+                },
+            });
+        }
+        
+    }
+
+    const adjustCount = (e: Event, val: number) => {
+        e.stopPropagation()
+        setCount(val >= 0 ? val: count);
+    }
+
     return (
-        <FormContainer>
+        <FormContainer onClick = {(e:any)=>e.stopPropagation()}>
             <HeaderCont>
                 <h6>Share</h6>
+                <IconCont onClick={()=>sharedModal('')} bg="whitesmoke" size={10}>
+                    <CancelIcon />
+                </IconCont>
             </HeaderCont>
-            <Form>
+            <Form onSubmit={(e: any) => handleSubmit(e)}>
                 <InfoSection>
                     <Divider bottom={100} />
                     <h6>FROM:</h6>
@@ -117,29 +144,49 @@ const ShareForm = (props: any) => {
                     <h6>TO:</h6>
                     <h6 className='store--id'>@{client.linkedTo[0].username}</h6>
                     <SelectedItem {...props} opened={opened} />
-                    {
-                     !opened &&
-                        <QInput
-                            name="instock"
-                            placeholder="Quantity"
-                            changeCallback={handleOnChange}
-                            cancelCallback={()=>{}}
-                        />
-                    }
-                    <DropIconCont>
+                    {/* <DropIconCont>
                         <IconCont
                             rot={opened ? 270 : 90}
                             className='icon'
                             size={8}>
                             <RightAngleIcon />
                         </IconCont>
-                    </DropIconCont>
+                    </DropIconCont> */}
+                    {
+                        !opened &&
+                        <InputCont>
+                            <Divider bottom={100} />
+                            <p>Quatity:</p>
+                            <InputGroupCont>
+                                <IconCont onClick={(e: Event) => adjustCount(e, count + 1)}  className='icon' size={9}>
+                                    <p>+</p>
+                                </IconCont>
+                                <QInput
+                                    name="instock"
+                                    placeholder="0"
+                                    cancelCallback={() => { }}
+                                    value={count}
+                                    changeCallback={handleOnChange}
+                                />
+                                <IconCont onClick={(e: Event) => adjustCount(e, count - 1)} className='icon' size={9}>
+                                    <p>-</p>
+                                </IconCont>
+                            </InputGroupCont>
+                        </InputCont>
+                    }
                 </InfoSection>
                 <Search opened={opened} />
                 {
                     !opened &&
                     <BtnCont>
-                        <PriBtn mt={20} h={42}>Share</PriBtn>
+                        <PriBtn active = {count > 0 ? true: false} mt={20} h={40}>
+                            {
+                                done ? <SuccessMarkIcon color='white' /> 
+                                : loading ? 
+                                <Loader size={"27px"} /> 
+                                : <>Share</>
+                            }
+                        </PriBtn>
                     </BtnCont>
                 }
             </Form>

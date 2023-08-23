@@ -4,9 +4,9 @@ import { ADD_ACCOUNT } from '../../../graphql/mutations/account'
 import { GET_ACC_DETAILS } from '../../../graphql/queries'
 import { defClient } from '../../../store/data'
 import { Client } from '../../../types/model'
-import { FlatButton } from '../../buttons/flat'
+import { FlatButton, IconButton } from '../../buttons/flat'
 import { readLocalStorage } from '../../headers/headerMenu'
-import { PointedArror } from '../../icons'
+import { CheckIcon, Marker, PointedArror } from '../../icons'
 import { IconCont } from '../../icons/styles'
 import { FormGroupCont } from '../../inputs'
 import { TextInput } from '../../inputs/text'
@@ -108,15 +108,15 @@ const AccountForm = (props: any) => {
             cancelCallback={handleClear}
           />
         </FormGroupCont>
-        <FlatButton> {
+        <IconButton hbg={'#3183ff25'} h={'40px'} w={'40px'} r={'50%'} a={'auto'}> {
             loading ? 
             <SpinLoader size={'25px'} />
             :
-            <IconCont rot={180} size={12}>
-              <PointedArror />
+            <IconCont r={7}  rot={0} size={14}>
+              <CheckIcon />
             </IconCont> 
           }
-        </FlatButton>
+        </IconButton>
       </Form>
     </FormContainer>
 

@@ -109,7 +109,7 @@ export const MultiLabel = styled.div`
 export const StockInfo = styled.div<any>`
     width: 100%;
     height: 220px;
-    z-index: 200;
+    z-index: 1025;
     top: -75px;
     transform-origin: center;
     transform: scaleY(${props => props.scale});

@@ -15,15 +15,19 @@ export const AccountInfoCont = styled.div`
     width:100%;
     display: grid;
     justify-content: center;
-    padding: 10px 0px;
+    padding: 0px 10px;
     grid-template-columns: 1fr 1.3fr .75fr .9fr;
 `;
 export const AccSectionHeader = styled.div<any>`
     position: relative;
     height: 60px;
+    padding: 0px 10px;
     width:100%;
     display: grid;
+    justify-content: center;
     grid-template-columns: 90% 10%;
+    background: rgba(0,0,0,0.013);
+    border-radius: 6px 6px 0px 0px;
 `;
 export const AccDateItem = styled.div<any>`
     position: relative;
@@ -47,10 +51,10 @@ export const ListContainer = styled.ul<any>`
     list-style: none;
     width: 100%;
     padding: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: column;
-    min-height: 120px;
+    min-height: 60px;
 `;
 export const AccHeaderItem = styled.div<any>`
     position: relative;
@@ -77,6 +81,7 @@ export const BillingInfoCont = styled.li<any>`
     width:100%;
     justify-content: center;
     display: grid;
+    padding: 0px 10px;
     grid-template-columns: 90% 10%;
     align-items: center;
     :hover {
@@ -134,3 +139,22 @@ export const FeedbackCont = styled.div<any>`
         color: black;
     }
 `;
+
+export const SettingSection = styled.section`
+    width: 100%;
+    border-radius: 6px;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    border: 1px solid rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.01);
+`
+export const LoaderCont = styled.div`
+    width: 100%;
+    height: 50vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  
+`

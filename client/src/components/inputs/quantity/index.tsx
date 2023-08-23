@@ -14,7 +14,6 @@ const handleOnClick = (e: Event) => {
 }
     return (
         <FormGroup h={35} onClick={handleOnClick} onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} focused={focused} hasInput={value} selected={inputSelected} {...props} >
-            <Divider bottom={100} />
             <NumbInput
                 {...props}
                 onFocus={() => {}}

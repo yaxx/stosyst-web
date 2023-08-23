@@ -47,7 +47,7 @@ export function StocksForm(props: any): ReactElement {
     }, 2000);
   };
 
-  const [saveStock, { error, loading, data: d }] = useMutation(SAVE_STOCK, {
+  const [saveStock, { loading }] = useMutation(SAVE_STOCK, {
     update: (cache, { data: { saveProduct: newProduct } }) => {
       const data: any = cache.readQuery({
         query: GET_STOCKS,
@@ -64,7 +64,7 @@ export function StocksForm(props: any): ReactElement {
 
   const [
     uploadFile,
-    { loading: uploading, error: uploadError, data: uploadResult },
+    { loading: uploading, error: uploadError },
   ] = useMutation(UPLOAD_FILE, {
     onCompleted: (data: any) => {
       setImage(data.uploadFile.uri);
@@ -148,18 +148,6 @@ export function StocksForm(props: any): ReactElement {
     });
   };
 
-  const adjustQuantity = (e: any, name: string, action: string) => {
-    e.persist();
-    setStocks({
-      ...stock,
-      [name]:
-        action === "inc"
-          ? +stock.instock + 1
-          : +stock.instock === 0
-          ? +stock.instock
-          : +stock.instock - 1,
-    });
-  };
 
   const convertStringToDate = (date: string) => {
     let d = date.split("/");
@@ -349,9 +337,7 @@ export function StocksForm(props: any): ReactElement {
             </FormGroupCont>
           </InfoItems>
         </InfoContainer>
-        {error ? (
-          console.log({ error })
-        ) : loading || mark ? (
+        {loading || mark ? (
           <LoadingCont>
             {" "}
             {mark ? <SuccessMarkIcon /> : <Loader size={"27px"} />}

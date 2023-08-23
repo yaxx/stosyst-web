@@ -39,17 +39,15 @@ export const Heading =  styled.h6<any>`
     width: 100%;
     font-weight: bolder;
     position: relative;
-    /* color: ${props => props.cl};  */
-    /* top: 40px; */
 `
 export default function SignUp({}: Props): ReactElement {
     return (
         <div className="start">
-        <LogoItem />
+          <LogoItem />
           <div className="row no-gutters">
-          <div className="col col-lg-8 col-md-6 col-sm-6 promo-sec">
-            <PromoSection />
-          </div>
+            <div className="col col-lg-8 col-md-6 col-sm-6 promo-sec">
+              <PromoSection />
+            </div>
             <div className="col-lg-4 col-md-6 col-sm-6">
               <AccountContainer>
                 <FormContainer> 

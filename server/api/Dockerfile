@@ -12,7 +12,7 @@ RUN --mount=type=cache,target=/usr/src/app/.npm \
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 4200
 
 CMD ["npm", "run", "dev"]
 
@@ -28,6 +28,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE 4200
 
 CMD ["npm", "start"]

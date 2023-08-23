@@ -1,13 +1,13 @@
 import { ReactElement, Fragment, useState } from "react";
-import { Row as StockList, Item, ListItems } from ".";
+import { Row as StockList, Item, ListItems, MoreActions } from ".";
 import { ItemWraper } from "../../pages/expenses";
 import { CartItem, Product } from "../../types/model";
 import { StocksForm } from "../forms/stocks";
 import { ArrowDown, MoreIcon } from "../icons";
 import { useLazyQuery, useMutation, useReactiveVar } from '@apollo/client';
 import { useGetLocals } from "../../hooks/useGetProducts";
-import { defState, groupingCriteria, locals } from "../../store/data";
-import { getExpStatus, editCallback, format_date, formatMoney } from "../../utils";
+import { defState, groupingCriteria, hiddenModal, locals, sharedModal } from "../../store/data";
+import { getExpStatus, editCallback, format_date, formatMoney, isAdmin } from "../../utils";
 import { GET_STOCKS, GET_STOCK_SET } from "../../graphql/queries/stocks";
 import { DateSeparator, TotalSeparator } from "../seperators";
 import StockDetails from "./stockDetails";
@@ -19,6 +19,7 @@ import cache from "../../apollo-client";
 import { LoadingMore } from "../loaders";
 import { roundAmount } from "../charts/header";
 import ShareForm from "../forms/share";
+import { can } from "../../utils/permisions";
 
 
 export const StockListItems = (props: any) => {
@@ -66,6 +67,8 @@ export default function Stock(props: any): ReactElement {
 
     const [menuOpened, resetMenu] = useState(false);
 
+    const sm: any = useReactiveVar(sharedModal)
+
     let { stock } = props;
     
     let { localData: { localState }, issues } = useGetLocals();
@@ -103,7 +106,7 @@ export default function Stock(props: any): ReactElement {
     });
 
     if (error) console.log({ error })
-
+   
     const deleteItem = (id: string, e: any) => {
         e.stopPropagation();
         closeMenu();
@@ -158,6 +161,13 @@ export default function Stock(props: any): ReactElement {
         })
     }
 
+    const showSharingForm = (e: any)=>{
+        e.stopPropagation();
+        sharedModal(stock._id)
+    }
+
+
+
     return (
         <StockList onClick={() => addRemoveItem(stock)}
             onMouseLeave={() => closeMenu()}
@@ -168,33 +178,37 @@ export default function Stock(props: any): ReactElement {
                 expiry={stock.expiry}
                 source={stock.stockImage}
                 expiryStatus = {getExpStatus(stock)}
-                />
-            <StockListItems {...props} stock={stock} togleMenu={togleMenu} /> {
+            />
+            <StockListItems {...props} stock={stock} togleMenu={togleMenu} />
+             {
+                sm === stock._id &&  <ShareForm stock={stock} /> 
+             }
+             {
                 menuOpened &&
-                <ShareForm stock={stock} />
-                // <MoreActions
-                //     closeMenuCallback={closeMenu}
-                //     actions={
-                //         [
-                //             {
-                //                 label: 'Edit',
-                //                 callback: (e: any) => editItem(e, stock),
-                //                 permitted: isAdmin() || can('edit', 'stocks')
+                <MoreActions
+                    closeMenuCallback={closeMenu}
+                    sharingCallback={showSharingForm}
+                    actions={
+                        [
+                            {
+                                label: 'Edit',
+                                callback: (e: any) => editItem(e, stock),
+                                permitted: isAdmin() || can('edit', 'stocks')
 
-                //             },
-                //             {
-                //                 label: 'Stock Info',
-                //                 callback: (e: any) => displayDetails(e, stock),
-                //                 permitted: true
-                //             },
-                //             {
-                //                 label: 'Delete Stock',
-                //                 callback: (e: any) => deleteItem(stock._id, e),
-                //                 permitted: isAdmin() || can('delete', 'stocks')
-                //             },
-                //         ]
-                //     }
-                // />
+                            },
+                            {
+                                label: 'Stock Info',
+                                callback: (e: any) => displayDetails(e, stock),
+                                permitted: true
+                            },
+                            {
+                                label: 'Delete Stock',
+                                callback: (e: any) => deleteItem(stock._id, e),
+                                permitted: isAdmin() || can('delete', 'stocks')
+                            },
+                        ]
+                    }
+                />
         }
         </StockList>
     )
@@ -219,33 +233,6 @@ export function StocksListGroup(props: any): ReactElement {
            : 
            prod
         });
-
-        // updateQuery({query: GET_STOCKS }) => ({
-        //     products: products.map((prod: any) => {
-        //         return prod._id === groupId ?
-        //             {
-        //                 ...prod,
-        //                 records: [...prod.records, ...data.stockSet]
-        //             }
-        //             :
-        //             prod
-        //     })
-        // }));
-
-        // updateQuery((i: any) => {
-        //     console.log(i);
-        // });
-
-
-        // console.log(data)
-        // console.log(products)
-
-        // cache.writeQuery({
-        //     query: GET_STOCKS,
-        //     data: {
-        //         products,
-        //     }
-        // });
     }
 
     if(error) {
@@ -317,7 +304,6 @@ export function StocksListGroup(props: any): ReactElement {
                     }
                     <P1>{roundAmount(total)}</P1>
                 </div>
-                {/* <Divider ps='relative' bottom={2}/> */}
             </TotalSeparator>
         </section>
     )

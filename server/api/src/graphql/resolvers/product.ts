@@ -94,19 +94,15 @@ export default {
       pubsub.publish('STOCKS', { stock })
       return stock
     },
-    shareProduct: async (_: any, { qty, addId, subId }: any, { req }: any) => {
-      let stock: any = {}
+    shareProduct: async (_: any, { q, addId, subId }: any, { req }: any) => {
 
       Auth.checkSignedIn(req)
-      const { data: { orgId, uid } }: any = req
+      console.log(q)
 
-      await Product.findByIdAndUpdate(addId, { $inc: { instock: qty } }, { new: true })
-      stock = await Product.findByIdAndUpdate(subId, { $inc: { instock: -qty } }, { new: true })
-      pubsub.publish('STOCKS', { stock })
-      
-      return stock
+      const added = await Product.findByIdAndUpdate(addId, { $inc: { instock: q } }, { new: true })
+      const subtracted = await Product.findByIdAndUpdate(subId, { $inc: { instock: -q } }, { new: true })
+      return [added, subtracted]
     },
-
 
     deleteProduct: async (_: any, { id }: any) => {
       return await Product.findByIdAndDelete(id)

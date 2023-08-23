@@ -313,11 +313,11 @@ export const PriBtn = styled.button.attrs(props => ({
     color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
   };
     font-size: 14px;
-    background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    background-color: ${props => props.active ? props.theme.light.colors.brand : '#00a3fe2b'
   };
     &:hover {
-        background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.btn_hovered : props.theme.light.colors.btn_hovered
-  };
+        background-color: ${props => props.active ? props.theme.light.colors.btn_hovered : '#00a3fe2b'
+        };
     }
     &:focus {
         border: 0px;

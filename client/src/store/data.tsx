@@ -90,6 +90,7 @@ export let defState: LocalState = {
         type: '',
     },
     isEditing: false,
+    hidenModal:false,
     account: initAccount,
     selectedType: PRODUCTS,
     msgToken: '',
@@ -115,6 +116,8 @@ export const invCriteria = makeVar({
     group: 'date',
 });
 
+export const hiddenModal = makeVar(false);
+export const sharedModal = makeVar('');
 export const globalInvoice = makeVar(initInvoice);
 export const showSearchModal = makeVar(false);
 export const tempClient = makeVar(defClient);

@@ -9,7 +9,7 @@ import { Loader } from "../loaders";
 import { CheckOut } from "../../graphql/mutations/checkout";
 import { GET_STOCKS } from "../../graphql/queries";
 import { CompleteMark, ReviewTotal, StandardForm } from "./styles";
-import { CheckIcon, QuestionIcon } from "../icons";
+import { CheckIcon, QuestionIcon, SuccessMarkIcon } from "../icons";
 import DropDownOptions from "../listItems/dropdown";
 
 export default function ChecktOutForm(props: any): ReactElement {
@@ -19,6 +19,7 @@ export default function ChecktOutForm(props: any): ReactElement {
   const [customer, setCustomer] = useState(modifiedInvoice.customer);
   const [invoice, setInvoice] = useState(modifiedInvoice)
   const [dropedInput, setDroppedInput] = useState('')
+  const [done, setDone] = useState(false)
   const [inFocus, setInfocus] = useState('')
 
   useEffect(() => {
@@ -26,6 +27,13 @@ export default function ChecktOutForm(props: any): ReactElement {
   }, [modifiedInvoice])
 
   let newInvoice: any = {}
+
+  const showFeedBack = () => {
+    setDone(true);
+    setTimeout(() => {
+      setDone(false);
+    }, 3000);
+  };
 
   const [checkOut, {error, loading, data}] = useMutation(CheckOut, {
     update:(cache, { data:{ checkOut } }) => {
@@ -50,18 +58,20 @@ export default function ChecktOutForm(props: any): ReactElement {
           }
         });
       }
-      updatePrintIvoice(newInvoice)
+      // updatePrintIvoice(newInvoice)
+      // showFeedBack()
     }
   });
 
   
   if(data) {
     showFeedback(true, invoice._id ? 'Update successful' : 'Transaction successful')
+    //  showFeedBack()
   }
    
-  if(error) {
-     showFeedback(false, invoice._id ? 'Update successful' : 'Update failed')
-  }
+  // if(error) {
+  //    showFeedback(false, invoice._id ? 'Update successful' : 'Update failed')
+  // }
   
   const handleChange = (e: any) => {
     e.persist();
@@ -74,6 +84,9 @@ export default function ChecktOutForm(props: any): ReactElement {
   const handleSubmit = (e: any) => { 
     e.preventDefault();
     e.stopPropagation();
+    if(loading) {
+      return
+    }
     
     if(e.target.name === 'review') {
     } else {
@@ -152,13 +165,13 @@ export default function ChecktOutForm(props: any): ReactElement {
                 <p>PAID AMOUNT</p>
                 <h6>
                   {formatMoney(invoice.recieved||getCartTotal(invoice.stocks))}
-                  <span style={{position: 'absolute', bottom: 1, marginLeft: -2, display: 'inline-block'}}>
+                  {/* <span style={{position: 'absolute', bottom: 1, marginLeft: -2, display: 'inline-block'}}>
                     <CompleteMark size={15} completed={invoice.completed}>
                       {
                         invoice.completed ? <CheckIcon /> : <QuestionIcon />
                       }
                     </CompleteMark> 
-                  </span>
+                  </span> */}
                 </h6>
               </ReviewTotal>
               <FormGroupCont>
@@ -199,12 +212,18 @@ export default function ChecktOutForm(props: any): ReactElement {
                     dropedInput === 'paymentmethod' && <DropDownOptions selectCallback={handleOptSelection}  options={['POS', 'Cash', 'Transfer']} />
                 }
             </FormGroupCont>
-              <PriBtn style={{fontSize: 10, fontWeight: 600}} disabled={loading}>
+              <PriBtn w={'99.5%'} active={true} style={{fontSize: 10, fontWeight: 600}} disabled={loading}>
+         
               {
-                 loading ? <Loader lf={45}/> : props.invoice._id ? 'UPDATE INVOICE' : 'COMFIRM PAYMENT' 
+                 loading ? 
+                <Loader lf={45} /> 
+                : 
+                done ? <SuccessMarkIcon color={'white'}/> 
+                :
+                 props.invoice._id ? 'UPDATE INVOICE' : 'Comfirm payment' 
               }
               </PriBtn>
-              <ReviewButton name="review" onClick={(e:Event)=>openReview(e)}>REVIEW PAYMENT</ReviewButton>
+              {/* <ReviewButton name="review" onClick={(e:Event)=>openReview(e)}>REVIEW PAYMENT</ReviewButton> */}
           </StandardForm>
       </CheckOutFormWraper>
     )

@@ -64,6 +64,7 @@ export default gql`
         total: Float
         records: [Product]!
     }
+
     extend type Query {
         products(query: String, filter: String, group: String, offset: Int): [StocksGroup]!
         matchedProducts(query: String, storeId: String): [Product]!
@@ -71,7 +72,7 @@ export default gql`
     }
     extend type Mutation {
         saveProduct(product: ProductInput!): Product!
-        shareProduct(qty: Int, addId: String, subId:String): Product!
+        shareProduct(q: Int, addId: String, subId:String): [Product]!
         deleteProduct(id: String!): Product
     }
     extend type Subscription {

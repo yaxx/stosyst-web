@@ -52,7 +52,9 @@ export default {
       )
       return ({
         token: `Bearer ${signature}`,
-        client: { ...client, linkedTo: linkedAccounts}
+        client: {
+          ...client, linkedTo: linkedAccounts
+        }
       })
     },
 
@@ -147,15 +149,17 @@ export default {
       }
       return updated
     },
-
-    updateAccount: async (root: any, { accountInfo }: any, { req }: any, info: any) => {
-      Auth.checkSignedIn(req)
-      return await Client.findByIdAndUpdate(req.data.orgId, { ...accountInfo }, { new: true })
-    },
+    // updateAccount: async (root: any, { input }: any, { req }: any) => {
+    //   console.log(input)
+    //   Auth.checkSignedIn(req);
+    //   const { data: { orgId } }: any = req
+    //   return await Client.findByIdAndUpdate(orgId, { ...input }, { new: true })
+    // },
 
     deleteStaff: async (root: any, { id }: { id: string }, { req }: any, info: any) => {
       Auth.checkSignedIn(req)
-      let { staffs } = await Client.findById(req.data.orgId) as any;
+      const { data: { orgId } }: any = req
+      let { staffs } = await Client.findById(orgId) as any;
       staffs = staffs.filter((s: any) => s._id.toString() !== id)
       await Client.findByIdAndUpdate(req.data.orgId, { staffs }, { new: true })
       return { id }

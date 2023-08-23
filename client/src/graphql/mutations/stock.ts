@@ -35,8 +35,8 @@ export const SAVE_STOCK = gql`
     }
 `
 export const SHARE_PRODUCT = gql`
-    mutation SharePrduct($qty: String, $id: String ) {
-        shareProduct(qty: $qty, addId: $subId) { 
+    mutation sharePrduct($q: Int, $addId: String, $subId: String ) {
+        shareProduct(q: $q, addId: $addId, subId: $subId) {
             _id
             name
             description

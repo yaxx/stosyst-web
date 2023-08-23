@@ -9,10 +9,11 @@ const ImageItem = (props: any)=> {
     
     return (
         <ImageWrap {...props}> 
-        {
+            {
                 (expiryStatus && expiryStatus === 'weak' || expiryStatus === 'expired') ? <StockIndicator {...props}/> : <></>
-        }
-            <img src={getImageUrl(source)} alt="" /> {
+            }
+            {source && <img src={getImageUrl(source)} alt="" />} 
+            {
                 exp && <DateIndictor ><p>{exp}</p></DateIndictor>
             }
         </ImageWrap>

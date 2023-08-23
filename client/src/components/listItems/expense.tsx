@@ -18,6 +18,7 @@ import { can } from "../../utils/permisions";
 import { DELETE_EXPENSE } from "../../graphql/mutations";
 import { Divider } from "../headers/styles";
 import { ExpenseList } from "./styles";
+import { roundAmount } from "../charts/header";
 // import { DELETE_EXPENSE } from "../../graphql/mutations";
 
 
@@ -143,7 +144,7 @@ export  function ExpenseListGroup(props: any): ReactElement {
 
     return (
         <section className="stocksContainer">
-            <DateSeparator>
+            <DateSeparator style={{width: '100%'}}>
                 {group === 'date' ? format_date(groupId) : groupId}
                 <Divider />
             </DateSeparator>
@@ -166,19 +167,21 @@ export  function ExpenseListGroup(props: any): ReactElement {
                 }
                 </ul>
             }
-            <TotalSeparator leftPad = { 13 } >
+            <TotalSeparator style={{paddingLeft:0}}>
+                <div className="seperatorMakers">
+                    <p>+0</p>
+
+                    <p>{roundAmount(+getNetExpenseToatal(props.list))}</p>
+                </div>
+                {/* <Divider ps='relative' bottom={2}/> */}
+            </TotalSeparator>
+            {/* <TotalSeparator leftPad = { 13 } >
                 <Counter>
-                    {/* <P1> {
-                        (props.list.length - 5) > 0 &&
-                        <span>
-                            {(!props.opened) ? '+' : '-'}{props.list.length - 5}
-                        </span>
-                    }
-                    </P1> */}
+
                 </Counter>
                 { (props.list.length - 5) > 0 && <ArrowDown/> }
                 <P1>{ formatMoney( getNetExpenseToatal(props.list) ) }</P1>
-            </TotalSeparator>
+            </TotalSeparator> */}
         </section>
     )
 }

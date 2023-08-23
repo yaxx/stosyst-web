@@ -6,7 +6,7 @@ export const DateSeparator = styled.div`
   padding: 4px 0px;
   margin: 5px 0px;
   color: dodgerblue;
-  width: 97%;
+  width: 98%;
   margin: auto;
   display: flex;
   height: 28px;
@@ -36,6 +36,7 @@ export const TotalSeparator = styled.div<any>`
     height: 100%;
     p  {
             margin-bottom: 0px;
+            font-size: 14px;
         }
      p:first-child {
       font-size: 12px;

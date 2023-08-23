@@ -10,12 +10,12 @@ export const roundAmount = (amount: number) => {
         return `${(amount / 1000000).toFixed(1)}M`;
     }
     else if (amount.toString().length === 6){
-        return `${(amount / 1000).toFixed(0)}K`;
+        return `${(amount / 1000).toFixed(1)}K`;
     }
      else if (amount.toString().length === 5) {
-        return `${(amount / 1000).toFixed(0)}K`;
+        return `${(amount / 1000).toFixed(1)}K`;
     } else if (amount.toString().length === 4) {
-        return `${(amount / 1000).toFixed(0)}K`;
+        return `${(amount / 1000).toFixed(1)}K`;
     }
      else {
         return amount.toFixed(0);

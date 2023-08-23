@@ -6,7 +6,7 @@ import { SWITCH_ACCOUNT } from '../../graphql/queries'
 import { Client } from '../../types/model'
 import { RightAngleIcon } from '../icons'
 import { IconCont } from '../inputs/styles'
-import { OptionList, OptItemCont, OptionItem, LinkedAccList, LinkedAccItem } from './styles'
+import { OptionList, OptItemCont, OptionItem, LinkedAccList, LinkedAccItem, Divider } from './styles'
 
 export const readLocalStorage = () => {
     const account: any = localStorage.getItem('client') as any
@@ -15,65 +15,75 @@ export const readLocalStorage = () => {
 
 const HeaderMenu = (props: any) => {
 
+    const [accountList, setAccountList] = useState(false)
+
     const navigate = useNavigate();
 
     const client = readLocalStorage()
-    
+
     const signOut = () => {
-        localStorage.clear();
+        localStorage.removeItem("client");
+        localStorage.removeItem("token");
         navigate("/signin");
     }
-    const [switchAccount, { loading, error, data }] = useLazyQuery(SWITCH_ACCOUNT);
+    const [switchAccount, { loading, error, data }] = useLazyQuery(SWITCH_ACCOUNT, {
+        fetchPolicy: 'network-only',
+    });
 
-    if(data) {
-        console.log("switched account", data)
+    if (data) {
+        const { switchAccount: { token, client } } = data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('client', JSON.stringify(client));
+        window.location.reload()
     }
-    
-    if(error) {
+
+    if (error) {
         console.log(error);
     }
 
-    if(loading) console.log('loading')
-
-    const handleSwitchAccount = (client: Client) => {
+    const handleSwitchAccount = (id: String) => {
         switchAccount({
             variables: {
-                id: client._id
+                id
             }
         })
     }
-    
+
     return (
-        <OptionList >
+        <OptionList>
             <OptItemCont>
                 <OptionItem>
                     <p>{client?.name}</p>
-                    <p style={{ color: 'grey' }}>
-                        @{client?.username}
-                    </p>
+                    <p style={{ color: 'grey' }}>@{client?.username}</p>
                 </OptionItem>
             </OptItemCont>
-            <OptItemCont>
-                <OptionItem>
-                    <p>Settings</p>
-                </OptionItem>
-            </OptItemCont>
-            <OptItemCont>
-                <OptionItem>
-                    <p>Switch account</p>
-                </OptionItem>
-                <IconCont className="icon" size={12}>
-                    <RightAngleIcon />
-                </IconCont>
-                <LinkedAccList> {
-                    client?.linkedTo.map((a: any) => (
-                        <LinkedAccItem onClick={()=>handleSwitchAccount(a)}>
-                            <p>{a.name}</p>
-                            <p>@{a.username}</p>
-                        </LinkedAccItem>
-                    ))
+            <OptItemCont onMouseEnter={() => setAccountList(true)} onMouseLeave={() => setAccountList(false)}>
+                {
+                    localStorage.getItem('admin') === 'yes' &&
+                    <>
+                        <OptionItem>
+                            <p>Switch account</p>
+                        </OptionItem>
+                        <IconCont className="icon" size={12}>
+                            <RightAngleIcon />
+                        </IconCont>
+                    </>
                 }
-                </LinkedAccList>
+                {
+                    accountList &&
+                    <LinkedAccList> {
+                        client?.linkedTo.map((a: any, i: number) => (
+                            <LinkedAccItem key={i} onClick={() => handleSwitchAccount(a._id)}>
+                                <p>{a.name}</p>
+                                <p className='usrnm'>@{a.username}</p>
+                                {
+                                    i !== client?.linkedTo.length && <Divider />
+                                }
+                            </LinkedAccItem>
+                        ))
+                    }
+                    </LinkedAccList>
+                }
             </OptItemCont>
             <OptionItem onClick={() => signOut()}>
                 <p>Sign out</p>

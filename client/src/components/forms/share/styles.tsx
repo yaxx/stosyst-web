@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  height: 312px;
+  height: 352px;
   width: 200px;
   position: absolute;
   display: flex;
@@ -13,7 +13,7 @@ export const FormContainer = styled.div`
   left: 80%;
   padding: 0px 10px;
   top: 32px;
-  z-index: 7;
+  z-index: 2030;
   overflow: hidden;
   border-radius: 6px;
   box-shadow: rgba(196, 195, 195, 0.216) 0px 5px 25px;
@@ -63,7 +63,7 @@ export const HeaderCont = styled.div`
   h6 {
     font-size: 14px;
     margin-bottom: 0px;
-    padding: 7px 7px;
+    padding: 7px 0px;
     font-weight: bold;
   }
 `;
@@ -94,12 +94,13 @@ export const ListFeedbackMsgCont = styled.div`
   }
 `;
 export const SearchListItemCont = styled(ListItemCont)<any>`
-  height: 50px;
-  padding: 5px 0px;
+  height: 47px;
+  padding: 0px 0px;
+  position: relative;
+  align-items: center;
   :hover {
     background: whitesmoke;
   }
-   border-bottom: 1px solid ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.separators.sec : props.theme.light.colors.separators.pri};
 `;
 
 export const ItemInfo = styled.div`
@@ -108,6 +109,7 @@ export const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  justify-content: center;
   p {
     font-size: 12px;
     margin-bottom: 0px;
@@ -116,6 +118,7 @@ export const ItemInfo = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     padding-left: 0px;
+    color: #222222;
   }
   p:last-child {
     font-size: 11px;
@@ -138,7 +141,7 @@ export const OptItemInfo = styled.div`
   justify-content: center;
   align-items: end;
   p {
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 0px;
     text-align: right;
     font-weight: 500;
@@ -173,17 +176,12 @@ export const InfoSection = styled.section`
 `;
 export const DropIconCont = styled.div<any>`
     display: flex;
-    position: absolute;
+    position: relative;
     cursor: pointer;
-    align-items: flex-end;
+    width: 100%;
+    align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    bottom: -4.5%;
-    left: 50%;
-    .icon {
-        top: 1px;
-        left: 1px;
-    }
+    top: 2px;
 `;
 export const SearchOptCont = styled.div<any>`
     display: flex;
@@ -195,14 +193,68 @@ export const SearchOptCont = styled.div<any>`
     padding: ${props => props.opened ? 10 : 0}px 0px;
     height: ${props => props.opened ? 150 : 0}px;
     border-top: 1px solid ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.separators.sec : props.theme.light.colors.separators.pri};
+    .sp {
+      font-size: 10px;
+      color: grey;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    `
+export const SearchListCont = styled.ul`
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+    list-style: none;
+    .fb {
+       font-size:12px;
+       margin-bottom: 0px;
+       width: 100%;
+       color: grey;
+       text-align: center;
+    }
     `
 export const BtnCont = styled.div<any>`
     display: flex;
-    position: relative;
+    position: absolute;
     align-items: center;
     justify-content: center;
     width: 100%;
     bottom: 10px;
     right: 0px;
-   
+    padding: 0px 10px;
+    `
+export const InputCont = styled.div<any>`
+    display: flex;
+    position: relative;
+    height: 45px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0px;
+    p {
+      font-size:13px;
+      margin-bottom: 0px ;
+      color: lightgrey;
+    }
+    `
+export const InputGroupCont = styled.div<any>`
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    
+    align-items: flex-end;
+    justify-content: center;
+     p {
+      font-size:14px;
+      margin-bottom: 0px ;
+      color: grey;
+      cursor: pointer;
+    }
     `

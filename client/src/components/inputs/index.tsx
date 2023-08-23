@@ -110,6 +110,7 @@ const PrimaryFormGroup = styled.div<any>`
    }
 `
 export const FormGroupCont = styled.div<any>`
+  position: relative;
   margin: 4px 0px;
   width: ${props=> props.w || 100}%;
   border-radius: 8px;

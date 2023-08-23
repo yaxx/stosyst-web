@@ -7,7 +7,7 @@ export const FlatButton = styled.button.attrs(props => ({
     width: ${props => props.w || '100%'};
     height:${props => props.h || '100%'};
     border:none;
-    border-radius: 0px;
+    border-radius: ${props => props.r || '0px'};
     display: flex;
     align-items: center;
     justify-content:center;
@@ -19,6 +19,25 @@ export const FlatButton = styled.button.attrs(props => ({
         svg {
             fill: white !important;
         }
+    }
+    &:focus {
+        border: 0px;
+        outline: none;
+    }
+`
+export const IconButton = styled.button<any>`
+    width: ${props => props.w || '100%'};
+    height:${props => props.h || '100%'};
+    border-radius: ${props => props.r || '0px'};
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    margin-left: ${props => props.a};
+    border: none;
+    background: transparent;
+    position: relative;
+    &:hover {
+        background-color: ${props => props.hbg || ''};
     }
     &:focus {
         border: 0px;

@@ -5,19 +5,23 @@ export const Bar = styled.div`
 `
 
 export const TableActions = styled.div<any>`
-  width: 135px;
+  width: 150px;
+  height: 300px;
   position: absolute;
-  z-index: 1000;
-  right: ${props => props.r || 70}px;
-  top: -32%;
+  z-index: 1048;
+  top: 88%;
   display: flex;
   flex-direction: column;
   background: #ffffff;
   box-shadow: 0 5px 25px #c4c3c337;
+  right: 10%;
+  border-radius: 6px;
+  border: 1px solid rgba(71, 75, 76, 0.055);
+  overflow: hidden;
 `
 export const TableOption = styled.div<any>`
   width: 100%;
-  height: 30px;
+  height: 27px;
   padding: 0px 5px;
   position: relative;
   display: flex;
@@ -30,9 +34,8 @@ export const TableOption = styled.div<any>`
   p {
     position: relative;
     margin-bottom: 0px;
-    color: #393939;
-    text-align: left;
-    font-size: 13px;
+    color: #414040;
+    font-size: 12.5px;
     width: 80%;
     left: ${props => (props.selected ? '4px' : '15px')};
   }
@@ -49,24 +52,62 @@ export const TableOption = styled.div<any>`
     }
   }
 `
+export const ListDivider = styled.div`
+  height: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  p {
+    margin-bottom: 0px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #a49f9f;
+    padding-left: 10px;
+
+  }
+`
+export const ButtonDivider = styled.div`
+  height: 35px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  p {
+    margin-bottom: 0px;
+    font-size: 10px;
+    font-weight: 900;
+    color: dodgerblue;
+    width: 100%;
+    text-align: center;
+    padding-right: 20px;
+  }
+  :hover {
+    background: #1e8fff1c;
+  }
+  cursor: pointer;
+    
+`
 export const GroupContainer = styled.div`
-  min-width: 40px;
+  width: 70%;
   height: 100%;
   font-size: 11px;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   :hover {
     cursor: pointer;
   }
   p {
     margin-bottom: 0px;
-    text-align: left;
   }
 `
 
 export const GroupLabel = styled(GroupContainer)`
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   color: grey;
@@ -79,6 +120,7 @@ export const GroupLabel = styled(GroupContainer)`
   height: 22px;
   width: 45px;
   border-radius: 6px;
+ 
 `
 
 export const MainHeaderCont = styled.div.attrs(props => ({
@@ -90,7 +132,7 @@ export const MainHeaderCont = styled.div.attrs(props => ({
   top: 0px;
   left: 0;
   margin: auto;
-  z-index: 1000;
+  z-index: 1023;
   background-color: rgb(247 247 247);
 `
 
@@ -100,7 +142,7 @@ export const TopHeader = styled.header.attrs(props => ({
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
 
@@ -110,6 +152,7 @@ export const Header = styled.header<any>`
   height: ${props => props.height || 50}px;
   width: 100%;
   z-index: 100;
+  margin-top: 55px;
   background: white;
   position: relative;
   font-family: 'Open Sans', sans-serif;
@@ -140,6 +183,9 @@ export const SettingsHeader = styled(Header)`
   height: 30px;
   width: 100%;
   position: relative;
+  z-index: 1;
+  margin-top: -30px;
+  margin-bottom: 30px;
 `
 export const SettingsNavigation = styled.ul`
   height: 30px;
@@ -567,6 +613,10 @@ export const HeaderItem = styled.li<any>`
   bottom: 0px;
   z-index: 12;
   a {
+     font-size: 11px;
+     font-weight: 600;
+  }
+  a {
     :hover {
       color: #212122;
     }
@@ -581,7 +631,7 @@ export const ExpenseListHeader = styled(InvoiceListHeader)`
   li {
     &:last-child {
       font-weight: 500;
-      font-size: 19px;
+      font-size: 12px;
       color: ${props => props.theme.dark.colors.brand};
     }
   }
@@ -719,7 +769,6 @@ export const ProfileOptions = styled.div`
   position: relative;
   height: 100%;
   width: 80px;
-  z-index: 10000000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -727,7 +776,7 @@ export const ProfileOptions = styled.div`
   cursor: pointer;
 `
 export const OptionList = styled.ul`
-  min-height: 159px;
+  min-height: 124px;
   width: 180px;
   position: absolute;
   display: block;
@@ -739,7 +788,6 @@ export const OptionList = styled.ul`
   box-shadow: 0 5px 25px #c4c3c337;
   background-color: white;
   border: 1px solid rgba(71, 75, 76, 0.055);
-
   &:before {
     content: '';
     position: absolute;
@@ -767,9 +815,8 @@ export const LinkedAccList = styled.ul`
   border-radius: 10px;
   box-shadow: 0 5px 25px #c4c3c337;
   background-color: white;
-  border: 1px solid rgba(71, 75, 76, 0.055);
 `
-export const LinkedAccItem: any = styled.div`
+export const LinkedAccItem: any = styled.li`
   width: 100%;
   height: 35px;
   display: flex;
@@ -783,8 +830,8 @@ export const LinkedAccItem: any = styled.div`
     font-size: 12px;
     padding: 0px 10px;
   }
-  p:last-child {
-    color: grey;
+  .usrnm {
+    color: #b3b0b0;
   }
 `
 
@@ -812,10 +859,14 @@ export const OptionItem = styled.li<any>`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  padding: 0px 10px;
+ 
   p {
     margin-bottom: 0px;
     font-size: 12px;
+     padding: 0px 10px;
+  }
+  :hover {
+    background-color: rgb(247 247 247);
   }
 `
 export const SettingTitle = styled.h2`
@@ -895,10 +946,12 @@ export const LogoSection = styled.section<any>`
 `
 export const SearchSection = styled.section`
   position: relative;
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: auto;
+
 `
 export const CartSection = styled.section<any>`
   display: flex;

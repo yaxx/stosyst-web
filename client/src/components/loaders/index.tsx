@@ -25,7 +25,7 @@ const Spinner = styled.div<any>`
 const PageSpinner = styled(Spinner)`
   width: 40px;
   height: 40px;
-  right: auto;
+  /* right: auto; */
   border-top-color: #1da0f2;
 `
 const MoreSpinner = styled(Spinner)`

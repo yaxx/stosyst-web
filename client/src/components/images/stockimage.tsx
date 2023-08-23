@@ -10,7 +10,8 @@ const StcokImage = (props: any) => {
             {
                 (expiryStatus && expiryStatus === 'weak' || expiryStatus === 'expired') ? <StockIndicator {...props} /> : <></>
             }
-            <img src={source} alt="" /> {
+            {source && <img src={source} alt="" />}
+            {
                 // exp && <DateIndictor ><p>{exp}</p></DateIndictor>
             }
         </ImageWrap>

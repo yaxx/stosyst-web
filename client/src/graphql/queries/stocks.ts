@@ -43,12 +43,68 @@ export const GET_MATCHED_PRODS = gql`
         matchedProducts(query: $query, storeId: $storeId) {
             _id
             name
-            instock
             description
+            category
+            subCategory
+            costPrice
             sellingPrice
+            instock
             stockImage
+            owner
+            warningCount
+            expiry
+            expiryWarning
+            added {
+                firstName
+                lastName
+                phone
+                email
+            }
+            modified {
+                firstName
+                lastName
+                phone
+                email
+            }
+            createdAt
+            updatedAt
         }
 }`
+export const MATCHED_PRODS = gql`
+    query matchedProducts {
+        matchedProducts {
+            _id
+            name
+            description
+            category
+            subCategory
+            costPrice
+            sellingPrice
+            instock
+            stockImage
+            owner
+            warningCount
+            expiry
+            expiryWarning
+            added {
+                firstName
+                lastName
+                phone
+                email
+            }
+            modified {
+                firstName
+                lastName
+                phone
+                email
+            }
+            createdAt
+            updatedAt
+        }
+}`
+
+
+
 export const GET_STOCK_SET = gql`
     query getStockSet($query: String, $filter: String, $offset: Int, $group: String, $groupLabel: String) {
         stockSet(query: $query, filter: $filter, offset: $offset, group: $group, groupLabel: $groupLabel) {

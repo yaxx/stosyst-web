@@ -52,8 +52,7 @@ export function CheckOut(props: any): ReactElement {
   }, [])
 
   const closePrintPreview = (e: any) => {
-    console.log(`closed`)
-    // setSlideUp(false)
+    setSlideUp(false)
   }
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({

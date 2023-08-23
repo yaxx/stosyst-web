@@ -17,7 +17,7 @@ import { router } from './router'
 
 export const Wrap = styled.div`
   height: 100%;
-  padding-top: 55px;
+  /* padding-top: 55px; */
   overflow: visible;
 `
 const GlobalStyle = createGlobalStyle`

@@ -1,6 +1,7 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { OptionItem } from '../headers/styles';
+import { Divider, OptionItem } from '../headers/styles';
 
 import { MoreOptions } from '../icons';
 import { P1 } from '../typography';
@@ -159,8 +160,8 @@ export const ExpandableList = styled.ul<any>`
 `
 
 export const MoreActions = (props: any) => {
-    let {actions, rt, closeMenuCallback} = props
-
+    let { actions, rt, closeMenuCallback, sharingCallback } = props
+    const location = useLocation();
     let allowedActions:any = []
     
      actions.forEach((action: any)=>{
@@ -170,12 +171,20 @@ export const MoreActions = (props: any) => {
 
     return (
         <MoreOptions rt = {rt} onMouseLeave={() => closeMenuCallback()} onClick={() => closeMenuCallback()} {...props}>{
-            allowedActions.map((action: any)=>(
-                <OptionItem onClick={(e: any) => action.callback(e)}>
-                    <p>{action.label}</p>
+            allowedActions.map((action: any, i: number)=>(
+                    <OptionItem onClick={(e: any) => action.callback(e)}>
+                        <p>{action.label}</p>
+                        {i < allowedActions.length  && <Divider />}
+                    </OptionItem>
+                ))
+            }
+            {
+                location.pathname === '/' && 
+                <OptionItem onClick={(e: any) => sharingCallback(e)}>
+                    <p>Share</p>
                 </OptionItem>
-            ))
-        } 
+            }
+           
         </MoreOptions>
     )
 }

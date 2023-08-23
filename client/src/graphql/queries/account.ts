@@ -13,6 +13,7 @@ export const GET_ACCOUNT = gql`
             dp
             banner
             username
+            createdAt
         }
     }
 `

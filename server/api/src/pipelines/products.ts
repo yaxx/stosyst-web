@@ -69,7 +69,7 @@ import { getSorter } from "./sorter"
             $skip: offset
         },
         {
-            $limit: 3
+            $limit: limit
         }
     ]
 }
@@ -97,35 +97,4 @@ export const matchedProdsPipeline = (query: string, storedId: string,): any => {
     ]
 
 }
-
-// export const getProductFilter = (ownerId: string, filter: String, group:string, orderBy?:string)=> {
-
-//     return [
-//         {
-//             $match: filter === 'out_of_stock' ? 
-//             {
-//                 owner: ownerId, 
-//                 instock: {$lte: 0}
-//             }
-//             :  filter === 'low_stocks' ?
-//             {
-//                 owner: ownerId, 
-//                 $expr:{$lte:["$instock", "$warningCount"]}
-//             }
-//             : filter === 'expired' ?
-//             {
-//                 owner: ownerId,
-//                 expiry: {$lte : new Date()}
-//             }
-//             :
-//             {}
-//         },
-//         {
-//             $group: productsCriteria(group)
-//         },
-//         {
-//             $sort: { _id: 1 }
-//         },
-//     ]
-// }
 

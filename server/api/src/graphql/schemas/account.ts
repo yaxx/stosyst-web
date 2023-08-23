@@ -37,15 +37,13 @@ export default gql`
         createdAt: String
         updatedAt: String
     }
-    input AccountInput {
+    input AccInput {
         _id: String
         name: String
-        username: String
         category: String
+        username: String
         phone: String
         email: String
-        country: String
-        city: String
         address: String
         dp: String
         banner: String
@@ -184,6 +182,6 @@ export default gql`
         addAccount(input: AddAccInput!): Client
         saveInfo(staff: PersonInput!): User
         deleteStaff(id: String!): StaffId
-        updateAccount(accountInfo: AccountInput!): Client
+        # updateAccount(input: AccInput): Client
     } 
 `;

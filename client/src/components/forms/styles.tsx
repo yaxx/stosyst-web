@@ -174,7 +174,7 @@ export const Form = styled.form`
 `;
 export const TableForm = styled(Form)`
     width: 100%;
-    z-index: 200;
+    z-index: 1025;
     display: flex;
     border-radius: 18px;
     padding: 10px;
@@ -212,6 +212,8 @@ export const ReviewFormCont = styled(Form)`
 export const MainSearchForm = styled(Form)`
    top: auto;
    border-radius:0px;
+   width: 100%;
+   margin: auto;
 `;
 export const AccForm = styled(StandardForm)`
     width: 240px;
@@ -325,10 +327,4 @@ export const QtyFormGroup = styled.div.attrs(props => ({
     border-radius: 6px;
     position: relative;
   `
-  export const ProfileFormCont = styled.div<any>`
-    width: 90%;
-    height: auto;
-    left: 30px;
-    top: 20px;
-    position: relative;
-  `
+  

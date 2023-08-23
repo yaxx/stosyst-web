@@ -1,5 +1,6 @@
 import { makeVar } from "@apollo/client";
 import { EXPENSES, INVOICES, PRODUCTS } from "../constants";
+import { initProduct } from "../store/data";
 
 export interface PermittedActions {
     creates: string[],
@@ -134,6 +135,7 @@ export type LocalState = {
         visible: boolean,
     },
     account: Client,
+    hidenModal: boolean,
     msgToken: String,
     selectedType: PRODUCTS | INVOICES | EXPENSES
 }
@@ -141,3 +143,6 @@ export type LocalState = {
 
 export const review = makeVar(false);
 export const print = makeVar(false);
+
+export const matchedProds = makeVar([]) as any;
+export const selectedIndex = makeVar(0) as any;

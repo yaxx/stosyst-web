@@ -59,6 +59,7 @@ export function SignUpForm({}: Props): ReactElement {
 
  const storeUserInfo = ({token, client}: any) => {
    localStorage.setItem('token', token);
+   localStorage.setItem('admin', 'yes')
    localStorage.setItem('client', JSON.stringify(client));
    navigate("/");
   }
@@ -154,7 +155,7 @@ export function SignUpForm({}: Props): ReactElement {
         />
       </FormGroupCont>
       
-      <PriBtn disabled={!client.phone || !client.name || !client.password} >
+      <PriBtn active={client.phone && client.name && client.password} >
             { loading ? <Loader/> : 'Create Account' }
         </PriBtn> {
            error && <Error error  = { error } />
@@ -167,7 +168,7 @@ export function SignUpForm({}: Props): ReactElement {
 
       <SmallText cl="grey" fs='.66rem' mt='200'>Creating Account means you have read and acknowleged our
           <span>
-            <Link to="#"> Terms of service</Link>
+            <Link to="#">Terms of service</Link>
           </span>
       </SmallText>
       </AccForm>

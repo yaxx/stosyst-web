@@ -4,13 +4,14 @@ import { setContext } from '@apollo/client/link/context';
 import { createUploadLink } from 'apollo-upload-client'
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
-import { ApolloClient, InMemoryCache, split } from '@apollo/client'
+import { ApolloClient, InMemoryCache, NormalizedCacheObject, split } from '@apollo/client'
 
 
 export const API_HOST = inDevelopment ? 'localhost:4200':'api.stosyst.com'
 
 export const API_URI = inDevelopment ? `http://${API_HOST}/graphql`:`https://${API_HOST}`
-export const getImageUrl = (name: string) => inDevelopment ? `http://${API_HOST}/images/${name}` : `https://nextoma-bucket.s3.us-east-2.amazonaws.com/${name}`;
+export const getImageUrl = (name: string) => `https://nextoma-bucket.s3.us-east-2.amazonaws.com/${name}`;
+// export const getImageUrl = (name: string) => inDevelopment ? `http://${API_HOST}/images/${name}` : `https://nextoma-bucket.s3.us-east-2.amazonaws.com/${name}`;
 
 const SOCKET_URI = inDevelopment ? `ws://${API_HOST}` : `wss://${API_HOST}`
 
@@ -48,7 +49,7 @@ const splitLink = split(
   httpLink
 );
 
-export const cache  = new ApolloClient({
+export const cache: ApolloClient<NormalizedCacheObject>  = new ApolloClient({
   link: authLink.concat(splitLink),
   cache: new InMemoryCache({
     typePolicies: {

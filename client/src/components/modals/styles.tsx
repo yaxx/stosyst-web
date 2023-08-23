@@ -4,15 +4,33 @@ export const ModalContainer = styled.div<any>`
     position: fixed;
     height: 100%;
     width:100%;
-    z-index: 20000;
+    z-index: 1024;
     top:0;
-    background-color: rgb(0 0 0 / 46%);
+    background-color: rgb(0 0 0 / 27%);
+`;
+export const HidenModal = styled.div<any>`
+    position: fixed;
+    height: 100%;
+    width:100%;
+    z-index: 1023;
+    top:0;
+    display: ${props=>props.open ? 'block': 'none'};
+    background-color: transparent;
+`;
+export const ShareModal = styled.div<any>`
+    position: fixed;
+    height: 100%;
+    width:100%;
+    z-index: 1023;
+    top:0;
+    display: ${props=>props.open ? 'block': 'none'};
+    background-color: transparent;
 `;
 export const SearchModalContainer = styled.div<any>`
     position: fixed;
     height: 100%;
     width:100%;
-    z-index: 20000;
+    z-index: 200;
     top:56px;
     background-color: rgb(0 0 0 / 1%);
 `;

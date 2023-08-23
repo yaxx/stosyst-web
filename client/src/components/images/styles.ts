@@ -48,7 +48,7 @@ export const Mask = styled.div`
     border-radius: inherit;
     align-items: center;
     justify-content: center; 
-    background-color: rgba(0,0,0,.36);
+    background-color: rgba(0,0,0,.3);
 `
 export const StockIndicator = styled.div<any>`
     top: 0;

@@ -6,7 +6,6 @@ import { Loader } from '../loaders';
 import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import React, { ReactElement, useState } from 'react'
-import { Client, PermittedActions } from '../../types/model';
 import { SignIn } from '../../graphql/mutations/account';
 import { locals } from '../../store/data';
 import { AccForm } from './styles';
@@ -28,14 +27,9 @@ export function SignInForm(props: any): ReactElement {
 
   const [showPassword, setPassword] = useState(false);
 
-  const storeUserInfo = ({ token, client, dp, org, usr, perms, name, username, accounts }: any) => {
+  const storeUserInfo = ({ token, client }: any) => {
     localStorage.setItem('token', token);
-    // localStorage.setItem('dp', dp);
-    // localStorage.setItem('org', org);
-    // localStorage.setItem('usr', usr);
-    // localStorage.setItem('name', name);
-    // localStorage.setItem('username', username);
-    // localStorage.setItem('perms', JSON.stringify(perms));
+    localStorage.setItem('admin', creds.isAdmin ? 'yes': 'no')
     localStorage.setItem('client', JSON.stringify(client));
     navigate("/");
   }
@@ -114,9 +108,9 @@ export function SignInForm(props: any): ReactElement {
           Sign in as:
           <span onClick={() => switchLogger()}> {creds.isAdmin ? 'Admin' : 'Staff'}</span>
         </Tagline>
-        <Tagline> {"Forgot Password?"}</Tagline>
+        <Tagline>{"Forgot Password?"}</Tagline>
       </Info>
-      <PriBtn disabled={!creds.phone || !creds.password} name='signin'> {
+      <PriBtn active={creds.phone && creds.password}  name='signin'> {
         loading ? <Loader /> : 'Sign in'
       }
       </PriBtn>{

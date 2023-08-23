@@ -13,6 +13,7 @@ export const SignUp = gql`
         }
     }
 `
+
 export const ADD_ACCOUNT = gql`
     mutation addAccount($input: AddAccInput!) {
         addAccount(input: $input) {
@@ -21,6 +22,22 @@ export const ADD_ACCOUNT = gql`
             name
             username
             address
+        }
+    }
+`
+export const UPDATE_ACCOUNT = gql`
+    mutation updateAccount($input: AccInput!) {
+        updateAccount(input: $input) {
+            _id
+            name
+            email
+            phone
+            address
+            category
+            dp
+            banner
+            username
+            createdAt
         }
     }
 `

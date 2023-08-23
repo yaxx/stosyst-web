@@ -1,25 +1,30 @@
-import { useQuery } from '@apollo/client'
+import { useQuery, useReactiveVar } from '@apollo/client'
 import React from 'react'
 import { GET_MATCHED_PRODS } from '../../../graphql/queries'
 import { initProduct } from '../../../store/data'
-import { Product } from '../../../types/model'
+import { Product, matchedProds } from '../../../types/model'
 import { formatMoney } from '../../../utils'
 import { readLocalStorage } from '../../headers/headerMenu'
 import { ImageItem } from '../../images'
 import Skeleton from '../../loaders/skeletons'
 import { ListItemCont, ItemInfo, OptItemInfo, ListFeedbackMsgCont } from './styles'
 
+
 const SelectedItem = (props: any) => {
 
     const { stock } = props
+
+    
     const { linkedTo } = readLocalStorage()
+
+    let matches: any = useReactiveVar(matchedProds)
 
     const { data, loading, error } = useQuery(GET_MATCHED_PRODS, {
         variables: {
             query: stock.name,
             storeId: linkedTo[0]._id
         },
-        fetchPolicy: "network-only",
+        fetchPolicy: "cache-first",
     })
 
     if (error) console.log(error)
@@ -27,16 +32,17 @@ const SelectedItem = (props: any) => {
     let product: Product = initProduct;
 
     if (data) {
-        product = data?.matchedProducts[0]
+        const {matchedProducts} =  data
+        product = matchedProducts[0]
+        matchedProds(matchedProducts)
     }
-
     return (
         <>
             {
                 loading ?
                     <Skeleton h={60} pt={10} />
                     :
-                    error || !data.matchedProducts.length ?
+                    error || !product ?
                     <ListFeedbackMsgCont>
                         <p>
                             {

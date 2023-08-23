@@ -9,6 +9,7 @@ import { SortAngle, PlusIcon, Marker } from "../icons"
 import { headerMenu, groupingCriteria, initProduct } from "../../store/data"
 import { Header, StocksListHeader, Divider, HeaderItem, TableActions, TableOption } from "./styles"
 import { IconCont } from "../inputs/styles"
+import PageListOpts from "./ListOpts"
 
 export const StocksHeader = (props: any): ReactElement => {
     const [order, setOrder] = useState('name')
@@ -86,33 +87,8 @@ export const StocksHeader = (props: any): ReactElement => {
                     }
                 </HeaderItem>{
                     headMenu === 'group' ?
-                        <TableActions h={120} onMouseLeave={() => headerMenu('')}>
-                            <TableOption selected={criteria.group === 'name'} onClick={() => reGroupStock('name')}>
-                                {
-                                    criteria.group === 'name' && <Marker />
-                                }
-                                <p>A-Z</p>
-                            </TableOption>
-                            <TableOption selected={criteria.group === 'category'} onClick={() => reGroupStock('category')}>
-                                {
-                                    criteria.group === 'category' && <Marker />
-                                }
-                                <p>Category</p>
-                            </TableOption>
-                            <TableOption selected={criteria.group === 'instock'} onClick={() => reGroupStock('instock')}>
-                                {
-                                    criteria.group === 'instock' && <Marker />
-                                }
-                                <p>Quantity</p>
-                            </TableOption>
-                            <TableOption selected={criteria.group === 'date'} onClick={() => reGroupStock('date')} style={{ borderBottom: '0px' }}>
-                                {
-                                    criteria.group === 'date' && <Marker />
-                                }
-                                <p>Date added</p>
-                            </TableOption>
-                        </TableActions>
-                        :
+                       <></>                        
+                       :
                         headMenu === 'filter' ?
                             <TableActions r={80} onMouseLeave={() => headerMenu('')}>
                                 <TableOption selected={criteria.filter === ''} bordered onClick={() => filterStocks('')}> {

@@ -16,6 +16,7 @@ import { SideNav } from '../components/sideNavigation/SideNav'
 import { BagIcon, CheckIcon, CloseIcon } from '../components/icons'
 import { IssueContainer, Issue } from '../components/issues/styles'
 import { SearchModalContainer } from '../components/modals/styles'
+import { IconCont } from '../components/icons/styles'
  
 export  const Stocks = (props: any): ReactElement => {
     const [hasMore, setHasMore] = useState(false);
@@ -147,7 +148,9 @@ export  const Stocks = (props: any): ReactElement => {
                     <p>OPEN CART</p>
                 </FloatingBtn>
                 <UncheckBtn onClick={() => locals(defState)} >
-                    <CheckIcon />
+                    <IconCont size={14}>
+                        <CheckIcon />
+                    </IconCont>
                     <p>DESELECT ALL</p>
                 </UncheckBtn>
             </FloatBtnCont>
