@@ -1,9 +1,5 @@
-import { useQuery } from '@apollo/client'
 import React from 'react'
 import { getImageUrl } from '../../../apollo-client'
-import { GET_ACCOUNT } from '../../../graphql/queries'
-import { tempClient } from '../../../store/data'
-import { data } from '../../charts'
 import { MainBanerCont, ProfileBaner, ProfileImage, ProfileInfo, ProfilePicture, SubsBtn } from '../styles'
 
 const Profile = (props: any) => {
@@ -37,7 +33,7 @@ const Profile = (props: any) => {
                 <p className="username">{username || ''}
                 </p>
                 <p className="addr">{address}</p>
-                <p>{phone}</p>
+                {/* <p>{phone}</p> */}
                 {/* <div className="stats">
                     <p>128K<span> Views</span> </p>
                     <p>17K<span> Likes</span> </p>

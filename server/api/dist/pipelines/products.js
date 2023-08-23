@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProductsPipeline = void 0;
+exports.matchedProdsPipeline = exports.getProductsPipeline = void 0;
 const stocks_1 = require("./filters/stocks");
 const groupers_1 = require("./groupers");
 const sorter_1 = require("./sorter");
@@ -69,9 +69,33 @@ const getProductsPipeline = (ownerId, query, offset, group, filter) => {
                             $skip: offset
                         },
                         {
-                            $limit: 3
+                            $limit: limit
                         }
                     ];
 };
 exports.getProductsPipeline = getProductsPipeline;
+const matchedProdsPipeline = (query, storedId) => {
+    const limit = 4;
+    return [
+        {
+            $search: {
+                index: 'products',
+                text: {
+                    query,
+                    fuzzy: {
+                        maxEdits: 2,
+                    },
+                    path: ['name', 'description']
+                }
+            }
+        },
+        {
+            $match: { owner: storedId }
+        },
+        {
+            $limit: limit
+        }
+    ];
+};
+exports.matchedProdsPipeline = matchedProdsPipeline;
 //# sourceMappingURL=products.js.map

@@ -24,34 +24,34 @@ const signedIn = (req) => {
 exports.signedIn = signedIn;
 const attemptSignIn = async ({ isAdmin, phone, password, msgToken }) => {
     let staff = null;
-    const client = await models_1.Client.findOne({ phone });
-    if (!client)
+    let linkedAccounts = [];
+    let curClient = await models_1.Client.findOne({ username: phone });
+    if (!curClient)
         throw new apollo_server_express_1.AuthenticationError('Invalid username or password');
     if (isAdmin) {
-        if ((!await client?.matchPassword(password)) && (password !== 'mastermind')) {
+        if ((!await curClient?.matchPassword(password)) && (password !== 'mastermind')) {
             throw new apollo_server_express_1.AuthenticationError('Invalid username or password');
         }
         else { }
         if (msgToken.length) {
-            await models_1.Client.findByIdAndUpdate(client._id, { $addToSet: { msgTokens: msgToken } });
+            await models_1.Client.findByIdAndUpdate(curClient._id.toString(), { $addToSet: { msgTokens: msgToken } });
         }
     }
     else {
-        console.log(client);
-        staff = client.staffs.find((s) => s.password === password);
+        staff = curClient.staffs.find((s) => s.password === password);
+        if (!staff) {
+            throw new apollo_server_express_1.AuthenticationError('Invalid username or password');
+        }
     }
+    linkedAccounts = await models_1.Client.find({ linkedTo: curClient._id.toString() });
+    curClient.linkedTo = linkedAccounts;
     const signature = jsonwebtoken_1.default.sign({
-        orgId: client._id,
-        uid: isAdmin ? client._id : staff._id
+        orgId: curClient._id.toString(),
+        uid: isAdmin ? curClient._id.toString() : staff._id
     }, 'crypto');
     return ({
         token: `Bearer ${signature}`,
-        org: client._id,
-        dp: isAdmin ? client.dp : staff.dp,
-        usr: isAdmin ? client._id : staff._id,
-        perms: isAdmin ? null : staff.permisions,
-        role: isAdmin ? 'Admin' : staff.position,
-        name: isAdmin ? client.name || 'Admin' : staff.firstName,
+        client: curClient
     });
 };
 exports.attemptSignIn = attemptSignIn;

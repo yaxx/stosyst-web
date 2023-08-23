@@ -26,11 +26,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.verifyEmail = exports.verifyPhoneNumber = void 0;
 const models_1 = require("../../models");
 const validations_1 = require("../../validations");
 const Auth = __importStar(require("../../auth"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const client_1 = require("../../validations/client");
 let ObjectId = require('mongodb').ObjectID;
+exports.verifyPhoneNumber = true;
+exports.verifyEmail = true;
 exports.default = {
     Query: {
         me: async (root, args, { req }) => {
@@ -44,6 +48,33 @@ exports.default = {
             Auth.checkSignedIn(req);
             const { data: { orgId, uid } } = req;
             return await models_1.Client.findById(orgId);
+        },
+        accDetails: async (root, args, { req }) => {
+            Auth.checkSignedIn(req);
+            const { data: { orgId, uid } } = req;
+            const linkedAccounts = await models_1.Client.find({ linkedTo: orgId }).lean();
+            const account = await models_1.Client.findById(orgId).lean();
+            return {
+                ...account,
+                linkedTo: linkedAccounts
+            };
+        },
+        switchAccount: async (root, { id }, { req }) => {
+            console.log('hi');
+            Auth.checkSignedIn(req);
+            const { data: { orgId, uid } } = req;
+            let client = await models_1.Client.findById(id).lean();
+            const linkedAccounts = await models_1.Client.find({ linkedTo: id }).lean();
+            const signature = jsonwebtoken_1.default.sign({
+                orgId: client?._id.toString(),
+                uid: client?._id.toString()
+            }, 'crypto');
+            return ({
+                token: `Bearer ${signature}`,
+                client: {
+                    ...client, linkedTo: linkedAccounts
+                }
+            });
         },
         staffs: async (root, args, { req }) => {
             Auth.checkSignedIn(req);
@@ -60,6 +91,7 @@ exports.default = {
     },
     Mutation: {
         signUp: async (root, { info }, { req }) => {
+            exports.verifyPhoneNumber = true;
             await validations_1.cred.validateAsync(info);
             const { name, phone, password, msgToken } = info;
             const newClient = await models_1.Client.create({ name, phone, password, msgTokens: [msgToken.trim()] });
@@ -68,12 +100,20 @@ exports.default = {
                 uid: newClient._id
             }, 'crypto');
             return ({
-                dp: newClient.dp,
-                org: newClient._id,
-                usr: newClient._id,
-                name: newClient.name,
+                client: newClient,
                 token: `Bearer ${signature}`,
             });
+        },
+        addAccount: async (root, { input }, { req }) => {
+            Auth.checkSignedIn(req);
+            exports.verifyEmail = false;
+            exports.verifyPhoneNumber = false;
+            await client_1.addAccObject.validateAsync(input);
+            const { name, username, address, curClientId } = input;
+            const { password, _id, phone, email } = await models_1.Client.findById(curClientId).lean();
+            const newClient = await models_1.Client.create({ name, username, phone, email, address, password, linkedTo: [_id.toString()] });
+            await models_1.Client.findByIdAndUpdate(curClientId, { $addToSet: { linkedTo: newClient._id.toString() } });
+            return newClient;
         },
         signIn: async (root, { creds }, { req }) => {
             return await Auth.attemptSignIn(creds);
@@ -107,13 +147,10 @@ exports.default = {
             }
             return updated;
         },
-        updateAccount: async (root, { accountInfo }, { req }, info) => {
-            Auth.checkSignedIn(req);
-            return await models_1.Client.findByIdAndUpdate(req.data.orgId, { ...accountInfo }, { new: true });
-        },
         deleteStaff: async (root, { id }, { req }, info) => {
             Auth.checkSignedIn(req);
-            let { staffs } = await models_1.Client.findById(req.data.orgId);
+            const { data: { orgId } } = req;
+            let { staffs } = await models_1.Client.findById(orgId);
             staffs = staffs.filter((s) => s._id.toString() !== id);
             await models_1.Client.findByIdAndUpdate(req.data.orgId, { staffs }, { new: true });
             return { id };

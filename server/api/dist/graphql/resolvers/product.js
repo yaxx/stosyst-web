@@ -48,6 +48,12 @@ exports.default = {
                     result;
             return result;
         },
+        matchedProducts: async (root, { query, storeId }, { req, res }) => {
+            Auth.checkSignedIn(req);
+            const { data: { orgId, uid } } = req;
+            let result = await models_1.Product.aggregate((0, pipelines_1.matchedProdsPipeline)(query, storeId));
+            return result;
+        },
         stockSet: async (root, { group, groupLabel, offset, filter, query }, { req, res }) => {
             Auth.checkSignedIn(req);
             const { data: { orgId, uid } } = req;
@@ -61,7 +67,6 @@ exports.default = {
             let stock = {};
             Auth.checkSignedIn(req);
             const { data: { orgId, uid } } = req;
-            console.log(orgId);
             const client = await models_2.Client.findById(orgId);
             const staff = client?.staffs.find((s) => s._id.toString() === req.data.uid);
             const isAdmin = req.data.orgId === req.data.uid;
@@ -93,6 +98,13 @@ exports.default = {
                     }, { new: true });
             exports.pubsub.publish('STOCKS', { stock });
             return stock;
+        },
+        shareProduct: async (_, { q, addId, subId }, { req }) => {
+            Auth.checkSignedIn(req);
+            console.log(q);
+            const added = await models_1.Product.findByIdAndUpdate(addId, { $inc: { instock: q } }, { new: true });
+            const subtracted = await models_1.Product.findByIdAndUpdate(subId, { $inc: { instock: -q } }, { new: true });
+            return [added, subtracted];
         },
         deleteProduct: async (_, { id }) => {
             return await models_1.Product.findByIdAndDelete(id);

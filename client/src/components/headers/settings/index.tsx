@@ -2,17 +2,12 @@ import { useQuery, useReactiveVar } from "@apollo/client"
 import { ReactElement } from "react"
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
-import { getPreEmitDiagnostics } from "typescript"
-import { getImageUrl } from "../../../apollo-client"
 import { GET_ACCOUNT } from "../../../graphql/queries"
 import { LoaderCont } from "../../../pages/settings/styles"
 // import { useMatch, useLocation, Link } from "react-router-dom"
-import { headerMenu, groupingCriteria, tempClient } from "../../../store/data"
-import ProfileForm from "../../forms/settings/profile"
-import { Marker } from "../../icons"
+import { groupingCriteria } from "../../../store/data"
 import { PageLoading } from "../../loaders"
-import { HeaderNav } from "../main"
-import { SettingTitle, SettingsHeader, SettingsNavigation, HeaderItem, TableActions, TableOption, MainBanerCont, ProfileImage, ProfileInfo, ProfilePicture, ProfileBaner, SubsBtn, Divider } from "../styles"
+import { SettingsHeader, SettingsNavigation, HeaderItem, Divider } from "../styles"
 import Profile from "./profile"
 
 export const SettingsNavHeader = (props: any): ReactElement => {
@@ -34,11 +29,6 @@ export const SettingsNavHeader = (props: any): ReactElement => {
 
     if (error) console.log(error);
     if (data) console.log(data);
-
-    // const reGroupStock = (group: string) => {
-    //     groupingCriteria({ ...criteria, group })
-    //     reGroupCallback()
-    // }
 
     return (
         <>

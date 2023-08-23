@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const bcryptjs_1 = require("bcryptjs");
+const account_1 = require("../graphql/resolvers/account");
 const Schema = mongoose_1.default.Schema;
 const ClientSchema = new Schema({
     password: String,
@@ -23,7 +24,7 @@ const ClientSchema = new Schema({
         validate: {
             validator: (email) => {
                 let C = Client;
-                return C.dontExist({ email });
+                return !account_1.verifyEmail ? true : C.dontExist({ email });
             },
             message: ({ value }) => `${value}  already exist`
         }
@@ -33,7 +34,7 @@ const ClientSchema = new Schema({
         validate: {
             validator: (phone) => {
                 let C = Client;
-                return C.dontExist({ phone });
+                return !account_1.verifyPhoneNumber ? true : C.dontExist({ phone });
             },
             message: ({ value }) => `${value} already exist`
         }
@@ -109,7 +110,23 @@ const ClientSchema = new Schema({
                 default: Date.now()
             }
         }],
-    msgTokens: []
+    msgTokens: [],
+    linkedTo: [],
+    timeLine: {
+        renewed: {
+            type: Date,
+            default: null
+        },
+        due: {
+            type: Date,
+            default: null
+        },
+        status: {
+            type: String,
+            default: 'trial'
+        }
+    },
+    paymentMethods: { type: Array, default: [] }
 }, { timestamps: true });
 ClientSchema.statics.dontExist = async function (options) {
     return await this.where(options).countDocuments() === 0;
