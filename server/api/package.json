@@ -9,7 +9,7 @@
     "postbuild": "cp -R src/public dist",
     "dev": "ts-node-dev --transpile-only --no-notify src",
     "start": "node dist/index.js",
-    "prod": "cross-env NODE_ENV=production SERVER_PORT=4000 MONGO_HOST=nextoma.2mkb8.mongodb.net MONGO_DATABASE=prod MONGO_USERNAME=me MONGO_PASSWORD=Sqb0NzshutN74DaR AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js"
+    "prod": "cross-env NODE_ENV=production SERVER_PORT=4000 MONGO_HOST=m0cluster.sveqa6c.mongodb.net MONGO_DATABASE=stosyst MONGO_USERNAME=shehu MONGO_PASSWORD=mWQgbU2J6iO2naol AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js"
   },
   "exports": {
     "./GraphQLUpload.js": "./GraphQLUpload.js",
