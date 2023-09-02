@@ -173,6 +173,88 @@ button:focus {
   position: relative;
 }
 
+@media (max-width: 420px) {
+  .promo-sec {
+    display: none;
+  }
+  .login--form--cont {
+    padding: 0px;
+    
+  }
+  #acc--form--cont {
+    padding: 0px 0px;
+    width: 300px;
+    margin: auto;
+  }
+  #acc--form--wrapper {
+    padding: 0px 0px;
+  }
+  #form--group--cont {
+    height: 55px;
+    overflow: hidden;
+  }
+  #pri--btn {
+    height: 55px;
+    font-size: 16px;
+  }
+  #pri--input {
+    padding: 0.575rem .7rem 0.275rem 0.75rem;
+    font-size: 15px;
+  }
+  #pri--input:focus {
+    /* border-radius: 8px 8px 0px 0px; */
+  }
+  #pri--label{
+    /* bottom: 25px; */
+  }
+  .main--account--container {
+    background: black;
+    overflow: hidden;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+  }
+  .styler-box0, .styler-box1, .styler-box2, .styler-box3 {
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    border-radius: 220px;
+    transform: rotate(90deg);
+    z-index: 200;
+    top: -15%;
+    left: 50%;
+    display: none;
+    border: 1px solid rgba(4, 118, 249, 0.284);
+  }
+  .styler-box1 {
+    top: 80%;
+    width: 150px;
+    height: 150px;
+    left: -15%;
+    
+    transform: rotate(90deg);
+    display: block;
+    border-radius: 50%;
+  }
+  .styler-box2 {
+    top: 75%;
+    width: 40%;
+    left: 5%;
+    display: none;
+    height: 40%;
+    
+    transform: rotate(0deg);
+  }
+  .styler-box3 {
+    top: -10%;
+    width: 80%;
+    left: 65%;
+    height: 40%;
+    transform: rotate(0deg);
+    display: block;
+  }
+}
+
 @media (min-width: 1200px)  {
   .container.main-container.prod-container {
     padding: 0px 170px;

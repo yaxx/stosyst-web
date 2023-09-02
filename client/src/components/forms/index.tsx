@@ -110,8 +110,8 @@ export function SignUpForm({}: Props): ReactElement {
   }
 
   return (
-      <AccForm onSubmit = { (e: React.SyntheticEvent) => handleSubmit(e) }>
-        <Heading fs = '1.0rem' cl = 'grey'>
+    <AccForm id='acc--form--cont' onSubmit = { (e: React.SyntheticEvent) => handleSubmit(e) }>
+        <Heading  cl = 'grey'>
           {`Let's get you started`}
         </Heading>
       <FormGroupCont>
@@ -134,17 +134,6 @@ export function SignUpForm({}: Props): ReactElement {
         />
       </FormGroupCont>
       <FormGroupCont>
-        <DropDown
-          name='category'
-          label='Business category'
-          value={client.category || 'Accessories'}
-          openCallback={(e: any) => setDroppedInput('category')}
-        />
-        {
-          dropedInput === 'category' && <DropDownOptions selectCallback={handleOptSelection} options={categories} />
-        }
-      </FormGroupCont>
-      <FormGroupCont>
         <NameInput 
           type = { showPassword ? 'text' : 'password'} 
           name = 'password'
@@ -155,7 +144,7 @@ export function SignUpForm({}: Props): ReactElement {
         />
       </FormGroupCont>
       
-      <PriBtn active={client.phone && client.name && client.password} >
+      <PriBtn id="pri--btn" active={client.phone && client.name && client.password} >
             { loading ? <Loader/> : 'Create Account' }
         </PriBtn> {
            error && <Error error  = { error } />

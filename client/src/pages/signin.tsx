@@ -16,30 +16,15 @@ export default function SignIn({ }: Props): ReactElement {
       <LogoItem />
       <div className="row no-gutters">
         <PromoSection />
-        <div className="col-lg-4 col-md-6 col-sm-6">
-          <AccountContainer>
-            <FormContainer>
-              {/* <LoginAccList>
-                <LoginAccIntem>
-                  <Divider bottom={100} />
-                  <CheckBox selected/>
-                  <LoginAccInfo>
-                    <h6>Moonshot Enterprice</h6>
-                    <p>@moonshot</p>
-                  </LoginAccInfo>
-                  <Divider />
-                </LoginAccIntem>
-                <LoginAccIntem>
-                  <CheckBox />
-                  <LoginAccInfo>
-                    <h6>Moonshot Enterprice</h6>
-                    <p>@moonshot</p>
-                  </LoginAccInfo>
-                  <Divider />
-                </LoginAccIntem>
-                <PriBtn >Continue</PriBtn>
-              </LoginAccList> */}
-              <SignInForm/>
+        <div id='main--acc--cont' className="col-lg-4 col-md-6 col-sm-12" >
+          <AccountContainer className='main--account--container'>
+            {
+              [0, 0, 0, 0].map((i, j) => (
+                <div className={`styler-box${j}`}></div>
+              ))
+            }
+            <FormContainer id="acc--form--wrapper" >
+              <SignInForm />
             </FormContainer>
           </AccountContainer>
         </div>

@@ -303,7 +303,6 @@ export const PriBtn = styled.button.attrs(props => ({
     border:none;
     width: ${props => props.w || '100%'};
     height: ${props => props.h || 45}px;
-    
     border-radius: ${props => props.r || 8}px;
     display: flex;
     align-items: center;
@@ -312,7 +311,7 @@ export const PriBtn = styled.button.attrs(props => ({
     margin-top:${props => props.mt || 25}px;
     color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.dark.colors.labels.pri
   };
-    font-size: 14px;
+    font-size: 16px;
     background-color: ${props => props.active ? props.theme.light.colors.brand : '#00a3fe2b'
   };
     &:hover {

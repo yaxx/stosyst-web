@@ -35,22 +35,29 @@ export const SmallText =  styled.p<any>`
     margin-bottom: ${props => props.mb}px;
 `
 export const Heading =  styled.h6<any>`
-   font-size: ${props => props.fs};
+    font-size: 2rem;
     width: 100%;
-    font-weight: bolder;
+    font-weight: 700;
+    margin-bottom: 20px;
     position: relative;
+    text-align: center;
 `
 export default function SignUp({}: Props): ReactElement {
     return (
         <div className="start">
           <LogoItem />
           <div className="row no-gutters">
-            <div className="col col-lg-8 col-md-6 col-sm-6 promo-sec">
+            <div  className="col col-lg-8 col-md-6 col-sm-6 promo-sec">
               <PromoSection />
             </div>
-            <div className="col-lg-4 col-md-6 col-sm-6">
-              <AccountContainer>
-                <FormContainer> 
+          <div id='main--acc--cont' className="col-lg-4 col-md-6 col-sm-12">
+            <AccountContainer className='main--account--container'>
+              {
+                [0, 0, 0, 0].map((i, j) => (
+                  <div className={`styler-box${j}`}></div>
+                ))
+              }
+              <FormContainer id="acc--form--wrapper"> 
                     <SignUpForm/>
                 </FormContainer>
               </AccountContainer>

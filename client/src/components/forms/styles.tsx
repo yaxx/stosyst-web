@@ -216,7 +216,7 @@ export const MainSearchForm = styled(Form)`
    margin: auto;
 `;
 export const AccForm = styled(StandardForm)`
-    width: 240px;
+    width: 250px;
    .formGroup {
         background-color: white;
    }

@@ -16,18 +16,18 @@ EXPOSE 4200
 
 CMD ["npm", "run", "dev"]
 
-FROM base as production
+# FROM base as production
 
-ENV NODE_ENV production
+# ENV NODE_ENV production
 
-RUN --mount=type=cache,target=/usr/src/app/.npm \
-    npm set cache /usr/src/app/.npm && \
-    npm ci only=production
+# RUN --mount=type=cache,target=/usr/src/app/.npm \
+#     npm set cache /usr/src/app/.npm && \
+#     npm ci only=production
 
-COPY . .
+# COPY . .
 
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 4200
+# EXPOSE 4200
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]

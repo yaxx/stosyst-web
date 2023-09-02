@@ -9,9 +9,9 @@ import { ClearIconBox, SearchInputCont, DropDownVal, SearchFilterCont, SearchIco
 import { TableActions, TableOption, Divider } from '../headers/styles';
 import Suggestions from '../suggestions';
 export interface Attr {
-    label: string,
-    type: string,
-    placeholder: string
+  label: string,
+  type: string,
+  placeholder: string
 }
 
 const slide = keyframes`
@@ -28,8 +28,7 @@ const InputSeparator = styled.div`
   height:50%;
   width:.11em;
   position: absolute;
-  background: ${
-  props => props.theme.mode === 'dark' ? props.theme.dark.colors.separators.sec : props.theme.light.colors.separators.pri
+  background: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.separators.sec : props.theme.light.colors.separators.pri
   };
   right:0px;
   top: 9px;
@@ -49,7 +48,7 @@ export const QtyInput = styled.input.attrs(props => ({
   placeholder: props.placeholder,
   autocomplete: 'off',
   className: 'form-control'
-  }))`
+}))`
   padding:0rem .22rem ;
   padding-left: 0rem;
   min-width:10px;
@@ -59,7 +58,7 @@ export const QtyInput = styled.input.attrs(props => ({
   border:inherit;
   background: inherit; 
   text-align: right;
-  font-size: ${ props => props.theme.typography.body1 };
+  font-size: ${props => props.theme.typography.body1};
   &:focus {
     box-shadow: none;
     outline: none;
@@ -90,8 +89,8 @@ const PrimaryFormGroup = styled.div<any>`
   justify-content: center;
   position: relative;
   text-align: left;
-  width: ${ props => props.width}%;
-  font-size: ${ props => props.theme.typography.body2 };
+  width: ${props => props.width}%;
+  font-size: ${props => props.theme.typography.body2};
    label {
     font-size: 11px;
     pointer-events: none;
@@ -112,7 +111,7 @@ const PrimaryFormGroup = styled.div<any>`
 export const FormGroupCont = styled.div<any>`
   position: relative;
   margin: 4px 0px;
-  width: ${props=> props.w || 100}%;
+  width: ${props => props.w || 100}%;
   border-radius: 8px;
   border: ${props => props.borderless ? 0 : 1}px solid #e6e1e1;
 `
@@ -126,25 +125,25 @@ const MultiFormGroup = styled.div<any>`
   display: flex;
   align-items: center;
   position: relative;
-  text-align: ${ props => props.right ? 'right' : 'left'};
-  border-right: 1px solid ${ props => props.right ? 'white' : 'lightgrey'};
+  text-align: ${props => props.right ? 'right' : 'left'};
+  border-right: 1px solid ${props => props.right ? 'white' : 'lightgrey'};
   border-radius:0px;
-  width: ${ props => props.width||50}%;
+  width: ${props => props.width || 50}%;
    label {
     font-size: 11px;
     width: 100%;
     pointer-events: none;
     transition: all 2s linear;
-    text-align: ${ props => props.right ? 'right' : 'left'};
-    bottom: ${({selected, hasInput}: any) => selected || hasInput ? '18px' : 'auto'};
+    text-align: ${props => props.right ? 'right' : 'left'};
+    bottom: ${({ selected, hasInput }: any) => selected || hasInput ? '18px' : 'auto'};
   }
   input {
     width: 100%;
     font-size: 14px;
     background-color: transparent;
-    text-align: ${ props => props.right ? 'right' : 'left'};
-    padding-right: ${ props => props.right ? 0 : 4}px;
-    bottom: ${({selected, hasInput}: any) => selected || hasInput ? '-5px' : 'auto'};
+    text-align: ${props => props.right ? 'right' : 'left'};
+    padding-right: ${props => props.right ? 0 : 4}px;
+    bottom: ${({ selected, hasInput }: any) => selected || hasInput ? '-5px' : 'auto'};
   }
   .icn {
       visibility: hidden;
@@ -195,27 +194,25 @@ export const BalanceCont = styled.div<any>`
 
 `
 
-const SecondaryFormGroup = styled(PrimaryFormGroup)<any>`
+const SecondaryFormGroup = styled(PrimaryFormGroup) <any>`
   height: 40px;
   border-radius: 16px;
   width: 100%;
   border: none;
-  color: ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
   };
-  /* background-color: ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.elavations.tar : props.theme.light.colors.labels.tar 
+  /* background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.elavations.tar : props.theme.light.colors.labels.tar
   }; */
   &:focus {
       border: none;
   };
 `
-export const TatiaryFormGroup =  styled(SecondaryFormGroup)`
+export const TatiaryFormGroup = styled(SecondaryFormGroup)`
   height: 34px;
   border-radius: 17px;
   background-color: #d3d3d35c;
 `
-export const ProductSearchFormGroup =  styled(SecondaryFormGroup)<any>`
+export const ProductSearchFormGroup = styled(SecondaryFormGroup) <any>`
   height: 34px;
   border-radius: 8px;
   width: 400px;
@@ -223,26 +220,32 @@ export const ProductSearchFormGroup =  styled(SecondaryFormGroup)<any>`
   align-items: center;
   justify-content: flex-start;
   border: 0px solid;
-  border-width: ${(focused)=>focused===true ?  2 : 0}px;
+  border-width: ${(focused) => focused === true ? 2 : 0}px;
   border-color: ${(focused) => focused === false ? '#00A3FE' : 'red'};
   background-color: #d3d3d35c;
 `
-const StandardFormGroup = styled(PrimaryFormGroup)<any>`
-  border-radius: 0px;
-  height: ${props => props.h || 45}px;
+const StandardFormGroup = styled(PrimaryFormGroup).attrs({
+  className: 'form--group--cont'
+}) <any>`
+  border-radius: 8px;
+  height: ${props => props.h || 50}px;
   width: ${props => props.w || 100}%;
   border: none;
+  border-top-left-radius: ${({ top}: any) => top ? '8px' : '0px'};
+  border-top-right-radius: ${({ top}: any) => top ? '8px' : '0px'};
+  border-bottom-left-radius: ${({ top}: any) => top ? '0px' : '8px'};
+  border-bottom-right-radius: ${({ top}: any) => top ? '0px' : '8px'};
   border-bottom: ${props => props.top ? '1px' : '0px'} solid;
   border-left: ${props => props.right ? '1px' : '0px'} solid #d3d3d35c;
   border-bottom-color: ${props => props.top ? "#d3d3d35c" : 'white'};
   overflow: hidden;
   label {
     left: 11px;
-    font-size: ${({selected, hasInput}: any) => selected || hasInput ? 11 : 13}px;
+    font-size: ${({ selected, hasInput }: any) => selected || hasInput ? 11 : 13}px;
     pointer-events: none;
      color: rgb(113, 113, 113) !important;
     transition: all 0.15s cubic-bezier(0.455, 0.03, 0.515, 0.955) !important;
-    bottom: ${({ selected, hasInput }: any) => selected || hasInput ? '24px' : 'auto'};
+    bottom: ${({ selected, hasInput }: any) => selected || hasInput ? '30px' : 'auto'};
   }
   input {
     padding: 0.575rem .7rem;
@@ -251,12 +254,12 @@ const StandardFormGroup = styled(PrimaryFormGroup)<any>`
     background-color: transparent;
     bottom: ${props => props.selected || props.hasInput ? '-6px' : 'auto'};
   }
-  background: ${({ selected }: any) => selected  ? 'whitesmoke' : 'initial'};
+  background: ${({ selected }: any) => selected ? 'whitesmoke' : 'initial'};
 `
-const DropDownFormGroup = styled(StandardFormGroup)<any>`
+const DropDownFormGroup = styled(StandardFormGroup) <any>`
   cursor: pointer;
 `
-const StockFormGroup = styled(PrimaryFormGroup)<any>`
+const StockFormGroup = styled(PrimaryFormGroup) <any>`
   height: 20px;
   width: 100%;
   margin: 0px 0px;
@@ -277,9 +280,9 @@ const StockFormGroup = styled(PrimaryFormGroup)<any>`
 `
 
 const SecondaryInput = styled.input.attrs(props => ({
-    placeholder: props.placeholder,
-    className: 'form-control'
-  })) `
+  placeholder: props.placeholder,
+  className: 'form-control'
+}))`
   padding: 0.575rem 2.2rem;
   height: 65%;
   bottom: 1%;
@@ -288,17 +291,14 @@ const SecondaryInput = styled.input.attrs(props => ({
   border:none;
   background-color: none;
   font-size: 13px;
-  text-align: left;
-  color: ${
-    props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
   };
   &:focus {
     box-shadow: none;
     outline: none;
     background-color: transparent;
-    color: ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
-    };
+    color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.pri : props.theme.light.colors.labels.pri
+  };
   }
 `;
 const PrimaryInput = styled(SecondaryInput)`
@@ -308,7 +308,7 @@ const PrimaryInput = styled(SecondaryInput)`
   bottom: 'auto';
   border-radius: inherit;
 `
-const TatiaryInput =  styled(SecondaryInput)`
+const TatiaryInput = styled(SecondaryInput)`
   height: 100%;
   border-radius: inherit;
   border:inherit;
@@ -317,16 +317,14 @@ const TatiaryInput =  styled(SecondaryInput)`
   border-radius:inherit;
   bottom: auto;
   ::placeholder {
-    color:  ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec
+    color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec
   };
   };
   &:focus {
-    border: 1px solid  ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+    border: 1px solid  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
   };
 }`
-export const ProdPriInput =  styled(SecondaryInput)`
+export const ProdPriInput = styled(SecondaryInput)`
   height: 100%;
   border-radius: inherit;
   border:inherit;
@@ -338,8 +336,7 @@ export const ProdPriInput =  styled(SecondaryInput)`
   width: 100%;
   bottom: auto;
   ::placeholder {
-    color:  ${
-      props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec
+    color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.tar : props.theme.light.colors.labels.sec
   };
   }
 
@@ -352,31 +349,28 @@ const Label = styled.label`
     width: auto;
     left: 0px;
     font-size: 11px;
-    color: ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
-    };
+    color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.labels.sec : props.theme.light.colors.labels.sec
+  };
     margin-bottom: 0px;
     background-color: transparent;
 `;
 
-export const Label3 =  styled(Label)`
+export const Label3 = styled(Label)`
   font-size: 10px;
   top: 0px;
 `
-export const Tagline = styled(P2)<any>`
+export const Tagline = styled(P2) <any>`
     position: relative;
     background-color: inherit;
-    font-size: ${ props => props.theme.typography.tagline };
-    color:${
-        props =>  props.theme.light.colors.labels.sec
-      };
+    font-size: ${props => props.theme.typography.tagline};
+    color:${props => props.theme.light.colors.labels.sec
+  };
     span {
-      color:  ${
-        props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
-      };
+      color:  ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.brand : props.theme.light.colors.brand
+  };
       cursor: pointer;
     }
-    margin-top:${props => props.mt ||0}px;
+    margin-top:${props => props.mt || 0}px;
 `
 export const Info = styled.div`
     width: 100%;
@@ -394,47 +388,48 @@ export function TextInput(props: any): ReactElement {
   const deSelectInput = () => {
     resetSelection(false)
   }
-    return (
-      <PrimaryFormGroup hasInput={value.length} selected={inputSelected} className = 'formGroup' width = { props.width }>
-        <Label>{label}</Label>
-        <PrimaryInput onFocus={() => selectInput()} onBlur={() => deSelectInput()}  onChange = { props.changeCallback } {...props} />
-        
-         <CancelIcon />
-            <InputSeparator/>
-        </PrimaryFormGroup>
-    )
+  return (
+    <PrimaryFormGroup hasInput={value.length} selected={inputSelected} className='formGroup' width={props.width}>
+      <Label>{label}</Label>
+      <PrimaryInput onFocus={() => selectInput()} onBlur={() => deSelectInput()} onChange={props.changeCallback} {...props} />
+
+      <CancelIcon />
+      <InputSeparator />
+    </PrimaryFormGroup>
+  )
 }
 
 export function StandardInput(props: Attr): ReactElement {
   return (
-      <StandardFormGroup className = 'formGroup'>
-          <Label>{props.label}</Label>
-          <PrimaryInput autoFocus  type = {props.type || 'text'} placeholder={props.placeholder}/>
-          <ClearIcon/>
-      </StandardFormGroup>
+    <StandardFormGroup className='formGroup'>
+      <Label>{props.label}</Label>
+      <PrimaryInput autoFocus type={props.type || 'text'} placeholder={props.placeholder} />
+      <ClearIcon />
+    </StandardFormGroup>
   )
 }
 export function NameInput(props: any): ReactElement {
-  const { name, value, type, label,required, togglePasswordCallback } = props;
-  const [ inputSelected, resetSelection] = useState(false)
-  const selectInput = ()=> {
-    resetSelection(true) 
+  const { name, value, type, label, required, togglePasswordCallback } = props;
+  const [inputSelected, resetSelection] = useState(false)
+  const selectInput = () => {
+    resetSelection(true)
   }
-  const deSelectInput = ()=> {
+  const deSelectInput = () => {
     resetSelection(false)
   }
   return (
-    <StandardFormGroup hasInput={value} selected = {inputSelected} {...props} >
-          <PrimaryInput  onFocus = { () => selectInput() } onBlur = { () => deSelectInput() } onChange ={ props.changeCallback }  {...props}/> {
-            (type === 'password' || name === 'password') ? 
-            <PeekIcon input = { type } togglePassword = { togglePasswordCallback }/>
-             : 
-            <ClearIcon {...props} />
-          }
-      <Label>
-      {label}
-      {required && <span style={{color: "#ff000072"}}>*</span>}
+    <StandardFormGroup id="form--group--cont" hasInput={value} selected={inputSelected} {...props} >
+      <Label id="pri--label">
+        {label}
+        {required && <span style={{ color: "#ff000072" }}>*</span>}
       </Label>
+      <PrimaryInput id="pri--input" onFocus={() => selectInput()} onBlur={() => deSelectInput()} onChange={props.changeCallback}  {...props} /> {
+        (type === 'password' || name === 'password') ?
+          <PeekIcon input={type} togglePassword={togglePasswordCallback} />
+          :
+          <ClearIcon {...props} />
+      }
+
     </StandardFormGroup>
   )
 }
@@ -442,7 +437,7 @@ export function DropDown(props: any): ReactElement {
   const { value, label, openCallback } = props;
   return (
     <DropDownFormGroup onClick={openCallback} hasInput={value} {...props}>
-      <DropDownVal>{value}</DropDownVal> 
+      <DropDownVal>{value}</DropDownVal>
       <DropIcon />
       <Label>{label}</Label>
     </DropDownFormGroup>
@@ -450,46 +445,46 @@ export function DropDown(props: any): ReactElement {
 }
 export function MultiInput(props: any): ReactElement {
   const { name, value, clearCallback, changeCallback, label, right } = props;
-  const [ inputSelected, resetSelection] = useState(false)
-  const [ mouseEnter, setMouseEnter] = useState(false)
+  const [inputSelected, resetSelection] = useState(false)
+  const [mouseEnter, setMouseEnter] = useState(false)
 
-  const selectInput = ()=> {
-    resetSelection(true) 
+  const selectInput = () => {
+    resetSelection(true)
   }
-  const deSelectInput = ()=> {
+  const deSelectInput = () => {
     resetSelection(false)
   }
   return (
     <MultiFormGroup onMouseEnter={() => setMouseEnter(true)} onMouseLeave={() => setMouseEnter(false)} {...props} hasInput={true} >
-        <Label>{label}</Label>
-        <PrimaryInput onChange={changeCallback} {...props}/> {
+      <Label>{label}</Label>
+      <PrimaryInput onChange={changeCallback} {...props} /> {
         !right && mouseEnter ?
-        <ClearInputCont onClick={clearCallback}>
-          <ClearInputIcon {...props} />
-        </ClearInputCont>
-        :
-        <></>
-        }
+          <ClearInputCont onClick={clearCallback}>
+            <ClearInputIcon {...props} />
+          </ClearInputCont>
+          :
+          <></>
+      }
     </MultiFormGroup>
   )
 }
 export function StockInput(props: any): ReactElement {
-  const {focusCallback, keyDownCallback, changeCallback } = props;
+  const { focusCallback, keyDownCallback, changeCallback } = props;
   return (
     <StockFormGroup>
-      <PrimaryInput 
-       onKeyDown={keyDownCallback} 
-       onChange ={ changeCallback }  
-       {...props}
-       onFocus = {(e: any)=>focusCallback(e.target.name) } 
-    /> 
+      <PrimaryInput
+        onKeyDown={keyDownCallback}
+        onChange={changeCallback}
+        {...props}
+        onFocus={(e: any) => focusCallback(e.target.name)}
+      />
     </StockFormGroup>
   )
 }
 
 export const ProductsSearchInput = (props: any) => {
 
-  const {page} = props
+  const { page } = props
 
   const [searchTerm, setSearchTerm] = useState('')
   const criteria = useReactiveVar(groupingCriteria)
@@ -498,14 +493,14 @@ export const ProductsSearchInput = (props: any) => {
 
   const handleOnchange = (query: string) => {
     setSearchTerm(query)
-    page === 'expenses' ? expenseCriteria({ ...expCrt, query }) 
-    : page==='invoice' ? invCriteria({...invCrt, filter: '', query}) 
-    : groupingCriteria({ ...criteria, query, filter: '' })
+    page === 'expenses' ? expenseCriteria({ ...expCrt, query })
+      : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query })
+        : groupingCriteria({ ...criteria, query, filter: '' })
   }
 
   const handleClear = () => {
     setSearchTerm('')
-    invCriteria({...invCrt, query: '' })
+    invCriteria({ ...invCrt, query: '' })
     expenseCriteria({ ...expCrt, query: '' })
     groupingCriteria({ ...criteria, query: '' })
   }
@@ -518,25 +513,25 @@ export const ProductsSearchInput = (props: any) => {
       </SearchFilterCont>
       <SearchInputCont>
         <ProdPriInput
-            name='search'
-            value={searchTerm}
-            placeholder={props.placeholder}
-            onChange={(e: any) => handleOnchange(e.target.value)}
-          />
-          <ClearIconBox onClick={() => handleClear()} >
-            <ClearIcon />
-          </ClearIconBox>
+          name='search'
+          value={searchTerm}
+          placeholder={props.placeholder}
+          onChange={(e: any) => handleOnchange(e.target.value)}
+        />
+        <ClearIconBox onClick={() => handleClear()} >
+          <ClearIcon />
+        </ClearIconBox>
       </SearchInputCont>
       <SearchIconCont>
         <SearchIcon2 />
       </SearchIconCont>
-  
+
     </ProductSearchFormGroup>
   )
 }
 export const StockSearchInput = (props: any) => {
 
-  const {page} = props
+  const { page } = props
 
   const [showSearchSuggestions, setShowSuggestions] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -575,23 +570,21 @@ export const StockSearchInput = (props: any) => {
   const handleKeyDown = (e: any) => {
     console.log(`Keycode: ${e.keyCode}`);
     if (e.keyCode === 8) {
-      
-      
       handleFocus(true)
     }
   };
 
   const updateSearchHistory = async (history: any[]) => {
     try {
-        await localStorage.setItem('searches', JSON.stringify(history));
-      } 
+      await localStorage.setItem('searches', JSON.stringify(history));
+    }
     catch (err) {
       console.log(err);
     }
   };
 
   function handleClear() {
-    if(searchTerm.trim()) {
+    if (searchTerm.trim()) {
       const i = termList.findIndex((item: any) => item.searchTerm === searchTerm);
       if (i === -1) {
         termList.unshift({
@@ -612,7 +605,7 @@ export const StockSearchInput = (props: any) => {
       expenseCriteria({ ...expCrt, query: '' });
       groupingCriteria({ ...criteria, query: '' });
     }
-    
+
   }
 
   const deleteSearchTerm = async (e: Event, q: string) => {
@@ -626,18 +619,18 @@ export const StockSearchInput = (props: any) => {
   const handleSuggestionSelection = (suggestion: string) => {
     setSearchTerm(suggestion)
     let tempList = termList
-    tempList = tempList.map((term: any) => term.searchTerm === suggestion ? 
-      ({...term, dateAdded: new Date().getTime()}) : term
+    tempList = tempList.map((term: any) => term.searchTerm === suggestion ?
+      ({ ...term, dateAdded: new Date().getTime() }) : term
     )
     setList([...tempList]);
     updateSearchHistory(tempList)
     handleFocus(false)
     page === 'expenses' ? expenseCriteria({ ...expCrt, query: suggestion })
-      : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query:suggestion })
-        : groupingCriteria({ ...criteria, query:suggestion, filter: '' })
+      : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query: suggestion })
+        : groupingCriteria({ ...criteria, query: suggestion, filter: '' })
   }
 
-  const handleFocus= (focus: boolean) => {
+  const handleFocus = (focus: boolean) => {
     showSearchModal(focus)
     setShowSuggestions(focus)
   }
@@ -649,35 +642,35 @@ export const StockSearchInput = (props: any) => {
       </StockSearchIconCont>
       <SearchInputCont>
         <ProdPriInput
-            name='search'
-            onFocus={() => handleFocus(true)}
-            autoComplete="off"
-            value={searchTerm}
-            placeholder={props.placeholder}
-            onKeyDown={handleKeyDown}
-            onChange={(e: any) => handleOnchange(e.target.value)}
+          name='search'
+          onFocus={() => handleFocus(true)}
+          autoComplete="off"
+          value={searchTerm}
+          placeholder={props.placeholder}
+          onKeyDown={handleKeyDown}
+          onChange={(e: any) => handleOnchange(e.target.value)}
         />
         <ClearIconBox onClick={() => handleClear()}>
           <ClearIcon />
         </ClearIconBox>
-          
-      </SearchInputCont> 
+
+      </SearchInputCont>
       {
         searchModal &&
-        <Suggestions 
-         page={page} 
-         searchList={termList}
-         removeSuggestion={deleteSearchTerm} 
-         selectSearchTerm={handleSuggestionSelection}
+        <Suggestions
+          page={page}
+          searchList={termList}
+          removeSuggestion={deleteSearchTerm}
+          selectSearchTerm={handleSuggestionSelection}
         />
-       
+
       }
     </ProductSearchFormGroup>
   )
 }
 export default function SearchInput(props: any): ReactElement {
 
-  const {page} = props
+  const { page } = props
 
   const [searchTerm, setSearchTerm] = useState('')
   const criteria = useReactiveVar(groupingCriteria)
@@ -686,40 +679,40 @@ export default function SearchInput(props: any): ReactElement {
 
   const handleOnchange = (query: string) => {
     setSearchTerm(query)
-    page === 'expenses' ? expenseCriteria({ ...expCrt, query }) : page==='invoice' ? invCriteria({...invCrt, filter: '', query}) : groupingCriteria({ ...criteria, query, filter: '' })
+    page === 'expenses' ? expenseCriteria({ ...expCrt, query }) : page === 'invoice' ? invCriteria({ ...invCrt, filter: '', query }) : groupingCriteria({ ...criteria, query, filter: '' })
   }
 
   const handleClear = () => {
     setSearchTerm('')
-    invCriteria({...invCrt, query: '' })
+    invCriteria({ ...invCrt, query: '' })
     expenseCriteria({ ...expCrt, query: '' })
     groupingCriteria({ ...criteria, query: '' })
   }
 
   return (
-      <TatiaryFormGroup>
-          <SearchIcon/>
-          <TatiaryInput 
-            name ='search'
-            value = { searchTerm } 
-            placeholder = { props.placeholder }
-            onChange={(e: any) => handleOnchange(e.target.value)}  
-          />
-          <div 
-          style={{
-            cursor:'pointer', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            position:'absolute', 
-            right:'2%', 
-            top: 7, 
-            height: 20, width:20
-          }} 
-          onClick={() => handleClear()}
-          >
-            <ClearIcon />
-          </div>
-      </TatiaryFormGroup>
+    <TatiaryFormGroup>
+      <SearchIcon />
+      <TatiaryInput
+        name='search'
+        value={searchTerm}
+        placeholder={props.placeholder}
+        onChange={(e: any) => handleOnchange(e.target.value)}
+      />
+      <div
+        style={{
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          right: '2%',
+          top: 7,
+          height: 20, width: 20
+        }}
+        onClick={() => handleClear()}
+      >
+        <ClearIcon />
+      </div>
+    </TatiaryFormGroup>
   )
 }

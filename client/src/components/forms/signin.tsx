@@ -82,8 +82,8 @@ export function SignInForm(props: any): ReactElement {
     })
   }
   return (
-    <AccForm onSubmit={(e: React.SyntheticEvent) => handleSubmit(e)}>
-      <Heading fs='1rem' cl='grey'>Sign in</Heading>
+    <AccForm id='acc--form--cont' onSubmit={(e: React.SyntheticEvent) => handleSubmit(e)}>
+      <Heading className="acc--header" cl='grey'>Sign into your inventory</Heading>
       <FormGroupCont>
         <NameInput
           top
@@ -94,10 +94,10 @@ export function SignInForm(props: any): ReactElement {
           clearCallback={(e: any) => handleClear(e, 'phone')}
         />
         <NameInput
-          type={showPassword ? 'text' : 'password'}
-          value={creds.password}
           name='password'
           label='Password'
+          value={creds.password}
+          type={showPassword ? 'text' : 'password'}
           togglePasswordCallback={togglePassword}
           changeCallback={(e: any) => handleChange(e)}
           clearCallback={(e: any) => handleClear(e, 'password')}
@@ -110,7 +110,7 @@ export function SignInForm(props: any): ReactElement {
         </Tagline>
         <Tagline>{"Forgot Password?"}</Tagline>
       </Info>
-      <PriBtn active={creds.phone && creds.password}  name='signin'> {
+      <PriBtn id="pri--btn" active={creds.phone && creds.password}  name='signin'> {
         loading ? <Loader /> : 'Sign in'
       }
       </PriBtn>{
