@@ -15,7 +15,7 @@ function StocksCard(props: any) {
         <Card>
 
             <Header>
-                12/08/2023
+               {groupId}
                 <Divider />
             </Header> {
                 items.map((item: any, index: number) => (

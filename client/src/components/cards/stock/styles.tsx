@@ -19,6 +19,7 @@ export const Header = styled.h6`
   font-size: 500;
   height: 20px;
   position: relative;
+  color: dodgerblue;
 `
 export const Footer = styled.footer`
   display: flex;
