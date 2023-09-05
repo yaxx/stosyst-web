@@ -34,7 +34,7 @@ export const StocksHeader = (props: any): ReactElement => {
     }
 
     return (
-        <Header>
+        <Header className='table--header'>
             <StocksListHeader>
                 <Divider top='100' />
                 <HeaderItem onClick={() => reOrder('name')} title='Sort by name' width={45}>

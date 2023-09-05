@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ImageWrap = styled.div<any>`
     border: solid;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     background: rgb(230 230 230);
     height: ${props => props.h || '42px'};
     width: ${props => props.w || '42px'};

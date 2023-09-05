@@ -4,7 +4,7 @@ import { MainSearchForm } from "./styles";
 
 export function SearchForm(props: any): ReactElement {
     return (
-        <MainSearchForm>
+        <MainSearchForm id="search--form">
             <StockSearchInput {...props} placeholder='Search' />
         </MainSearchForm>
     )

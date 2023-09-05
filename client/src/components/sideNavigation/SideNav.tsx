@@ -7,7 +7,9 @@ import { IconCont } from '../icons/styles';
 // import { NOTIFICATIONS } from '../../graphql/queries';
 
 
-const SideBar = styled.div`
+const SideBar = styled.div.attrs({
+  id: 'sidenav--bar'
+})`
   height: 100vh;
   width: 55px;
   left:0px;

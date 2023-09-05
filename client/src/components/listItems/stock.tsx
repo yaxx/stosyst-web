@@ -252,7 +252,7 @@ export function StocksListGroup(props: any): ReactElement {
         })
     }
     return (
-        <section className="stocksContainer">
+        <section id='stockCont' className="stocksContainer">
             <DateSeparator>
                 {group === 'date' ? format_date(groupId) : groupId}
                 <Divider />

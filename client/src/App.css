@@ -1,20 +1,11 @@
 body {
   /* font-family: 'Open Sans', sans-serif; */
   /* background-color: black; */
-    font-family: Roboto,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Helvetica Neue",
-    "Segoe UI",
-    "Oxygen",
-    "Ubuntu",
-    "Cantarell",
-    "Open Sans",
-    sans-serif;
-  
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Open Sans", sans-serif;
 }
 
- ul {
+ul {
   list-style: none;
   display: flex;
   align-items: center;
@@ -27,7 +18,7 @@ body {
   position: relative;
 }
 
- ul li {
+ul li {
   /* width: 100px; */
   height: 100%;
   margin-bottom: 0px;
@@ -43,7 +34,7 @@ body {
 
 .stockDesc:hover {
   border-bottom: none;
-  color:white;
+  color: white;
 }
 .options span .icon {
   height: 20px;
@@ -62,7 +53,7 @@ body {
   height: 100vh;
   width: 100vw;
   position: absolute;
-  top:0px;
+  top: 0px;
   left: 0px;
   z-index: 1000;
 }
@@ -77,21 +68,21 @@ button:focus {
 }
 .form-wrap p a {
   text-decoration: underline;
-   /* color: #00A3FE; */
- }
+  /* color: #00A3FE; */
+}
 .main-menu.off {
   display: none;
 }
 .promo-sec {
   height: 100%;
-  width:100%;
+  width: 100%;
   background: #055b8a;
 }
 #logo {
   height: 30px;
   width: 30px;
   font-size: 18px;
-  border-radius:50%;
+  border-radius: 50%;
   color: white;
   position: absolute;
   top: 40px;
@@ -126,14 +117,14 @@ button:focus {
   height: 20px;
   font-size: 12px;
   margin: 20px;
-  width:100%;
+  width: 100%;
   padding: 10px;
   display: flex;
   align-items: center;
 }
 .promo {
   height: 50%;
-  width:50%;
+  width: 50%;
   position: relative;
   top: 170px;
   left: 300px;
@@ -148,7 +139,6 @@ button:focus {
   font-weight: bold;
   font-size: 60px;
 }
-
 
 .lcol {
   right: 167px;
@@ -167,19 +157,119 @@ button:focus {
   right: 35px;
 }
 
-.container.main-container, .container.header-container {
+.container.main-container,
+.container.header-container {
   padding: 0px 180px;
   overflow: visible;
   position: relative;
 }
 
-@media (max-width: 420px) {
-  .promo-sec {
-    display: none;
+
+
+@media (min-width: 1200px) {
+  .container.main-container.prod-container {
+    padding: 0px 170px;
+    overflow: visible;
+    position: relative;
   }
+  #product {
+    width: 24%;
+  }
+}
+@media (max-width: 960px) {
+  .container.main-container.prod-container {
+    padding: 0px 20px;
+  }
+}
+@media (max-width: 1100px) {
+  .container.main-container.prod-container {
+    padding: 0px 20px;
+  }
+  #product {
+    width: 32%;
+  }
+}
+
+.container.settings-container {
+  padding: 0px 140px;
+}
+
+#ic {
+  max-width: 1130px;
+  position: fixed;
+  z-index: 1;
+  padding: 0px 360px;
+  padding-left: 10px;
+}
+
+#table-container {
+  padding: 0px 180px;
+}
+.stockCard,.mobile--header {
+  display: none;
+}
+
+
+@media (min-width: 375px) {
+  .constainer.main-container {
+    padding: 0px 60px;
+    max-width: 1200px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .constainer.main-container {
+    padding: 0px 100px;
+    max-width: 1200px;
+  }
+  #ic {
+    max-width: 1130px;
+    position: fixed;
+    z-index: 1;
+    padding: 0px 460px;
+    padding-left: 10px;
+  }
+  #table-container {
+    padding: 0px 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .constainer.main-container {
+    padding: 0px 100px;
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .constainer.main-container {
+    padding: 0px 100px;
+    max-width: 1200px;
+  }
+  #ic {
+    max-width: 1130px;
+    position: fixed;
+    z-index: 1;
+    padding: 0px 180px;
+    padding-left: 10px;
+  }
+  #table-container {
+    padding: 0px 180px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #product {
+    width: 29.5%;
+  }
+}
+@media (max-width: 420px) {
+  .stockCard, .mobile--header {
+    display: block;
+  }
+ 
   .login--form--cont {
     padding: 0px;
-    
   }
   #acc--form--cont {
     padding: 0px 0px;
@@ -198,15 +288,13 @@ button:focus {
     font-size: 16px;
   }
   #pri--input {
-    padding: 0.575rem .7rem 0.275rem 0.75rem;
+    padding: 0.575rem 0.7rem 0.275rem 0.75rem;
     font-size: 15px;
   }
   #pri--input:focus {
     /* border-radius: 8px 8px 0px 0px; */
   }
-  #pri--label{
-    /* bottom: 25px; */
-  }
+
   .main--account--container {
     background: black;
     overflow: hidden;
@@ -214,7 +302,10 @@ button:focus {
     padding: 0px;
     margin: 0px;
   }
-  .styler-box0, .styler-box1, .styler-box2, .styler-box3 {
+  .styler-box0,
+  .styler-box1,
+  .styler-box2,
+  .styler-box3 {
     position: absolute;
     height: 40%;
     width: 40%;
@@ -231,7 +322,7 @@ button:focus {
     width: 150px;
     height: 150px;
     left: -15%;
-    
+
     transform: rotate(90deg);
     display: block;
     border-radius: 50%;
@@ -242,7 +333,6 @@ button:focus {
     left: 5%;
     display: none;
     height: 40%;
-    
     transform: rotate(0deg);
   }
   .styler-box3 {
@@ -253,124 +343,65 @@ button:focus {
     transform: rotate(0deg);
     display: block;
   }
-}
+  #main--app--header {
+    height: 60px;
+  }
+  #top--header {
+    grid-template-columns: 20% 60% 20%;
+    padding: 0px 10px;
+  }
+  #search--container {
+    width: 100%;
+  }
+  #sidenav--bar {
+    display: none;
+  }
+  #logo--section {
+    width: 100%;
+  }
+  #search--section {
+    width: 100%;
 
-@media (min-width: 1200px)  {
-  .container.main-container.prod-container {
-    padding: 0px 170px;
+  }
+  #menu--section {
+    width: 100%;
+    height: 100%;
+  }
+  .app--name {
+    display: none;
+  }
+  .container.main-container {
+    padding: 0px;
+  }
+  .list-wrap {
+    height: 100%;
     overflow: visible;
     position: relative;
+    width: 100%;
+    padding-top: 70px;
+    background-color: rgba(116, 116, 128,.08);
   }
-   #product {
-    width: 24%;
+  .stocksContainer, .table--header, #search--form, 
+  .groupCont, .logo, .app, #sidenav--bar
+  .table--header, .promo-sec, #top--header {
+      display: none;
   }
-}
-@media (max-width: 960px)  {
-  .container.main-container.prod-container {
-    padding: 0px 20px;
-  }
- 
-}
-@media (max-width: 1100px)  {
-  .container.main-container.prod-container {
-    padding: 0px 20px;
-  }
-  #product {
-    width: 32%;
-  }
-}
-
-.container.settings-container {
-  padding: 0px 140px;
-}
-
-#ic {
-    max-width: 1130px;
-    position: fixed;
-    z-index: 1;
-    padding: 0px 360px;
-    padding-left: 10px;
 
 }
-
-#table-container {
-  padding: 0px 180px;
-}
-
-@media (min-width: 375px)  {
-  .constainer.main-container {
-    padding: 0px 60px;
-    max-width: 1200px;
-  }
-}
-
-@media (max-width: 1000px)  {
-  .constainer.main-container {
-    padding: 0px 100px;
-    max-width: 1200px;
-  }
-  #ic {
-    max-width: 1130px;
-    position: fixed;
-    z-index: 1;
-    padding: 0px 460px;
-    padding-left: 10px;
-
-  }
-  #table-container {
-    padding: 0px 180px;
-  }
-}
- 
-@media (min-width: 1200px)  {
-  .constainer.main-container {
-    padding: 0px 100px;
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .constainer.main-container {
-    padding: 0px 100px;
-    max-width: 1200px;
-  }
-  #ic {
-    max-width: 1130px;
-    position: fixed;
-    z-index: 1;
-    padding: 0px 180px;
-    padding-left: 10px;
-
-  }
-  #table-container {
-    padding: 0px 180px;
-  }
-}
-
-@media (max-width: 1024px) {
-  #product {
-   width: 29.5%;
-  }
-}
-
 .icon {
-    position: relative;
-    width: auto;
-    width: 33.3%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100%;
+  position: relative;
+  width: auto;
+  width: 33.3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 .icon div:first-child {
   position: relative;
   bottom: 60%;
 }
-
-
-
- 
 
 .arrorBox {
   height: 25px;
@@ -378,14 +409,14 @@ button:focus {
   border-radius: 50%;
   background: rgba(149, 198, 247, 0.5);
   place-items: center;
-  display:flex;
+  display: flex;
   cursor: pointer;
 }
 .downTrend {
-  transform: rotate(180)
+  transform: rotate(180);
 }
 .upTrend {
-  transform: rotate(0)
+  transform: rotate(0);
 }
 .no-trend {
   color: lightgray;
@@ -404,7 +435,7 @@ button:focus {
   margin-bottom: 0px;
   position: absolute;
   text-align: center;
-  font-size:  13px;
+  font-size: 13px;
   top: -9px;
   width: auto;
   background-color: white;
@@ -421,7 +452,7 @@ button:focus {
   cursor: pointer;
 }
 .clearAll:hover {
-  color: #00A3FE;
+  color: #00a3fe;
 }
 .clearfix:before,
 .clearfix:after {
@@ -460,8 +491,9 @@ button:focus {
     width: 900px;
   }
 } */
-ol, ul {
-    padding-left: 0rem;
+ol,
+ul {
+  padding-left: 0rem;
 }
 #subInfo {
   color: grey;

@@ -8,6 +8,7 @@ import { GroupIcon, FilterIcon, ArrowDown, Logo } from "../icons";
 import { ImageItem } from "../images";
 import HeaderMenu from "./headerMenu";
 import PageListOpts from "./ListOpts";
+import MobileHeader from "./mobile";
 import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, LogoSection, SearchSection, CartSection, MainHeaderCont } from "./styles";
 
 export const HeaderNav = (props: any) => {
@@ -43,18 +44,19 @@ export const HeaderNav = (props: any) => {
     }
     return (
         <MainHeaderCont>
-            <TopHeader>
-                <LogoSection w={200}>
+            <TopHeader id="top--header">
+                <LogoSection id="logo--section" w={200}>
                     <Logo />
-                    <h6>Stosyst</h6>
+                    <h6 className="app">Stosyst</h6>
                 </LogoSection>
-                <SearchSection>{
+                <SearchSection >
+                {
                     (pathname === '/' || pathname === '/expenses' || pathname === '/invoices' || '/explore') &&
                     <SearchForm {...props} />
                 }
                 </SearchSection>
-                <CartSection w={200}>
-                    <GroupContainer>
+                <CartSection id='menu--section' w={200}>
+                    <GroupContainer className="groupCont">
                         <GroupLabel onClick={() => showHeaderMenu()} title='Table actions'>
                             <FilterIcon />
                             <ArrowDown />
@@ -68,9 +70,11 @@ export const HeaderNav = (props: any) => {
                         <ArrowDown /> {
                             modal ? <HeaderMenu /> : <></>
                         }
-                    </ProfileOptions>
+                    </ProfileOptions> 
+                   
                 </CartSection>
             </TopHeader>
+            <MobileHeader />
         </MainHeaderCont>
     )
 }

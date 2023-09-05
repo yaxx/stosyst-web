@@ -636,7 +636,7 @@ export const StockSearchInput = (props: any) => {
   }
 
   return (
-    <ProductSearchFormGroup focused={showSearchSuggestions}>
+    <ProductSearchFormGroup id='search--container'  focused={showSearchSuggestions}>
       <StockSearchIconCont>
         <SearchIcon2 />
       </StockSearchIconCont>

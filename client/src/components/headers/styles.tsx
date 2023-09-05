@@ -124,7 +124,7 @@ export const GroupLabel = styled(GroupContainer)`
 `
 
 export const MainHeaderCont = styled.div.attrs(props => ({
-  className: ''
+  id: 'main--app--header'
 }))`
   height: 55px;
   width: 100%;
@@ -765,7 +765,9 @@ export const FeedBack = styled.div<any>`
     font-weight: bold;
   }
 `
-export const ProfileOptions = styled.div`
+export const ProfileOptions = styled.div.attrs({
+  id: 'menu--section'
+})`
   position: relative;
   height: 100%;
   width: 80px;
@@ -944,14 +946,16 @@ export const LogoSection = styled.section<any>`
     margin-bottom: 0px;
   }
 `
-export const SearchSection = styled.section`
+export const SearchSection = styled.section.attrs({
+  id: 'search--section'
+})`
   position: relative;
   width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
-
+  height: 100%;
 `
 export const CartSection = styled.section<any>`
   display: flex;
