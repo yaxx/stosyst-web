@@ -13,10 +13,14 @@ function StocksCard(props: any) {
     const { list: items, count, total, groupId } = props;
     return (
         <Card>
-            <Header>12 MAY,2023</Header> {
-                items.map((item :any , index:number ) => (
+
+            <Header>
+                12/08/2023
+                <Divider />
+            </Header> {
+                items.map((item: any, index: number) => (
                     <StockCont key={groupId}>
-                        <ImageItem source={item.stockImage}/>
+                        <ImageItem source={item.stockImage} />
                         <DescCol>
                             <DescCont>
                                 <TitleCont>
@@ -31,13 +35,16 @@ function StocksCard(props: any) {
                                 <Instock>{item.instock}</Instock>
                                 <StockPrice>{item.sellingPrice}</StockPrice>
                             </PriceCont>
-                            {/* {index !== length && !expanded && <Separator />} */}
-                            <Divider />
+                            {
+                                index+1 !== items.length && <Divider />
+                            }
                         </DescCol>
+                        
                     </StockCont>
                 ))
             }
-            <Footer> 
+            <Footer>
+                <Divider bottom={100} />
                 <p>+{count}</p>
                 <IconCont rot={90} size={6}>
                     <RightAngleIcon />

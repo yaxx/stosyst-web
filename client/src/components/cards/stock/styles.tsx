@@ -15,9 +15,10 @@ export const Card = styled.div.attrs({
   margin-bottom: 5px;
 `;
 export const Header = styled.h6`
-  font-size: 12px;
-  color: lightgrey;
-  font-size: 700;
+  font-size: 10px;
+  font-size: 500;
+  height: 20px;
+  position: relative;
 `
 export const Footer = styled.footer`
   display: flex;
@@ -26,7 +27,7 @@ export const Footer = styled.footer`
   width: 100%;
   height: 30px;
   color: black;
-  padding-left: 68px;
+  position: relative;
 
   h6 {
     font-size: 16px;
@@ -102,7 +103,6 @@ export const PriceCont = styled.div`
   p {
     font-size: 14px;
     margin-bottom: 0px;
-    color: grey;
   }
   p:last-child {
     font-size: 14px;
