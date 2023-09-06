@@ -151,10 +151,11 @@ export const TopHeader = styled.header.attrs(props => ({
 export const Header = styled.header<any>`
   height: ${props => props.height || 50}px;
   width: 100%;
-  z-index: 100;
+  margin: 0 auto;
+  z-index: 1023;
   margin-top: 55px;
   background: white;
-  position: relative;
+  position: fixed;
   font-family: 'Open Sans', sans-serif;
   border-bottom-color: ${props =>
     props.theme.mode === 'dark'

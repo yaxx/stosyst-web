@@ -81,7 +81,7 @@ export const Stocks = (props: any): ReactElement => {
                 <SearchModalContainer onClick={() => showSearchModal(false)} />
             }
             <div className='container main-container'>
-                <StocksHeader {...props} />
+                    <StocksHeader {...props} />
                 {
                     loading ?
                         <IssueContainer>
