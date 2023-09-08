@@ -211,14 +211,14 @@ button:focus {
   display: none;
 }
 @media (min-width: 375px) {
-  .constainer.main-container {
+  .container.main-container {
     padding: 0px 60px;
     max-width: 1200px;
   }
 }
 
 @media (max-width: 1000px) {
-  .constainer.main-container {
+  .container.main-container {
     padding: 0px 100px;
     max-width: 1200px;
   }
@@ -235,20 +235,22 @@ button:focus {
 }
 
 @media (min-width: 1200px) {
-  .constainer.main-container {
+  .container.main-container {
     padding: 0px 100px;
     max-width: 1200px;
   }
 }
 
 @media (min-width: 1024px) {
-  .constainer.main-container {
+  .container.main-container {
     padding: 0px 100px;
+    margin-top: 75px;
     max-width: 1200px;
   }
   .table--header {
      padding: 0px;
-     max-width: 950px;
+     top: 0px;
+     max-width: 1000px;
   }
   #ic {
     max-width: 1130px;

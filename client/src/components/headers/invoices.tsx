@@ -9,7 +9,7 @@ export const  InvoiceHeader = (): ReactElement => {
     const criteria = useReactiveVar(invCriteria)
     const menu = useReactiveVar(headerMenu)
     return (
-        <Header>
+        <Header className='table--header'>
             <InvoiceListHeader>
                 <Divider top='100' />
                 <HeaderItem width={47}>

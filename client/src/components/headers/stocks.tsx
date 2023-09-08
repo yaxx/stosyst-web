@@ -34,7 +34,7 @@ export const StocksHeader = (props: any): ReactElement => {
     }
 
     return (
-            <Header className='table--header'>
+        <Header className='table--header'>
             <StocksListHeader>
                 <Divider top='100' />
                 <HeaderItem onClick={() => reOrder('name')} title='Sort by name' width={45}>
@@ -87,8 +87,8 @@ export const StocksHeader = (props: any): ReactElement => {
                     }
                 </HeaderItem>{
                     headMenu === 'group' ?
-                       <></>                        
-                       :
+                        <></>
+                        :
                         headMenu === 'filter' ?
                             <TableActions r={80} onMouseLeave={() => headerMenu('')}>
                                 <TableOption selected={criteria.filter === ''} bordered onClick={() => filterStocks('')}> {
@@ -121,6 +121,6 @@ export const StocksHeader = (props: any): ReactElement => {
                             <></>
                 }
             </StocksListHeader>
-            </Header>
+        </Header>
     )
 }
