@@ -17,7 +17,6 @@ export const ElasticContainer = (props: any) => {
                     : state.height - state.contentHeight * m,
             });
         }
-        
     };
     const modChildren = React.Children.map(props.children, c =>
         React.cloneElement(c, {

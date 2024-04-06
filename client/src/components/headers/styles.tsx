@@ -126,7 +126,7 @@ export const GroupLabel = styled(GroupContainer)`
 export const MainHeaderCont = styled.div.attrs(props => ({
   id: 'main--app--header'
 }))`
-  height: 55px;
+  height: 60px;
   width: 100%;
   position: fixed;
   top: 0px;
@@ -145,7 +145,6 @@ export const TopHeader = styled.header.attrs(props => ({
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   justify-content: center;
-
   font-family: 'Open Sans', sans-serif;
 `
 export const Header = styled.header<any>`
@@ -862,7 +861,6 @@ export const OptionItem = styled.li<any>`
   flex-direction: column;
   justify-content: center;
   position: relative;
- 
   p {
     margin-bottom: 0px;
     font-size: 12px;

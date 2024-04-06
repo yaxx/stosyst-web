@@ -2,7 +2,7 @@ import { productsCriteria } from "../groupers"
 import { getSorter } from "../sorter"
 
 export const getStocksFilter = ( id: string, filter: string, group: string, offset: number) => {
-
+    console.log(filter);
     return filter === 'expiring' ? 
     [
         {

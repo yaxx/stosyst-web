@@ -4,9 +4,6 @@ import { ListFooter, Names, ShiftCont, StaffChartList } from './styles';
 export const TopStaffList = (props: any) => {
     let { colorList, list } = props
 
-    console.log(colorList)
-    console.log(list)
-
     const [colors, setColors] = useState(colorList.slice(0, 2))
     const [start, setStart] = useState(2)
     const [nameList, setNameList] = useState(list.slice(0, 2))

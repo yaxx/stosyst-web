@@ -62,11 +62,6 @@ export const SummaryItems = styled(ListItems)`
     li:first-child p:first-child {
         color: rgb(173,173,173);
     }
-    /* li p:nth-child(1) {
-        font-size: ${ props => props.theme.typography.body3};
-        color: auto;
-    } */
-    
 `
 export const FlatList = styled(ListItems)`
     width: 100%;
@@ -82,7 +77,6 @@ export const Row = styled.li<any>`
     border-radius: 6px;
     padding: 0px 10px;
     position: relative;
-    /* z-index: -1; */
     background: ${props => props.selected ? props.theme.light.colors.brand : 'initial'
     };
     .counter {
@@ -171,12 +165,13 @@ export const MoreActions = (props: any) => {
 
     return (
         <MoreOptions rt = {rt} onMouseLeave={() => closeMenuCallback()} onClick={() => closeMenuCallback()} {...props}>{
-            allowedActions.map((action: any, i: number)=>(
+            allowedActions.map((action: any, i: number)=>
+            (
                     <OptionItem onClick={(e: any) => action.callback(e)}>
                         <p>{action.label}</p>
                         {i < allowedActions.length  && <Divider />}
                     </OptionItem>
-                ))
+            ))
             }
             {
                 location.pathname === '/' && 

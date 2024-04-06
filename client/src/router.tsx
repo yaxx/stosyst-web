@@ -48,6 +48,7 @@ export const router = createBrowserRouter(
                     path="/signup"
                     element={<SignUp />}
                 />
+                
                 <Route
                     path="/expenses"
                     element={

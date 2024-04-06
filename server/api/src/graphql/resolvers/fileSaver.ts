@@ -22,6 +22,8 @@ const s3 = new S3({
 
 const uploadToS3Bucket =  (stream: any, filename: string) => {
 
+    console.log(filename)
+
     const params = ({
         Body: stream,
         Key: filename,

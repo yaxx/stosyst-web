@@ -2,14 +2,14 @@ import { useMutation } from "@apollo/client";
 import React, { ReactElement, useEffect, useState } from "react";
 import { review } from "../../types/model";
 import { formatMoney, genTransId, getCartTotal, showFeedback, stripTypename } from "../../utils";
-import { PriBtn, ReviewButton } from "../buttons";
+import { PriBtn } from "../buttons";
 import { DropDown, FormGroupCont, NameInput } from "../inputs";
 import { CheckOutFormWraper } from "../listItems/cartItem";
 import { Loader } from "../loaders";
 import { CheckOut } from "../../graphql/mutations/checkout";
 import { GET_STOCKS } from "../../graphql/queries";
-import { CompleteMark, ReviewTotal, StandardForm } from "./styles";
-import { CheckIcon, QuestionIcon, SuccessMarkIcon } from "../icons";
+import { ReviewTotal, StandardForm } from "./styles";
+import { SuccessMarkIcon } from "../icons";
 import DropDownOptions from "../listItems/dropdown";
 
 export default function ChecktOutForm(props: any): ReactElement {

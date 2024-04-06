@@ -9,6 +9,7 @@ import Upload from './upload';
 import Summary from './summary'
 import Notification from './notifications';
 
+
 export default [
     Root,
     Product,
@@ -18,5 +19,5 @@ export default [
     Client,
     Upload,
     Summary,
-    Notification
+    Notification,
 ]

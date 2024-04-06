@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import path from 'path'
-import {IN_PRODUCTION} from './config'
+import {IN_PRODUCTION} from './config/index'
 import session, { Store } from 'express-session';
 import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 import { downloadFileFromS3Bucket } from './graphql/resolvers/fileSaver';

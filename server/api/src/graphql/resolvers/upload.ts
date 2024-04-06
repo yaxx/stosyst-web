@@ -24,7 +24,7 @@ import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 
 import { saveOnServer, uploadToS3Bucket } from './fileSaver';
 
-import { IN_PRODUCTION } from '../../config';
+import { IN_PRODUCTION } from '../../config/index';
 
 const {
     AWS_ACCESS_KEY_ID,

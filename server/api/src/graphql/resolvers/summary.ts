@@ -1,4 +1,4 @@
-import { Expense, Invoice } from '../../models'
+import { Expense, Invoice } from '../../models/index'
 import * as Auth from '../../auth'
 import {PubSub } from 'graphql-subscriptions';
 import { RequestResponse } from './invoice';

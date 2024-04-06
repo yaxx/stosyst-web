@@ -29,29 +29,16 @@ export const Page = (props: any): ReactElement => {
 
     const location = useLocation();
     const componentRef = useRef(null);
-    //  useEffect(() => {
-    //     subscribeToNewInvoice()
-    // }, [])
+
     const { query, group, filter } = useReactiveVar(invCriteria)
-    // useEffect(() => {
-    //     return () => {
-    //         locals({ 
-    //             ...locals(), 
-    //             notification: {
-    //                 ...locals().notification,
-    //                 visible: true,
-    //                 opened: false
-    //             }
-    //         })
-    //     }
-    // }, [])
 
     const { search } = useLocation()
 
     const qs = queryString.parse(search)
     let offset = 0;
 
-
+    // console.log(filter, group);
+    
     const { data, loading, error, refetch, fetchMore, subscribeToMore } = useQuery(
         GET_INVOICES, {
         variables: {
@@ -65,6 +52,7 @@ export const Page = (props: any): ReactElement => {
     )
 
     let curInvoices: any[] = [];
+
     if (data) {
         curInvoices = data?.invoices
         offset = offset + 20;
@@ -159,7 +147,8 @@ export const Page = (props: any): ReactElement => {
                                     >
                                         {
                                             curInvoices.map((listGroup: any, i: number) => (
-                                                <OuterList  {...props} nextRecords={curInvoices[i + 1]?.records || []} list={listGroup} key={listGroup.records[0]._id} />
+                                                <p>Hi</p>
+                                                // <OuterList  {...props} nextRecords={curInvoices[i + 1]?.records || []} list={listGroup} key={listGroup.records[0]._id} />
                                             ))
                                         }
                                     </InfiniteScroll>

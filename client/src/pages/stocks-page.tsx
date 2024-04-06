@@ -81,7 +81,7 @@ export const Stocks = (props: any): ReactElement => {
                 <SearchModalContainer onClick={() => showSearchModal(false)} />
             }
             <div className='container main-container'>
-                    <StocksHeader {...props} />
+                <StocksHeader {...props} />
                 {
                     loading ?
                         <IssueContainer>
@@ -101,7 +101,6 @@ export const Stocks = (props: any): ReactElement => {
                                 <IssueContainer>
                                     <Issue>{
                                         filter || query ?
-
                                             <EmptyFilter />
                                             :
                                             <EmptyState
@@ -112,7 +111,6 @@ export const Stocks = (props: any): ReactElement => {
                                                 message='No Stocks'
                                                 suggestion='Add stocks to your store to get started'
                                             />
-
                                     }
                                     </Issue>
                                 </IssueContainer>
@@ -156,7 +154,11 @@ export const Stocks = (props: any): ReactElement => {
             </div>
             <FloatBtnCont rt={(localState.invoice.stocks.length) ? 7 : -20}>
                 <FloatingBtn onClick={() => openCart()} >
-                    <ItemsCounter>{locals().invoice.stocks.length}</ItemsCounter>
+                    <ItemsCounter>
+                        {
+                           locals().invoice.stocks.length
+                        }
+                    </ItemsCounter>
                     <BagIcon />
                     <p>OPEN CART</p>
                 </FloatingBtn>

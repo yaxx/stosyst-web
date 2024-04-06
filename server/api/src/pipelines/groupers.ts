@@ -89,7 +89,7 @@ export const expenseCriteria = (criteria: string) => {
                 _id:  {$toUpper:'$name'},
                 records: {
                     $push: "$$ROOT" 
-                } 
+                }
             }
             break;
         case 'spender':
@@ -97,7 +97,7 @@ export const expenseCriteria = (criteria: string) => {
                  _id:  {$toUpper:'$spender'},
                 records: {
                     $push: "$$ROOT" 
-                }    
+                } 
             }
             break;
         case 'amount':

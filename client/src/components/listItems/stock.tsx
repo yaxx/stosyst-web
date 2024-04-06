@@ -166,12 +166,11 @@ export default function Stock(props: any): ReactElement {
         sharedModal(stock._id)
     }
 
-
-
     return (
         <StockList onClick={() => addRemoveItem(stock)}
             onMouseLeave={() => closeMenu()}
-            selected={
+            selected=
+            {
                 locals().invoice.stocks.some((cartItem: CartItem) => cartItem.item._id === stock._id)
             }>
             <ImageItem 
@@ -209,7 +208,7 @@ export default function Stock(props: any): ReactElement {
                         ]
                     }
                 />
-        }
+            }
         </StockList>
     )
 }
@@ -228,7 +227,10 @@ export function StocksListGroup(props: any): ReactElement {
            return prod._id === groupId ? 
            {
             ...prod,
-            records: [...prod.records, ...data.stockSet]
+            records: [
+                ...prod.records, 
+                ...data.stockSet
+            ]
            } 
            : 
            prod
@@ -256,7 +258,7 @@ export function StocksListGroup(props: any): ReactElement {
             <DateSeparator>
                 {group === 'date' ? format_date(groupId) : groupId}
                 <Divider />
-            </DateSeparator> {
+            </DateSeparator>{
                 data?.stockSet ? 
                     <ul style={{ paddingLeft: 0 }} className='stockList'> {
                         data?.stockSet.map((stockItem: any) =>
@@ -270,7 +272,12 @@ export function StocksListGroup(props: any): ReactElement {
                                 }
                                 </Fragment>
                             }
-                                <Stock {...props} cart={locals().invoice} selectCallback={props.selectCallBack} stock={stockItem} key={stockItem._id} />
+                                <Stock 
+                                    {...props} 
+                                    cart={locals().invoice} 
+                                    selectCallback={props.selectCallBack} 
+                                    stock={stockItem} key={stockItem._id} 
+                                />
                             </ItemWraper>
                         )
                     }
@@ -278,16 +285,17 @@ export function StocksListGroup(props: any): ReactElement {
                     :
                     <ul style={{ paddingLeft: 0 }} className='stockList'> {
                         items.map((stockItem: any) =>
-                            <ItemWraper> {
-                                (locals().selectedId === stockItem._id) &&
-                                <Fragment> {
-                                    locals().isEditing ?
-                                        <StocksForm stock={stockItem} {...props} />
-                                        :
-                                        <StockDetails stock={stockItem} />
+                            <ItemWraper>
+                                 {
+                                    (locals().selectedId === stockItem._id) &&
+                                    <Fragment> {
+                                        locals().isEditing ?
+                                            <StocksForm stock={stockItem} {...props} />
+                                            :
+                                            <StockDetails stock={stockItem} />
+                                    }
+                                    </Fragment>
                                 }
-                                </Fragment>
-                            }
                                 <Stock {...props} cart={locals().invoice} selectCallback={props.selectCallBack} stock={stockItem} key={stockItem._id} />
                             </ItemWraper>
                         )

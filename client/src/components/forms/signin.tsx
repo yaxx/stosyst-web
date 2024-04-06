@@ -113,7 +113,8 @@ export function SignInForm(props: any): ReactElement {
       <PriBtn id="pri--btn" active={creds.phone && creds.password}  name='signin'> {
         loading ? <Loader /> : 'Sign in'
       }
-      </PriBtn>{
+      </PriBtn>
+      {
         error && <Error error={error} />
       }
       <Tagline mt='50'>

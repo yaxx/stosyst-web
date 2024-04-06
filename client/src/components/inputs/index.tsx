@@ -42,7 +42,6 @@ export const FileInput = styled.input`
   font-size: 10;
   opacity: 0;
   z-index: 200;
-  
 `
 export const QtyInput = styled.input.attrs(props => ({
   placeholder: props.placeholder,
@@ -125,10 +124,11 @@ const MultiFormGroup = styled.div<any>`
   display: flex;
   align-items: center;
   position: relative;
-  text-align: ${props => props.right ? 'right' : 'left'};
-  border-right: 1px solid ${props => props.right ? 'white' : 'lightgrey'};
   border-radius:0px;
   width: ${props => props.width || 50}%;
+  text-align: ${props => props.right ? 'right' : 'left'};
+  border-right: 1px solid ${props => props.right ? 'white' : 'lightgrey'};
+  
    label {
     font-size: 11px;
     width: 100%;
@@ -568,7 +568,6 @@ export const StockSearchInput = (props: any) => {
   }
 
   const handleKeyDown = (e: any) => {
-    console.log(`Keycode: ${e.keyCode}`);
     if (e.keyCode === 8) {
       handleFocus(true)
     }

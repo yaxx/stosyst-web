@@ -1,9 +1,9 @@
-import { Invoice, Product } from '../../models'
-import { Client } from '../../models'
+import { Invoice, Product } from '../../models/index'
+import { Client } from '../../models/index'
 import mongoose, { Document } from 'mongoose'
 import * as Auth from '../../auth'
 import { RequestResponse } from './invoice';
-import { getProductsPipeline, matchedProdsPipeline } from '../../pipelines';
+import { getProductsPipeline, matchedProdsPipeline } from '../../pipelines/index';
 import { toTitleCase } from './expense';
 import { getStockSetPipeline } from '../../pipelines/sets';
 // import { sendMessage } from '../../messaging/fcm';
@@ -21,7 +21,7 @@ export default {
     products: async (root: any, { group, offset, filter, query }: any, { req, res }: RequestResponse) => {
       Auth.checkSignedIn(req)
       const { data: { orgId, uid } }: any = req
-
+      console.log(orgId)
       let result: any = await Product.aggregate(getProductsPipeline(orgId, query, offset, group, filter))
 
       result = group === 'date' ?
@@ -31,6 +31,7 @@ export default {
         }))
         :
         result
+        // console.log(result)
       return result
     },
     matchedProducts: async (root: any, { query, storeId }: any, { req, res }: RequestResponse) => {

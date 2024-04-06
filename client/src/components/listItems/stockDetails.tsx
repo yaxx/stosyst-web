@@ -40,7 +40,6 @@ export default function StockDetails({ stock }: { stock: Product }): ReactElemen
                         <h6>SELLING PRICE</h6>
                         <p>{stock.sellingPrice}</p>
                     </InfoItem>
-                    
                     <VDivider />
                 </InfoItems>
                 <InfoItems w={33.3}>

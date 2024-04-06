@@ -1,9 +1,9 @@
-import { Expense } from '../../models'
-import { Client } from '../../models'
+import { Expense } from '../../models/index'
+import { Client } from '../../models/index'
 import * as Auth from '../../auth'
 // import {PubSub, withFilter } from 'graphql-subscriptions';
 import { RequestResponse } from './invoice';
-import { getExpensePipeline } from '../../pipelines';
+import { getExpensePipeline } from '../../pipelines/index';
 const ObjectId = require('mongodb').ObjectID;
 // export const pubsub = new PubSub();
 

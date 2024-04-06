@@ -85,7 +85,8 @@ export const StocksHeader = (props: any): ReactElement => {
                             <PlusIcon />
                         </IconCont>
                     }
-                </HeaderItem>{
+                </HeaderItem>
+                {
                     headMenu === 'group' ?
                         <></>
                         :

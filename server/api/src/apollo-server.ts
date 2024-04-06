@@ -1,5 +1,5 @@
 
-import { GraphQLSchema } from 'graphql/type'
+import { GraphQLSchema } from 'graphql/type/index'
 import { ApolloServer } from "apollo-server-express"
 import { SubscriptionServer } from 'subscriptions-transport-ws'
 

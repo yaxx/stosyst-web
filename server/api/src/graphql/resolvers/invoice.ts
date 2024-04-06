@@ -1,10 +1,10 @@
-import { Product, Invoice } from '../../models'
-import { Client } from '../../models'
+import { Product, Invoice } from '../../models/index'
+import { Client } from '../../models/index'
 import * as Auth from '../../auth'
 // import {PubSub, withFilter } from 'graphql-subscriptions';
 import { pubsub } from './product';
 import { groupInvoice, sortInvoice, sortOrder } from '../../pipelines/groupers';
-import stock from '../../validations/stock';
+import stock from '../../validators/stock';
 import { sendMessage } from '../../messaging/fcm';
 import { getSorter } from '../../pipelines/sorter';
 import { getInvoicePipeline } from '../../pipelines/invoices';
@@ -26,7 +26,7 @@ export default {
     invoices: async (root:any, { query,filter, offset, group }:any, {req, res}:RequestResponse ) => {
       Auth.checkSignedIn(req);
       const {data: {orgId, uid}}:any = req
-
+      
       // let inv:any = Invoice.find().lean()
 
       // console.log(inv.length)

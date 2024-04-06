@@ -1,8 +1,8 @@
 
 import * as Auth from '../../auth'
-import { Product, Expense, Invoice } from '../../models'
+import { Product, Expense, Invoice } from '../../models/index'
 import { RequestResponse } from './invoice'
-import { getchartHeader, getTotalExpPipeline, getExpiredPipeline, getExpiringPipeline, getHeaderCategories, getLowStocksPipeline, getOutOfStocksPipeline, getTotalSalesPipeline, getTrendsPipeline } from '../../pipelines'
+import { getchartHeader, getTotalExpPipeline, getExpiredPipeline, getExpiringPipeline, getHeaderCategories, getLowStocksPipeline, getOutOfStocksPipeline, getTotalSalesPipeline, getTrendsPipeline } from '../../pipelines/index'
 
 export default {
   Query: {

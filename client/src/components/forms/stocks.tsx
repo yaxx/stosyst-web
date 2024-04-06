@@ -22,9 +22,7 @@ import { InfoContainer, InfoItems, VDivider } from "../listItems/styles";
 
 export function StocksForm(props: any): ReactElement {
   let { stock: s } = props;
-
   const { group } = useReactiveVar(groupingCriteria)
-
   s = {
     ...s,
     expiry:
@@ -38,7 +36,6 @@ export function StocksForm(props: any): ReactElement {
 
   const [inFocus, setInFocus] = useState("name");
   const [mark, setMark] = useState(false);
-  const [defaultImage, setImage] = useState("avatar.png");
 
   const showFeedBack = () => {
     setMark(true);
@@ -67,7 +64,7 @@ export function StocksForm(props: any): ReactElement {
     { loading: uploading, error: uploadError },
   ] = useMutation(UPLOAD_FILE, {
     onCompleted: (data: any) => {
-      setImage(data.uploadFile.uri);
+      // setImage(data.uploadFile.uri);
       setStocks({
         ...stock,
         stockImage: data.uploadFile.uri,
@@ -80,6 +77,7 @@ export function StocksForm(props: any): ReactElement {
   if (uploadError) {
     console.log(uploadError);
   }
+  
   const hangleFileChange = async (e: any) => {
     const file = e.target.files[0];
     if (!file) {

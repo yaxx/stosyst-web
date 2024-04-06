@@ -1,4 +1,4 @@
-import { GraphQLSchema } from "graphql/type";
+import { GraphQLSchema } from "graphql/type/index";
 import { execute, subscribe } from 'graphql';
 import { SubscriptionServer } from "subscriptions-transport-ws";
 

@@ -1,5 +1,5 @@
 import { AuthenticationError } from 'apollo-server-express'
-import { Client } from './models'
+import { Client } from './models/index'
 import jwt from 'jsonwebtoken'
 let ObjectId = require('mongodb').ObjectID;
 

@@ -8,6 +8,7 @@ import { GroupIcon, FilterIcon, ArrowDown, Logo } from "../icons";
 import { ImageItem } from "../images";
 import HeaderMenu from "./headerMenu";
 import PageListOpts from "./ListOpts";
+import InvoiceHeaderActions from "./ListOpts/invoice";
 import MobileHeader from "./mobile";
 import { TopHeader, GroupContainer, GroupLabel, ProfileOptions, LogoSection, SearchSection, CartSection, MainHeaderCont } from "./styles";
 
@@ -62,7 +63,13 @@ export const HeaderNav = (props: any) => {
                             <ArrowDown />
                         </GroupLabel>
                         {
-                            tableMenu && <PageListOpts tableMenuCallback={showHeaderMenu} />
+                            tableMenu && pathname==='/' ?
+                            <PageListOpts tableMenuCallback={showHeaderMenu} />
+                            :
+                            tableMenu && pathname==='/invoices' ?
+                            <InvoiceHeaderActions tableMenuCallback={showHeaderMenu}/>
+                            :
+                            null
                         }
                     </GroupContainer>
                     <ProfileOptions onClick={showAppMenu}>

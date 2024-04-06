@@ -70,9 +70,6 @@ export const cache: ApolloClient<NormalizedCacheObject>  = new ApolloClient({
           }
         }
       },
-      // ExpenseGroup: {
-      //     keyFields: ["ExpenseGroup",["day","month","year"]],
-      // },
       invoices: {
             keyFields: [],
             merge(existing, incoming, { args }) {
@@ -81,15 +78,15 @@ export const cache: ApolloClient<NormalizedCacheObject>  = new ApolloClient({
               return merged
             }
       },
-      // StocksGroup: {
-      //   fields: {
-      //     records: {
-      //         merge(existing:any[], incoming:any) {
-      //         return [ ...existing, ...incoming ]
-      //       }
-      //     }
-      //   } 
-      // },
+      StocksGroup: {
+        fields: {
+          records: {
+              merge(existing:any[], incoming:any) {
+              return [ ...existing, ...incoming ]
+            }
+          }
+        } 
+      },
     }
   })
 })

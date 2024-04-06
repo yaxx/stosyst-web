@@ -1,11 +1,12 @@
 import React from 'react'
 import { TopHeader } from '../styles'
+import { MobileHeaderCont } from './styles'
 
 const MobileHeader = () => {
   return (
-      <TopHeader id="mobile--header">
+    <MobileHeaderCont>
 
-      </TopHeader>
+    </MobileHeaderCont>
   )
 }
 

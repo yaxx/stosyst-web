@@ -231,8 +231,6 @@ export function OuterList(props: any): ReactElement {
                         }
                         <P1 style={{ fontSize: 15, color: '#000000e7' }}>{roundAmount(getNetInvoiceToatal(list.records))}</P1>
                     </div>
-                    
-                    
                 </TotalSeparator>
             </Fragment>
         }

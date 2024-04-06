@@ -144,14 +144,7 @@ const ShareForm = (props: any) => {
                     <h6>TO:</h6>
                     <h6 className='store--id'>@{client.linkedTo[0].username}</h6>
                     <SelectedItem {...props} opened={opened} />
-                    {/* <DropIconCont>
-                        <IconCont
-                            rot={opened ? 270 : 90}
-                            className='icon'
-                            size={8}>
-                            <RightAngleIcon />
-                        </IconCont>
-                    </DropIconCont> */}
+                    
                     {
                         !opened &&
                         <InputCont>

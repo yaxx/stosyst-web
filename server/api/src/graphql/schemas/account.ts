@@ -99,10 +99,9 @@ export default gql`
         id: String
     }
     input Creds {
-        isAdmin: Boolean
-        phone: String!
+        name: String
+        email: String
         password: String!
-        msgToken: String
     }
     input ClientInfo {
         name: String!
@@ -179,8 +178,7 @@ export default gql`
         signOut: Boolean
         signIn(creds: Creds!): Info
         signUp(info: ClientInfo!): Info
-        addAccount(input: AddAccInput!): Client
-        saveInfo(staff: PersonInput!): User
+        # addAccount(input: AddAccInput!): Client
         deleteStaff(id: String!): StaffId
         # updateAccount(input: AccInput): Client
     } 

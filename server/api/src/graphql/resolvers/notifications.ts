@@ -1,6 +1,6 @@
 
 import * as Auth from '../../auth'
-import { Invoice, Expense } from '../../models'
+import { Invoice, Expense } from '../../models/index'
 // import {group_criteria, sort_order } from './expense'
 import { RequestResponse } from './invoice';
 

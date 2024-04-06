@@ -38,25 +38,6 @@ const Search = (props: any) => {
             //     ...product
             // }
         });
-    //     cache.writeFragment({
-    //         id: `Product:${product._id}`,
-    //         fragment: gql`
-    //                 fragment Stock on Product {
-    //                      _id
-    //                      name
-    //                      description
-    //                      costPrice
-    //                      sellingPrice
-    //                      instock
-    //                 }
-    //             `,
-    //         data: {
-    //             ...matches[i]
-    //         }
-    //     });
-
-       
-        
 
         const s = cache.readQuery({
             query: MATCHED_PRODS,
@@ -66,8 +47,6 @@ const Search = (props: any) => {
             }
           }
         )
-        console.log(s);
-        console.log(d)
     }
 
     

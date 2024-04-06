@@ -25,7 +25,8 @@ export const  InvoiceHeader = (): ReactElement => {
                 </HeaderItem>
                 <HeaderItem width={10}>
                     <TAGGLINE>PRICE</TAGGLINE>
-                </HeaderItem> {
+                </HeaderItem> 
+                {/* {
                     menu === 'group' ?
                     <TableActions onMouseLeave={() => headerMenu('')}>
                         <TableOption selected={criteria.group === 'date'} onClick={() => invCriteria({...criteria,group: 'date'})} style={{ borderBottom: '0px' }}>
@@ -75,7 +76,7 @@ export const  InvoiceHeader = (): ReactElement => {
                     </TableActions>
                     :
                     <></>
-                }
+                } */}
             </InvoiceListHeader>
         </Header>
     )

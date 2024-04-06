@@ -76,7 +76,6 @@ export const CardBody = styled(Card)`
   right: 0px;
   padding-top: 0px;
   width: 100%;
-  /* overflow: visible; */
  `;
 export const InvoiceMainCont = styled.div`
   width: 100%;

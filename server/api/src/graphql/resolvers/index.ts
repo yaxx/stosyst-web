@@ -7,6 +7,8 @@ import Chart from './charts'
 import Upload from './upload'
 import Summary from './summary'
 import Notification from './notifications'
+// import User from './user'
+// import Transaction from './transaction'
 
 export default [
     Product,
@@ -16,5 +18,7 @@ export default [
     Upload,
     Summary,
     Chart,
-    Notification
+    Notification,
+    // User,
+    // Transaction
 ]

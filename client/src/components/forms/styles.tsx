@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { P2 } from '../typography';
 
 export const PaymentReviewer = styled.div<any>`
     position: absolute;
@@ -182,10 +183,10 @@ export const TableForm = styled(Form)`
     /* height: ${props => (props.id) ? '100%' : '220px'
   }; */
     height: 220px;
-    top: ${props => (props.id) ? 'auto' : ''
-  };
-    position: ${props => (props.id) ? 'absolute' : 'relative'
-  };
+    top: ${props => (props.id) ? 'auto' : ''};
+  
+    position: ${props => (props.id) ? 'absolute' : 'relative'};
+ 
     background-color: ${props => props.theme.mode === 'dark' ? props.theme.dark.colors.backgrounds.elavations.pri : props.theme.light.colors.backgrounds.base.pri
   };
     .formGroup {
@@ -327,4 +328,3 @@ export const QtyFormGroup = styled.div.attrs(props => ({
     border-radius: 6px;
     position: relative;
   `
-  
