@@ -9,7 +9,7 @@
     "postbuild": "cp -R src/public dist",
     "dev": "ts-node-dev --transpile-only --no-notify src",
     "start": "node dist/index.js",
-  },
+    "prod": "cross-env NODE_ENV=production SERVER_PORT=80 MONGO_HOST=cluster0.oxexzoj.mongodb.net MONGO_DATABASE=stosyst MONGO_USERNAME=shehuzaxon MONGO_PASSWORD=3qM7IuK0J5B0i3at AWS_ACCESS_KEY_ID=AKIAXLDSOHSE3EQSDQGF AWS_SECRET_ACCESS_KEY=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 pm2 start dist/index.js --name stosyst"  },
   "exports": {
     "./GraphQLUpload.js": "./GraphQLUpload.js",
     "./graphqlUploadExpress.js": "./graphqlUploadExpress.mjs",
