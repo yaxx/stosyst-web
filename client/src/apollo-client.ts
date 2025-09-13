@@ -7,13 +7,13 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { ApolloClient, InMemoryCache, NormalizedCacheObject, split } from '@apollo/client'
 
 
-export const API_HOST = inDevelopment ? 'localhost:4200':'api.stosyst.com'
+export const API_HOST = inDevelopment ? 'localhost:4200':'stosyst.store/graphql'
 
-export const API_URI = inDevelopment ? `http://${API_HOST}/graphql`:`https://${API_HOST}`
+export const API_URI = inDevelopment ? `http://${API_HOST}/graphql`:`http://${API_HOST}`
 export const getImageUrl = (name: string) => `https://nextoma-bucket.s3.us-east-2.amazonaws.com/${name}`;
 // export const getImageUrl = (name: string) => inDevelopment ? `http://${API_HOST}/images/${name}` : `https://nextoma-bucket.s3.us-east-2.amazonaws.com/${name}`;
 
-const SOCKET_URI = inDevelopment ? `ws://${API_HOST}` : `wss://${API_HOST}`
+const SOCKET_URI = inDevelopment ? `ws://${API_HOST}` : `ws://${API_HOST}`
 
 const wsLink = new WebSocketLink({
   uri: SOCKET_URI,
