@@ -4,7 +4,7 @@ import { IN_PRODUCTION } from './app'
 
 const {
     MONGO_HOST = 'localhost',
-    MONGO_DATABASE = 'systo',
+    MONGO_DATABASE = 'stosyst',
     MONGO_PORT = '27017',
     MONGO_USERNAME = '',
     MONGO_PASSWORD = ''
